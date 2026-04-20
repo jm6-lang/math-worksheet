@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Let Cloudflare Pages auto-detect and handle Next.js runtime
 };
 
 export default nextConfig;
