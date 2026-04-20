@@ -2,7 +2,7 @@
   "name": "math-worksheet",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jm6-lang.github.io/math-worksheet/",
+  "homepage": "https://math-worksheet.pages.dev",
   "description": "免费小学数学口算题生成器，支持田字格、方格、横线等多种模板，PDF导出即用",
   "scripts": {
     "dev": "next dev",
