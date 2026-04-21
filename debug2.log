@@ -1,0 +1,5 @@
+detecting...
+ERR: AttributeError: 'BrowserLauncher' object has no attribute 'detect_browser'
+Traceback (most recent call last):
+  File "<string>", line 10, in <module>
+AttributeError: 'BrowserLauncher' object has no attribute 'detect_browser'

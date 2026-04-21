@@ -1,685 +1,415 @@
 'use client';
 
-import { useState, useRef, useCallback, useEffect } from 'react';
-import {
-  generateQuestions,
-  Question,
-  QuestionType,
-  QuestionConfig,
-  QUESTION_TYPE_META,
-  GRADES,
-  RANGE_OPTIONS,
-} from '@/lib/questionGenerator';
-import WorksheetPreview, {
-  WorksheetConfig,
-  TemplateType,
-  WorksheetMode,
-} from '@/components/WorksheetPreview';
-import { exportToPDF } from '@/lib/pdfExport';
+import { useState, useEffect, useRef } from 'react';
 
-// 快捷配置预设
-const QUICK_PRESETS = [
-  { label: '10道基础', grade: 1, types: ['addition', 'subtraction'] as QuestionType[], count: 10, rangeIndex: 1, icon: '🎯', desc: '加减法入门' },
-  { label: '20道竖式', grade: 2, types: ['vertical_add', 'vertical_sub'] as QuestionType[], count: 20, rangeIndex: 2, icon: '📐', desc: '竖式计算练习' },
-  { label: '50道综合', grade: 3, types: ['addition', 'subtraction', 'multiplication', 'division'] as QuestionType[], count: 50, rangeIndex: 3, icon: '🚀', desc: '四则运算混合' },
-  { label: '100道强化', grade: 4, types: ['mixed'] as QuestionType[], count: 100, rangeIndex: 3, icon: '⚡', desc: '混合运算强化' },
+// 轮播图数据
+const CAROUSEL_ITEMS = [
+  {
+    id: 1,
+    title: '数学练习卷',
+    subtitle: '一键生成个性化练习卷',
+    description: '支持加减乘除、竖式计算、填空题等多种题型',
+    icon: '🧮',
+    gradient: 'from-blue-600 via-indigo-600 to-purple-600',
+    link: '/tools/math-worksheet',
+  },
+  {
+    id: 2,
+    title: '字帖生成器',
+    subtitle: '练字从此不再枯燥',
+    description: '田字格、米字格、方格多种模板，自定义内容',
+    icon: '✍️',
+    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+    link: '/tools/calligraphy',
+  },
+  {
+    id: 3,
+    title: '数独挑战',
+    subtitle: '锻炼逻辑思维',
+    description: '多难度级别，计时挑战，自动校验',
+    icon: '🧩',
+    gradient: 'from-orange-500 via-red-500 to-pink-500',
+    link: '/tools/sudoku',
+  },
 ];
 
-// 模板配置
-const TEMPLATES: { value: TemplateType; label: string; desc: string; icon: string; preview: string }[] = [
-  { value: 'tianzige', label: '田字格', desc: '1-2年级', icon: '▦', preview: '田' },
-  { value: 'fangge', label: '方格纸', desc: '3-4年级', icon: '▤', preview: '□' },
-  { value: 'hengxian', label: '横线格', desc: '高年级', icon: '≡', preview: '三' },
-  { value: 'kongbai', label: '空白纸', desc: '自由书写', icon: '□', preview: '白' },
+// 公告数据
+const ANNOUNCEMENTS = [
+  '🎉 算个题吧全新上线！支持11种题型，田字格/方格/横线格多模板',
+  '📢 字帖生成器上线！支持楷体/宋体/黑体等多种字体',
+  '🆕 数独游戏全新上线，支持4个难度级别',
+  '💡 小贴士：点击顶部菜单可快速访问各工具',
+  '🔥 免费使用，无需注册，即开即用',
 ];
 
-function WorksheetSection({
-  questions,
-  config,
-  ref,
-}: {
-  questions: Question[];
-  config: WorksheetConfig;
-  ref: React.RefObject<HTMLDivElement | null>;
-}) {
-  return (
-    <div ref={ref as React.RefObject<HTMLDivElement>}>
-      <WorksheetPreview questions={questions} config={config} />
-    </div>
-  );
-}
+// 工具分类
+const TOOL_CATEGORIES = [
+  {
+    category: '📚 学习工具',
+    tools: [
+      { name: '数学练习卷', icon: '🧮', desc: '一键出题，PDF导出', link: '/tools/math-worksheet', color: 'blue', disabled: false },
+      { name: '字帖生成器', icon: '✍️', desc: '田字格/米字格模板', link: '/tools/calligraphy', color: 'emerald', disabled: false },
+      { name: '数独游戏', icon: '🧩', desc: '多难度逻辑训练', link: '/tools/sudoku', color: 'orange', disabled: false },
+    ],
+  },
+  {
+    category: '🎨 敬请期待',
+    tools: [
+      { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '#', color: 'gray', disabled: true },
+      { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '#', color: 'gray', disabled: true },
+      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '#', color: 'gray', disabled: true },
+    ],
+  },
+];
 
-export default function Home() {
-  // ===== 出题配置 =====
-  const [grade, setGrade] = useState(1);
-  const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>(['addition']);
-  const [rangeIndex, setRangeIndex] = useState(1);
-  const [count, setCount] = useState(20);
-  const [template, setTemplate] = useState<TemplateType>('tianzige');
-  const [questionsPerRow, setQuestionsPerRow] = useState(6);
-  const [fontSize, setFontSize] = useState<'sm' | 'md' | 'lg'>('md');
-  const [shuffle, setShuffle] = useState(true);
-  const [showNameField, setShowNameField] = useState(true);
-  const [showDateField, setShowDateField] = useState(true);
-  const [sheetTitle, setSheetTitle] = useState('数学练习');
-  const [mode, setMode] = useState<WorksheetMode>('worksheet');
-  const [showAnswers, setShowAnswers] = useState(false);
-  const [showConfig, setShowConfig] = useState(false);
+// 颜色映射
+const COLOR_MAP: Record<string, string> = {
+  blue: 'bg-blue-500 hover:bg-blue-600',
+  emerald: 'bg-emerald-500 hover:bg-emerald-600',
+  orange: 'bg-orange-500 hover:bg-orange-600',
+  gray: 'bg-gray-400',
+};
 
-  // ===== 题目状态 =====
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [hasGenerated, setHasGenerated] = useState(false);
+export default function HomePage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [showDonate, setShowDonate] = useState(false);
+  const announcementRef = useRef<HTMLDivElement>(null);
 
-  const worksheetRef = useRef<HTMLDivElement>(null);
-  const answersheetRef = useRef<HTMLDivElement>(null);
+  // 自动轮播
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % CAROUSEL_ITEMS.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
 
-  // ===== 快捷预设生成 =====
-  const handleQuickPreset = useCallback((preset: typeof QUICK_PRESETS[0]) => {
-    setGrade(preset.grade);
-    setSelectedTypes(preset.types);
-    setCount(preset.count);
-    setRangeIndex(preset.rangeIndex);
-    if (preset.grade <= 2) setTemplate('tianzige');
-    else if (preset.grade <= 4) setTemplate('fangge');
-    else setTemplate('hengxian');
-    
-    setTimeout(() => {
-      const config: QuestionConfig = {
-        types: preset.types,
-        range: RANGE_OPTIONS[preset.rangeIndex].value,
-        count: preset.count,
-        grade: preset.grade,
-        includeAnswers: true,
-        shuffle: true,
-      };
-      setQuestions(generateQuestions(config));
-      setHasGenerated(true);
-    }, 50);
+  // 公告滚动
+  useEffect(() => {
+    const container = announcementRef.current;
+    if (!container) return;
+
+    const content = container.querySelector('.announcement-content') as HTMLElement | null;
+    if (!content) return;
+
+    // 复制内容实现无缝滚动
+    content.innerHTML += content.innerHTML;
+
+    let animationId: number;
+    let offset = 0;
+    const speed = 1;
+
+    const animate = () => {
+      offset -= speed;
+      if (offset <= -content.scrollWidth / 2) {
+        offset = 0;
+      }
+      content.style.transform = `translateX(${offset}px)`;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationId);
   }, []);
 
-  // ===== 题型切换 =====
-  const toggleType = (type: QuestionType) => {
-    setSelectedTypes(prev => {
-      if (prev.includes(type)) {
-        if (prev.length === 1) return prev;
-        return prev.filter(t => t !== type);
-      }
-      return [...prev, type];
-    });
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
   };
-
-  // ===== 生成 =====
-  const handleGenerate = useCallback(() => {
-    setIsGenerating(true);
-    setHasGenerated(false);
-    setTimeout(() => {
-      const config: QuestionConfig = {
-        types: selectedTypes,
-        range: RANGE_OPTIONS[rangeIndex].value,
-        count,
-        grade,
-        includeAnswers: true,
-        shuffle,
-      };
-      const qs = generateQuestions(config);
-      setQuestions(qs);
-      setHasGenerated(true);
-      setIsGenerating(false);
-    }, 50);
-  }, [selectedTypes, rangeIndex, count, grade, shuffle]);
-
-  // ===== 导出 =====
-  const exportOne = useCallback(
-    async (modeType: WorksheetMode, label: string) => {
-      const ref = modeType === 'worksheet' ? worksheetRef : answersheetRef;
-      if (!ref.current) return;
-      try {
-        await exportToPDF(ref.current, `${sheetTitle || '数学练习'}-${label}.pdf`);
-      } catch (err) {
-        console.error(err);
-        alert(`${label}导出失败`);
-      }
-    },
-    [sheetTitle]
-  );
-
-  const exportBoth = useCallback(async () => {
-    if (!worksheetRef.current || !answersheetRef.current) return;
-    try {
-      await exportToPDF(worksheetRef.current, `${sheetTitle || '数学练习'}-题目卷.pdf`);
-      await exportToPDF(answersheetRef.current, `${sheetTitle || '数学练习'}-答案卷.pdf`);
-    } catch (err) {
-      console.error(err);
-      alert('导出失败');
-    }
-  }, [sheetTitle]);
-
-  const handlePrint = useCallback(() => window.print(), []);
-
-  // ===== 配置 =====
-  const worksheetConfig: WorksheetConfig = {
-    title: sheetTitle,
-    grade,
-    date: new Date().toLocaleDateString('zh-CN'),
-    name: '',
-    template,
-    questionsPerRow,
-    fontSize,
-    showPageNumber: true,
-    showNameField,
-    showDateField,
-    mode: 'worksheet',
-    showAnswers,
-  };
-
-  const answersheetConfig: WorksheetConfig = {
-    ...worksheetConfig,
-    mode: 'answersheet',
-    showAnswers: false,
-  };
-
-  // 滚动到预览区
-  useEffect(() => {
-    if (hasGenerated) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [hasGenerated]);
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] text-white" style={{ fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif' }}>
-      
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* ===== 顶部导航 ===== */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
+            {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-xl">
-                🧮
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">
+                📚
               </div>
-              <span className="text-xl font-bold">算个题吧</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://xgzb.top"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-gray-400 hover:text-white transition-colors"
-              >
-                写个字吧 →
+              <a href="/" className="text-xl font-bold text-white hover:opacity-80 transition-opacity">
+                教材工具箱
               </a>
             </div>
-          </div>
-        </div>
-      </nav>
 
-      {/* ===== Hero 区域 ===== */}
-      {!hasGenerated && (
-        <div className="pt-24 pb-12 px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
-              算个题吧
-            </h1>
-            <p className="text-xl text-gray-400 mb-4">
-              免费好用的数学练习纸生成器
-            </p>
-            <p className="text-gray-500 mb-10">
-              支持加减乘除、竖式计算、填空题等多种题型 · 田字格/方格/横线格多模板 · PDF 即印即用
-            </p>
-
-            {/* 快捷出题卡片 */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
-              {QUICK_PRESETS.map((preset) => (
-                <button
-                  key={preset.label}
-                  onClick={() => handleQuickPreset(preset)}
-                  className="group relative bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 rounded-2xl p-6 transition-all duration-300 hover:scale-105"
-                >
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{preset.icon}</div>
-                  <div className="text-lg font-bold mb-1">{preset.label}</div>
-                  <div className="text-sm text-gray-500">{preset.desc}</div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 rounded-2xl transition-all" />
-                </button>
-              ))}
+            {/* 桌面导航 */}
+            <div className="hidden md:flex items-center gap-1">
+              <a href="/" className="px-4 py-2 text-sm text-white bg-white/10 rounded-lg font-medium">
+                首页
+              </a>
+              <a href="/tools/math-worksheet" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                🧮 数学练习卷
+              </a>
+              <a href="/tools/calligraphy" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                ✍️ 字帖生成器
+              </a>
+              <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                🧩 数独游戏
+              </a>
+              <button onClick={() => setShowDonate(true)} className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors ml-2">
+                💝 赞助
+              </button>
             </div>
 
-            {/* 模板展示 - 重新设计 */}
-            <div className="mb-8">
-              <h2 className="text-lg font-medium text-gray-400 mb-6">选择模板样式</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                {TEMPLATES.map((t) => (
-                  <button
-                    key={t.value}
-                    onClick={() => setTemplate(t.value)}
-                    className={`group relative bg-white/5 hover:bg-white/10 border-2 rounded-2xl p-4 transition-all duration-300 ${
-                      template === t.value
-                        ? 'border-blue-500 bg-blue-500/10'
-                        : 'border-white/10 hover:border-white/30'
-                    }`}
-                  >
-                    {/* A4 纸张预览 - 使用 SVG 更精确 */}
-                    <div className="aspect-[3/4] bg-white rounded-lg shadow-lg mb-3 overflow-hidden relative">
-                      {t.value === 'tianzige' && (
-                        <svg viewBox="0 0 60 80" className="w-full h-full">
-                          {/* 田字格 - 2x3 网格 */}
-                          {[0, 1, 2].map(row =>
-                            [0, 1].map(col => (
-                              <g key={`${row}-${col}`}>
-                                {/* 外框 */}
-                                <rect
-                                  x={5 + col * 25}
-                                  y={8 + row * 22}
-                                  width="22"
-                                  height="20"
-                                  fill="none"
-                                  stroke="#d1d5db"
-                                  strokeWidth="0.5"
-                                />
-                                {/* 十字线 */}
-                                <line
-                                  x1={5 + col * 25 + 11}
-                                  y1={8 + row * 22}
-                                  x2={5 + col * 25 + 11}
-                                  y2={8 + row * 22 + 20}
-                                  stroke="#93c5fd"
-                                  strokeWidth="0.3"
-                                  strokeDasharray="2,1"
-                                />
-                                <line
-                                  x1={5 + col * 25}
-                                  y1={8 + row * 22 + 10}
-                                  x2={5 + col * 25 + 22}
-                                  y2={8 + row * 22 + 10}
-                                  stroke="#fca5a5"
-                                  strokeWidth="0.3"
-                                  strokeDasharray="2,1"
-                                />
-                              </g>
-                            ))
-                          )}
-                        </svg>
-                      )}
-                      {t.value === 'fangge' && (
-                        <svg viewBox="0 0 60 80" className="w-full h-full">
-                          {/* 方格纸 - 3x4 网格 */}
-                          {[0, 1, 2, 3].map(row =>
-                            [0, 1, 2].map(col => (
-                              <rect
-                                key={`${row}-${col}`}
-                                x={6 + col * 16}
-                                y={10 + row * 16}
-                                width="14"
-                                height="14"
-                                fill="none"
-                                stroke="#d1d5db"
-                                strokeWidth="0.5"
-                              />
-                            ))
-                          )}
-                        </svg>
-                      )}
-                      {t.value === 'hengxian' && (
-                        <svg viewBox="0 0 60 80" className="w-full h-full">
-                          {/* 横线格 */}
-                          {[0, 1, 2, 3, 4, 5].map(i => (
-                            <line
-                              key={i}
-                              x1="8"
-                              y1={15 + i * 10}
-                              x2="52"
-                              y2={15 + i * 10}
-                              stroke="#d1d5db"
-                              strokeWidth="0.5"
-                            />
-                          ))}
-                        </svg>
-                      )}
-                      {t.value === 'kongbai' && (
-                        <svg viewBox="0 0 60 80" className="w-full h-full">
-                          {/* 空白纸 - 只有边框 */}
-                          <rect
-                            x="8"
-                            y="10"
-                            width="44"
-                            height="60"
-                            fill="none"
-                            stroke="#e5e7eb"
-                            strokeWidth="0.5"
-                            rx="2"
-                          />
-                        </svg>
-                      )}
-                      {/* 选中标记 */}
-                      {template === t.value && (
-                        <div className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    {/* 文字说明 */}
-                    <div className="text-center">
-                      <div className="text-base font-bold mb-1">{t.label}</div>
-                      <div className="text-sm text-gray-500">{t.desc}</div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 高级配置按钮 */}
+            {/* 移动端菜单按钮 */}
             <button
-              onClick={() => setShowConfig(!showConfig)}
-              className="text-sm text-gray-500 hover:text-white transition-colors flex items-center gap-2 mx-auto"
+              onClick={() => setMobileMenu(!mobileMenu)}
+              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
             >
-              {showConfig ? '收起高级配置 ▲' : '展开高级配置 ▼'}
+              {mobileMenu ? '✕' : '☰'}
             </button>
           </div>
         </div>
-      )}
 
-      {/* ===== 高级配置面板 ===== */}
-      {(showConfig || hasGenerated) && (
-        <div className={`${hasGenerated ? 'pt-20' : ''} px-4 pb-12`}>
-          <div className="max-w-6xl mx-auto">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                
-                {/* 出题设置 */}
-                <div>
-                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">1</span>
-                    出题设置
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm text-gray-400 mb-2 block">年级</label>
-                      <div className="flex flex-wrap gap-2">
-                        {GRADES.map(g => (
-                          <button
-                            key={g}
-                            onClick={() => setGrade(g)}
-                            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                              grade === g
-                                ? 'bg-blue-500 text-white'
-                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                            }`}
-                          >
-                            {g}年级
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+        {/* 移动端菜单 */}
+        {mobileMenu && (
+          <div className="md:hidden bg-slate-800 border-t border-white/10 py-4 px-4 space-y-1">
+            <a href="/" className="block px-4 py-2 text-white bg-white/10 rounded-lg">首页</a>
+            <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧮 数学练习卷</a>
+            <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
+            <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
+            <div className="border-t border-white/10 my-2"></div>
+            <button onClick={() => { setShowDonate(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💝 赞助支持</button>
+          </div>
+        )}
+      </nav>
 
-                    <div>
-                      <label className="text-sm text-gray-400 mb-2 block">题型</label>
-                      <div className="flex flex-wrap gap-1.5">
-                        {(Object.keys(QUESTION_TYPE_META) as QuestionType[])
-                          .filter(t => {
-                            const meta = QUESTION_TYPE_META[t];
-                            return grade >= meta.gradeMin && grade <= meta.gradeMax;
-                          })
-                          .map(type => {
-                            const meta = QUESTION_TYPE_META[type];
-                            const isActive = selectedTypes.includes(type);
-                            return (
-                              <button
-                                key={type}
-                                onClick={() => toggleType(type)}
-                                className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
-                                  isActive
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-white/10 text-gray-400 hover:bg-white/20'
-                                }`}
-                              >
-                                {meta.label}
-                              </button>
-                            );
-                          })}
-                      </div>
-                    </div>
+      {/* ===== 轮播大图区域 ===== */}
+      <section className="pt-16">
+        <div
+          className="relative h-[500px] md:h-[600px] overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {CAROUSEL_ITEMS.map((item, index) => (
+            <a
+              key={item.id}
+              href={item.link}
+              className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                index === currentSlide
+                  ? 'opacity-100 scale-100'
+                  : 'opacity-0 scale-105 pointer-events-none'
+              }`}
+            >
+              {/* 背景渐变 */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-90`} />
 
-                    <div>
-                      <label className="text-sm text-gray-400 mb-2 block">数字范围</label>
-                      <div className="flex flex-wrap gap-2">
-                        {RANGE_OPTIONS.map((opt, i) => (
-                          <button
-                            key={opt.label}
-                            onClick={() => setRangeIndex(i)}
-                            className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
-                              rangeIndex === i
-                                ? 'bg-blue-500 text-white'
-                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                            }`}
-                          >
-                            {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+              {/* 装饰元素 */}
+              <div className="absolute inset-0 overflow-hidden">
+                {/* 浮动数学符号 */}
+                <div className="absolute top-20 left-10 text-6xl opacity-20 animate-float">+</div>
+                <div className="absolute top-40 right-20 text-5xl opacity-20 animate-float-delay">−</div>
+                <div className="absolute bottom-32 left-1/4 text-7xl opacity-20 animate-float">×</div>
+                <div className="absolute bottom-20 right-1/3 text-5xl opacity-20 animate-float-delay">÷</div>
 
-                    <div>
-                      <label className="text-sm text-gray-400 mb-2 block">题目数量: {count}</label>
-                      <input
-                        type="range" min={5} max={100} step={5}
-                        value={count}
-                        onChange={e => setCount(Number(e.target.value))}
-                        className="w-full accent-blue-500"
-                      />
-                    </div>
-                  </div>
+                {/* 网格装饰 */}
+                <div className="absolute right-0 top-0 w-1/2 h-full opacity-10">
+                  <svg viewBox="0 0 400 600" className="w-full h-full">
+                    {[...Array(8)].map((_, i) => (
+                      <line key={`h${i}`} x1="0" y1={i * 75 + 50} x2="400" y2={i * 75 + 50} stroke="white" strokeWidth="1" />
+                    ))}
+                    {[...Array(5)].map((_, i) => (
+                      <line key={`v${i}`} x1={i * 100} y1="0" x2={i * 100} y2="600" stroke="white" strokeWidth="1" />
+                    ))}
+                  </svg>
+                </div>
+              </div>
+
+              {/* 内容区域 */}
+              <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+                {/* 3D 悬浮标题 */}
+                <div className="perspective-1000 mb-6">
+                  <h1
+                    className="text-6xl md:text-8xl font-black text-white tracking-tight"
+                    style={{
+                      textShadow: '0 4px 0 rgba(0,0,0,0.2), 0 8px 0 rgba(0,0,0,0.1), 0 12px 20px rgba(0,0,0,0.3)',
+                      transform: 'translateZ(50px)',
+                    }}
+                  >
+                    {item.title}
+                  </h1>
                 </div>
 
-                {/* 模板设置 */}
-                <div>
-                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">2</span>
-                    模板设置
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm text-gray-400 mb-2 block">每行题数: {questionsPerRow}</label>
-                      <div className="flex gap-2">
-                        {[4, 5, 6, 8].map(n => (
-                          <button
-                            key={n}
-                            onClick={() => setQuestionsPerRow(n)}
-                            className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                              questionsPerRow === n
-                                ? 'bg-blue-500 text-white'
-                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                            }`}
-                          >
-                            {n}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                {/* 副标题 */}
+                <p className="text-2xl md:text-3xl font-bold text-white/90 mb-4 drop-shadow-lg">
+                  {item.subtitle}
+                </p>
 
-                    <div>
-                      <label className="text-sm text-gray-400 mb-2 block">字体大小</label>
-                      <div className="flex gap-2">
-                        {(['sm', 'md', 'lg'] as const).map((v) => (
-                          <button
-                            key={v}
-                            onClick={() => setFontSize(v)}
-                            className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                              fontSize === v
-                                ? 'bg-blue-500 text-white'
-                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                            }`}
-                          >
-                            {v === 'sm' ? '小' : v === 'md' ? '中' : '大'}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                {/* 描述 */}
+                <p className="text-lg text-white/80 mb-8 max-w-xl drop-shadow">
+                  {item.description}
+                </p>
 
-                    <div className="space-y-2">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox" checked={showNameField}
-                          onChange={e => setShowNameField(e.target.checked)}
-                          className="accent-blue-500 w-4 h-4"
-                        />
-                        <span className="text-sm text-gray-300">显示姓名栏</span>
-                      </label>
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox" checked={showDateField}
-                          onChange={e => setShowDateField(e.target.checked)}
-                          className="accent-blue-500 w-4 h-4"
-                        />
-                        <span className="text-sm text-gray-300">显示日期栏</span>
-                      </label>
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox" checked={showAnswers}
-                          onChange={e => setShowAnswers(e.target.checked)}
-                          className="accent-blue-500 w-4 h-4"
-                        />
-                        <span className="text-sm text-gray-300">题目内嵌答案</span>
-                      </label>
-                    </div>
-                  </div>
+                {/* 大图标 */}
+                <div className="text-8xl mb-8 animate-bounce-slow drop-shadow-2xl">
+                  {item.icon}
                 </div>
 
-                {/* 标题与操作 */}
-                <div>
-                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">3</span>
-                    生成练习
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm text-gray-400 mb-2 block">练习标题</label>
-                      <input
-                        type="text"
-                        value={sheetTitle}
-                        onChange={e => setSheetTitle(e.target.value)}
-                        placeholder="例如：数学练习"
-                        className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                      />
-                    </div>
+                {/* 按钮 */}
+                <button className="px-8 py-4 bg-white text-gray-900 font-bold text-lg rounded-full shadow-xl hover:scale-105 transition-transform">
+                  立即使用 →
+                </button>
+              </div>
+            </a>
+          ))}
 
-                    <button
-                      onClick={handleGenerate}
-                      disabled={isGenerating || selectedTypes.length === 0}
-                      className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 disabled:opacity-50 text-white font-bold rounded-xl transition-all"
+          {/* 轮播指示器 */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+            {CAROUSEL_ITEMS.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentSlide
+                    ? 'bg-white scale-125'
+                    : 'bg-white/40 hover:bg-white/60'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* 左右箭头 */}
+          <button
+            onClick={() => goToSlide((currentSlide - 1 + CAROUSEL_ITEMS.length) % CAROUSEL_ITEMS.length)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white text-2xl backdrop-blur-sm transition-colors z-20"
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => goToSlide((currentSlide + 1) % CAROUSEL_ITEMS.length)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white text-2xl backdrop-blur-sm transition-colors z-20"
+          >
+            ›
+          </button>
+        </div>
+      </section>
+
+      {/* ===== 公告滚动条 ===== */}
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-3">
+        <div ref={announcementRef} className="overflow-hidden">
+          <div className="announcement-content flex gap-12 whitespace-nowrap">
+            {ANNOUNCEMENTS.map((text, i) => (
+              <span key={i} className="text-white font-medium px-4">
+                {text}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 工具导航分类 ===== */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white text-center mb-12">
+            🛠️ 工具导航
+          </h2>
+
+          <div className="space-y-10">
+            {TOOL_CATEGORIES.map((cat) => (
+              <div key={cat.category}>
+                <h3 className="text-xl font-bold text-gray-300 mb-6 flex items-center gap-2">
+                  <span>{cat.category}</span>
+                </h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {cat.tools.map((tool) => (
+                    <a
+                      key={tool.name}
+                      href={tool.link}
+                      className={`group relative bg-slate-800/50 hover:bg-slate-700/50 border border-white/10 rounded-2xl p-6 transition-all ${
+                        tool.disabled ? 'opacity-60 cursor-not-allowed' : 'hover:scale-105 hover:border-white/20'
+                      }`}
+                      onClick={tool.disabled ? (e) => e.preventDefault() : undefined}
                     >
-                      {isGenerating ? '⏳ 生成中...' : '🎲 立即出题'}
-                    </button>
-
-                    {hasGenerated && (
-                      <div className="space-y-2 pt-4 border-t border-white/10">
-                        <button
-                          onClick={exportBoth}
-                          className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors"
-                        >
-                          📄 导出题目卷+答案卷
-                        </button>
-                        <div className="flex gap-2">
-                          <button
-                            onClick={() => exportOne('worksheet', '题目卷')}
-                            className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
-                          >
-                            题目卷
-                          </button>
-                          <button
-                            onClick={() => exportOne('answersheet', '答案卷')}
-                            className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
-                          >
-                            答案卷
-                          </button>
-                        </div>
-                        <button
-                          onClick={handlePrint}
-                          className="w-full py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors"
-                        >
-                          🖨️ 打印预览
-                        </button>
+                      {/* 图标 */}
+                      <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
+                        {tool.icon}
                       </div>
-                    )}
-                  </div>
+
+                      {/* 名称 */}
+                      <h4 className="text-lg font-bold text-white mb-2">
+                        {tool.name}
+                        {tool.disabled && <span className="ml-2 text-xs text-gray-400">(开发中)</span>}
+                      </h4>
+
+                      {/* 描述 */}
+                      <p className="text-gray-400 text-sm">{tool.desc}</p>
+
+                      {/* 箭头 */}
+                      {!tool.disabled && (
+                        <div className="absolute bottom-6 right-6 text-gray-400 group-hover:text-white group-hover:translate-x-1 transition-all">
+                          →
+                        </div>
+                      )}
+                    </a>
+                  ))}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
-      )}
-
-      {/* ===== 预览区 ===== */}
-      {hasGenerated && (
-        <div className="px-4 pb-20">
-          <div className="max-w-6xl mx-auto">
-            {/* 预览工具栏 */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <h2 className="text-2xl font-bold">练习预览</h2>
-                <span className="text-gray-500">共 {questions.length} 题</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setMode('worksheet')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                    mode === 'worksheet'
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                  }`}
-                >
-                  📝 题目卷
-                </button>
-                <button
-                  onClick={() => setMode('answersheet')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                    mode === 'answersheet'
-                      ? 'bg-green-500 text-white'
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                  }`}
-                >
-                  ✅ 答案卷
-                </button>
-                <button
-                  onClick={() => { setHasGenerated(false); setQuestions([]); }}
-                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-gray-300 rounded-lg font-medium transition-all ml-4"
-                >
-                  ← 返回首页
-                </button>
-              </div>
-            </div>
-
-            {/* 工作表 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
-              <div style={{ display: mode === 'worksheet' ? 'block' : 'none' }} className="worksheet-wrapper">
-                <WorksheetSection questions={questions} config={worksheetConfig} ref={worksheetRef} />
-              </div>
-              {mode === 'answersheet' && (
-                <div className="worksheet-wrapper">
-                  <WorksheetSection questions={questions} config={answersheetConfig} ref={answersheetRef} />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      </section>
 
       {/* ===== 底部 ===== */}
-      <footer className="border-t border-white/10 py-8 px-4">
-        <div className="max-w-4xl mx-auto text-center text-gray-500 text-sm">
-          <p>🧮 算个题吧 · 完全免费 · 免登录 · <a href="https://xgzb.top" className="text-blue-400 hover:text-blue-300">写个字吧</a> · © 2026</p>
-        </div>
+      <footer className="border-t border-white/10 py-8 px-4 text-center text-gray-500 text-sm">
+        <p>© 2026 教材工具箱 · 免费好用的在线工具</p>
       </footer>
 
-      {/* 打印样式 */}
+      {/* ===== 赞助弹窗 ===== */}
+      {showDonate && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setShowDonate(false)}>
+          <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl max-w-md w-full p-8" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">💝 赞助支持</h2>
+              <button onClick={() => setShowDonate(false)} className="text-gray-400 hover:text-white text-2xl leading-none">×</button>
+            </div>
+            <p className="text-gray-400 text-center mb-6">
+              如果这些工具对您有帮助，欢迎赞助支持开发维护！
+            </p>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-2">微信支付</p>
+                <img src="/donate/wechat.png" alt="微信支付" className="w-full rounded-xl bg-white p-2" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-2">支付宝</p>
+                <img src="/donate/alipay.jpg" alt="支付宝" className="w-full rounded-xl bg-white p-2" />
+              </div>
+            </div>
+            <p className="text-gray-500 text-xs text-center mt-4">感谢您的支持！❤️</p>
+          </div>
+        </div>
+      )}
+
+      {/* ===== 自定义动画样式 ===== */}
       <style jsx global>{`
-        @media print {
-          body { background: white !important; }
-          nav, footer, .worksheet-wrapper ~ * { display: none !important; }
-          .worksheet-wrapper { position: static !important; }
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes float-delay {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(-5deg); }
+        }
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+        .animate-float-delay {
+          animation: float-delay 5s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 3s ease-in-out infinite;
+        }
+        .perspective-1000 {
+          perspective: 1000px;
         }
       `}</style>
     </div>

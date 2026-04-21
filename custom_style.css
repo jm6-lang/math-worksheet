@@ -1,0 +1,393 @@
+/**
+ * skillxm.cn 自定义样式 - 参考大坝资源站风格
+ * 主色调: #3451b2 (靛蓝)
+ * 辅助色: #3a5ccc, #5672cd
+ * 背景: #f6f6f7
+ */
+
+/* ========================
+   全局基础调整
+   ======================== */
+:root {
+    --sk-brand: #3451b2;
+    --sk-brand-light: #3a5ccc;
+    --sk-brand-dark: #5672cd;
+    --sk-brand-soft: rgba(52, 81, 178, 0.08);
+    --sk-bg-alt: #f6f6f7;
+    --sk-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --sk-card-shadow-hover: 0 12px 28px rgba(52, 81, 178, 0.15);
+}
+
+body {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: rgba(60, 60, 67);
+}
+
+/* ========================
+   首页 Hero 区域（首屏大图区域）
+   ======================== */
+.index-content {
+    background: linear-gradient(135deg, rgba(52, 81, 178, 0.06) 0%, rgba(58, 92, 204, 0.03) 50%, rgba(86, 114, 205, 0.06) 100%);
+    position: relative;
+}
+
+.index-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(52, 81, 178, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(86, 114, 205, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.index-content > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* 首页标题样式 */
+.index-content .t-md h1,
+.index-content h2.title,
+.index-content .mtitle {
+    background: linear-gradient(90deg, #3451b2, #5672cd, #3a5ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800 !important;
+    font-size: 2.2rem !important;
+}
+
+/* 副标题描述 */
+.index-content .lead,
+.index-content .t-md p.lead {
+    font-size: 1.15rem !important;
+    color: rgba(60, 60, 67, 0.78) !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+}
+
+/* 快捷入口按钮（首页快捷卡片） */
+.short-url .card {
+    background: linear-gradient(135deg, #ffffff 0%, #f6f6f7 100%);
+    border: 1px solid rgba(52, 81, 178, 0.12);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    box-shadow: var(--sk-card-shadow);
+}
+
+.short-url .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sk-card-shadow-hover);
+    border-color: var(--sk-brand-light);
+}
+
+.short-url .card .card-body {
+    padding: 20px;
+}
+
+.short-url .card .text-primary {
+    color: var(--sk-brand) !important;
+}
+
+/* ========================
+   文章卡片列表（核心）
+   ======================== */
+.articles .article,
+.posts-list .post,
+.p-t-md .article,
+.t-md .article,
+#article-list .article,
+.archive .article,
+.tag-article .article,
+.category .article {
+    background: linear-gradient(135deg, #ffffff 0%, #f6f6f7 100%);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 14px !important;
+    transition: all 0.3s ease;
+    box-shadow: var(--sk-card-shadow);
+    overflow: hidden;
+}
+
+.articles .article:hover,
+.posts-list .post:hover,
+.t-md .article:hover,
+#article-list .article:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sk-card-shadow-hover);
+    border-color: rgba(52, 81, 178, 0.25);
+}
+
+/* 文章标题 */
+.articles .article .title a,
+.posts-list .article-title,
+.t-md .article .h5 a,
+.post-title a {
+    color: #3451b2 !important;
+    font-weight: 700 !important;
+    transition: color 0.2s ease;
+    font-size: 1.1rem;
+}
+
+.articles .article .title a:hover,
+.post-title a:hover {
+    color: #3a5ccc !important;
+}
+
+/* 文章摘要 */
+.articles .article .abs,
+.posts-list .article .abstract,
+.t-md .article .abstract {
+    color: rgba(60, 60, 67, 0.72);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* 文章标签 */
+.articles .article .badge,
+.posts-list .article .badge,
+.tag-text,
+.article .tag-text a {
+    background: var(--sk-brand-soft) !important;
+    color: var(--sk-brand) !important;
+    border: 1px solid rgba(52, 81, 178, 0.15);
+    border-radius: 20px !important;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.tag-text:hover,
+.article .tag-text a:hover {
+    background: var(--sk-brand) !important;
+    color: #fff !important;
+}
+
+/* ========================
+   侧边栏小组件
+   ======================== */
+.widget,
+.sidebar-box,
+aside .widget {
+    background: linear-gradient(135deg, #ffffff 0%, #f6f6f7 100%);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 14px;
+    box-shadow: var(--sk-card-shadow);
+    padding: 20px;
+}
+
+.widget .widget-title,
+aside .widget-title,
+.sidebar-title {
+    font-weight: 700 !important;
+    color: var(--sk-brand) !important;
+    border-bottom: 2px solid rgba(52, 81, 178, 0.15);
+    padding-bottom: 8px;
+    font-size: 1rem;
+}
+
+/* ========================
+   导航栏
+   ======================== */
+.navbar,
+.navbar-default,
+.site-nav,
+.pukoNav {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(52, 81, 178, 0.1);
+    box-shadow: 0 2px 12px rgba(52, 81, 178, 0.06);
+}
+
+.navbar-default .navbar-brand,
+.puk-navbar .brand,
+.navbar .nav > li > a {
+    color: var(--sk-brand) !important;
+    font-weight: 600;
+}
+
+.navbar-default .navbar-brand:hover,
+.puk-navbar .brand:hover {
+    color: var(--sk-brand-dark) !important;
+}
+
+/* ========================
+   主按钮
+   ======================== */
+.btn-primary,
+.p-btn,
+button.btn,
+a.btn-primary,
+.btn:not(.btn-outline) {
+    background: linear-gradient(135deg, var(--sk-brand), var(--sk-brand-light)) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    padding: 8px 24px !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(52, 81, 178, 0.3) !important;
+}
+
+.btn-primary:hover,
+.p-btn:hover,
+button.btn:hover {
+    background: linear-gradient(135deg, var(--sk-brand-dark), var(--sk-brand-light)) !important;
+    box-shadow: 0 6px 20px rgba(52, 81, 178, 0.4) !important;
+    transform: translateY(-1px);
+}
+
+/* 次要按钮 */
+.btn-outline,
+.btn-secondary {
+    border: 2px solid var(--sk-brand) !important;
+    color: var(--sk-brand) !important;
+    border-radius: 50px !important;
+    background: transparent !important;
+}
+
+.btn-outline:hover {
+    background: var(--sk-brand) !important;
+    color: #fff !important;
+}
+
+/* ========================
+   Footer 页脚
+   ======================== */
+.footer,
+.site-footer,
+footer {
+    background: linear-gradient(135deg, #f6f6f7 0%, #ebebef 100%);
+    border-top: 1px solid rgba(52, 81, 178, 0.1);
+}
+
+.footer a {
+    color: var(--sk-brand);
+}
+
+.footer a:hover {
+    color: var(--sk-brand-dark);
+}
+
+/* ========================
+   分类/标签页面标题区
+   ======================== */
+.page-header,
+.archive-header,
+.category-header,
+.tag-header {
+    background: linear-gradient(135deg, rgba(52, 81, 178, 0.06) 0%, rgba(86, 114, 205, 0.04) 100%);
+    border-bottom: 1px solid rgba(52, 81, 178, 0.12);
+    padding: 2rem 0;
+}
+
+.page-header h1,
+.archive-header h1 {
+    color: var(--sk-brand) !important;
+    font-weight: 700;
+}
+
+/* ========================
+   分页器
+   ======================== */
+.pagination .page-numbers,
+.pager .page-numbers {
+    border-radius: 50px !important;
+    border-color: rgba(52, 81, 178, 0.2);
+    color: var(--sk-brand);
+}
+
+.pagination .page-numbers.current,
+.pagination .page-numbers:hover,
+.pager .page-numbers.current {
+    background: var(--sk-brand) !important;
+    border-color: var(--sk-brand) !important;
+    color: #fff !important;
+}
+
+/* ========================
+   链接样式
+   ======================== */
+a {
+    color: var(--sk-brand);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--sk-brand-dark);
+}
+
+/* ========================
+   引用块 blockquote
+   ======================== */
+blockquote {
+    border-left: 4px solid var(--sk-brand) !important;
+    background: linear-gradient(135deg, var(--sk-brand-soft), rgba(86, 114, 205, 0.04));
+    padding: 14px 18px;
+    border-radius: 0 12px 12px 0;
+    color: var(--sk-brand);
+    font-weight: 500;
+}
+
+blockquote p {
+    color: var(--sk-brand) !important;
+    margin: 0;
+}
+
+/* ========================
+   搜索框
+   ======================== */
+.search-input input,
+.puk-search input,
+input[type="search"] {
+    border-radius: 50px !important;
+    border: 2px solid rgba(52, 81, 178, 0.2) !important;
+    transition: border-color 0.2s ease;
+}
+
+.search-input input:focus,
+.puk-search input:focus {
+    border-color: var(--sk-brand) !important;
+    box-shadow: 0 0 0 3px rgba(52, 81, 178, 0.1) !important;
+}
+
+/* ========================
+   响应式微调
+   ======================== */
+@media (max-width: 768px) {
+    .index-content .t-md h1 {
+        font-size: 1.6rem !important;
+    }
+
+    .articles .article,
+    .posts-list .post {
+        border-radius: 10px !important;
+    }
+}
+
+/* ========================
+   首页公告/横幅区域
+   ======================== */
+.index-content .alert,
+.notice-bar,
+.index-content .p-t-md {
+    background: rgba(52, 81, 178, 0.04);
+    border: 1px solid rgba(52, 81, 178, 0.1);
+    border-radius: 12px;
+}
+
+/* ========================
+   代码块美化
+   ======================== */
+pre, code {
+    background: rgba(52, 81, 178, 0.06) !important;
+    color: var(--sk-brand) !important;
+    border-radius: 6px;
+}
+
+code {
+    padding: 2px 6px;
+}

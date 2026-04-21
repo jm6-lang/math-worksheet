@@ -1,0 +1,39 @@
+<footer class="footer">
+		<div class="container-fluid container-footer">
+			</div>
+</footer>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/zibll/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+    <script type="text/javascript">
+        window._win = {
+            views: '',
+            www: 'https://skillxm.cn',
+            uri: 'https://skillxm.cn/wp-content/themes/zibll',
+            ver: '7.8',
+            imgbox: '1',
+            imgbox_type: 'group',
+            imgbox_thumbs: '1',
+            imgbox_zoom: '1',
+            imgbox_full: '1',
+            imgbox_play: '1',
+            imgbox_down: '1',
+            sign_type: '',
+            signin_url: 'https://skillxm.cn/user-sign/?tab=signin&redirect_to=https%3A%2F%2Fskillxm.cn%2F',
+            signup_url: 'https://skillxm.cn/user-sign/?tab=signup&redirect_to=https%3A%2F%2Fskillxm.cn%2F',
+            ajax_url: 'https://skillxm.cn/wp-admin/admin-ajax.php',
+            ajaxpager: '',
+            ajax_trigger: '',
+            ajax_nomore: '',
+            qj_loading: '',
+            highlight_kg: '',
+            highlight_hh: '',
+            highlight_btn: '',
+            highlight_zt: 'enlighter',
+            highlight_white_zt: 'enlighter',
+            highlight_dark_zt: 'dracula',
+            upload_img_size: '3',
+            img_upload_multiple: '6',
+            upload_video_size: '30',
+            upload_file_size: '30',
+            upload_ext: 'jpg|jpeg|jpe|gif|png|bmp|tiff|tif|webp|avif|ico|heic|heif|heics|heifs|asf|asx|wmv|wmx|wm|avi|divx|flv|mov|qt|mpeg|mpg|mpe|mp4|m4v|ogv|webm|mkv|3gp|3gpp|3g2|3gp2|txt|asc|c|cc|h|srt|csv|tsv|ics|rtx|css|vtt|dfxp|mp3|m4a|m4b|aac|ra|ram|wav|x-wav|ogg|oga|flac|mid

@@ -1,0 +1,5 @@
+{
+  "message": "fix: UMD模块需要调用才能获取导出对象",
+  "content": "REPLACE_WITH_CONTENT",
+  "sha": "d0d96c34dfad5bf95f046abde548e69b2ee657d1"
+}

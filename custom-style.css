@@ -1,0 +1,104 @@
+/* ========================================
+   技能项目网 - 自定义样式
+   对标 jichuanglm.cn 布局
+   ======================================== */
+
+/* === 全局配色 === */
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+}
+
+/* === 顶部导航栏 - 紫色渐变 === */
+.navbar, .site-header, #header, header {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%) !important;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3) !important;
+}
+
+.navbar a, .site-header a, #header a, header a {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    background: rgba(255,255,255,0.15) !important;
+    border-radius: 8px;
+}
+
+/* Logo 样式 */
+.txt-logo, .site-title, .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+}
+
+/* === 文章卡片样式 === */
+.post-item, article.card {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: none !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+    transition: all 0.3s ease !important;
+}
+
+.post-item:hover, article.card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12) !important;
+}
+
+/* 文章标题 */
+.info-title a {
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+}
+
+.info-title a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* 文章分类标签 */
+.post-tags a {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%) !important;
+    color: #ffffff !important;
+    border-radius: 20px !important;
+}
+
+/* === VIP 会员按钮 === */
+.vip-button, .payvip-icon {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    color: #ffffff !important;
+    border-radius: 50px !important;
+    box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4) !important;
+}
+
+/* === 页脚 === */
+.site-footer, footer {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%) !important;
+    color: rgba(255,255,255,0.8) !important;
+}
+
+.site-footer a, footer a {
+    color: #a5b4fc !important;
+}
+
+/* === 分类图标区域 === */
+.graphic, .category-item {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+}
+
+.graphic:hover {
+    transform: translateY(-5px) !important;
+}
+
+/* === 优化卡片间距 === */
+.post-item {
+    padding: 0 !important;
+}
+
+.p-block {
+    padding: 16px !important;
+}

@@ -1,0 +1,138 @@
+2730:                 ),
+2731:             ),
+2732: 
+2733:             array(
+2734:                 'title'   => __('版块一设置', 'zib_language'),
+2735:                 'id'      => 'footer_t1_m_s',
+2736:                 'help'    => '如果不勾选则仅仅在电脑端显示此版块',
+2737:                 'type'    => 'switcher',
+2738:                 'default' => false,
+2739:                 'label'   => __('移动端显示', 'zib_language'),
+2740:             ),
+2741:             array(
+2742:                 'title'    => ' ',
+2743:                 'subtitle' => '日间模式图片',
+2744:                 'id'       => 'footer_t1_img',
+2745:                 'class'    => 'compact',
+2746:                 'default'  => $imagepath . 'logo.png',
+2747:                 'library'  => 'image', 'type' => 'upload',
+2748:             ),
+2749: 
+2750:             array(
+2751:                 'title'    => ' ',
+2752:                 'subtitle' => '夜间模式图片',
+2753:                 'id'       => 'footer_t1_img_dark',
+2754:                 'class'    => 'compact',
+2755:                 'default'  => $imagepath . 'logo_dark.png',
+2756:                 'library'  => 'image', 'type' => 'upload',
+2757:             ),
+2758: 
+2759:             array(
+2760:                 'title'    => ' ',
+2761:                 'subtitle' => '首行文字',
+2762:                 'id'       => 'footer_t1_t',
+2763:                 'class'    => 'compact',
+2764:                 'default'  => '',
+2765:                 'type'     => 'text',
+2766:             ),
+2767: 
+2768:             array(
+2769:                 'title'      => ' ',
+2770:                 'subtitle'   => '更多内容',
+2771:                 'id'         => 'fcode_t1_code',
+2772:                 'class'      => 'compact',
+2773:                 'default'    => 'Zibll 子比主题专为博客、自媒体、资讯类的网站设计开发，简约优雅的设计风格，全面的前端用户功能，简单的模块化配置，欢迎您的体验',
+2774:                 'sanitize'   => false,
+2775:                 'type'       => 'textarea',
+2776:                 'attributes' => array(
+2777:                     'rows' => 3,
+2778:                 ),
+2779:             ),
+2780: 
+2781:             array(
+2782:                 'title'      => __('版块二', 'zib_language'),
+2783:                 'subtitle'   => __('第一行(建议为友情链接，或者站内链接)', 'zib_language'),
+2784:                 'id'         => 'fcode_t2_code_1',
+2785:                 'default'    => '<a href="https://zibll.com">友链申请</a>
+2786: <a href="https://zibll.com">免责声明</a>
+2787: <a href="https://zibll.com">广告合作</a>
+2788: <a href="https://zibll.com">关于我们</a>',
+2789:                 'sanitize'   => false,
+2790:                 'type'       => 'textarea',
+2791:                 'attributes' => array(
+2792:                     'rows' => 4,
+2793:                 ),
+2794:             ),
+2795: 
+2796:             array(
+2797:                 'title'      => ' ',
+2798:                 'subtitle'   => __('第二行(建议为版权提醒，备案号等)', 'zib_language'),
+2799:                 'id'         => 'fcode_t2_code_2',
+2800:                 'class'      => 'compact',
+2801:                 'default'    => 'Copyright &copy;&nbsp;' . date('Y') . '&nbsp;·&nbsp;<a href="' . home_url() . '">' . get_bloginfo('title') . '</a>&nbsp;·&nbsp;由<a target="_blank" href="https://www.zibll.com">zibll主题</a>强力驱动.',
+2802:                 'sanitize'   => false,
+2803:                 'type'       => 'textarea',
+2804:                 'attributes' => array(
+2805:                     'rows' => 3,
+2806:                 ),
+2807:             ),
+2808: 
+2809:             array(
+2810:                 'title'   => __('联系方式', 'zib_language'),
+2811:                 'id'      => 'footer_contact_m_s',
+2812:                 'class'   => '',
+2813:                 'type'    => 'switcher',
+2814:                 'default' => true,
+2815:                 'label'   => __('移动端显示'),
+2816:             ),
+2817: 
+2818:             array(
+2819:                 'id'       => 'footer_contact_wechat_img',
+2820:                 'class'    => 'compact',
+2821:                 'title'    => ' ',
+2822:                 'subtitle' => __('微信二维码', 'zib_language'),
+2823:                 'default'  => $imagepath . 'qrcode.png',
+2824:                 'library'  => 'image', 'type' => 'upload',
+2825:             ),
+2826: 
+2827:             array(
+2828:                 'title'    => ' ',
+2829:                 'subtitle' => __('QQ号', 'zib_language'),
+2830:                 'id'       => 'footer_contact_qq',
+
+--- Around line 5353 ---
+5346:                                 'class'   => 'compact',
+5347:                                 'default' => false,
+5348:                                 'type'    => 'switcher',
+5349:                             ),
+5350:                             array(
+5351:                                 'title'      => __('页脚内容', 'zib_language'),
+5352:                                 'desc'       => '在页面底部添加内容，支持HTML代码(不建议内容过多)',
+5353:                                 'id'         => 'footer',
+5354:                                 'class'      => 'compact',
+5355:                                 'default'    => 'Copyright &copy;&nbsp;' . date('Y') . '&nbsp;·&nbsp;<a href="' . home_url() . '">' . get_bloginfo('title') . '</a>&nbsp;·&nbsp;由<a target="_blank" href="https://www.zibll.com">zibll主题</a>强力驱动.',
+5356:                                 'attributes' => array(
+5357:                                     'rows' => 2,
+5358:                                 ),
+5359:                                 'sanitize'   => false,
+5360:                                 'type'       => 'textarea',
+5361:                             ),
+5362: 
+5363:                         ),
+5364:                     ),
+5365:                 ),
+5366:             ),
+5367:             array(
+5368:                 'title'      => '登录框LOGO',
+5369:                 'subtitle'   => '登录/注册卡片LOGO',
+5370:                 'id'         => 'user_card_option',
+5371:                 'type'       => 'accordion',
+5372:                 'accordions' => array(
+5373:                     array(
+5374:                         'title'  => '登录/注册卡片LOGO设置',
+5375:                         'fields' => array(
+5376:                             array(
+5377:                                 'title'    => __('登录框logo', 'zib_language'),
+5378:                                 'subtitle' => __('日间主题', 'zib_language'),
+5379:                                 'id'       => 'user_logo',
+5380:                                 'subtitle' => __('日间主题', 'zib_language'),

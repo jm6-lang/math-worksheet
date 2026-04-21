@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+import paramiko
+
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect('43.103.5.46', username='root', password='Langlang0.')
+
+# Check if there are more posts after 714 with book- prefix
+stdin, stdout, stderr = ssh.exec_command("mysql -uwpuser -p'WpPass2024!' wp_skillxm -N -e \"SELECT ID, post_name FROM wp_posts WHERE post_type='post' AND post_status='publish' AND ID > 714 ORDER BY ID;\"")
+posts = stdout.read().decode().strip()
+print("Posts after ID 714:", flush=True)
+print(posts, flush=True)
+
+ssh.close()

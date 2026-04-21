@@ -1,0 +1,10 @@
+{
+  "media_images": "COUNT(*)\n35",
+  "total_posts": "COUNT(*)\n670",
+  "posts_with_thumb": "COUNT(*)\n2",
+  "uploads_size": "7.7M\t/www/wwwroot/resource_site/wp-content/uploads/",
+  "uploads_folders": "2026\nao_ccss\ndownload-manager-files\nedd\nelementor\nwc-logs\nwoocommerce_uploads\nwpdm-cache\nwpdm-custom-tags\nwpdm-file-type-icons"
+}
+Latest post thumbnail attachment ID: meta_value
+854
+Thumbnail URL: 

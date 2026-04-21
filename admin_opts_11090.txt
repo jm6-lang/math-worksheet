@@ -1,0 +1,15 @@
+11086:             CFS_Module::aut(),
+11087:         ),
+11088:     ));
+11089:     $update_icon    = '';
+11090:     $is_update_data = ZibAut::is_update();
+11091:     if ($is_update_data) {
+11092:         $update_icon = ' c-red';
+11093:     }
+11094:     CSF::createSection('zibll_options', array(
+11095:         'title'       => '文档&更新',
+11096:         'icon'        => 'fa fa-fw fa-cloud-upload' . $update_icon,
+11097:         'description' => '',
+11098:         'fields'      => CFS_Module::update($is_update_data),
+11099:     ));
+11100:     CSF::createSection($prefix, array(

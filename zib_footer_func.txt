@@ -1,0 +1,70 @@
+491: //-----底部页脚内容------
+492: if (_pz('fcode_template') == 'template_1') {
+493:     add_action('zib_footer_conter', 'zib_footer_con');
+494: }
+495: function zib_footer_con()
+496: {
+497: 
+498:     $show_xs_1 = _pz('footer_t1_m_s');
+499:     $show_xs_3 = _pz('footer_mini_img_m_s', true);
+500:     $html      = '';
+501:     $box       = '<li' . (!$show_xs_1 ? ' class="hidden-xs"' : '') . ' style="max-width: 300px;">' . zib_footer_con_1() . '</li>';
+502:     $box .= '<li style="max-width: 550px;">' . zib_footer_con_2() . '</li>';
+503:     $box .= '<li' . (!$show_xs_3 ? ' class="hidden-xs"' : '') . '>' . zib_footer_con_3() . '</li>';
+504: 
+505:     $c_code = _pz('fcode_customize_code');
+506:     $c_code = $c_code ? '<p class="footer-conter">' . $c_code . '</p>' : '';
+507:     $html   = '<ul class="list-inline">' . $box . '</ul>';
+508:     $html .= $c_code;
+509:     echo $html;
+510: }
+511: 
+512: function zib_footer_con_1()
+513: {
+514:     $html = '';
+515: 
+516:     if (_pz('footer_t1_img')) {
+517:         $html .= '<p><a class="footer-logo" href="' . esc_url(home_url()) . '" title="' . _pz('hometitle') . '">
+518:                     ' . zib_get_adaptive_theme_img(_pz('footer_t1_img'), _pz('footer_t1_img_dark'), _pz('hometitle'), 'class="lazyload" style="height: 40px;"', zib_is_lazy('lazy_other', true)) . '
+519:                 </a></p>';
+520:     }
+521: 
+522:     if (_pz('footer_t1_t')) {
+523:         $html .= '<p class="title-h-left">' . _pz('footer_t1_t') . '</p>';
+524:     }
+525: 
+526:     if (_pz('fcode_t1_code')) {
+527:         $html .= '<div class="footer-muted em09">' . _pz('fcode_t1_code') . '</div>';
+528:     }
+529:     return $html;
+530: }
+531: 
+532: function zib_footer_con_2()
+533: {
+534:     $html = '';
+535: 
+536:     if (_pz('fcode_t2_code_1')) {
+537:         $html .= '<p class="fcode-links">' . _pz('fcode_t2_code_1') . '</p>';
+538:     }
+539: 
+540:     if (_pz('fcode_t2_code_2')) {
+541:         $html .= '<div class="footer-muted em09">' . _pz('fcode_t2_code_2') . '</div>';
+542:     }
+543:     $s_src  = ZIB_TEMPLATE_DIRECTORY_URI . '/img/thumbnail-sm.svg';
+544:     $m_show = _pz('footer_contact_m_s', true) ? '' : ' hidden-xs';
+545:     $html .= '<div class="footer-contact mt10' . $m_show . '">';
+546:     if ((!wp_is_mobile() || _pz('footer_contact_m_s', true)) && _pz('footer_contact_wechat_img')) {
+547:         $lazy_attr = zib_is_lazy('lazy_other', true) ? 'class="lazyload" src="' . $s_src . '" data-' : '';
+548: 
+549:         $s_img = '';
+550:         $s_img .= '<div class="hover-show-con footer-wechat-img">';
+551:         $s_img .= '<img style="box-shadow: 0 5px 10px rgba(0,0,0,.2); border-radius:4px;" height="100" ' . $lazy_attr . 'src="' . _pz('footer_contact_wechat_img') . '" alt="扫一扫加微信' . zib_get_delimiter_blog_name() . '">';
+552:         $s_img .= '</div>';
+553: 
+554:         $html .= '<a class="toggle-radius hover-show nowave" href="javascript:;">' . zib_get_svg('d-wechat') . $s_img . '</a>';
+555:     }
+556:     if (_pz('footer_contact_qq')) {
+557:         $html .= '<a class="toggle-radius" data-toggle="tooltip" target="_blank" title="QQ联系" href="https://wpa.qq.com/msgrd?v=3&uin=' . _pz('footer_contact_qq') . '&site=qq&menu=yes">' . zib_get_svg('d-qq', '-50 0 1100 1100') . '</a>';
+558:     }
+559:     if (_pz('footer_contact_weibo')) {
+560:         $html .= '<a class="toggle-radius" data-toggle="tooltip" title="微博" href="' . _pz('footer_contact_weibo') . '">' . zib_get_svg('d-weibo') . '</a>';

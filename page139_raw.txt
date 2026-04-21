@@ -1,0 +1,440 @@
+﻿
+
+<!-- Hide page title -->
+
+
+<!-- 优化后的资源导航站首页 -->
+<style>
+/* 全局样式 */
+.resource-home { 
+    padding: 0; 
+    margin: 0;
+    background: #f5f7fa;
+}
+
+/* 顶部导航 - 分类菜单 */
+.top-nav {
+    background: linear-gradient(135deg, #4a90e2 0%, #667eea 100%);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+.nav-list li {
+    position: relative;
+}
+.nav-list a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+.nav-list a:hover {
+    background: rgba(255,255,255,0.2);
+}
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #ffd700;
+    transition: all 0.3s;
+    transform: translateX(-50%);
+}
+.nav-list a:hover::after {
+    width: 80%;
+}
+
+/* 搜索栏 */
+.search-bar {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.search-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+}
+.search-form input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+.search-form input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+.search-form button {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.search-form button:hover {
+    transform: scale(1.05);
+}
+
+/* 主内容区 */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* 统计卡片 */
+.stats-section {
+    margin-bottom: 40px;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+}
+.stat-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+.stat-number {
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.stat-label {
+    color: #666;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* 分类网格 */
+.category-section {
+    margin-bottom: 40px;
+}
+.section-title {
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.category-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    display: block;
+}
+.category-card:hover {
+    transform: translateY(-5px);
+    border-color: #667eea;
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+}
+.category-icon {
+    font-size: 2.5em;
+    margin-bottom: 12px;
+}
+.category-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+.category-desc {
+    color: #888;
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+.category-count {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 3px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* 热门标签 */
+.tags-section {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+.tags-title {
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.tag-link {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    color: #667eea;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s;
+    border: 1px solid #e0e0e0;
+}
+.tag-link:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+    transform: scale(1.05);
+}
+
+/* 响应式 */
+@media (max-width: 992px) {
+    .stats-grid, .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 576px) {
+    .stats-grid, .category-grid {
+        grid-template-columns: 1fr;
+    }
+    .nav-list a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    .search-form {
+        flex-direction: column;
+    }
+}
+</style>
+
+<div class="resource-home">
+    <!-- 顶部导航 - 分类菜单 -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="/">🏠 首页</a></li>
+                <li><a href="/category/ai%e7%9f%a5%e8%af%86/">🤖 AI知识</a></li>
+                <li><a href="/category/%e4%b9%a6%e7%b1%8d%e8%b5%84%e6%96%99/">📚 书籍资料</a></li>
+                <li><a href="/category/%e8%b7%a8%e5%a2%83%e7%94%b5%e5%95%86/">🌍 跨境电商</a></li>
+                <li><a href="/category/%e8%87%aa%e5%aa%92%e4%bd%93%e8%bf%90%e8%90%a5/">📱 自媒体</a></li>
+                <li><a href="/category/%e6%95%99%e8%82%b2%e8%b5%84%e6%ba%90/">🎓 教育资源</a></li>
+                <li><a href="/category/%e5%b7%a5%e5%85%b7%e5%90%88%e9%9b%86/">🔧 工具合集</a></li>
+                <li><a href="/category/%e5%bd%b1%e8%a7%86%e5%a8%b1%e4%b9%90/">🎬 影视娱乐</a></li>
+                <li><a href="/category/%e5%81%a5%e5%ba%b7%e5%85%bb%e7%94%9f/">💪 健康养生</a></li>
+                <li><a href="/category/%e5%bd%b1%e8%a7%86%e5%a8%b1%e4%b9%90/">🎭 影视在线</a></li>
+                <li><a href="/category/%e8%af%be%e7%a8%8b%e8%b5%84%e6%96%99/">📝 课程资料</a></li>
+                <li><a href="/category/%e4%bc%a0%e7%bb%9f%e6%96%87%e5%8c%96/">🏛️ 传统文化</a></li>
+                <li><a href="/category/zi-dong-hua-gong-ju/">💻 自动化</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 搜索栏 -->
+    <div class="search-bar">
+        
+            
+            <button type="submit">🔍 搜索</button>
+        
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <!-- 统计卡片 -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-number">100TB+</div>
+                    <div class="stat-label">资源总量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏷️</div>
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">资源分类</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-number">每日</div>
+                    <div class="stat-label">持续更新</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">用户数量</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分类网格 -->
+        <section class="category-section">
+            <h2 class="section-title">📚 资源分类</h2>
+            <div class="category-grid">
+                <a href="/category/ai%e7%9f%a5%e8%af%86/" class="category-card">
+                    <div class="category-icon">🤖</div>
+                    <div class="category-name">AI知识</div>
+                    <div class="category-desc">人工智能u3001ChatGPTu3001提示词工程</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e4%b9%a6%e7%b1%8d%e8%b5%84%e6%96%99/" class="category-card">
+                    <div class="category-icon">📖</div>
+                    <div class="category-name">书籍资料</div>
+                    <div class="category-desc">电子书u3001技术文档u3001学术论文</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e8%b7%a8%e5%a2%83%e7%94%b5%e5%95%86/" class="category-card">
+                    <div class="category-icon">🌍</div>
+                    <div class="category-name">跨境电商</div>
+                    <div class="category-desc">亚马逊u3001TikToku3001外贸实操</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e8%87%aa%e5%aa%92%e4%bd%93%e8%bf%90%e8%90%a5/" class="category-card">
+                    <div class="category-icon">📱</div>
+                    <div class="category-name">自媒体运营</div>
+                    <div class="category-desc">流量获取u3001内容创作u3001变现</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e6%95%99%e8%82%b2%e8%b5%84%e6%ba%90/" class="category-card">
+                    <div class="category-icon">🎓</div>
+                    <div class="category-name">教育资源</div>
+                    <div class="category-desc">考试资料u3001职业培训</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e5%b7%a5%e5%85%b7%e5%90%88%e9%9b%86/" class="category-card">
+                    <div class="category-icon">🔧</div>
+                    <div class="category-name">工具合集</div>
+                    <div class="category-desc">软件工具u3001开发资源</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e5%bd%b1%e8%a7%86%e5%a8%b1%e4%b9%90/" class="category-card">
+                    <div class="category-icon">🎬</div>
+                    <div class="category-name">影视娱乐</div>
+                    <div class="category-desc">高清电影u3001纪录片u3001音乐</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e5%81%a5%e5%ba%b7%e5%85%bb%e7%94%9f/" class="category-card">
+                    <div class="category-icon">💪</div>
+                    <div class="category-name">健康养生</div>
+                    <div class="category-desc">健身教程u3001营养指南</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e5%bd%b1%e8%a7%86%e5%a8%b1%e4%b9%90/" class="category-card">
+                    <div class="category-icon">🎭</div>
+                    <div class="category-name">影视在线</div>
+                    <div class="category-desc">免费观看影视资源</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e8%af%be%e7%a8%8b%e8%b5%84%e6%96%99/" class="category-card">
+                    <div class="category-icon">📝</div>
+                    <div class="category-name">课程资料</div>
+                    <div class="category-desc">综合学习资料精选</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/%e4%bc%a0%e7%bb%9f%e6%96%87%e5%8c%96/" class="category-card">
+                    <div class="category-icon">🏛️</div>
+                    <div class="category-name">传统文化</div>
+                    <div class="category-desc">中医课程u3001传统文化</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+                <a href="/category/zi-dong-hua-gong-ju/" class="category-card">
+                    <div class="category-icon">💻</div>
+                    <div class="category-name">自动化工具</div>
+                    <div class="category-desc">自动化脚本和工具</div>
+                    <span class="category-count">点击访问 u2192</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 热门搜索标签 -->
+        <section class="tags-section">
+            <h3 class="tags-title">🔥 热门搜索</h3>
+            <div class="tags-cloud">
+                <a href="/?s=AI教程" class="tag-link">AI教程</a>
+                <a href="/?s=电子书" class="tag-link">电子书下载</a>
+                <a href="/?s=跨境电商" class="tag-link">跨境电商</a>
+                <a href="/?s=自媒体" class="tag-link">自媒体运营</a>
+                <a href="/?s=健身" class="tag-link">健身视频</a>
+                <a href="/?s=电影" class="tag-link">电影资源</a>
+                <a href="/?s=工具" class="tag-link">软件工具</a>
+                <a href="/?s=编程" class="tag-link">编程教程</a>
+                <a href="/?s=考试" class="tag-link">考试资料</a>
+                <a href="/?s=夸克网盘" class="tag-link">夸克网盘</a>
+                <a href="/?s=抖音" class="tag-link">抖音运营</a>
+                <a href="/?s=亚马逊" class="tag-link">亚马逊开店</a>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+

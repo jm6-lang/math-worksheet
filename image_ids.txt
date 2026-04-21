@@ -1,0 +1,7 @@
+novel:1085
+movie:1086
+money:1087
+course:1088
+ai:1089
+ppt:1090
+default:1091

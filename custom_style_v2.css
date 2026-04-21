@@ -1,0 +1,406 @@
+/**
+ * skillxm.cn 自定义样式 - 参考大坝资源站风格
+ * 主色调: #3451b2 (靛蓝)  辅助: #3a5ccc #5672cd
+ */
+
+/* ========================
+   全局变量
+   ======================== */
+:root {
+    --sk-brand: #3451b2;
+    --sk-brand-light: #3a5ccc;
+    --sk-brand-dark: #5672cd;
+    --sk-brand-soft: rgba(52, 81, 178, 0.08);
+    --sk-card-bg: #ffffff;
+    --sk-card-bg-soft: #f6f6f7;
+}
+
+/* ========================
+   首页首屏 Hero 区域
+   ======================== */
+.home,
+.index-content,
+.p-block.post-item-block,
+.post-content,
+body.home .container {
+    /* Hero 区域淡蓝渐变背景 */
+}
+
+/* 首页整体背景 */
+body.home {
+    background: linear-gradient(135deg, rgba(52, 81, 178, 0.04) 0%, rgba(86, 114, 205, 0.03) 100%);
+}
+
+/* ========================
+   文章卡片（核心样式）
+   ======================== */
+.block.card-plain.post-item-card,
+.post-item-card,
+.post-item {
+    background: linear-gradient(145deg, #ffffff 0%, #f6f6f7 100%) !important;
+    border: 1px solid rgba(52, 81, 178, 0.1) !important;
+    border-radius: 14px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+.block.card-plain.post-item-card:hover,
+.post-item-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 30px rgba(52, 81, 178, 0.15) !important;
+    border-color: rgba(52, 81, 178, 0.3) !important;
+}
+
+/* ========================
+   卡片内容区域
+   ======================== */
+.p-block.post-item-block {
+    padding: 20px !important;
+}
+
+/* ========================
+   文章标题
+   ======================== */
+.info-title a,
+.info-title,
+.post-item .info-title a,
+h2.info-title a,
+h3.info-title a,
+.post-item-card .info-title a {
+    color: #3451b2 !important;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.5 !important;
+    transition: color 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.info-title a:hover,
+.post-item .info-title a:hover {
+    color: #3a5ccc !important;
+}
+
+/* ========================
+   文章标签
+   ======================== */
+.post-tags a,
+.post-tags-inline a,
+.post-tag,
+.post-tags .tag-text,
+.post-item .tag-text,
+.tag-text a {
+    background: rgba(52, 81, 178, 0.08) !important;
+    color: #3451b2 !important;
+    border: 1px solid rgba(52, 81, 178, 0.15) !important;
+    border-radius: 20px !important;
+    padding: 2px 10px !important;
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+    margin: 2px !important;
+}
+
+.post-tags a:hover,
+.post-tags-inline a:hover,
+.tag-text a:hover {
+    background: #3451b2 !important;
+    color: #fff !important;
+    border-color: #3451b2 !important;
+}
+
+/* ========================
+   导航栏
+   ======================== */
+.navbar {
+    background: rgba(255, 255, 255, 0.97) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(52, 81, 178, 0.08);
+    box-shadow: 0 2px 16px rgba(52, 81, 178, 0.05);
+}
+
+.navbar-dark .navbar-brand,
+.navbar .navbar-brand,
+.puock-text {
+    color: #3451b2 !important;
+    font-weight: 700 !important;
+}
+
+/* 导航链接 */
+.navbar-dark .navbar-nav .nav-link,
+.navbar .nav-link {
+    color: rgba(60, 60, 67, 0.85) !important;
+    font-weight: 500;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar .nav-link:hover {
+    color: #3451b2 !important;
+}
+
+/* 当前页面导航 */
+.navbar-dark .navbar-nav .active .nav-link,
+.navbar .nav-link.active,
+.navbar .nav-item.active .nav-link {
+    color: #3451b2 !important;
+    font-weight: 700 !important;
+}
+
+/* ========================
+   主按钮
+   ======================== */
+.btn-primary,
+a.btn-primary,
+button.btn-primary,
+input[type="submit"],
+.p-btn,
+.puk-btn {
+    background: linear-gradient(135deg, #3451b2, #3a5ccc) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    padding: 8px 22px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 14px rgba(52, 81, 178, 0.3) !important;
+}
+
+.btn-primary:hover,
+a.btn-primary:hover {
+    background: linear-gradient(135deg, #3a5ccc, #5672cd) !important;
+    box-shadow: 0 6px 20px rgba(52, 81, 178, 0.4) !important;
+    transform: translateY(-1px);
+}
+
+/* 次要/轮廓按钮 */
+.btn-outline,
+.btn-outline-primary,
+a.btn-outline {
+    border: 2px solid #3451b2 !important;
+    color: #3451b2 !important;
+    border-radius: 50px !important;
+    background: transparent !important;
+}
+
+.btn-outline:hover {
+    background: #3451b2 !important;
+    color: #fff !important;
+}
+
+/* ========================
+   侧边栏小组件
+   ======================== */
+.sidebar-box,
+aside .widget,
+.sidebar .widget,
+.widget {
+    background: linear-gradient(145deg, #ffffff 0%, #f6f6f7 100%) !important;
+    border: 1px solid rgba(52, 81, 178, 0.08) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    padding: 18px !important;
+}
+
+/* 侧边栏标题 */
+.sidebar-box .widget-title,
+aside .widget-title,
+.sidebar .widget-title,
+.widget-title {
+    color: #3451b2 !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    border-bottom: 2px solid rgba(52, 81, 178, 0.15) !important;
+    padding-bottom: 8px !important;
+}
+
+/* ========================
+   Footer 页脚
+   ======================== */
+.footer,
+.site-footer,
+footer {
+    background: linear-gradient(135deg, #f6f6f7 0%, #ebebef 100%) !important;
+    border-top: 1px solid rgba(52, 81, 178, 0.08) !important;
+}
+
+.footer a,
+.site-footer a {
+    color: #3451b2 !important;
+}
+
+.footer a:hover {
+    color: #3a5ccc !important;
+}
+
+/* ========================
+   分类/标签/归档页面头部
+   ======================== */
+.page-header,
+.archive-header,
+.category-header,
+.tag-header,
+.p-cat-header {
+    background: linear-gradient(135deg, rgba(52, 81, 178, 0.05) 0%, rgba(86, 114, 205, 0.03) 100%) !important;
+    border-bottom: 1px solid rgba(52, 81, 178, 0.1) !important;
+    padding: 2rem 0 !important;
+}
+
+.page-header h1,
+.archive-header h1,
+.category-header h1,
+h1.archive-title {
+    color: #3451b2 !important;
+    font-weight: 700 !important;
+}
+
+/* ========================
+   分页器
+   ======================== */
+.pagination .page-numbers,
+.pager .page-numbers,
+.pagination a,
+.page-numbers {
+    border-radius: 50px !important;
+    border-color: rgba(52, 81, 178, 0.2) !important;
+    color: #3451b2 !important;
+}
+
+.pagination .page-numbers.current,
+.pagination .page-numbers:hover {
+    background: #3451b2 !important;
+    border-color: #3451b2 !important;
+    color: #fff !important;
+}
+
+/* ========================
+   全局链接
+   ======================== */
+a {
+    color: #3451b2;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #3a5ccc;
+}
+
+/* 文章正文链接 */
+.entry-content a,
+.post-content a,
+.t-md a {
+    color: #3451b2;
+    border-bottom: 1px solid rgba(52, 81, 178, 0.3);
+}
+
+.entry-content a:hover,
+.post-content a:hover {
+    color: #3a5ccc;
+    border-bottom-color: #3a5ccc;
+}
+
+/* ========================
+   引用块
+   ======================== */
+blockquote,
+blockquote.wp-block-quote {
+    border-left: 4px solid #3451b2 !important;
+    background: linear-gradient(135deg, rgba(52, 81, 178, 0.06), rgba(86, 114, 205, 0.04)) !important;
+    padding: 14px 18px !important;
+    border-radius: 0 12px 12px 0 !important;
+}
+
+blockquote p,
+blockquote {
+    color: #3451b2 !important;
+    font-weight: 500 !important;
+}
+
+/* ========================
+   代码块
+   ======================== */
+pre,
+code {
+    background: rgba(52, 81, 178, 0.06) !important;
+    color: #3451b2 !important;
+    border-radius: 6px !important;
+}
+
+code {
+    padding: 2px 6px !important;
+    font-size: 0.88em !important;
+}
+
+pre {
+    padding: 16px !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(52, 81, 178, 0.1) !important;
+}
+
+pre code {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* ========================
+   搜索框
+   ======================== */
+.search-input input,
+.puk-search input,
+input[type="search"],
+.search-form input {
+    border-radius: 50px !important;
+    border: 2px solid rgba(52, 81, 178, 0.15) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.search-input input:focus,
+.puk-search input:focus,
+input[type="search"]:focus {
+    border-color: #3451b2 !important;
+    box-shadow: 0 0 0 3px rgba(52, 81, 178, 0.1) !important;
+    outline: none !important;
+}
+
+/* ========================
+   响应式
+   ======================== */
+@media (max-width: 768px) {
+    .info-title a {
+        font-size: 0.95rem !important;
+    }
+
+    .block.card-plain.post-item-card:hover {
+        transform: translateY(-2px) !important;
+    }
+}
+
+/* ========================
+   首页公告/横幅
+   ======================== */
+.notice-bar,
+.index-notice,
+.p-notice,
+.home-notice {
+    background: rgba(52, 81, 178, 0.04) !important;
+    border: 1px solid rgba(52, 81, 178, 0.1) !important;
+    border-radius: 12px !important;
+}
+
+/* ========================
+   Logo / 网站标题
+   ======================== */
+.navbar-brand,
+.site-title,
+.puk-logo a {
+    color: #3451b2 !important;
+    font-weight: 800 !important;
+    font-size: 1.3rem !important;
+}
+
+/* ========================
+   缩略图（如果有）
+   ======================== */
+.post-item-card .post-thumb img,
+.post-item .thumb img {
+    border-radius: 10px 10px 0 0 !important;
+}
