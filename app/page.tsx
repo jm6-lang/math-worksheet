@@ -738,7 +738,7 @@ export default function Home() {
       {/* ===== 底部 ===== */}
       <footer className="border-t border-white/10 py-8 px-4">
         <div className="max-w-4xl mx-auto text-center text-gray-500 text-sm">
-          <p>🧮 算个题吧 · 完全免费 · 免登录 · <a href="https://xgzb.top" className="text-blue-400 hover:text-blue-300">写个字吧</a> · © 2026</p>
+          <p>🧮 算个题吧 · 完全免费 · 免登录 · <a href="/tools/calligraphy" className="text-blue-400 hover:text-blue-300">字帖生成器</a> · <a href="/tools/sudoku" className="text-blue-400 hover:text-blue-300">数独游戏</a> · © 2026</p>
         </div>
       </footer>
 
