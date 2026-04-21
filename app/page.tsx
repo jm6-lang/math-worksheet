@@ -388,6 +388,31 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===== 底部页脚 ===== */}
+      <footer className="border-t border-white/10 py-8 px-4 mt-8">
+        <div className="max-w-6xl mx-auto">
+          {/* 链接行 */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-gray-400 mb-4">
+            <a href="#" className="hover:text-white transition-colors">关于我们</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">免责声明</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">隐私政策</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">联系我们</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">广告合作</a>
+          </div>
+          {/* 友情链接 */}
+          <div className="flex flex-wrap justify-center items-center gap-3 text-sm text-gray-500">
+            <span>友情链接：</span>
+            <a href="https://docs.skillxm.cn" target="_blank" rel="noopener" className="text-gray-400 hover:text-blue-400 transition-colors">docs.skillxm.cn</a>
+            <span className="text-gray-600">|</span>
+            <a href="https://ziwei.skillxm.cn" target="_blank" rel="noopener" className="text-gray-400 hover:text-blue-400 transition-colors">ziwei.skillxm.cn</a>
+          </div>
+        </div>
+      </footer>
+
       {/* ===== 使用教程弹窗 ===== */}
       {showTutorial && (
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setShowTutorial(false)}>
