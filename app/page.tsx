@@ -47,17 +47,10 @@ const TOOL_CATEGORIES = [
   {
     category: '📚 学习工具',
     tools: [
-      { name: '数学练习卷', icon: '🧮', desc: '一键出题，PDF导出', link: '/tools/math-worksheet', color: 'blue', disabled: false },
+      { name: '数学练习题', icon: '🧮', desc: '一键出题，PDF导出', link: '/tools/math-worksheet', color: 'blue', disabled: false },
       { name: '字帖生成器', icon: '✍️', desc: '田字格/米字格模板', link: '/tools/calligraphy', color: 'emerald', disabled: false },
       { name: '数独游戏', icon: '🧩', desc: '多难度逻辑训练', link: '/tools/sudoku', color: 'orange', disabled: false },
-    ],
-  },
-  {
-    category: '🎨 敬请期待',
-    tools: [
       { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '/tools/pinyin', color: 'blue', disabled: false },
-      { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '#', color: 'gray', disabled: true },
-      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '#', color: 'gray', disabled: true },
     ],
   },
 ];
