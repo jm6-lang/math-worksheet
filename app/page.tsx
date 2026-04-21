@@ -243,55 +243,125 @@ export default function Home() {
               ))}
             </div>
 
-            {/* 模板展示 */}
+            {/* 模板展示 - 重新设计 */}
             <div className="mb-8">
               <h2 className="text-lg font-medium text-gray-400 mb-6">选择模板样式</h2>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 {TEMPLATES.map((t) => (
                   <button
                     key={t.value}
                     onClick={() => setTemplate(t.value)}
-                    className={`relative w-32 h-40 rounded-xl border-2 transition-all duration-300 ${
+                    className={`group relative bg-white/5 hover:bg-white/10 border-2 rounded-2xl p-4 transition-all duration-300 ${
                       template === t.value
                         ? 'border-blue-500 bg-blue-500/10'
-                        : 'border-white/10 bg-white/5 hover:border-white/30'
+                        : 'border-white/10 hover:border-white/30'
                     }`}
                   >
-                    {/* 纸张预览 */}
-                    <div className="absolute inset-4 bg-white rounded shadow-lg flex flex-col items-center justify-center">
+                    {/* A4 纸张预览 - 使用 SVG 更精确 */}
+                    <div className="aspect-[3/4] bg-white rounded-lg shadow-lg mb-3 overflow-hidden relative">
                       {t.value === 'tianzige' && (
-                        <div className="grid grid-cols-2 gap-1">
-                          {[...Array(4)].map((_, i) => (
-                            <div key={i} className="w-8 h-8 border border-gray-300 relative">
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-full h-px bg-red-300/50" />
-                                <div className="h-full w-px bg-blue-300/50 absolute" />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
+                        <svg viewBox="0 0 60 80" className="w-full h-full">
+                          {/* 田字格 - 2x3 网格 */}
+                          {[0, 1, 2].map(row =>
+                            [0, 1].map(col => (
+                              <g key={`${row}-${col}`}>
+                                {/* 外框 */}
+                                <rect
+                                  x={5 + col * 25}
+                                  y={8 + row * 22}
+                                  width="22"
+                                  height="20"
+                                  fill="none"
+                                  stroke="#d1d5db"
+                                  strokeWidth="0.5"
+                                />
+                                {/* 十字线 */}
+                                <line
+                                  x1={5 + col * 25 + 11}
+                                  y1={8 + row * 22}
+                                  x2={5 + col * 25 + 11}
+                                  y2={8 + row * 22 + 20}
+                                  stroke="#93c5fd"
+                                  strokeWidth="0.3"
+                                  strokeDasharray="2,1"
+                                />
+                                <line
+                                  x1={5 + col * 25}
+                                  y1={8 + row * 22 + 10}
+                                  x2={5 + col * 25 + 22}
+                                  y2={8 + row * 22 + 10}
+                                  stroke="#fca5a5"
+                                  strokeWidth="0.3"
+                                  strokeDasharray="2,1"
+                                />
+                              </g>
+                            ))
+                          )}
+                        </svg>
                       )}
                       {t.value === 'fangge' && (
-                        <div className="grid grid-cols-3 gap-0.5">
-                          {[...Array(9)].map((_, i) => (
-                            <div key={i} className="w-5 h-5 border border-gray-300" />
-                          ))}
-                        </div>
+                        <svg viewBox="0 0 60 80" className="w-full h-full">
+                          {/* 方格纸 - 3x4 网格 */}
+                          {[0, 1, 2, 3].map(row =>
+                            [0, 1, 2].map(col => (
+                              <rect
+                                key={`${row}-${col}`}
+                                x={6 + col * 16}
+                                y={10 + row * 16}
+                                width="14"
+                                height="14"
+                                fill="none"
+                                stroke="#d1d5db"
+                                strokeWidth="0.5"
+                              />
+                            ))
+                          )}
+                        </svg>
                       )}
                       {t.value === 'hengxian' && (
-                        <div className="flex flex-col gap-2 w-16">
-                          {[...Array(4)].map((_, i) => (
-                            <div key={i} className="w-full h-px bg-gray-300" />
+                        <svg viewBox="0 0 60 80" className="w-full h-full">
+                          {/* 横线格 */}
+                          {[0, 1, 2, 3, 4, 5].map(i => (
+                            <line
+                              key={i}
+                              x1="8"
+                              y1={15 + i * 10}
+                              x2="52"
+                              y2={15 + i * 10}
+                              stroke="#d1d5db"
+                              strokeWidth="0.5"
+                            />
                           ))}
-                        </div>
+                        </svg>
                       )}
                       {t.value === 'kongbai' && (
-                        <div className="w-16 h-20 border border-gray-200 rounded" />
+                        <svg viewBox="0 0 60 80" className="w-full h-full">
+                          {/* 空白纸 - 只有边框 */}
+                          <rect
+                            x="8"
+                            y="10"
+                            width="44"
+                            height="60"
+                            fill="none"
+                            stroke="#e5e7eb"
+                            strokeWidth="0.5"
+                            rx="2"
+                          />
+                        </svg>
+                      )}
+                      {/* 选中标记 */}
+                      {template === t.value && (
+                        <div className="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
                       )}
                     </div>
-                    <div className="absolute bottom-2 left-0 right-0 text-center">
-                      <div className="text-sm font-medium">{t.label}</div>
-                      <div className="text-xs text-gray-500">{t.desc}</div>
+                    {/* 文字说明 */}
+                    <div className="text-center">
+                      <div className="text-base font-bold mb-1">{t.label}</div>
+                      <div className="text-sm text-gray-500">{t.desc}</div>
                     </div>
                   </button>
                 ))}
