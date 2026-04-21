@@ -56,7 +56,7 @@ function generateSudoku(difficulty: Difficulty): { puzzle: Grid; solution: numbe
 
   const removals: Record<Difficulty, number> = { easy: 35, medium: 45, hard: 54 };
   const toRemove = removals[difficulty];
-  const puzzle = grid.map(r => [...r]);
+  const puzzle: Grid = grid.map(r => [...r]);
   const positions = shuffle(Array.from({ length: 81 }, (_, i) => [Math.floor(i / 9), i % 9] as [number, number]));
   let removed = 0;
   for (const [r, c] of positions) {
@@ -182,6 +182,18 @@ export default function SudokuPage() {
   };
 
   const getCellErrors = (r: number, c: number) => errors.has(`${r}-${c}`);
+
+  // Handle empty state during SSR
+  if (puzzle.length === 0) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">🧮</div>
+          <p className="text-gray-400">加载中...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
