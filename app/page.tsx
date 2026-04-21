@@ -239,9 +239,14 @@ export default function HomePage() {
                 </p>
 
                 {/* 描述 */}
-                <p className="text-lg text-white/80 mb-8 max-w-xl drop-shadow">
+                <p className="text-lg text-white/80 mb-6 max-w-xl drop-shadow">
                   {item.description}
                 </p>
+
+                {/* 免费提示 */}
+                <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-8 border border-white/30">
+                  <span className="text-white font-bold text-lg">🎁 所有资源免费生成，免费下载打印</span>
+                </div>
 
                 {/* 大图标 */}
                 <div className="text-8xl mb-8 animate-bounce-slow drop-shadow-2xl">
