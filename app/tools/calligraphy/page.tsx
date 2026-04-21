@@ -5,16 +5,33 @@ import { useState, useRef } from 'react';
 type GridType = 'tian' | 'mi' | 'fang' | 'hengxian';
 
 const GRID_TYPES = [
-  { id: 'tian' as GridType, name: '田字格', icon: '田', desc: '十字辅助线，适合初学' },
-  { id: 'mi' as GridType, name: '米字格', icon: '米', desc: '八向辅助线，精准定位' },
-  { id: 'fang' as GridType, name: '方格', icon: '□', desc: '简洁方格，自由书写' },
-  { id: 'hengxian' as GridType, name: '横线格', icon: '☰', desc: '横线格，练习句子' },
+  { id: 'tian' as GridType, name: '田字格', icon: '田', desc: '十字辅助线' },
+  { id: 'mi' as GridType, name: '米字格', icon: '米', desc: '八向辅助线' },
+  { id: 'fang' as GridType, name: '方格', icon: '□', desc: '简洁方格' },
+  { id: 'hengxian' as GridType, name: '横线格', icon: '☰', desc: '句子练习' },
+];
+
+// 更多字体选择
+const FONT_OPTIONS = [
+  { value: 'KaiTi, STKaiti, 楷体', name: '楷体', preview: '标准楷书' },
+  { value: 'STXingkai, 华文行楷', name: '行楷', preview: '流畅行书' },
+  { value: 'STSong, SimSun, 宋体', name: '宋体', preview: '印刷体' },
+  { value: 'STHeiti, SimHei, 黑体', name: '黑体', preview: '粗壮醒目' },
+  { value: 'STFangsong, 仿宋', name: '仿宋', preview: '秀逸典雅' },
+  { value: 'STLiti, LiSu, 隶书', name: '隶书', preview: '古朴宽博' },
+  { value: 'YouYuan, 幼圆', name: '幼圆', preview: '圆润可爱' },
+  { value: 'STCaiyun, 华文彩云', name: '彩云', preview: '空心艺术' },
+  { value: 'FZShuTi, 方正舒体', name: '舒体', preview: '洒脱飘逸' },
+  { value: 'FZYaoti, 方正姚体', name: '姚体', preview: '纤细挺拔' },
+  { value: 'STXinwei, 华文新魏', name: '新魏', preview: '雄强刚健' },
+  { value: 'STHupo, 华文琥珀', name: '琥珀', preview: '圆润厚重' },
 ];
 
 const CELL_SIZE_OPTIONS = [
   { value: 56, label: '大格', desc: '3字/行' },
-  { value: 44, label: '中格', desc: '4字/行' },
-  { value: 34, label: '小格', desc: '6字/行' },
+  { value: 48, label: '中大', desc: '4字/行' },
+  { value: 40, label: '中格', desc: '5字/行' },
+  { value: 32, label: '小格', desc: '6字/行' },
 ];
 
 // SVG grid lines for each cell
@@ -24,16 +41,16 @@ function CellSvg({ gridType, size }: { gridType: GridType; size: number }) {
     <svg className="absolute inset-0 pointer-events-none" width={size} height={size} style={{ zIndex: 1 }}>
       {gridType === 'tian' && (
         <>
-          <line x1={size / 2} y1={2} x2={size / 2} y2={size - 2} stroke="#ddd" strokeWidth="0.8" strokeDasharray="4,3" />
-          <line x1={2} y1={size / 2} x2={size - 2} y2={size / 2} stroke="#ddd" strokeWidth="0.8" strokeDasharray="4,3" />
+          <line x1={size / 2} y1={2} x2={size / 2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
+          <line x1={2} y1={size / 2} x2={size - 2} y2={size / 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
         </>
       )}
       {gridType === 'mi' && (
         <>
-          <line x1={size / 2} y1={2} x2={size / 2} y2={size - 2} stroke="#ddd" strokeWidth="0.8" strokeDasharray="4,3" />
-          <line x1={2} y1={size / 2} x2={size - 2} y2={size / 2} stroke="#ddd" strokeWidth="0.8" strokeDasharray="4,3" />
-          <line x1={2} y1={2} x2={size - 2} y2={size - 2} stroke="#ddd" strokeWidth="0.8" strokeDasharray="4,3" />
-          <line x1={size - 2} y1={2} x2={2} y2={size - 2} stroke="#ddd" strokeWidth="0.8" strokeDasharray="4,3" />
+          <line x1={size / 2} y1={2} x2={size / 2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
+          <line x1={2} y1={size / 2} x2={size - 2} y2={size / 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
+          <line x1={2} y1={2} x2={size - 2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
+          <line x1={size - 2} y1={2} x2={2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
         </>
       )}
     </svg>
@@ -51,8 +68,15 @@ function GridCell({ char, showChar, fontFamily, gridType, size }: {
   const fontSize = Math.floor(size * 0.72);
   return (
     <div
-      className="relative bg-white border border-gray-300 flex items-center justify-center overflow-hidden"
-      style={{ width: size, height: size, flexShrink: 0 }}
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{
+        width: size,
+        height: size,
+        flexShrink: 0,
+        background: '#fff',
+        borderBottom: '1px solid #ccc',
+        borderRight: '1px solid #ccc',
+      }}
     >
       <CellSvg gridType={gridType} size={size} />
       {showChar && char && (
@@ -61,7 +85,7 @@ function GridCell({ char, showChar, fontFamily, gridType, size }: {
           style={{
             fontSize,
             fontFamily,
-            color: '#c8c8c8',
+            color: '#b0b0b0',
             zIndex: 2,
           }}
         >
@@ -76,15 +100,14 @@ export default function CalligraphyPage() {
   const [text, setText] = useState('天地人和春夏秋冬');
   const [gridType, setGridType] = useState<GridType>('tian');
   const [rows, setRows] = useState(8);
-  const [cellSize, setCellSize] = useState(44);
+  const [cellSize, setCellSize] = useState(48);
   const [showGuide, setShowGuide] = useState(true);
-  const [fontFamily, setFontFamily] = useState('KaiTi, STKaiti, 楷体, serif');
+  const [fontFamily, setFontFamily] = useState('KaiTi, STKaiti, 楷体');
   const [isExporting, setIsExporting] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
   const chars = [...text].filter(c => c.trim());
-  // How many chars fit per row on the A4 preview (180mm / cellSize px)
-  const previewWidth = 680; // px for the preview area (210mm * 3.24px/mm ≈ 680px)
+  const previewWidth = 650;
   const colsPerRow = Math.max(1, Math.floor(previewWidth / cellSize));
 
   const handleExportPDF = async () => {
@@ -113,24 +136,68 @@ export default function CalligraphyPage() {
     }
   };
 
-  // Render grid for tian/mi/fang
+  const handlePrint = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+    const chars = [...text].filter(c => c.trim());
+    const fontSize = Math.floor(cellSize * 0.72);
+    const gridHtml = gridType === 'hengxian' ? `
+      <div style="width:180mm;margin:10mm auto;">
+        ${Array.from({ length: rows }, (_, i) => `
+          <div style="height:${cellSize}px;border-bottom:1px solid #ccc;display:flex;align-items:flex-end;padding:0 4px 4px;">
+            ${showGuide && i === 0 ? chars.map(c => `<span style="font-size:${fontSize}px;font-family:'${fontFamily}';color:#b0b0b0;margin-right:8px;">${c}</span>`).join('') : ''}
+          </div>
+        `).join('')}
+      </div>
+    ` : `
+      <div style="width:180mm;margin:10mm auto;display:grid;grid-template-columns:repeat(${Math.min(chars.length, colsPerRow)},${cellSize}px);border:2px solid #333;">
+        ${Array.from({ length: rows }, (_, rowIdx) =>
+          chars.slice(0, colsPerRow).map(char => `
+            <div style="width:${cellSize}px;height:${cellSize}px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;position:relative;background:#fff;">
+              ${gridType === 'tian' ? `<svg style="position:absolute;inset:0;"><line x1="${cellSize/2}" y1="2" x2="${cellSize/2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="${cellSize/2}" x2="${cellSize-2}" y2="${cellSize/2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/></svg>` : ''}
+              ${gridType === 'mi' ? `<svg style="position:absolute;inset:0;"><line x1="${cellSize/2}" y1="2" x2="${cellSize/2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="${cellSize/2}" x2="${cellSize-2}" y2="${cellSize/2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="2" x2="${cellSize-2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="${cellSize-2}" y1="2" x2="2" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/></svg>` : ''}
+              ${showGuide && rowIdx === 0 ? `<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${fontSize}px;font-family:'${fontFamily}';color:#b0b0b0;">${char}</span>` : ''}
+            </div>
+          `).join('')
+        ).join('')}
+      </div>
+    `;
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <title>字帖打印</title>
+        <style>
+          @page { margin: 10mm; size: A4 portrait; }
+          body { margin: 0; font-family: 'KaiTi', '楷体', serif; }
+          @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        </style>
+      </head>
+      <body>${gridHtml}</body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+  };
+
+  // Render grid
   const renderGrid = () => {
     const allChars = chars.slice(0, colsPerRow);
-    const pageRows = rows;
-
-    // Build grid rows: row 0 = guide chars, rows 1..pageRows-1 = empty
     return (
       <div
         className="inline-block"
         style={{
           display: 'grid',
           gridTemplateColumns: `repeat(${allChars.length}, ${cellSize}px)`,
-          gridTemplateRows: `repeat(${pageRows}, ${cellSize}px)`,
-          gap: 0,
-          border: '2px solid #999',
+          gridTemplateRows: `repeat(${rows}, ${cellSize}px)`,
+          border: '2px solid #333',
+          background: '#fff',
         }}
       >
-        {Array.from({ length: pageRows }, (_, rowIdx) =>
+        {Array.from({ length: rows }, (_, rowIdx) =>
           allChars.map((char, colIdx) => (
             <GridCell
               key={`${rowIdx}-${colIdx}`}
@@ -146,25 +213,33 @@ export default function CalligraphyPage() {
     );
   };
 
-  // Render horizontal lines for hengxian
   const renderLines = () => {
     const lineHeight = cellSize;
     const usableWidth = cellSize * Math.min(chars.length, 12);
-    const lineCount = rows;
-
     return (
-      <div className="inline-block border-2 border-gray-400" style={{ width: usableWidth }}>
-        {Array.from({ length: lineCount }, (_, i) => (
+      <div className="inline-block" style={{ width: usableWidth, border: '2px solid #333', background: '#fff' }}>
+        {Array.from({ length: rows }, (_, i) => (
           <div
             key={i}
-            className="relative border-b border-gray-300 flex items-end"
-            style={{ height: lineHeight, paddingLeft: 8, paddingRight: 8, paddingBottom: 4 }}
+            className="relative border-b flex items-end"
+            style={{
+              height: lineHeight,
+              paddingLeft: 8,
+              paddingRight: 8,
+              paddingBottom: 4,
+              borderColor: '#ccc',
+            }}
           >
             {showGuide && i === 0 && chars.map((c, j) => (
               <span
                 key={j}
-                className="select-none mr-4"
-                style={{ fontSize: Math.floor(lineHeight * 0.6), fontFamily, color: '#d0d0d0' }}
+                className="select-none"
+                style={{
+                  fontSize: Math.floor(lineHeight * 0.6),
+                  fontFamily,
+                  color: '#b0b0b0',
+                  marginRight: 8,
+                }}
               >
                 {c}
               </span>
@@ -176,172 +251,185 @@ export default function CalligraphyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-gray-100">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-lg">🧮</div>
-            <span className="text-lg font-bold text-white">算个题吧</span>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-base">🧮</div>
+            <span className="text-base font-bold text-gray-800">算个题吧</span>
           </a>
-          <div className="flex items-center gap-6">
-            <a href="/tools/sudoku" className="text-sm text-gray-400 hover:text-white transition-colors">数独游戏</a>
-            <a href="/" className="text-sm text-gray-400 hover:text-white transition-colors">数学练习卷</a>
+          <div className="flex items-center gap-5">
+            <a href="/tools/sudoku" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">数独游戏</a>
+            <a href="/" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">数学练习卷</a>
           </div>
         </div>
       </nav>
 
-      <div className="pt-24 pb-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Hero */}
+      <div className="pt-20 pb-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent mb-3">
-              字帖生成器
-            </h1>
-            <p className="text-gray-400">输入文字，一键生成田字格/米字格练习纸 · PDF 即印即用</p>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">字帖生成器</h1>
+            <p className="text-gray-500 text-sm">输入汉字，一键生成田字格/米字格练习纸 · 支持多种字体 · PDF下载即印即用</p>
           </div>
 
-          {/* Controls */}
-          <div className="bg-[#111] rounded-2xl border border-white/10 p-6 mb-8 space-y-6">
-
-            {/* Grid type */}
-            <div>
-              <p className="text-sm text-gray-400 mb-3">模板类型</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {GRID_TYPES.map(g => (
-                  <button
-                    key={g.id}
-                    onClick={() => setGridType(g.id)}
-                    className={`relative p-4 rounded-xl border transition-all duration-200 text-center ${
-                      gridType === g.id
-                        ? 'bg-blue-500/20 border-blue-500/60 text-white'
-                        : 'bg-white/5 border-white/10 text-gray-300 hover:border-white/30'
-                    }`}
-                  >
-                    <div className="text-3xl mb-1">{g.icon}</div>
-                    <div className="text-sm font-medium">{g.name}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">{g.desc}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Text input + settings */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Controls Card */}
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8">
+            <div className="space-y-6">
+              {/* Grid type */}
               <div>
-                <label className="block text-sm text-gray-400 mb-2">输入文字</label>
-                <input
-                  type="text"
-                  value={text}
-                  onChange={e => setText(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500/60 transition-colors"
-                  placeholder="输入要练习的汉字，如：天地人和"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-400 mb-2">字体</label>
-                <select
-                  value={fontFamily}
-                  onChange={e => setFontFamily(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500/60 transition-colors"
-                >
-                  <option value="KaiTi, STKaiti, 楷体, serif">楷体（推荐）</option>
-                  <option value="STSong, SimSun, 宋体, serif">宋体</option>
-                  <option value="STHeiti, SimHei, 黑体, sans-serif">黑体</option>
-                  <option value="STLiti, STFangsong, 仿宋, serif">仿宋</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Size + rows */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-sm text-gray-400 mb-2">格子大小</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {CELL_SIZE_OPTIONS.map(opt => (
+                <p className="text-sm text-gray-500 mb-3 font-medium">模板类型</p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {GRID_TYPES.map(g => (
                     <button
-                      key={opt.value}
-                      onClick={() => setCellSize(opt.value)}
-                      className={`py-2 px-1 rounded-lg border text-xs transition-all ${
-                        cellSize === opt.value
-                          ? 'bg-blue-500/20 border-blue-500/60 text-white'
-                          : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30'
+                      key={g.id}
+                      onClick={() => setGridType(g.id)}
+                      className={`relative p-3 rounded-xl border-2 transition-all duration-200 text-center ${
+                        gridType === g.id
+                          ? 'bg-blue-50 border-blue-500 text-blue-700'
+                          : 'bg-gray-50 border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-100'
                       }`}
                     >
-                      <div className="font-medium">{opt.label}</div>
-                      <div className="text-[10px] text-gray-600">{opt.desc}</div>
+                      <div className="text-2xl mb-0.5">{g.icon}</div>
+                      <div className="text-xs font-medium">{g.name}</div>
+                      <div className="text-[10px] text-gray-400">{g.desc}</div>
                     </button>
                   ))}
                 </div>
               </div>
+
+              {/* Text input */}
               <div>
-                <label className="block text-sm text-gray-400 mb-2">练习行数（每字）</label>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="range"
-                    min={3}
-                    max={15}
-                    value={rows}
-                    onChange={e => setRows(Number(e.target.value))}
-                    className="flex-1 accent-blue-500"
-                  />
-                  <span className="text-white text-sm w-6 text-center">{rows}</span>
+                <label className="block text-sm text-gray-500 mb-2 font-medium">输入练习文字</label>
+                <input
+                  type="text"
+                  value={text}
+                  onChange={e => setText(e.target.value)}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white transition-colors"
+                  placeholder="输入要练习的汉字"
+                />
+                <p className="text-xs text-gray-400 mt-1">已输入 {chars.length} 个字</p>
+              </div>
+
+              {/* Font selector - 两列显示更多字体 */}
+              <div>
+                <label className="block text-sm text-gray-500 mb-2 font-medium">选择字体</label>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                  {FONT_OPTIONS.map(font => (
+                    <button
+                      key={font.value}
+                      onClick={() => setFontFamily(font.value)}
+                      className={`p-2.5 rounded-lg border-2 transition-all text-center ${
+                        fontFamily === font.value
+                          ? 'bg-blue-50 border-blue-500 text-blue-700'
+                          : 'bg-gray-50 border-gray-200 text-gray-600 hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="text-xs font-medium">{font.name}</div>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-400 mt-1.5">提示：不同系统可用字体不同，楷体/宋体/黑体最通用</p>
+              </div>
+
+              {/* Size + rows */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm text-gray-500 mb-2 font-medium">格子大小</label>
+                  <div className="grid grid-cols-4 gap-1.5">
+                    {CELL_SIZE_OPTIONS.map(opt => (
+                      <button
+                        key={opt.value}
+                        onClick={() => setCellSize(opt.value)}
+                        className={`py-2 px-1 rounded-lg border-2 text-xs transition-all ${
+                          cellSize === opt.value
+                            ? 'bg-blue-50 border-blue-500 text-blue-700'
+                            : 'bg-gray-50 border-gray-200 text-gray-600 hover:border-gray-300'
+                        }`}
+                      >
+                        <div className="font-medium">{opt.label}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-500 mb-2 font-medium">练习行数</label>
+                  <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-2.5 border border-gray-200">
+                    <input
+                      type="range"
+                      min={3}
+                      max={15}
+                      value={rows}
+                      onChange={e => setRows(Number(e.target.value))}
+                      className="flex-1 accent-blue-500 h-1.5"
+                    />
+                    <span className="text-gray-700 text-sm font-medium w-6 text-center">{rows}</span>
+                  </div>
+                </div>
+                <div className="flex items-end">
+                  <label className="flex items-center gap-2.5 cursor-pointer bg-gray-50 rounded-xl px-4 py-2.5 border border-gray-200 w-full">
+                    <input
+                      type="checkbox"
+                      checked={showGuide}
+                      onChange={e => setShowGuide(e.target.checked)}
+                      className="w-4 h-4 accent-blue-500 rounded"
+                    />
+                    <span className="text-sm text-gray-600">显示首行范字</span>
+                  </label>
                 </div>
               </div>
-              <div className="flex items-end">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={showGuide}
-                    onChange={e => setShowGuide(e.target.checked)}
-                    className="w-4 h-4 accent-blue-500"
-                  />
-                  <span className="text-sm text-gray-300">显示首行范字</span>
-                </label>
+            </div>
+          </div>
+
+          {/* Preview Card */}
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
+            <div className="text-xs text-gray-400 mb-3 text-center">
+              A4 预览 · {chars.length} 字 · {gridType === 'hengxian' ? '横线格' : `每行最多 ${colsPerRow} 格`}
+            </div>
+            <div className="flex justify-center overflow-x-auto bg-gray-50 rounded-xl p-4">
+              <div
+                ref={previewRef}
+                className="bg-white shadow-lg"
+                style={{
+                  width: previewWidth,
+                  minHeight: 850,
+                  padding: 30,
+                  background: '#fff',
+                }}
+              >
+                {gridType === 'hengxian' ? renderLines() : renderGrid()}
               </div>
             </div>
           </div>
 
-          {/* Preview */}
-          <div className="flex justify-center mb-6">
-            <div className="text-xs text-gray-500 mb-2 text-center">
-              预计 {chars.length} 字 · {gridType === 'hengxian' ? '横线格' : `格子 ${cellSize}px`}
-            </div>
-          </div>
-
-          <div className="flex justify-center mb-6 overflow-x-auto">
-            <div
-              ref={previewRef}
-              className="bg-white shadow-2xl mx-auto"
-              style={{
-                width: 680,
-                minHeight: 900,
-                padding: 40,
-                background: '#fff',
-              }}
-            >
-              {gridType === 'hengxian' ? renderLines() : renderGrid()}
-            </div>
-          </div>
-
-          {/* Export */}
-          <div className="flex justify-center gap-4">
+          {/* Actions */}
+          <div className="flex justify-center gap-3">
             <button
               onClick={handleExportPDF}
-              disabled={isExporting}
-              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed px-8 py-3 rounded-xl text-white font-medium transition-colors flex items-center gap-2"
+              disabled={isExporting || chars.length === 0}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed px-6 py-2.5 rounded-xl text-white text-sm font-medium transition-colors flex items-center gap-2"
             >
               {isExporting ? '导出中...' : '📄 下载 PDF'}
             </button>
             <button
-              onClick={() => window.print()}
-              className="bg-white/10 hover:bg-white/20 px-8 py-3 rounded-xl text-white font-medium transition-colors"
+              onClick={handlePrint}
+              disabled={chars.length === 0}
+              className="bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 disabled:text-gray-400 px-6 py-2.5 rounded-xl text-gray-700 text-sm font-medium transition-colors"
             >
               🖨️ 直接打印
             </button>
           </div>
         </div>
       </div>
+
+      {/* Print styles */}
+      <style jsx global>{`
+        @media print {
+          nav, button { display: none !important; }
+          body { background: white !important; }
+        }
+      `}</style>
     </div>
   );
 }
