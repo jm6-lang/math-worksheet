@@ -194,7 +194,7 @@ export default function Home() {
       
       
       {/* ===== 顶部导航 ===== */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
+      <nav className="print:hidden fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -280,7 +280,7 @@ export default function Home() {
       )}
 {/* ===== Hero 区域 ===== */}
       {!hasGenerated && (
-        <div className="pt-24 pb-12 px-4">
+        <div className="print:hidden pt-24 pb-12 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
               算个题吧
@@ -446,7 +446,7 @@ export default function Home() {
 
       {/* ===== 高级配置面板 ===== */}
       {(showConfig || hasGenerated) && (
-        <div className={`${hasGenerated ? 'pt-20' : ''} px-4 pb-12`}>
+        <div className={`print:hidden ${hasGenerated ? 'pt-20' : ''} px-4 pb-12`}>
           <div className="max-w-6xl mx-auto">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="grid md:grid-cols-3 gap-6">
@@ -681,8 +681,8 @@ export default function Home() {
       {hasGenerated && (
         <div className="px-4 pb-20">
           <div className="max-w-6xl mx-auto">
-            {/* 预览工具栏 */}
-            <div className="flex items-center justify-between mb-6">
+            {/* 预览工具栏 - 打印时隐藏 */}
+            <div className="print:hidden flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
                 <h2 className="text-2xl font-bold">练习预览</h2>
                 <span className="text-gray-500">共 {questions.length} 题</span>
