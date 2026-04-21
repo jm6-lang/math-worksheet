@@ -168,6 +168,9 @@ export default function HomePage() {
                     <a href={`https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent('https://math-worksheet.pages.dev')}&title=${encodeURIComponent('教材工具箱 - 免费生成数学练习卷、字帖、数独')}`} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                       <span>💬</span> QQ
                     </a>
+                    <a href={`weixin://` } onClick={(e) => { e.preventDefault(); alert('请在微信中打开，点击右上角「...」选择「发送给朋友」或「分享到朋友圈」'); navigator.clipboard.writeText('https://math-worksheet.pages.dev'); }} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>💚</span> 微信
+                    </a>
                     <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); setCopySuccess(true); setTimeout(() => setCopySuccess(false), 2000); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                       <span>📋</span> {copySuccess ? '已复制!' : '复制链接'}
                     </button>
@@ -198,7 +201,7 @@ export default function HomePage() {
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
             <div className="border-t border-white/10 my-2"></div>
             <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📖 使用教程</button>
-            <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); alert('链接已复制！'); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🔗 分享给好友</button>
+            <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); alert('链接已复制！可粘贴到微信分享给好友'); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💚 分享到微信</button>
             <button onClick={() => { setShowDonate(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💝 赞助支持</button>
           </div>
         )}
@@ -384,11 +387,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ===== 底部 ===== */}
-      <footer className="border-t border-white/10 py-8 px-4 text-center text-gray-500 text-sm">
-        <p>© 2026 教材工具箱 · 免费好用的在线工具</p>
-      </footer>
 
       {/* ===== 使用教程弹窗 ===== */}
       {showTutorial && (
