@@ -74,6 +74,7 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [showDonate, setShowDonate] = useState(false);
   const announcementRef = useRef<HTMLDivElement>(null);
 
   // 自动轮播
@@ -148,6 +149,9 @@ export default function HomePage() {
               <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 🧩 数独游戏
               </a>
+              <button onClick={() => setShowDonate(true)} className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors ml-2">
+                💝 赞助
+              </button>
             </div>
 
             {/* 移动端菜单按钮 */}
@@ -167,6 +171,8 @@ export default function HomePage() {
             <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧮 数学练习卷</a>
             <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
+            <div className="border-t border-white/10 my-2"></div>
+            <button onClick={() => { setShowDonate(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💝 赞助支持</button>
           </div>
         )}
       </nav>
@@ -351,6 +357,32 @@ export default function HomePage() {
       <footer className="border-t border-white/10 py-8 px-4 text-center text-gray-500 text-sm">
         <p>© 2026 教材工具箱 · 免费好用的在线工具</p>
       </footer>
+
+      {/* ===== 赞助弹窗 ===== */}
+      {showDonate && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setShowDonate(false)}>
+          <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl max-w-md w-full p-8" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">💝 赞助支持</h2>
+              <button onClick={() => setShowDonate(false)} className="text-gray-400 hover:text-white text-2xl leading-none">×</button>
+            </div>
+            <p className="text-gray-400 text-center mb-6">
+              如果这些工具对您有帮助，欢迎赞助支持开发维护！
+            </p>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-2">微信支付</p>
+                <img src="/donate/wechat.png" alt="微信支付" className="w-full rounded-xl bg-white p-2" />
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-2">支付宝</p>
+                <img src="/donate/alipay.jpg" alt="支付宝" className="w-full rounded-xl bg-white p-2" />
+              </div>
+            </div>
+            <p className="text-gray-500 text-xs text-center mt-4">感谢您的支持！❤️</p>
+          </div>
+        </div>
+      )}
 
       {/* ===== 自定义动画样式 ===== */}
       <style jsx global>{`
