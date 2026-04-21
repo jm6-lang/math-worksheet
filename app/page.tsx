@@ -6,8 +6,8 @@ import { useState, useEffect, useRef } from 'react';
 const CAROUSEL_ITEMS = [
   {
     id: 1,
-    title: '数学练习卷',
-    subtitle: '一键生成个性化练习卷',
+    title: '数学练习题',
+    subtitle: '一键生成个性化练习题',
     description: '支持加减乘除、竖式计算、填空题等多种题型',
     icon: '🧮',
     gradient: 'from-blue-600 via-indigo-600 to-purple-600',
