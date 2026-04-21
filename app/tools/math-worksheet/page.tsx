@@ -199,7 +199,7 @@ export default function MathWorksheetPage() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-xl">🧮</div>
-              <a href="/" className="text-xl font-bold hover:opacity-80 transition-opacity text-white">算个题吧</a>
+              <a href="/" className="text-xl font-bold hover:opacity-80 transition-opacity text-white">数学练习题</a>
             </div>
             {/* 桌面导航 */}
             <div className="hidden md:flex items-center gap-1">
