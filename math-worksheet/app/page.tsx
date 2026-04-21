@@ -75,6 +75,9 @@ export default function HomePage() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [showShare, setShowShare] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
   const announcementRef = useRef<HTMLDivElement>(null);
 
   // 自动轮播
@@ -149,7 +152,32 @@ export default function HomePage() {
               <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 🧩 数独游戏
               </a>
-              <button onClick={() => setShowDonate(true)} className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors ml-2">
+              <div className="w-px h-6 bg-white/20 mx-2"></div>
+              <button onClick={() => setShowTutorial(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                📖 教程
+              </button>
+              <div className="relative">
+                <button onClick={() => setShowShare(!showShare)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                  🔗 分享
+                </button>
+                {showShare && (
+                  <div className="absolute right-0 top-full mt-2 bg-slate-800 border border-white/10 rounded-xl shadow-xl p-2 min-w-[140px] z-50">
+                    <a href={`https://service.weibo.com/share/share.php?url=${encodeURIComponent('https://math-worksheet.pages.dev')}&title=${encodeURIComponent('教材工具箱 - 免费生成数学练习卷、字帖、数独')}`} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>📱</span> 微博
+                    </a>
+                    <a href={`https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent('https://math-worksheet.pages.dev')}&title=${encodeURIComponent('教材工具箱 - 免费生成数学练习卷、字帖、数独')}`} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>💬</span> QQ
+                    </a>
+                    <a href={`weixin://` } onClick={(e) => { e.preventDefault(); alert('请在微信中打开，点击右上角「...」选择「发送给朋友」或「分享到朋友圈」'); navigator.clipboard.writeText('https://math-worksheet.pages.dev'); }} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>💚</span> 微信
+                    </a>
+                    <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); setCopySuccess(true); setTimeout(() => setCopySuccess(false), 2000); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>📋</span> {copySuccess ? '已复制!' : '复制链接'}
+                    </button>
+                  </div>
+                )}
+              </div>
+              <button onClick={() => setShowDonate(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 💝 赞助
               </button>
             </div>
@@ -172,6 +200,8 @@ export default function HomePage() {
             <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
             <div className="border-t border-white/10 my-2"></div>
+            <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📖 使用教程</button>
+            <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); alert('链接已复制！可粘贴到微信分享给好友'); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💚 分享到微信</button>
             <button onClick={() => { setShowDonate(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💝 赞助支持</button>
           </div>
         )}
@@ -239,9 +269,14 @@ export default function HomePage() {
                 </p>
 
                 {/* 描述 */}
-                <p className="text-lg text-white/80 mb-8 max-w-xl drop-shadow">
+                <p className="text-lg text-white/80 mb-6 max-w-xl drop-shadow">
                   {item.description}
                 </p>
+
+                {/* 免费提示 */}
+                <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-8 border border-white/30">
+                  <span className="text-white font-bold text-lg">🎁 所有资源免费生成，免费下载打印</span>
+                </div>
 
                 {/* 大图标 */}
                 <div className="text-8xl mb-8 animate-bounce-slow drop-shadow-2xl">
@@ -353,10 +388,104 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== 底部 ===== */}
-      <footer className="border-t border-white/10 py-8 px-4 text-center text-gray-500 text-sm">
-        <p>© 2026 教材工具箱 · 免费好用的在线工具</p>
+      {/* ===== 底部页脚 ===== */}
+      <footer className="border-t border-white/10 py-8 px-4 mt-8">
+        <div className="max-w-6xl mx-auto">
+          {/* 链接行 */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-gray-400 mb-4">
+            <a href="#" className="hover:text-white transition-colors">关于我们</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">免责声明</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">隐私政策</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">联系我们</a>
+            <span className="text-gray-600">|</span>
+            <a href="#" className="hover:text-white transition-colors">广告合作</a>
+          </div>
+          {/* 友情链接 */}
+          <div className="flex flex-wrap justify-center items-center gap-3 text-sm text-gray-500">
+            <span>友情链接：</span>
+            <a href="https://docs.skillxm.cn" target="_blank" rel="noopener" className="text-gray-400 hover:text-blue-400 transition-colors">docs.skillxm.cn</a>
+            <span className="text-gray-600">|</span>
+            <a href="https://ziwei.skillxm.cn" target="_blank" rel="noopener" className="text-gray-400 hover:text-blue-400 transition-colors">ziwei.skillxm.cn</a>
+          </div>
+        </div>
       </footer>
+
+      {/* ===== 使用教程弹窗 ===== */}
+      {showTutorial && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setShowTutorial(false)}>
+          <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-8" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">📖 使用教程</h2>
+              <button onClick={() => setShowTutorial(false)} className="text-gray-400 hover:text-white text-2xl leading-none">×</button>
+            </div>
+
+            <div className="space-y-6">
+              {/* 数学练习卷 */}
+              <div className="bg-white/5 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-blue-400 mb-3">🧮 数学练习卷生成器</h3>
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside">
+                  <li>点击首页轮播图进入<span className="text-white">"数学练习卷"</span></li>
+                  <li>选择年级（1-6年级可选）</li>
+                  <li>勾选题型（加减乘除、竖式、填空等11种）</li>
+                  <li>设置数字范围和题目数量</li>
+                  <li>选择模板：田字格/方格/横线格/空白纸</li>
+                  <li>点击<span className="text-emerald-400 font-bold">"立即出题"</span>生成练习卷</li>
+                  <li>点击<span className="text-blue-400 font-bold">"导出PDF"</span>下载打印</li>
+                </ol>
+              </div>
+
+              {/* 字帖生成器 */}
+              <div className="bg-white/5 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-emerald-400 mb-3">✍️ 字帖生成器</h3>
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside">
+                  <li>点击首页轮播图进入<span className="text-white">"字帖生成器"</span></li>
+                  <li>输入要练习的汉字或词语</li>
+                  <li>选择模板：田字格/米字格/方格/横线格</li>
+                  <li>选择字体：楷体/宋体/黑体/仿宋等</li>
+                  <li>设置每行字数和行数</li>
+                  <li>点击<span className="text-emerald-400 font-bold">"生成字帖"</span></li>
+                  <li>点击<span className="text-blue-400 font-bold">"导出PDF"</span>下载打印</li>
+                </ol>
+              </div>
+
+              {/* 数独游戏 */}
+              <div className="bg-white/5 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-orange-400 mb-3">🧩 数独游戏</h3>
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside">
+                  <li>点击首页轮播图进入<span className="text-white">"数独游戏"</span></li>
+                  <li>选择难度：简单/中等/困难/专家</li>
+                  <li>点击空格，用数字键盘填入答案</li>
+                  <li>点击<span className="text-yellow-400 font-bold">"笔记"</span>模式可记录候选数</li>
+                  <li>点击<span className="text-blue-400 font-bold">"检查"</span>查看错误</li>
+                  <li>完成后点击<span className="text-emerald-400 font-bold">"新游戏"</span>继续挑战</li>
+                </ol>
+              </div>
+
+              {/* 快捷出题 */}
+              <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl p-4 border border-blue-500/30">
+                <h3 className="text-lg font-bold text-white mb-2">⚡ 快捷出题</h3>
+                <p className="text-gray-300 text-sm">
+                  首页底部提供<span className="text-yellow-400">快捷预设卡片</span>，一键生成10/20/50/100道题目，无需复杂配置！
+                </p>
+              </div>
+
+              {/* 温馨提示 */}
+              <div className="bg-white/5 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-yellow-400 mb-2">💡 温馨提示</h3>
+                <ul className="space-y-1 text-gray-300 text-sm list-disc list-inside">
+                  <li>所有资源<span className="text-emerald-400 font-bold">完全免费</span>，无需注册</li>
+                  <li>PDF导出支持A4纸打印，适合家庭/学校使用</li>
+                  <li>建议使用Chrome/Edge浏览器获得最佳体验</li>
+                  <li>如觉得有帮助，欢迎<span className="text-pink-400">赞助支持</span>或<span className="text-blue-400">分享给朋友</span>！</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ===== 赞助弹窗 ===== */}
       {showDonate && (

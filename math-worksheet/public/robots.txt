@@ -1,4 +1,44 @@
+# robots.txt for skillxm.cn
+# 更新时间: 2026-04-21
+
+# 允许所有搜索引擎
 User-agent: *
 Allow: /
 
-Sitemap: https://math-worksheet.pages.dev/sitemap.xml
+# 百度爬虫
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# 谷歌爬虫
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# 谷歌图片爬虫
+User-agent: Googlebot-Image
+Allow: /
+
+# 百度图片爬虫
+User-agent: Baiduspider-image
+Allow: /
+
+# 搜狗爬虫
+User-agent: Sogou
+Allow: /
+
+# 360爬虫
+User-agent: 360Spider
+Allow: /
+
+# 必应爬虫
+User-agent: Bingbot
+Allow: /
+
+# 站点地图
+Sitemap: https://skillxm.cn/sitemap.xml
+Sitemap: https://www.skillxm.cn/sitemap.xml
+
+# 禁止抓取的路径（如有需要可添加）
+# Disallow: /api/
+# Disallow: /private/
