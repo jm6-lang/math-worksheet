@@ -214,9 +214,6 @@ export default function Home() {
                     <a href="/tools/sudoku" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">数独游戏</a>
                   </div>
                 </div>
-              </div></a>
-                  </div>
-                </div>
               </div>
               <button onClick={() => setShowDonate(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">捐赠</button>
               
