@@ -259,7 +259,7 @@ export default function PinyinPage() {
           <div className="flex items-center justify-between h-16">
             <a href="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">📚</div>
-              <span className="text-xl font-bold text-white group-hover:opacity-80 transition-opacity">教材工具箱</span>
+              <span className="text-xl font-bold text-white group-hover:opacity-80 transition-opacity">拼音注音练习</span>
             </a>
             <div className="flex items-center gap-1">
               <a href="/" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🏠 首页</a>
