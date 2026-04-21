@@ -152,6 +152,9 @@ export default function HomePage() {
               <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 🧩 数独游戏
               </a>
+              <a href="/resources" className="px-4 py-2 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">
+                🎁 免费资源
+              </a>
               <div className="w-px h-6 bg-white/20 mx-2"></div>
               <button onClick={() => setShowTutorial(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 📖 教程
@@ -199,6 +202,7 @@ export default function HomePage() {
             <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧮 数学练习卷</a>
             <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
+            <a href="/resources" className="block px-4 py-2 text-amber-400 bg-amber-500/10 rounded-lg">🎁 免费资源</a>
             <div className="border-t border-white/10 my-2"></div>
             <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📖 使用教程</button>
             <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); alert('链接已复制！可粘贴到微信分享给好友'); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💚 分享到微信</button>
