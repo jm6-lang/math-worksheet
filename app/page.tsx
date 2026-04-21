@@ -210,8 +210,11 @@ export default function Home() {
                 <button className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1">教材工具 <span className="text-xs">▾</span></button>
                 <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="bg-[#1a1a1a] border border-white/10 rounded-xl shadow-xl py-2 min-w-[160px]">
-                    <a href="https://xgzb.top" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10">写个字吧（字帖）</a>
-                    <a href="https://xgzb.top/game/sudoku.html" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10">数独游戏</a>
+                    <a href="/tools/calligraphy" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">字帖生成器</a>
+                    <a href="/tools/sudoku" className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">数独游戏</a>
+                  </div>
+                </div>
+              </div></a>
                   </div>
                 </div>
               </div>
@@ -227,8 +230,8 @@ export default function Home() {
             <button onClick={() => { setHasGenerated(false); setQuestions([]); setShowGuide(false); setMobileMenu(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">快速入门</button>
             <button onClick={() => { setShowGuide(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">使用教程</button>
             <div className="border-t border-white/10 my-2"></div>
-            <a href="https://xgzb.top" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">写个字吧（字帖）</a>
-            <a href="https://xgzb.top/game/sudoku.html" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">数独游戏</a>
+            <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">字帖生成器</a>
+            <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">数独游戏</a>
             <div className="border-t border-white/10 my-2"></div>
             <button onClick={() => { setShowDonate(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">捐赠</button>
             
