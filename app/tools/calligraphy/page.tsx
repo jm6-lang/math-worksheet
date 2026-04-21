@@ -116,13 +116,34 @@ export default function CalligraphyPage() {
     try {
       const { default: html2canvas } = await import('html2canvas');
       const { default: jsPDF } = await import('jspdf');
-      const canvas = await html2canvas(previewRef.current, {
+      
+      // Force white background on the preview element before capture
+      const el = previewRef.current;
+      const origBg = el.style.background;
+      el.style.background = '#ffffff';
+      
+      const canvas = await html2canvas(el, {
         scale: 2,
         useCORS: true,
         backgroundColor: '#ffffff',
         logging: false,
       });
-      const imgData = canvas.toDataURL('image/png');
+      
+      // Restore original background
+      el.style.background = origBg;
+      
+      // Create white canvas to ensure no transparency issues
+      const whiteCanvas = document.createElement('canvas');
+      whiteCanvas.width = canvas.width;
+      whiteCanvas.height = canvas.height;
+      const ctx = whiteCanvas.getContext('2d');
+      if (ctx) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, whiteCanvas.width, whiteCanvas.height);
+        ctx.drawImage(canvas, 0, 0);
+      }
+      
+      const imgData = (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).toDataURL('image/png');
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const pw = pdf.internal.pageSize.getWidth();
       const ph = pdf.internal.pageSize.getHeight();
