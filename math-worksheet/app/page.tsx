@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import {
   generateQuestions,
   Question,
@@ -9,7 +9,6 @@ import {
   QUESTION_TYPE_META,
   GRADES,
   RANGE_OPTIONS,
-  COUNT_OPTIONS,
 } from '@/lib/questionGenerator';
 import WorksheetPreview, {
   WorksheetConfig,
@@ -18,7 +17,22 @@ import WorksheetPreview, {
 } from '@/components/WorksheetPreview';
 import { exportToPDF } from '@/lib/pdfExport';
 
-// 两个 Ref：一个题目卷，一个答案卷
+// 快捷配置预设
+const QUICK_PRESETS = [
+  { label: '10道基础', grade: 1, types: ['addition', 'subtraction'] as QuestionType[], count: 10, rangeIndex: 1, icon: '🎯', desc: '加减法入门' },
+  { label: '20道竖式', grade: 2, types: ['vertical_add', 'vertical_sub'] as QuestionType[], count: 20, rangeIndex: 2, icon: '📐', desc: '竖式计算练习' },
+  { label: '50道综合', grade: 3, types: ['addition', 'subtraction', 'multiplication', 'division'] as QuestionType[], count: 50, rangeIndex: 3, icon: '🚀', desc: '四则运算混合' },
+  { label: '100道强化', grade: 4, types: ['mixed'] as QuestionType[], count: 100, rangeIndex: 3, icon: '⚡', desc: '混合运算强化' },
+];
+
+// 模板配置
+const TEMPLATES: { value: TemplateType; label: string; desc: string; icon: string; preview: string }[] = [
+  { value: 'tianzige', label: '田字格', desc: '1-2年级', icon: '▦', preview: '田' },
+  { value: 'fangge', label: '方格纸', desc: '3-4年级', icon: '▤', preview: '□' },
+  { value: 'hengxian', label: '横线格', desc: '高年级', icon: '≡', preview: '三' },
+  { value: 'kongbai', label: '空白纸', desc: '自由书写', icon: '□', preview: '白' },
+];
+
 function WorksheetSection({
   questions,
   config,
@@ -48,18 +62,41 @@ export default function Home() {
   const [showNameField, setShowNameField] = useState(true);
   const [showDateField, setShowDateField] = useState(true);
   const [sheetTitle, setSheetTitle] = useState('数学练习');
-  // ===== 答案卷新增 =====
   const [mode, setMode] = useState<WorksheetMode>('worksheet');
-  const [showAnswers, setShowAnswers] = useState(false); // 题目卷内嵌答案
+  const [showAnswers, setShowAnswers] = useState(false);
+  const [showConfig, setShowConfig] = useState(false);
 
   // ===== 题目状态 =====
   const [questions, setQuestions] = useState<Question[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasGenerated, setHasGenerated] = useState(false);
 
-  // 两个 Ref
   const worksheetRef = useRef<HTMLDivElement>(null);
   const answersheetRef = useRef<HTMLDivElement>(null);
+
+  // ===== 快捷预设生成 =====
+  const handleQuickPreset = useCallback((preset: typeof QUICK_PRESETS[0]) => {
+    setGrade(preset.grade);
+    setSelectedTypes(preset.types);
+    setCount(preset.count);
+    setRangeIndex(preset.rangeIndex);
+    if (preset.grade <= 2) setTemplate('tianzige');
+    else if (preset.grade <= 4) setTemplate('fangge');
+    else setTemplate('hengxian');
+    
+    setTimeout(() => {
+      const config: QuestionConfig = {
+        types: preset.types,
+        range: RANGE_OPTIONS[preset.rangeIndex].value,
+        count: preset.count,
+        grade: preset.grade,
+        includeAnswers: true,
+        shuffle: true,
+      };
+      setQuestions(generateQuestions(config));
+      setHasGenerated(true);
+    }, 50);
+  }, []);
 
   // ===== 题型切换 =====
   const toggleType = (type: QuestionType) => {
@@ -92,47 +129,33 @@ export default function Home() {
     }, 50);
   }, [selectedTypes, rangeIndex, count, grade, shuffle]);
 
-  // ===== 导出一份（题目卷或答案卷）=====
+  // ===== 导出 =====
   const exportOne = useCallback(
-    async (mode: WorksheetMode, label: string) => {
-      const ref = mode === 'worksheet' ? worksheetRef : answersheetRef;
-      const btn = document.getElementById(`export-${mode}-btn`) as HTMLButtonElement | null;
+    async (modeType: WorksheetMode, label: string) => {
+      const ref = modeType === 'worksheet' ? worksheetRef : answersheetRef;
       if (!ref.current) return;
-      if (btn) { btn.textContent = '生成中...'; btn.disabled = true; }
       try {
         await exportToPDF(ref.current, `${sheetTitle || '数学练习'}-${label}.pdf`);
       } catch (err) {
         console.error(err);
         alert(`${label}导出失败`);
-      } finally {
-        if (btn) { btn.textContent = `📄 ${label}`; btn.disabled = false; }
       }
     },
     [sheetTitle]
   );
 
-  // ===== 导出双卷（题目卷 + 答案卷）=====
   const exportBoth = useCallback(async () => {
     if (!worksheetRef.current || !answersheetRef.current) return;
-    const btn = document.getElementById('export-both-btn') as HTMLButtonElement | null;
-    if (btn) { btn.textContent = '生成中...'; btn.disabled = true; }
     try {
-      // 题目卷
       await exportToPDF(worksheetRef.current, `${sheetTitle || '数学练习'}-题目卷.pdf`);
-      // 答案卷
       await exportToPDF(answersheetRef.current, `${sheetTitle || '数学练习'}-答案卷.pdf`);
     } catch (err) {
       console.error(err);
       alert('导出失败');
-    } finally {
-      if (btn) { btn.textContent = '📄 双卷导出'; btn.disabled = false; }
     }
   }, [sheetTitle]);
 
-  // ===== 打印 ======
-  const handlePrint = useCallback(() => {
-    window.print();
-  }, []);
+  const handlePrint = useCallback(() => window.print(), []);
 
   // ===== 配置 =====
   const worksheetConfig: WorksheetConfig = {
@@ -156,458 +179,437 @@ export default function Home() {
     showAnswers: false,
   };
 
-  // ===== 模板选项 =====
-  const templates: { value: TemplateType; label: string; desc: string; icon: string }[] = [
-    { value: 'tianzige', label: '田字格', desc: '1-2年级，带辅助线', icon: '▦' },
-    { value: 'fangge', label: '方格纸', desc: '3-4年级', icon: '▤' },
-    { value: 'hengxian', label: '横线格', desc: '高年级', icon: '≡' },
-    { value: 'kongbai', label: '空白纸', desc: '自由书写', icon: '□' },
-  ];
+  // 滚动到预览区
+  useEffect(() => {
+    if (hasGenerated) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [hasGenerated]);
 
   return (
-    <div
-      className="min-h-screen bg-gray-50 flex flex-col"
-      style={{ fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif' }}
-    >
-
-      {/* ===== 顶部标题栏 ===== */}
-      <header className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold tracking-wide">🧮 算个题吧</h1>
-            <p className="text-blue-100 text-sm mt-0.5">数学练习纸生成器 · 完全免费 · 免登录</p>
-          </div>
-          <div className="flex items-center gap-3 text-sm">
-            <a
-              href="https://xgzb.top"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-100 hover:text-white transition-colors"
-            >
-              📖 写个字吧（字帖）
-            </a>
+    <div className="min-h-screen bg-[#0f0f0f] text-white" style={{ fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif' }}>
+      
+      {/* ===== 顶部导航 ===== */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-xl">
+                🧮
+              </div>
+              <span className="text-xl font-bold">算个题吧</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://xgzb.top"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                写个字吧 →
+              </a>
+            </div>
           </div>
         </div>
-      </header>
+      </nav>
 
-      {/* ===== 主内容区 ===== */}
-      <div className="flex-1 max-w-6xl mx-auto w-full px-4 py-6 flex gap-6">
+      {/* ===== Hero 区域 ===== */}
+      {!hasGenerated && (
+        <div className="pt-24 pb-12 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              算个题吧
+            </h1>
+            <p className="text-xl text-gray-400 mb-4">
+              免费好用的数学练习纸生成器
+            </p>
+            <p className="text-gray-500 mb-10">
+              支持加减乘除、竖式计算、填空题等多种题型 · 田字格/方格/横线格多模板 · PDF 即印即用
+            </p>
 
-        {/* ===== 左侧配置面板 ===== */}
-        <aside className="w-80 flex-shrink-0 space-y-5 print:hidden">
-
-          {/* 出题设置 */}
-          <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-            <h2 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 bg-blue-500 text-white rounded-full text-xs flex items-center justify-center">1</span>
-              出题设置
-            </h2>
-
-            <div className="mb-4">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">年级</label>
-              <div className="flex flex-wrap gap-2">
-                {GRADES.map(g => (
-                  <button
-                    key={g}
-                    onClick={() => {
-                      setGrade(g);
-                      if (g <= 2) setTemplate('tianzige');
-                      else if (g <= 4) setTemplate('fangge');
-                      else setTemplate('hengxian');
-                    }}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                      grade === g
-                        ? 'bg-blue-500 text-white shadow-sm'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    {g}年级
-                  </button>
-                ))}
-              </div>
+            {/* 快捷出题卡片 */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+              {QUICK_PRESETS.map((preset) => (
+                <button
+                  key={preset.label}
+                  onClick={() => handleQuickPreset(preset)}
+                  className="group relative bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 rounded-2xl p-6 transition-all duration-300 hover:scale-105"
+                >
+                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{preset.icon}</div>
+                  <div className="text-lg font-bold mb-1">{preset.label}</div>
+                  <div className="text-sm text-gray-500">{preset.desc}</div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 rounded-2xl transition-all" />
+                </button>
+              ))}
             </div>
 
-            <div className="mb-4">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">题型（可多选）</label>
-              <div className="flex flex-wrap gap-1.5">
-                {(Object.keys(QUESTION_TYPE_META) as QuestionType[])
-                  .filter(t => {
-                    const meta = QUESTION_TYPE_META[t];
-                    return grade >= meta.gradeMin && grade <= meta.gradeMax;
-                  })
-                  .map(type => {
-                    const meta = QUESTION_TYPE_META[type];
-                    const isActive = selectedTypes.includes(type);
-                    return (
-                      <button
-                        key={type}
-                        onClick={() => toggleType(type)}
-                        className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
-                          isActive
-                            ? 'bg-blue-500 text-white'
-                            : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                        }`}
-                      >
-                        {meta.icon} {meta.label}
-                      </button>
-                    );
-                  })}
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">数字范围</label>
-              <div className="flex flex-wrap gap-2">
-                {RANGE_OPTIONS.map((opt, i) => (
-                  <button
-                    key={opt.label}
-                    onClick={() => setRangeIndex(i)}
-                    className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
-                      rangeIndex === i
-                        ? 'bg-blue-500 text-white shadow-sm'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">
-                题目数量：{count} 题
-              </label>
-              <input
-                type="range" min={5} max={100} step={5}
-                value={count}
-                onChange={e => setCount(Number(e.target.value))}
-                className="w-full accent-blue-500"
-              />
-              <div className="flex justify-between text-xs text-gray-400 mt-1">
-                <span>5</span><span>100</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox" id="shuffle" checked={shuffle}
-                onChange={e => setShuffle(e.target.checked)}
-                className="accent-blue-500 w-4 h-4"
-              />
-              <label htmlFor="shuffle" className="text-sm text-gray-600">打乱题目顺序</label>
-            </div>
-          </section>
-
-          {/* 模板设置 */}
-          <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-            <h2 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 bg-blue-500 text-white rounded-full text-xs flex items-center justify-center">2</span>
-              模板设置
-            </h2>
-
-            <div className="mb-4">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">纸张模板</label>
-              <div className="grid grid-cols-2 gap-2">
-                {templates.map(t => (
+            {/* 模板展示 */}
+            <div className="mb-8">
+              <h2 className="text-lg font-medium text-gray-400 mb-6">选择模板样式</h2>
+              <div className="flex flex-wrap justify-center gap-4">
+                {TEMPLATES.map((t) => (
                   <button
                     key={t.value}
                     onClick={() => setTemplate(t.value)}
-                    className={`p-3 rounded-xl border-2 text-left transition-all ${
+                    className={`relative w-32 h-40 rounded-xl border-2 transition-all duration-300 ${
                       template === t.value
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-100 hover:border-gray-300 bg-white'
+                        ? 'border-blue-500 bg-blue-500/10'
+                        : 'border-white/10 bg-white/5 hover:border-white/30'
                     }`}
                   >
-                    <div className="text-lg mb-0.5">{t.icon}</div>
-                    <div className="text-sm font-medium text-gray-800">{t.label}</div>
-                    <div className="text-xs text-gray-400 mt-0.5">{t.desc}</div>
-                  </button>
-                ))}
-              </div>
-              {grade <= 2 && template !== 'tianzige' && (
-                <p className="text-xs text-amber-600 mt-2">💡 {grade}年级建议「田字格」</p>
-              )}
-            </div>
-
-            <div className="mb-4">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">每行题数：{questionsPerRow} 题</label>
-              <div className="flex gap-2">
-                {[4, 5, 6, 8].map(n => (
-                  <button
-                    key={n}
-                    onClick={() => setQuestionsPerRow(n)}
-                    className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                      questionsPerRow === n
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    {n}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">字体大小</label>
-              <div className="flex gap-2">
-                {([['sm', '小'], ['md', '中'], ['lg', '大']] as const).map(([v, label]) => (
-                  <button
-                    key={v}
-                    onClick={() => setFontSize(v)}
-                    className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                      fontSize === v
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    {label}
+                    {/* 纸张预览 */}
+                    <div className="absolute inset-4 bg-white rounded shadow-lg flex flex-col items-center justify-center">
+                      {t.value === 'tianzige' && (
+                        <div className="grid grid-cols-2 gap-1">
+                          {[...Array(4)].map((_, i) => (
+                            <div key={i} className="w-8 h-8 border border-gray-300 relative">
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-full h-px bg-red-300/50" />
+                                <div className="h-full w-px bg-blue-300/50 absolute" />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {t.value === 'fangge' && (
+                        <div className="grid grid-cols-3 gap-0.5">
+                          {[...Array(9)].map((_, i) => (
+                            <div key={i} className="w-5 h-5 border border-gray-300" />
+                          ))}
+                        </div>
+                      )}
+                      {t.value === 'hengxian' && (
+                        <div className="flex flex-col gap-2 w-16">
+                          {[...Array(4)].map((_, i) => (
+                            <div key={i} className="w-full h-px bg-gray-300" />
+                          ))}
+                        </div>
+                      )}
+                      {t.value === 'kongbai' && (
+                        <div className="w-16 h-20 border border-gray-200 rounded" />
+                      )}
+                    </div>
+                    <div className="absolute bottom-2 left-0 right-0 text-center">
+                      <div className="text-sm font-medium">{t.label}</div>
+                      <div className="text-xs text-gray-500">{t.desc}</div>
+                    </div>
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-600 mb-2 block">附加内容</label>
-              {[
-                { label: '显示姓名栏', checked: showNameField, onChange: setShowNameField },
-                { label: '显示日期栏', checked: showDateField, onChange: setShowDateField },
-              ].map(({ label, checked, onChange }) => (
-                <label key={label} className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox" checked={checked}
-                    onChange={e => onChange(e.target.checked)}
-                    className="accent-blue-500 w-4 h-4"
-                  />
-                  <span className="text-sm text-gray-600">{label}</span>
-                </label>
-              ))}
-            </div>
-          </section>
+            {/* 高级配置按钮 */}
+            <button
+              onClick={() => setShowConfig(!showConfig)}
+              className="text-sm text-gray-500 hover:text-white transition-colors flex items-center gap-2 mx-auto"
+            >
+              {showConfig ? '收起高级配置 ▲' : '展开高级配置 ▼'}
+            </button>
+          </div>
+        </div>
+      )}
 
-          {/* 答案卷设置（新增） */}
-          <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-            <h2 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 bg-green-500 text-white rounded-full text-xs flex items-center justify-center">3</span>
-              答案卷设置
-            </h2>
-            <div className="space-y-3">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={showAnswers}
-                  onChange={e => setShowAnswers(e.target.checked)}
-                  className="accent-blue-500 w-4 h-4"
-                />
+      {/* ===== 高级配置面板 ===== */}
+      {(showConfig || hasGenerated) && (
+        <div className={`${hasGenerated ? 'pt-20' : ''} px-4 pb-12`}>
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <div className="grid md:grid-cols-3 gap-6">
+                
+                {/* 出题设置 */}
                 <div>
-                  <span className="text-sm text-gray-700 font-medium">题目内嵌答案</span>
-                  <p className="text-xs text-gray-400">在每道题下方同时显示答案，方便家长检查</p>
-                </div>
-              </label>
-              <div className="bg-green-50 rounded-lg p-3 text-xs text-green-700 leading-relaxed">
-                💡 <strong>推荐用法：</strong><br />
-                打印题目卷（不加答案）让孩子作答，<br />
-                再打印答案卷（红色标注）供家长核对。
-              </div>
-            </div>
-          </section>
+                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">1</span>
+                    出题设置
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm text-gray-400 mb-2 block">年级</label>
+                      <div className="flex flex-wrap gap-2">
+                        {GRADES.map(g => (
+                          <button
+                            key={g}
+                            onClick={() => setGrade(g)}
+                            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                              grade === g
+                                ? 'bg-blue-500 text-white'
+                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                            }`}
+                          >
+                            {g}年级
+                          </button>
+                        ))}
+                      </div>
+                    </div>
 
-          {/* 标题设置 */}
-          <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-            <h2 className="text-base font-bold text-gray-800 mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 bg-gray-400 text-white rounded-full text-xs flex items-center justify-center">4</span>
-              标题设置
-            </h2>
-            <input
-              type="text"
-              value={sheetTitle}
-              onChange={e => setSheetTitle(e.target.value)}
-              placeholder="例如：数学练习 / 单元测验"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-            />
-          </section>
+                    <div>
+                      <label className="text-sm text-gray-400 mb-2 block">题型</label>
+                      <div className="flex flex-wrap gap-1.5">
+                        {(Object.keys(QUESTION_TYPE_META) as QuestionType[])
+                          .filter(t => {
+                            const meta = QUESTION_TYPE_META[t];
+                            return grade >= meta.gradeMin && grade <= meta.gradeMax;
+                          })
+                          .map(type => {
+                            const meta = QUESTION_TYPE_META[type];
+                            const isActive = selectedTypes.includes(type);
+                            return (
+                              <button
+                                key={type}
+                                onClick={() => toggleType(type)}
+                                className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                                  isActive
+                                    ? 'bg-blue-500 text-white'
+                                    : 'bg-white/10 text-gray-400 hover:bg-white/20'
+                                }`}
+                              >
+                                {meta.label}
+                              </button>
+                            );
+                          })}
+                      </div>
+                    </div>
 
-          {/* 生成按钮 */}
-          <button
-            onClick={handleGenerate}
-            disabled={isGenerating || selectedTypes.length === 0}
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-bold text-base rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2"
-          >
-            {isGenerating ? '⏳ 生成中...' : '🎲 立即出题'}
-          </button>
+                    <div>
+                      <label className="text-sm text-gray-400 mb-2 block">数字范围</label>
+                      <div className="flex flex-wrap gap-2">
+                        {RANGE_OPTIONS.map((opt, i) => (
+                          <button
+                            key={opt.label}
+                            onClick={() => setRangeIndex(i)}
+                            className={`px-3 py-1.5 rounded-lg text-sm transition-all ${
+                              rangeIndex === i
+                                ? 'bg-blue-500 text-white'
+                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
 
-          {/* 导出按钮（生成后显示） */}
-          {hasGenerated && questions.length > 0 && (
-            <div className="space-y-2">
-              <button
-                id="export-both-btn"
-                onClick={exportBoth}
-                className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2"
-              >
-                📄 双卷导出（题目卷 + 答案卷）
-              </button>
-              <div className="flex gap-2">
-                <button
-                  id="export-worksheet-btn"
-                  onClick={() => exportOne('worksheet', '题目卷')}
-                  className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
-                >
-                  📄 题目卷
-                </button>
-                <button
-                  id="export-answersheet-btn"
-                  onClick={() => exportOne('answersheet', '答案卷')}
-                  className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
-                >
-                  📄 答案卷
-                </button>
-              </div>
-              <button
-                onClick={handlePrint}
-                className="w-full py-2.5 bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold text-sm rounded-xl transition-colors"
-              >
-                🖨️ 打印预览
-              </button>
-            </div>
-          )}
-        </aside>
-
-        {/* ===== 右侧预览区 ===== */}
-        <main className="flex-1 min-w-0">
-
-          {!hasGenerated && (
-            <div className="flex flex-col items-center justify-center h-96 bg-white rounded-xl border-2 border-dashed border-gray-200">
-              <div className="text-6xl mb-4 opacity-30">📝</div>
-              <h3 className="text-xl font-bold text-gray-400 mb-2">还没有生成题目</h3>
-              <p className="text-gray-400 text-sm text-center max-w-sm">
-                在左侧选择年级、题型，<br />点击「立即出题」开始生成练习卷
-              </p>
-            </div>
-          )}
-
-          {hasGenerated && (
-            <div>
-
-              {/* 预览工具栏 */}
-              <div className="bg-white rounded-xl shadow-sm border border-gray-100 px-4 py-3 mb-4 flex items-center justify-between print:hidden">
-                <div className="flex items-center gap-3">
-                  {/* 模式切换 */}
-                  <div className="flex rounded-lg border border-gray-200 overflow-hidden">
-                    <button
-                      onClick={() => setMode('worksheet')}
-                      className={`px-3 py-1.5 text-sm font-medium transition-colors ${
-                        mode === 'worksheet'
-                          ? 'bg-blue-500 text-white'
-                          : 'bg-white text-gray-600 hover:bg-gray-50'
-                      }`}
-                    >
-                      📝 题目卷
-                    </button>
-                    <button
-                      onClick={() => setMode('answersheet')}
-                      className={`px-3 py-1.5 text-sm font-medium transition-colors ${
-                        mode === 'answersheet'
-                          ? 'bg-green-500 text-white'
-                          : 'bg-white text-gray-600 hover:bg-gray-50'
-                      }`}
-                    >
-                      ✅ 答案卷
-                    </button>
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    共 <strong className="text-blue-600">{questions.length}</strong> 题
-                    {mode === 'worksheet' && showAnswers && (
-                      <span className="ml-2 text-green-600 font-medium">· 含答案</span>
-                    )}
-                    {mode === 'answersheet' && (
-                      <span className="ml-2 text-green-600 font-medium">· 参考答案</span>
-                    )}
+                    <div>
+                      <label className="text-sm text-gray-400 mb-2 block">题目数量: {count}</label>
+                      <input
+                        type="range" min={5} max={100} step={5}
+                        value={count}
+                        onChange={e => setCount(Number(e.target.value))}
+                        className="w-full accent-blue-500"
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={handleGenerate}
-                    className="px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg transition-colors"
-                  >
-                    🔄 重新出题
-                  </button>
-                  {mode === 'worksheet' && (
+
+                {/* 模板设置 */}
+                <div>
+                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">2</span>
+                    模板设置
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm text-gray-400 mb-2 block">每行题数: {questionsPerRow}</label>
+                      <div className="flex gap-2">
+                        {[4, 5, 6, 8].map(n => (
+                          <button
+                            key={n}
+                            onClick={() => setQuestionsPerRow(n)}
+                            className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                              questionsPerRow === n
+                                ? 'bg-blue-500 text-white'
+                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                            }`}
+                          >
+                            {n}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-sm text-gray-400 mb-2 block">字体大小</label>
+                      <div className="flex gap-2">
+                        {(['sm', 'md', 'lg'] as const).map((v) => (
+                          <button
+                            key={v}
+                            onClick={() => setFontSize(v)}
+                            className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                              fontSize === v
+                                ? 'bg-blue-500 text-white'
+                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                            }`}
+                          >
+                            {v === 'sm' ? '小' : v === 'md' ? '中' : '大'}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox" checked={showNameField}
+                          onChange={e => setShowNameField(e.target.checked)}
+                          className="accent-blue-500 w-4 h-4"
+                        />
+                        <span className="text-sm text-gray-300">显示姓名栏</span>
+                      </label>
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox" checked={showDateField}
+                          onChange={e => setShowDateField(e.target.checked)}
+                          className="accent-blue-500 w-4 h-4"
+                        />
+                        <span className="text-sm text-gray-300">显示日期栏</span>
+                      </label>
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox" checked={showAnswers}
+                          onChange={e => setShowAnswers(e.target.checked)}
+                          className="accent-blue-500 w-4 h-4"
+                        />
+                        <span className="text-sm text-gray-300">题目内嵌答案</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 标题与操作 */}
+                <div>
+                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">3</span>
+                    生成练习
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm text-gray-400 mb-2 block">练习标题</label>
+                      <input
+                        type="text"
+                        value={sheetTitle}
+                        onChange={e => setSheetTitle(e.target.value)}
+                        placeholder="例如：数学练习"
+                        className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                      />
+                    </div>
+
                     <button
-                      id="export-worksheet-btn-top"
-                      onClick={() => exportOne('worksheet', '题目卷')}
-                      className="px-3 py-1.5 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                      onClick={handleGenerate}
+                      disabled={isGenerating || selectedTypes.length === 0}
+                      className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 disabled:opacity-50 text-white font-bold rounded-xl transition-all"
                     >
-                      📄 题目卷
+                      {isGenerating ? '⏳ 生成中...' : '🎲 立即出题'}
                     </button>
-                  )}
-                  {mode === 'answersheet' && (
-                    <button
-                      id="export-answersheet-btn-top"
-                      onClick={() => exportOne('answersheet', '答案卷')}
-                      className="px-3 py-1.5 text-sm bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
-                    >
-                      📄 答案卷
-                    </button>
-                  )}
-                  <button
-                    onClick={handlePrint}
-                    className="px-3 py-1.5 text-sm bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
-                  >
-                    🖨️ 打印
-                  </button>
+
+                    {hasGenerated && (
+                      <div className="space-y-2 pt-4 border-t border-white/10">
+                        <button
+                          onClick={exportBoth}
+                          className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors"
+                        >
+                          📄 导出题目卷+答案卷
+                        </button>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => exportOne('worksheet', '题目卷')}
+                            className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+                          >
+                            题目卷
+                          </button>
+                          <button
+                            onClick={() => exportOne('answersheet', '答案卷')}
+                            className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
+                          >
+                            答案卷
+                          </button>
+                        </div>
+                        <button
+                          onClick={handlePrint}
+                          className="w-full py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors"
+                        >
+                          🖨️ 打印预览
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
 
-              {/* 题目卷 */}
-              <div
-                style={{ display: mode === 'worksheet' ? 'block' : 'none' }}
-                className="worksheet-wrapper"
-              >
-                <WorksheetSection
-                  questions={questions}
-                  config={worksheetConfig}
-                  ref={worksheetRef}
-                />
+      {/* ===== 预览区 ===== */}
+      {hasGenerated && (
+        <div className="px-4 pb-20">
+          <div className="max-w-6xl mx-auto">
+            {/* 预览工具栏 */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-4">
+                <h2 className="text-2xl font-bold">练习预览</h2>
+                <span className="text-gray-500">共 {questions.length} 题</span>
               </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setMode('worksheet')}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                    mode === 'worksheet'
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  }`}
+                >
+                  📝 题目卷
+                </button>
+                <button
+                  onClick={() => setMode('answersheet')}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                    mode === 'answersheet'
+                      ? 'bg-green-500 text-white'
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  }`}
+                >
+                  ✅ 答案卷
+                </button>
+                <button
+                  onClick={() => { setHasGenerated(false); setQuestions([]); }}
+                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-gray-300 rounded-lg font-medium transition-all ml-4"
+                >
+                  ← 返回首页
+                </button>
+              </div>
+            </div>
 
-              {/* 答案卷 */}
+            {/* 工作表 */}
+            <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
+              <div style={{ display: mode === 'worksheet' ? 'block' : 'none' }} className="worksheet-wrapper">
+                <WorksheetSection questions={questions} config={worksheetConfig} ref={worksheetRef} />
+              </div>
               {mode === 'answersheet' && (
                 <div className="worksheet-wrapper">
-                  <WorksheetSection
-                    questions={questions}
-                    config={answersheetConfig}
-                    ref={answersheetRef}
-                  />
+                  <WorksheetSection questions={questions} config={answersheetConfig} ref={answersheetRef} />
                 </div>
               )}
             </div>
-          )}
-        </main>
-      </div>
+          </div>
+        </div>
+      )}
 
       {/* ===== 底部 ===== */}
-      <footer className="bg-white border-t border-gray-100 py-4 text-center text-sm text-gray-400 print:hidden">
-        <p>
-          🧮 算个题吧 · 完全免费 · 免登录 ·
-          <a href="https://xgzb.top" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">写个字吧</a>
-          · © 2026
-        </p>
+      <footer className="border-t border-white/10 py-8 px-4">
+        <div className="max-w-4xl mx-auto text-center text-gray-500 text-sm">
+          <p>🧮 算个题吧 · 完全免费 · 免登录 · <a href="https://xgzb.top" className="text-blue-400 hover:text-blue-300">写个字吧</a> · © 2026</p>
+        </div>
       </footer>
 
-      {/* ===== 打印样式 ===== */}
+      {/* 打印样式 */}
       <style jsx global>{`
         @media print {
-          body * { visibility: hidden; }
-          .worksheet-wrapper,
-          .worksheet-wrapper * { visibility: visible; }
-          .worksheet-wrapper {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-          }
-          @page { size: A4 portrait; margin: 0; }
+          body { background: white !important; }
+          nav, footer, .worksheet-wrapper ~ * { display: none !important; }
+          .worksheet-wrapper { position: static !important; }
         }
       `}</style>
     </div>
