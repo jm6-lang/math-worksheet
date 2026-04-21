@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Sitemap
+Sitemap: https://www.skillxm.cn/sitemap.xml
+
+# Baidu sitemap ping
+Sitemap: https://www.skillxm.cn/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
