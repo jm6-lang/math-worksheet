@@ -6,8 +6,8 @@ import { useState, useEffect, useRef } from 'react';
 const CAROUSEL_ITEMS = [
   {
     id: 1,
-    title: '数学练习卷',
-    subtitle: '一键生成个性化练习卷',
+    title: '数学练习题',
+    subtitle: '一键生成个性化练习题',
     description: '支持加减乘除、竖式计算、填空题等多种题型',
     icon: '🧮',
     gradient: 'from-blue-600 via-indigo-600 to-purple-600',
@@ -47,15 +47,15 @@ const TOOL_CATEGORIES = [
   {
     category: '📚 学习工具',
     tools: [
-      { name: '数学练习卷', icon: '🧮', desc: '一键出题，PDF导出', link: '/tools/math-worksheet', color: 'blue', disabled: false },
+      { name: '数学练习题', icon: '🧮', desc: '一键出题，PDF导出', link: '/tools/math-worksheet', color: 'blue', disabled: false },
       { name: '字帖生成器', icon: '✍️', desc: '田字格/米字格模板', link: '/tools/calligraphy', color: 'emerald', disabled: false },
       { name: '数独游戏', icon: '🧩', desc: '多难度逻辑训练', link: '/tools/sudoku', color: 'orange', disabled: false },
+      { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '/tools/pinyin', color: 'blue', disabled: false },
     ],
   },
   {
     category: '🎨 敬请期待',
     tools: [
-      { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '#', color: 'gray', disabled: true },
       { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '#', color: 'gray', disabled: true },
       { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '#', color: 'gray', disabled: true },
     ],
@@ -152,6 +152,9 @@ export default function HomePage() {
               <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 🧩 数独游戏
               </a>
+              <a href="/resources" className="px-4 py-2 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">
+                🎁 免费资源
+              </a>
               <div className="w-px h-6 bg-white/20 mx-2"></div>
               <button onClick={() => setShowTutorial(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 📖 教程
@@ -199,6 +202,7 @@ export default function HomePage() {
             <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧮 数学练习卷</a>
             <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
+            <a href="/resources" className="block px-4 py-2 text-amber-400 bg-amber-500/10 rounded-lg">🎁 免费资源</a>
             <div className="border-t border-white/10 my-2"></div>
             <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📖 使用教程</button>
             <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); alert('链接已复制！可粘贴到微信分享给好友'); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💚 分享到微信</button>

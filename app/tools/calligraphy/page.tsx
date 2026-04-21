@@ -278,7 +278,7 @@ export default function CalligraphyPage() {
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-base">🧮</div>
-            <span className="text-base font-bold text-gray-800">算个题吧</span>
+            <span className="text-base font-bold text-gray-800">字帖生成器</span>
           </a>
           <div className="flex items-center gap-5">
             <a href="/tools/sudoku" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">数独游戏</a>
