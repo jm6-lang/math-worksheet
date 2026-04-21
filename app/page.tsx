@@ -214,7 +214,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <a href="https://xgzb.top/donate/" target="_blank" rel="noopener noreferrer" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">捐赠</a>
+              
             </div>
             {/* 移动端 */}
             <button onClick={() => setMobileMenu(!mobileMenu)} className="md:hidden p-2 text-gray-300 hover:text-white transition-colors">{mobileMenu ? '✕' : '☰'}</button>
@@ -228,7 +228,7 @@ export default function Home() {
             <a href="https://xgzb.top" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">写个字吧（字帖）</a>
             <a href="https://xgzb.top/game/sudoku.html" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">数独游戏</a>
             <div className="border-t border-white/10 my-2"></div>
-            <a href="https://xgzb.top/donate/" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">捐赠</a>
+            
           </div>
         )}
       </nav>
