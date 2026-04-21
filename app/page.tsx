@@ -197,7 +197,7 @@ export default function Home() {
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-xl">
                 🧮
               </div>
-              <span className="text-xl font-bold">算个题吧</span>
+              <button onClick={() => { setHasGenerated(false); setQuestions([]); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-xl font-bold hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none">算个题吧</button>
             </div>
             <div className="flex items-center gap-4">
               <a
