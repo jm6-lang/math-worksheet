@@ -1,23 +1,6 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "SimHei", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 打印样式 */
+/* ============================================================
+   打印样式 - A4 标准 (210mm × 297mm)
+   ============================================================ */
 @media print {
   @page {
     size: A4 portrait;
@@ -29,78 +12,92 @@ body {
     -webkit-print-color-adjust: exact;
     background: white !important;
     color: black !important;
-  }
-
-  /* Tailwind print:hidden 支持 */
-  .print\:hidden {
-    display: none !important;
-  }
-
-  /* 隐藏所有固定元素 */
-  nav,
-  .fixed,
-  [class*="fixed"] {
-    display: none !important;
-  }
-
-  /* 隐藏按钮和输入 */
-  button,
-  input,
-  select,
-  textarea {
-    display: none !important;
-  }
-
-  /* 页面容器重置 */
-  .min-h-screen,
-  body > div:first-child {
-    display: block !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: white !important;
-    min-height: auto !important;
-  }
-
-  /* 工作表容器 - 去掉圆角和阴影 */
-  .bg-white.rounded-xl {
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
     overflow: visible !important;
   }
 
-  /* 工作表页面样式 */
-  [style*="width: 794"],
-  [style*="width:794"] {
+  /* Tailwind print:hidden */
+  .print\:hidden { display: none !important; }
+
+  /* 隐藏导航/按钮/输入 */
+  nav, .fixed, header, footer,
+  button, input, select, textarea { display: none !important; }
+
+  /* 只打印题目卷，隐藏答案卷 */
+  [data-print-section] { display: none !important; }
+  [data-print-section="worksheet"] { display: block !important; }
+
+  /* ===== 数学练习题：工作表 A4 尺寸 ===== */
+  /* 精确匹配 worksheet-page class（无其他 class 时） */
+  div.worksheet-page {
     width: 210mm !important;
     min-height: 297mm !important;
-    margin: 0 !important;
-    page-break-after: always;
-    page-break-inside: avoid;
-  }
-
-  /* 确保题目格子有白色背景 */
-  .bg-white {
+    max-height: 297mm !important;
+    height: 297mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
     background: white !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
   }
-}
 
-/* 滚动条美化 */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
+  /* 工作表内容区（页眉）：15mm 边距 + 居中 */
+  .worksheet-header {
+    margin-left: 15mm !important;
+    margin-right: 15mm !important;
+    width: 180mm !important;
+    margin-top: 15mm !important;
+  }
 
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
+  /* 工作表网格区：15mm 边距 + 居中 */
+  .worksheet-grid {
+    margin-left: 15mm !important;
+    margin-right: 15mm !important;
+    width: 180mm !important;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
+  /* 题目网格行不换行 */
+  .flex-wrap { flex-wrap: nowrap !important; }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  /* 田字格/方格内文字完全居中 */
+  .absolute.inset-0.flex {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 确保格子白色 */
+  .bg-white { background: white !important; }
+
+  /* ===== 字帖生成器：预览=打印完全一致 ===== */
+  /* 隐藏控制面板 */
+  .calligraphy-config,
+  .flex.justify-center.gap-3,
+  .calligraphy-hint { display: none !important; }
+
+  /* 预览容器铺满 A4（预览 794px = A4@96dpi，打印时直接用 210mm） */
+  .calligraphy-print-area {
+    width: 794px !important;   /* 预览 794px = 打印 210mm */
+    min-height: 1123px !important;
+    padding: 57px !important; /* 15mm × 3.78px/mm ≈ 57px */
+    background: white !important;
+    margin: 0 auto !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* 格子内字完全居中 */
+  .calligraphy-print-area .absolute.inset-0.flex {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 横线格行不断行 */
+  .calligraphy-print-area [style*="border-bottom"] {
+    break-inside: avoid;
+  }
 }

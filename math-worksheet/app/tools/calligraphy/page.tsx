@@ -107,8 +107,10 @@ export default function CalligraphyPage() {
   const previewRef = useRef<HTMLDivElement>(null);
 
   const chars = [...text].filter(c => c.trim());
-  const previewWidth = 650;
-  const colsPerRow = Math.max(1, Math.floor(previewWidth / cellSize));
+  // A4 宽 794px (96dpi)，内容区 794-57*2=680px（两边各 15mm padding）
+  const previewWidth = 794;
+  const paddingPx = 57;  // 15mm × 3.78px/mm
+  const colsPerRow = Math.max(1, Math.floor((previewWidth - paddingPx * 2) / cellSize));
 
   const handleExportPDF = async () => {
     if (!previewRef.current) return;
@@ -158,50 +160,7 @@ export default function CalligraphyPage() {
   };
 
   const handlePrint = () => {
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) return;
-    const chars = [...text].filter(c => c.trim());
-    const fontSize = Math.floor(cellSize * 0.72);
-    const gridHtml = gridType === 'hengxian' ? `
-      <div style="width:180mm;margin:10mm auto;">
-        ${Array.from({ length: rows }, (_, i) => `
-          <div style="height:${cellSize}px;border-bottom:1px solid #ccc;display:flex;align-items:flex-end;padding:0 4px 4px;">
-            ${showGuide && i === 0 ? chars.map(c => `<span style="font-size:${fontSize}px;font-family:'${fontFamily}';color:#b0b0b0;margin-right:8px;">${c}</span>`).join('') : ''}
-          </div>
-        `).join('')}
-      </div>
-    ` : `
-      <div style="width:180mm;margin:10mm auto;display:grid;grid-template-columns:repeat(${Math.min(chars.length, colsPerRow)},${cellSize}px);border:2px solid #333;">
-        ${Array.from({ length: rows }, (_, rowIdx) =>
-          chars.slice(0, colsPerRow).map(char => `
-            <div style="width:${cellSize}px;height:${cellSize}px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;position:relative;background:#fff;">
-              ${gridType === 'tian' ? `<svg style="position:absolute;inset:0;"><line x1="${cellSize/2}" y1="2" x2="${cellSize/2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="${cellSize/2}" x2="${cellSize-2}" y2="${cellSize/2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/></svg>` : ''}
-              ${gridType === 'mi' ? `<svg style="position:absolute;inset:0;"><line x1="${cellSize/2}" y1="2" x2="${cellSize/2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="${cellSize/2}" x2="${cellSize-2}" y2="${cellSize/2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="2" x2="${cellSize-2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="${cellSize-2}" y1="2" x2="2" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/></svg>` : ''}
-              ${showGuide && rowIdx === 0 ? `<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${fontSize}px;font-family:'${fontFamily}';color:#b0b0b0;">${char}</span>` : ''}
-            </div>
-          `).join('')
-        ).join('')}
-      </div>
-    `;
-    printWindow.document.write(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <title>字帖打印</title>
-        <style>
-          @page { margin: 10mm; size: A4 portrait; }
-          body { margin: 0; font-family: 'KaiTi', '楷体', serif; }
-          @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
-        </style>
-      </head>
-      <body>${gridHtml}</body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    printWindow.close();
+    window.print();
   };
 
   // Render grid
@@ -278,7 +237,7 @@ export default function CalligraphyPage() {
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-base">🧮</div>
-            <span className="text-base font-bold text-gray-800">算个题吧</span>
+            <span className="text-base font-bold text-gray-800">字帖生成器</span>
           </a>
           <div className="flex items-center gap-5">
             <a href="/tools/sudoku" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">数独游戏</a>
@@ -411,11 +370,11 @@ export default function CalligraphyPage() {
             <div className="flex justify-center overflow-x-auto bg-gray-50 rounded-xl p-4">
               <div
                 ref={previewRef}
-                className="bg-white shadow-lg"
+                className="bg-white shadow-lg calligraphy-print-area"
                 style={{
-                  width: previewWidth,
-                  minHeight: 850,
-                  padding: 30,
+                  width: previewWidth,   // A4 宽 794px，cellSize 自动按比例
+                  minHeight: 1123,       // A4 高 1123px (96dpi)
+                  padding: '15mm',       // A4 标准边距
                   background: '#fff',
                 }}
               >

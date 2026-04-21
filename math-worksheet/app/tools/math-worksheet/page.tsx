@@ -64,7 +64,7 @@ export default function MathWorksheetPage() {
   const [sheetTitle, setSheetTitle] = useState('数学练习');
   const [mode, setMode] = useState<WorksheetMode>('worksheet');
   const [showAnswers, setShowAnswers] = useState(false);
-  const [showConfig, setShowConfig] = useState(false);
+  const [showConfig, setShowConfig] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
@@ -158,7 +158,10 @@ export default function MathWorksheetPage() {
     }
   }, [sheetTitle]);
 
-  const handlePrint = useCallback(() => window.print(), []);
+  const handlePrint = useCallback(() => {
+    setMode('worksheet');
+    setTimeout(() => window.print(), 50);
+  }, []);
 
   // ===== 配置 =====
   const worksheetConfig: WorksheetConfig = {
@@ -199,7 +202,7 @@ export default function MathWorksheetPage() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-xl">🧮</div>
-              <a href="/" className="text-xl font-bold hover:opacity-80 transition-opacity text-white">算个题吧</a>
+              <a href="/" className="text-xl font-bold hover:opacity-80 transition-opacity text-white">数学练习题</a>
             </div>
             {/* 桌面导航 */}
             <div className="hidden md:flex items-center gap-1">
@@ -554,16 +557,18 @@ export default function MathWorksheetPage() {
               </div>
             </div>
 
-            {/* 工作表 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
-              <div style={{ display: mode === 'worksheet' ? 'block' : 'none' }} className="worksheet-wrapper">
-                <WorksheetSection questions={questions} config={worksheetConfig} ref={worksheetRef} />
-              </div>
-              {mode === 'answersheet' && (
-                <div className="worksheet-wrapper">
-                  <WorksheetSection questions={questions} config={answersheetConfig} ref={answersheetRef} />
+            {/* 工作表：居中显示 794px 工作表 */}
+            <div className="flex justify-center">
+              <div className="bg-white shadow-2xl">
+                <div data-print-section="worksheet" style={{ display: mode === 'worksheet' ? 'block' : 'none' }}>
+                  <WorksheetSection questions={questions} config={worksheetConfig} ref={worksheetRef} />
                 </div>
-              )}
+                {mode === 'answersheet' && (
+                  <div data-print-section="answersheet">
+                    <WorksheetSection questions={questions} config={answersheetConfig} ref={answersheetRef} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

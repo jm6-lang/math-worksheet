@@ -298,51 +298,74 @@ function WorksheetPage({
 
   return (
     <div
-      className="bg-white overflow-hidden"
+      className="worksheet-page"
+      data-worksheet-page="true"
       style={{
-        width: pageWidth,
+        width: '100%',
+        maxWidth: pageWidth,
         minHeight: pageHeight,
         fontFamily: '"Noto Sans SC", "Microsoft YaHei", "SimHei", sans-serif',
       }}
     >
-      {/* 页眉 */}
+      {/* 页眉：固定 15mm 边距，内容 180mm */}
       <div
-        className="flex items-center justify-between px-4"
+        className="worksheet-header"
+        data-worksheet-header="true"
         style={{
           height: headerHeight,
           marginTop,
-          marginLeft,
-          marginRight,
-          width: contentWidth,
+          marginLeft: '15mm',
+          marginRight: '15mm',
+          width: '180mm',
           borderBottom: '2px solid #dbeafe',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
-        <div className={`${titleFontSize} font-bold ${mode === 'answersheet' ? 'text-green-600' : 'text-blue-700'}`}>
-          {pageTitle}
-        </div>
-        <div className="flex items-center gap-4 text-sm text-gray-600">
-          {showNameField && mode !== 'answersheet' && (
-            <div className="flex items-center gap-1">
-              <span>姓名：</span>
-              <div className="w-24 border-b border-gray-400 inline-block" />
-            </div>
-          )}
-          {showDateField && mode !== 'answersheet' && (
-            <div className="flex items-center gap-1">
-              <span>日期：</span>
-              <div className="w-20 border-b border-gray-400 inline-block" />
-            </div>
-          )}
-          {showPageNumber && (
-            <span className="text-gray-400">
-              第 {pageNumber} / {totalPages} 页
-            </span>
-          )}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0 8px',
+            width: '100%',
+          }}
+        >
+          <div
+            className={`${titleFontSize} font-bold`}
+            style={{ color: mode === 'answersheet' ? '#16a34a' : '#1d4ed8' }}
+          >
+            {pageTitle}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '14px', color: '#6b7280' }}>
+            {showNameField && mode !== 'answersheet' && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <span>姓名：</span>
+                <div style={{ width: '60px', borderBottom: '1px solid #9ca3af', display: 'inline-block' }} />
+              </div>
+            )}
+            {showDateField && mode !== 'answersheet' && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <span>日期：</span>
+                <div style={{ width: '50px', borderBottom: '1px solid #9ca3af', display: 'inline-block' }} />
+              </div>
+            )}
+            {showPageNumber && (
+              <span style={{ color: '#d1d5db' }}>
+                第 {pageNumber} / {totalPages} 页
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* 题目网格 */}
-      <div style={{ marginLeft, marginTop: 20, marginRight, marginBottom }}>
+      {/* 题目网格：固定 15mm 边距，内容 180mm */}
+      <div
+        className="worksheet-grid"
+        data-worksheet-grid="true"
+        style={{ marginLeft: '15mm', marginTop: '20px', marginRight: '15mm', marginBottom: '15mm' }}
+      >
         {rows.map((row, rowIdx) => (
           <div
             key={rowIdx}
