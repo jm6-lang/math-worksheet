@@ -64,7 +64,7 @@ export default function MathWorksheetPage() {
   const [sheetTitle, setSheetTitle] = useState('数学练习');
   const [mode, setMode] = useState<WorksheetMode>('worksheet');
   const [showAnswers, setShowAnswers] = useState(false);
-  const [showConfig, setShowConfig] = useState(false);
+  const [showConfig, setShowConfig] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
   const [showDonate, setShowDonate] = useState(false);
