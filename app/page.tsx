@@ -53,6 +53,13 @@ const TOOL_CATEGORIES = [
       { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '/tools/pinyin', color: 'blue', disabled: false },
     ],
   },
+  {
+    category: '🎨 敬请期待',
+    tools: [
+      { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '#', color: 'gray', disabled: true },
+      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '#', color: 'gray', disabled: true },
+    ],
+  },
 ];
 
 // 颜色映射
