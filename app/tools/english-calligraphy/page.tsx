@@ -92,8 +92,7 @@ function LetterCell({ char, showChar, fontFamily, lineType, width, height, showG
         width,
         height,
         flexShrink: 0,
-        background: '#fff',
-        borderRight: '1px solid #ddd',
+        background: '#ffffff',
       }}
     >
       {lineType === 'four-line' && <FourLineSvg width={width} height={height} />}
@@ -137,7 +136,7 @@ function LineRow({ text, showGuide, fontFamily, lineSpacing, charWidth, showChar
       style={{
         height: lineSpacing,
         width: usableWidth,
-        background: '#fff',
+        background: '#ffffff',
         borderColor: '#ccc',
       }}
     >
@@ -237,9 +236,8 @@ export default function EnglishCalligraphyPage() {
           display: 'grid',
           gridTemplateColumns: `repeat(${actualCols}, ${charWidth}px)`,
           gridTemplateRows: `repeat(${rows}, ${lineSpacing}px)`,
-          border: '2px solid #333',
           borderBottom: '2px solid #333',
-          background: '#fff',
+          background: '#ffffff',
         }}
       >
         {Array.from({ length: rows }, (_, rowIdx) =>
@@ -264,7 +262,7 @@ export default function EnglishCalligraphyPage() {
   const renderLines = () => {
     const words = text.split(/[\s,]+/).filter(c => c.trim());
     return (
-      <div className="inline-block" style={{ border: '2px solid #333', background: '#fff' }}>
+      <div className="inline-block" style={{ borderBottom: '2px solid #333', background: '#ffffff' }}>
         {Array.from({ length: rows }, (_, i) => (
           <LineRow
             key={i}
@@ -427,7 +425,7 @@ export default function EnglishCalligraphyPage() {
                   width: previewWidth,
                   minHeight: 1123,
                   padding: '15mm',
-                  background: '#fff',
+                  background: '#ffffff',
                 }}
               >
                 {lineType === 'blank' ? renderLines() : renderGrid()}
