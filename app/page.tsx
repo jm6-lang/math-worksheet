@@ -51,6 +51,56 @@ const ANNOUNCEMENTS = [
   '🔥 免费使用，无需注册，即开即用',
 ];
 
+// 功能介绍卡片
+const FEATURE_CARDS = [
+  {
+    icon: '⚡',
+    title: '即开即用',
+    desc: '无需注册、无需登录，打开浏览器即可使用，所有功能完全免费',
+    color: 'from-yellow-500 to-orange-500',
+  },
+  {
+    icon: '🖨️',
+    title: 'PDF 导出打印',
+    desc: '一键将练习卷导出为 PDF，支持 A4 纸直接打印，学校家庭两相宜',
+    color: 'from-blue-500 to-indigo-500',
+  },
+  {
+    icon: '📐',
+    title: '多种练习模板',
+    desc: '田字格、米字格、方格、横线格、空白纸，满足不同年级和使用场景',
+    color: 'from-emerald-500 to-teal-500',
+  },
+];
+
+// 常见问题 FAQ
+const FAQ_ITEMS = [
+  {
+    q: '完全免费吗？',
+    a: '是的，教材工具箱所有功能完全免费使用，无需注册账号，无需付费，无任何隐藏费用。',
+  },
+  {
+    q: '生成的 PDF 会有水印或广告吗？',
+    a: '不会。导出的 PDF 干净整洁，没有任何水印、品牌标识或广告，适合直接打印使用。',
+  },
+  {
+    q: '支持哪些年级和题型？',
+    a: '数学练习卷覆盖小学 1-6 年级，支持加减乘除、竖式计算、填空题、比大小、应用题等 11 种题型，可按年级和难度灵活配置。',
+  },
+  {
+    q: '可以自定义内容吗？',
+    a: '可以。字帖生成器支持自定义汉字、词语或句子；数学练习卷支持自定义数字范围、题目数量和混合题型。',
+  },
+  {
+    q: '生成的练习卷会重复吗？',
+    a: '每次生成均为随机出题，同一配置下每次结果不同，避免机械重复，真正达到练习效果。',
+  },
+  {
+    q: '适合哪些人使用？',
+    a: '适合小学学生、家长（辅导孩子作业）、学校教师（布置练习作业）以及想自主练习的成年人。',
+  },
+];
+
 // 工具分类
 const TOOL_CATEGORIES = [
   {
@@ -88,6 +138,7 @@ export default function HomePage() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const announcementRef = useRef<HTMLDivElement>(null);
 
   // 自动轮播
@@ -399,6 +450,67 @@ export default function HomePage() {
                       )}
                     </a>
                   ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 功能介绍卡片 ===== */}
+      <section className="py-16 px-4 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white text-center mb-12">
+            ✨ 为什么选择我们
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {FEATURE_CARDS.map((card, i) => (
+              <div
+                key={i}
+                className="relative bg-slate-800/50 border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all hover:scale-105 group"
+              >
+                <div
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${card.color} flex items-center justify-center text-3xl mb-5 shadow-lg`}
+                >
+                  {card.icon}
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{card.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 常见问题 FAQ ===== */}
+      <section className="py-16 px-4">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-white text-center mb-12">
+            ❓ 常见问题
+          </h2>
+          <div className="space-y-3">
+            {FAQ_ITEMS.map((item, i) => (
+              <div
+                key={i}
+                className="bg-slate-800/50 border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-colors"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between px-6 py-5 text-left"
+                >
+                  <span className="text-white font-medium pr-4">{item.q}</span>
+                  <span
+                    className={`text-gray-400 text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}
+                  >
+                    +
+                  </span>
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${openFaq === i ? 'max-h-40' : 'max-h-0'}`}
+                >
+                  <p className="px-6 pb-5 text-gray-400 leading-relaxed">
+                    {item.a}
+                  </p>
                 </div>
               </div>
             ))}
