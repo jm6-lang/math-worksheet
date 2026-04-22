@@ -22,6 +22,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.skillxm.cn",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48 256x256", type: "image/x-icon" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/favicons/apple-touch-icon.png",
+  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -176,6 +184,13 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        {/* Favicon sizes */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
+        <meta name="msapplication-TileImage" content="/favicons/favicon-32x32.png" />
+        <meta name="msapplication-TileColor" content="#1e40af" />
+        <meta name="theme-color" content="#1e40af" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
