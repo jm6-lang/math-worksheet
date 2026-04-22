@@ -159,8 +159,7 @@ function NormalQuestion({
       <span className={`${fs} font-mono font-bold text-gray-800`}>{question.question}</span>
       {/* 答案行：始终显示空白填写区域，showAnswer=true时显示答案 */}
       <div className="flex items-center justify-center w-full mt-1">
-        <span className="text-gray-400 text-lg">=</span>
-        <div className="flex-1 min-w-[20px] border-b-2 border-gray-800 ml-1" />
+        <div className="flex-1 min-w-[20px] border-b-2 border-gray-800" />
         {showAnswer && (
           <span className="text-green-600 font-bold text-xl leading-none ml-1">{question.answer}</span>
         )}
