@@ -405,15 +405,6 @@ export default function EnglishCalligraphyPage() {
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
-        @media print {
-          @page { margin: 0; size: A4; }
-          * { display: none !important; }
-          body, html { display: block !important; margin: 0 !important; padding: 0 !important; background: white !important; }
-          .print-calligraphy { display: block !important; }
-          .print-calligraphy * { display: block !important; }
-        }
-      ` }} />
     </div>
   );
 }

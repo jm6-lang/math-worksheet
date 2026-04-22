@@ -24,66 +24,45 @@ body {
     margin: 0;
   }
 
-  html, body {
+  /* 先隐藏所有内容 */
+  * {
+    display: none !important;
+  }
+
+  /* 然后只显示字帖打印区 */
+  body,
+  html {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
-    background: white !important;
     color: black !important;
   }
 
-  /* Tailwind print:hidden 支持 */
-  .print\:hidden {
-    display: none !important;
-  }
-
-  /* 隐藏所有固定元素 */
-  nav,
-  .fixed,
-  [class*="fixed"] {
-    display: none !important;
-  }
-
-  /* 隐藏按钮和输入 */
-  button,
-  input,
-  select,
-  textarea {
-    display: none !important;
-  }
-
-  /* 页面容器重置 */
-  .min-h-screen,
-  body > div:first-child {
+  .print-calligraphy {
     display: block !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: white !important;
-    min-height: auto !important;
-  }
-
-  /* 工作表容器 - 去掉圆角和阴影 */
-  .bg-white.rounded-xl {
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-  }
-
-  /* 工作表页面样式 */
-  [style*="width: 794"],
-  [style*="width:794"] {
     width: 210mm !important;
     min-height: 297mm !important;
+    padding: 48px !important;
+    background: white !important;
+    box-sizing: border-box !important;
     margin: 0 !important;
-    page-break-after: always;
-    page-break-inside: avoid;
   }
 
-  /* 确保题目格子有白色背景 */
-  .bg-white {
-    background: white !important;
+  .print-calligraphy * {
+    display: block !important;
   }
+}
+
+/* 字帖打印区 - 只显示字帖内容 */
+.print-calligraphy {
+  display: block !important;
+}
+
+.print-calligraphy * {
+  display: block !important;
 }
 
 /* 滚动条美化 */
