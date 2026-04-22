@@ -82,10 +82,12 @@ function VerticalQuestion({
   question,
   mode,
   fontSize,
+  showAnswer,
 }: {
   question: Question;
   mode: WorksheetMode;
   fontSize: 'sm' | 'md' | 'lg';
+  showAnswer?: boolean;
 }) {
   const raw = question.raw;
   const fs = fontSize === 'sm' ? 'text-base' : fontSize === 'lg' ? 'text-2xl' : 'text-xl';
@@ -109,7 +111,7 @@ function VerticalQuestion({
     );
   }
 
-  // 题目卷模式：显示题目 + 下方答案线
+  // 题目卷模式：显示题目 + 下方答案填写区域（始终显示空白行）
   return (
     <div className={`flex flex-col items-end gap-0 ${fs}`}>
       <div className="text-right leading-none">{rawA}</div>
@@ -118,10 +120,10 @@ function VerticalQuestion({
         <span className="leading-none">{rawB}</span>
       </div>
       <div className="w-full border-b-2 border-black mt-1 mb-0.5" />
-      {/* 答案区 */}
+      {/* 答案区：始终显示空白填写行 */}
       <div className="flex items-end gap-1 w-full justify-end">
-        <div className="flex-1 border-b border-dotted border-gray-400 mr-1" />
-        <span className="font-bold text-green-600 leading-none">{String(rawResult)}</span>
+        <div className="flex-1 min-w-[20px] border-b-2 border-gray-800" />
+        <span className="font-bold text-green-600 leading-none ml-1">{showAnswer ? rawResult : ''}</span>
       </div>
     </div>
   );
@@ -151,15 +153,16 @@ function NormalQuestion({
     );
   }
 
-  // 题目卷：题目 + 答案区
+  // 题目卷：题目 + 答案区（始终显示空白答案行）
   return (
     <div className="flex flex-col items-center justify-center w-full h-full gap-0">
       <span className={`${fs} font-mono font-bold text-gray-800`}>{question.question}</span>
-      {/* 答案行（等号+空格） */}
+      {/* 答案行：始终显示空白填写区域，showAnswer=true时显示答案 */}
       <div className="flex items-center justify-center w-full mt-1">
-        <div className="flex-1 border-b border-dotted border-gray-400 mr-1" />
+        <span className="text-gray-400 text-lg">=</span>
+        <div className="flex-1 min-w-[20px] border-b-2 border-gray-800 ml-1" />
         {showAnswer && (
-          <span className="text-green-600 font-bold text-xl leading-none">={question.answer}</span>
+          <span className="text-green-600 font-bold text-xl leading-none ml-1">{question.answer}</span>
         )}
       </div>
     </div>
@@ -189,7 +192,7 @@ function QuestionCell({
     if (hasRaw) {
       return (
         <div className="flex items-center justify-center p-1" style={{ width: cellSize * 1.5, minHeight: cellSize }}>
-          <VerticalQuestion question={question} mode="answersheet" fontSize={fontSize} />
+          <VerticalQuestion question={question} mode="answersheet" fontSize={fontSize} showAnswer={true} />
         </div>
       );
     }
@@ -208,7 +211,7 @@ function QuestionCell({
         className="flex items-center justify-center p-1"
         style={{ width: cellSize * 1.5, minHeight: cellSize }}
       >
-        <VerticalQuestion question={question} mode="worksheet" fontSize={fontSize} />
+        <VerticalQuestion question={question} mode="worksheet" fontSize={fontSize} showAnswer={showAnswers} />
       </div>
     );
   }
@@ -301,8 +304,10 @@ function WorksheetPage({
       className="bg-white overflow-hidden"
       style={{
         width: pageWidth,
-        minHeight: pageHeight,
+        height: pageHeight,
         fontFamily: '"Noto Sans SC", "Microsoft YaHei", "SimHei", sans-serif',
+        pageBreakAfter: 'always',
+        breakAfter: 'page',
       }}
     >
       {/* 页眉 */}

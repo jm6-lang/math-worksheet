@@ -576,10 +576,39 @@ export default function MathWorksheetPage() {
 
       {/* 打印样式 */}
       <style jsx global>{`
+        @page {
+          size: A4;
+          margin: 0;
+        }
         @media print {
-          body { background: white !important; }
-          nav, footer, .worksheet-wrapper ~ * { display: none !important; }
-          .worksheet-wrapper { position: static !important; }
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: white !important;
+            height: auto !important;
+            overflow: visible !important;
+          }
+          body > * {
+            display: none !important;
+          }
+          .print\:block {
+            display: block !important;
+          }
+          nav, footer, .no-print {
+            display: none !important;
+          }
+          .worksheet-wrapper {
+            display: block !important;
+            position: static !important;
+            background: white !important;
+          }
+          .worksheet-wrapper > * {
+            display: block !important;
+          }
         }
       `}</style>
     </div>
