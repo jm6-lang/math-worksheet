@@ -17,52 +17,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 打印样式 */
+/* 打印样式 - 只打印字帖内容，无空白页 */
 @media print {
   @page {
     size: A4 portrait;
     margin: 0;
   }
 
-  /* 先隐藏所有内容 */
-  * {
-    display: none !important;
-  }
-
-  /* 然后只显示字帖打印区 */
-  body,
-  html {
-    display: block !important;
+  html, body {
     margin: 0 !important;
     padding: 0 !important;
     background: white !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
-    color: black !important;
   }
 
-  .print-calligraphy {
+  /* 隐藏导航、控件、操作按钮 */
+  nav,
+  .bg-white.rounded-2xl.border.border-gray-200.p-6.mb-6,
+  .flex.justify-center.gap-3 {
+    display: none !important;
+  }
+
+  /* 只显示预览区 */
+  .print-only {
     display: block !important;
+  }
+
+  /* 预览区样式 */
+  .print-preview {
     width: 210mm !important;
     min-height: 297mm !important;
-    padding: 48px !important;
+    padding: 0 !important;
     background: white !important;
-    box-sizing: border-box !important;
     margin: 0 !important;
-  }
-
-  .print-calligraphy * {
-    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 }
 
-/* 字帖打印区 - 只显示字帖内容 */
-.print-calligraphy {
-  display: block !important;
-}
-
-.print-calligraphy * {
-  display: block !important;
+/* 打印专用内容（屏幕隐藏，打印显示） */
+.print-only {
+  display: none;
 }
 
 /* 滚动条美化 */
