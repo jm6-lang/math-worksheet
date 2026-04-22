@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+// 根布局保持静态预渲染，canonical 由各页面 layout 分别定义
+export const dynamic = "force-static";
+
 export default function RootLayout({
   children,
 }: Readonly<{
