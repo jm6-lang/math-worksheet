@@ -81,12 +81,18 @@ function GridCell({ char, showChar, fontFamily, gridType, size }: {
       <CellSvg gridType={gridType} size={size} />
       {showChar && char && (
         <span
-          className="absolute inset-0 flex items-center justify-center select-none"
+          className="absolute select-none"
           style={{
             fontSize,
             fontFamily,
-            color: '#b0b0b0',
+            color: '#d0d0d0',
             zIndex: 2,
+            // 字体底部接近格子底部，约 85% 位置
+            bottom: size * 0.08,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            lineHeight: 1,
+            whiteSpace: 'nowrap',
           }}
         >
           {char}
