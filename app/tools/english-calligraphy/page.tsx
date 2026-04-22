@@ -384,16 +384,8 @@ export default function EnglishCalligraphyPage() {
       </div>
 
       {/* 打印区域：只打印字帖内容，无多余空白 */}
-      <div className="hidden print:block">
-        <div
-          style={{
-            width: '210mm',
-            padding: `${pagePadding}px`,
-            background: '#ffffff',
-            boxSizing: 'border-box',
-          }}
-        >
-          <div style={{ width: rowWidth }}>
+      <div className="print-calligraphy" style={{ width: '210mm', padding: `${pagePadding}px`, background: '#ffffff', boxSizing: 'border-box', display: 'none' }}>
+        <div style={{ width: rowWidth }}>
             {words.map((word, wi) => (
               <div key={wi} style={{ marginBottom: rowHeight * 0.3 }}>
                 {Array.from({ length: rowsPerWord }, (_, ri) => (
@@ -416,14 +408,10 @@ export default function EnglishCalligraphyPage() {
       <style jsx global>{`
         @media print {
           @page { margin: 0; size: A4; }
-          html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            background: white !important;
-            height: auto !important;
-          }
-          body > * { display: none !important; }
-          .print\\:block { display: block !important; }
+          * { display: none !important; }
+          body, html { display: block !important; margin: 0 !important; padding: 0 !important; background: white !important; }
+          .print-calligraphy { display: block !important; }
+          .print-calligraphy * { display: block !important; }
         }
       `}</style>
     </div>
