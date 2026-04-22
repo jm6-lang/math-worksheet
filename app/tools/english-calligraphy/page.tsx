@@ -25,27 +25,23 @@ const ROW_HEIGHT_OPTIONS = [
   { value: 48, label: '紧凑' },
 ];
 
-// 单行四线三格背景（纯 SVG，宽度撑满）
+// 单行四线三格背景（CSS 实现，打印友好）
 function FourLineRow({ width, height }: { width: number; height: number }) {
-  // 四条线：顶线、上中线、基线、底线
-  const line1 = height * 0.1;   // 顶线
-  const line2 = height * 0.4;   // 上中线（字母上格）
-  const line3 = height * 0.7;   // 基线
-  const line4 = height * 0.95;  // 底线
+  const line1 = height * 0.1;
+  const line2 = height * 0.4;
+  const line3 = height * 0.7;
+  const line4 = height * 0.95;
   return (
-    <svg
-      style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
-      width={width} height={height}
-    >
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
       {/* 顶线 - 细实线 */}
-      <line x1={0} y1={line1} x2={width} y2={line1} stroke="#aaa" strokeWidth="0.8" />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '0.8px solid #aaa' }} />
       {/* 上中线 - 虚线 */}
-      <line x1={0} y1={line2} x2={width} y2={line2} stroke="#ccc" strokeWidth="0.6" strokeDasharray="6,4" />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line2, borderBottom: '0.6px dashed #ccc' }} />
       {/* 基线 - 粗实线 */}
-      <line x1={0} y1={line3} x2={width} y2={line3} stroke="#888" strokeWidth="1.2" />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line3, borderBottom: '1.2px solid #888' }} />
       {/* 底线 - 细实线 */}
-      <line x1={0} y1={line4} x2={width} y2={line4} stroke="#aaa" strokeWidth="0.8" />
-    </svg>
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line4, borderBottom: '0.8px solid #aaa' }} />
+    </div>
   );
 }
 
@@ -54,26 +50,20 @@ function ThreeLineRow({ width, height }: { width: number; height: number }) {
   const line2 = height * 0.65;
   const line3 = height * 0.95;
   return (
-    <svg
-      style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
-      width={width} height={height}
-    >
-      <line x1={0} y1={line1} x2={width} y2={line1} stroke="#aaa" strokeWidth="0.8" />
-      <line x1={0} y1={line2} x2={width} y2={line2} stroke="#888" strokeWidth="1.2" />
-      <line x1={0} y1={line3} x2={width} y2={line3} stroke="#aaa" strokeWidth="0.8" />
-    </svg>
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '0.8px solid #aaa' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line2, borderBottom: '1.2px solid #888' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line3, borderBottom: '0.8px solid #aaa' }} />
+    </div>
   );
 }
 
 function BlankLineRow({ width, height }: { width: number; height: number }) {
   const line = height * 0.85;
   return (
-    <svg
-      style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
-      width={width} height={height}
-    >
-      <line x1={0} y1={line} x2={width} y2={line} stroke="#aaa" strokeWidth="0.8" />
-    </svg>
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line, borderBottom: '0.8px solid #aaa' }} />
+    </div>
   );
 }
 
@@ -165,11 +155,16 @@ export default function EnglishCalligraphyPage() {
 
       const el = previewRef.current;
       const canvas = await html2canvas(el, {
-        scale: 2,
+        scale: 3,
         useCORS: true,
         backgroundColor: '#ffffff',
         logging: false,
         windowWidth: pageWidth,
+        onclone: (clonedDoc) => {
+          // 确保克隆的文档中所有元素都可见
+          const clonedEl = clonedDoc.querySelector('[data-html2canvas-ignore]');
+          if (clonedEl) clonedEl.remove();
+        },
       });
 
       const imgData = canvas.toDataURL('image/png');
