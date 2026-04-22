@@ -6,6 +6,22 @@ export const metadata: Metadata = {
   title: "算个题吧 - 数学练习卷生成器",
   description: "免费生成数学练习卷，支持加减乘除、竖式、分数、方程等题目类型，可生成打印PDF，全年级覆盖",
   keywords: "数学练习, 练习卷生成器, 打印练习纸, 小学数学, 分数运算",
+  openGraph: {
+    title: "算个题吧 - 数学练习卷生成器",
+    description: "免费生成数学练习卷，支持加减乘除、竖式、分数、方程等题目类型，可生成打印PDF，全年级覆盖",
+    type: "website",
+    url: "https://www.skillxm.cn",
+    siteName: "算个题吧",
+    locale: "zh_CN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "算个题吧 - 数学练习卷生成器",
+    description: "免费生成数学练习卷，支持加减乘除、竖式、分数、方程等题目类型，可生成打印PDF，全年级覆盖",
+  },
+  alternates: {
+    canonical: "https://www.skillxm.cn",
+  },
 };
 
 export default function RootLayout({
