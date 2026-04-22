@@ -142,6 +142,7 @@ export default function EnglishCalligraphyPage() {
   const [showGuide, setShowGuide] = useState(true);
   const [fontFamily, setFontFamily] = useState('Georgia');
   const [isExporting, setIsExporting] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
   const words = text.trim().split(' ').filter(function(w: string) { return w.length > 0; });
@@ -182,7 +183,37 @@ export default function EnglishCalligraphyPage() {
   const handlePrint = function() { window.print(); };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100" style={{ fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif' }}>
+
+      {/* ===== 顶部导航 ===== */}
+      <nav className="print:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-xl">🔤</div>
+              <a href="/" className="text-xl font-bold text-white hover:opacity-80 transition-opacity">英语字帖</a>
+            </div>
+            <div className="hidden md:flex items-center gap-1">
+              <a href="/" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
+              <a href="/tools/math-worksheet" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🧮 数学练习卷</a>
+              <a href="/tools/calligraphy" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">✍️ 字帖生成器</a>
+              <a href="/tools/english-calligraphy" className="px-3 py-2 text-sm text-white bg-white/10 rounded-lg font-medium">🔤 英语字帖</a>
+              <a href="/tools/sudoku" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🧩 数独游戏</a>
+            </div>
+            <button onClick={() => setMobileMenu(!mobileMenu)} className="md:hidden p-2 text-gray-300 hover:text-white transition-colors">{mobileMenu ? '✕' : '☰'}</button>
+          </div>
+        </div>
+        {mobileMenu && (
+          <div className="md:hidden bg-gray-800 border-t border-white/10 py-4 px-4 space-y-1">
+            <a href="/" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
+            <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🧮 数学练习卷</a>
+            <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">✍️ 字帖生成器</a>
+            <a href="/tools/english-calligraphy" className="block px-4 py-2 text-white bg-white/10 rounded-lg">🔤 英语字帖</a>
+            <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🧩 数独游戏</a>
+          </div>
+        )}
+      </nav>
+
       <div className="pt-20 pb-12 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
