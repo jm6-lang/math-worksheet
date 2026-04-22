@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
+import { Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+
+const notoSansSC = Noto_Sans_SC({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-noto-sans-sc",
+  display: "swap",
+});
+
+// 根布局保持静态预渲染，canonical 由各页面 layout 分别定义
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "算个题吧 - 数学练习卷生成器",
@@ -175,22 +186,16 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" className={notoSansSC.className}>
       <head>
         <meta name="baidu-site-verification" content="codeva-nVZFsgvPZu" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-        {/* Favicon sizes */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
         <meta name="msapplication-TileImage" content="/favicons/favicon-32x32.png" />
         <meta name="msapplication-TileColor" content="#1e40af" />
         <meta name="theme-color" content="#1e40af" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
