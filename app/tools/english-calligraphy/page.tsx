@@ -405,7 +405,7 @@ export default function EnglishCalligraphyPage() {
         </div>
       </div>
 
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media print {
           @page { margin: 0; size: A4; }
           * { display: none !important; }
@@ -413,7 +413,7 @@ export default function EnglishCalligraphyPage() {
           .print-calligraphy { display: block !important; }
           .print-calligraphy * { display: block !important; }
         }
-      `}</style>
+      ` }} />
     </div>
   );
 }
