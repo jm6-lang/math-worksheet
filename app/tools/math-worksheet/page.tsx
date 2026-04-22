@@ -569,6 +569,55 @@ export default function MathWorksheetPage() {
         </div>
       )}
 
+      {/* ===== 功能介绍 + FAQ ===== */}
+      {!hasGenerated && (
+        <div className="print:hidden px-4 pb-12">
+          <div className="max-w-4xl mx-auto">
+            {/* 功能介绍卡片 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
+                <div className="text-3xl mb-3">📐</div>
+                <h3 className="font-bold mb-2">11种题型</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">加减乘除、竖式计算、分数运算、一元一次方程，覆盖小学全阶段</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
+                <div className="text-3xl mb-3">🖨️</div>
+                <h3 className="font-bold mb-2">即印即用</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">标准A4 PDF，支持直接浏览器打印，也可导出保存到本地</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
+                <div className="text-3xl mb-3">♻️</div>
+                <h3 className="font-bold mb-2">题库随机</h3>
+                <p className="text-sm text-gray-400 leading-relaxed">每次生成题目随机打乱，可无限次生成同一配置不重复</p>
+              </div>
+            </div>
+
+            {/* FAQ 手风琴 */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <h2 className="text-2xl font-bold mb-6 text-center">常见问题</h2>
+              <div className="space-y-2">
+                {[
+                  { q: "支持哪些年级？", a: "覆盖小学1-6年级，支持加减乘除、竖式计算、分数、方程等11种题型，幼儿园大班也适用。" },
+                  { q: "导出的PDF能直接打印吗？", a: "是的，生成的PDF为标准A4尺寸，可直接在浏览器中按 Ctrl+P 打印，也可导出保存到本地。" },
+                  { q: "可以只导出题目卷或答案卷吗？", a: "可以。支持分别导出题目卷、答案卷，或一键同时导出两份PDF，满足不同使用场景。" },
+                  { q: "字体大小可以调整吗？", a: "支持小/中/大三种字号，也可自定义每行题目数量，适配不同年级和打印需求。" },
+                  { q: "题目会自动打乱吗？", a: "默认开启随机打乱，每次生成的题目顺序不同，防止学生背答案。关闭随机可保持稳定顺序。" },
+                  { q: "收费吗？有水印吗？", a: "完全免费，无水印，无广告，可无限次使用。" },
+                ].map((item, i) => (
+                  <details key={i} className="group border border-white/10 rounded-lg">
+                    <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                      <span>{item.q}</span>
+                      <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                    </summary>
+                    <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">{item.a}</div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ===== 底部 ===== */}
       <footer className="print:hidden border-t border-white/10 py-8 px-4 text-center text-gray-500 text-sm">
         <p>© 2026 算个题吧 · 免费好用的数学练习卷生成器</p>

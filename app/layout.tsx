@@ -4,10 +4,11 @@ import "./globals.css";
 import Script from "next/script";
 
 const notoSansSC = Noto_Sans_SC({
-  subsets: ["latin"],
+  // 不限制 subsets，next/font/google 默认下载完整字体包（含 CJK 中文字符）
   weight: ["400", "500", "700"],
   variable: "--font-noto-sans-sc",
   display: "swap",
+  preload: true,
 });
 
 // 根布局保持静态预渲染，canonical 由各页面 layout 分别定义
