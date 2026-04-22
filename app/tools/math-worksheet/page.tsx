@@ -577,7 +577,7 @@ export default function MathWorksheetPage() {
       {/* 打印样式 */}
       <style jsx global>{`
         @page {
-          size: A4;
+          size: A4 portrait;
           margin: 0;
         }
         @media print {
@@ -608,6 +608,17 @@ export default function MathWorksheetPage() {
           }
           .worksheet-wrapper > * {
             display: block !important;
+          }
+          /* 每页分页控制 */
+          .worksheet-page {
+            page-break-after: always;
+            break-after: page;
+            height: auto !important;
+            min-height: 100vh;
+          }
+          .worksheet-page:last-child {
+            page-break-after: auto;
+            break-after: auto;
           }
         }
       `}</style>

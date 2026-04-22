@@ -278,7 +278,8 @@ function WorksheetPage({
   cellSize = Math.floor(contentWidth / actualPerRow);
 
   if (template === 'hengxian' || template === 'kongbai') {
-    rowHeight = fontSize === 'sm' ? 40 : fontSize === 'lg' ? 64 : 52;
+    // 横线模板：行高更紧凑
+    rowHeight = fontSize === 'sm' ? 36 : fontSize === 'lg' ? 52 : 44;
   } else {
     rowHeight = cellSize + 8;
   }
@@ -300,13 +301,11 @@ function WorksheetPage({
 
   return (
     <div
-      className="bg-white overflow-hidden"
+      className="bg-white overflow-hidden worksheet-page"
       style={{
         width: pageWidth,
-        height: pageHeight,
+        minHeight: pageHeight,
         fontFamily: '"Noto Sans SC", "Microsoft YaHei", "SimHei", sans-serif',
-        pageBreakAfter: 'always',
-        breakAfter: 'page',
       }}
     >
       {/* 页眉 */}
@@ -409,7 +408,8 @@ export default function WorksheetPreview({
   cellSize = Math.floor(contentWidth / actualPerRow);
 
   if (template === 'hengxian' || template === 'kongbai') {
-    rowHeight = fontSize === 'sm' ? 40 : fontSize === 'lg' ? 64 : 52;
+    // 横线模板：行高更紧凑
+    rowHeight = fontSize === 'sm' ? 36 : fontSize === 'lg' ? 52 : 44;
   } else {
     rowHeight = cellSize + 8;
   }
