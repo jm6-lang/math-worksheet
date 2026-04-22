@@ -93,19 +93,22 @@ function PracticeRow({
   rowHeight: number;
   rowWidth: number;
 }) {
-  // 字体大小：四线三格中，字母高度约占顶线到基线的区域
+  // 字体大小
   const fontSize = lineType === 'four-line'
-    ? rowHeight * 0.52   // 顶线(10%) 到 基线(70%) = 60%，字体略小
+    ? rowHeight * 0.50   // 四线三格：顶线到基线约占60%，字体占50%
     : lineType === 'three-line'
-    ? rowHeight * 0.48
+    ? rowHeight * 0.45
     : rowHeight * 0.55;
 
-  // 基线位置（字母底部对齐基线）
-  const baseline = lineType === 'four-line'
-    ? rowHeight * 0.70
+  // 基线位置（从顶部算）
+  const baselinePos = lineType === 'four-line'
+    ? rowHeight * 0.70   // 四线三格基线在70%位置
     : lineType === 'three-line'
     ? rowHeight * 0.65
     : rowHeight * 0.85;
+
+  // 用 bottom 让字母底部对齐基线
+  const bottomFromBottom = rowHeight - baselinePos;
 
   return (
     <div style={{ position: 'relative', width: rowWidth, height: rowHeight, background: '#ffffff' }}>
@@ -118,10 +121,10 @@ function PracticeRow({
           style={{
             position: 'absolute',
             left: 8,
-            top: baseline - fontSize,
+            bottom: bottomFromBottom,
             fontSize,
             fontFamily,
-            color: '#c0c0c0',
+            color: '#d0d0d0',
             lineHeight: 1,
             whiteSpace: 'nowrap',
             userSelect: 'none',
