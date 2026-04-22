@@ -68,7 +68,7 @@ function HengXianGe({ children, height }: { children: React.ReactNode; height: n
       className="relative flex-shrink-0 border-b border-gray-400"
       style={{ height, width: children ? undefined : '100%', background: 'white' }}
     >
-      <div className="absolute inset-0 flex flex-col items-end justify-end px-2 pb-1">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
         {children}
       </div>
     </div>

@@ -25,7 +25,7 @@ const ROW_HEIGHT_OPTIONS = [
   { value: 48, label: '紧凑' },
 ];
 
-// 单行四线三格背景（CSS 实现，打印友好）
+// 单行四线三格背景（CSS 实现，打印友好）- 含竖线
 function FourLineRow({ width, height }: { width: number; height: number }) {
   const line1 = height * 0.1;
   const line2 = height * 0.4;
@@ -33,6 +33,11 @@ function FourLineRow({ width, height }: { width: number; height: number }) {
   const line4 = height * 0.95;
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
+      {/* 竖线 - 分隔每个字母格子 */}
+      <div style={{ position: 'absolute', left: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', left: '33.33%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', left: '66.66%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', right: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
       {/* 顶线 - 细实线 */}
       <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '0.8px solid #aaa' }} />
       {/* 上中线 - 虚线 */}
@@ -51,6 +56,11 @@ function ThreeLineRow({ width, height }: { width: number; height: number }) {
   const line3 = height * 0.95;
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
+      {/* 竖线 */}
+      <div style={{ position: 'absolute', left: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', left: '33.33%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', left: '66.66%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', right: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
       <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '0.8px solid #aaa' }} />
       <div style={{ position: 'absolute', left: 0, right: 0, top: line2, borderBottom: '1.2px solid #888' }} />
       <div style={{ position: 'absolute', left: 0, right: 0, top: line3, borderBottom: '0.8px solid #aaa' }} />
@@ -62,6 +72,12 @@ function BlankLineRow({ width, height }: { width: number; height: number }) {
   const line = height * 0.85;
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
+      {/* 竖线 */}
+      <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', left: '25%', top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', left: '75%', top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
+      <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
       <div style={{ position: 'absolute', left: 0, right: 0, top: line, borderBottom: '0.8px solid #aaa' }} />
     </div>
   );
