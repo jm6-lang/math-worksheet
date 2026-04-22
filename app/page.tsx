@@ -24,6 +24,15 @@ const CAROUSEL_ITEMS = [
   },
   {
     id: 3,
+    title: '英语字帖',
+    subtitle: '四线三格英语练习',
+    description: '标准四线三格英文字母练习，支持PDF导出',
+    icon: '🔤',
+    gradient: 'from-rose-500 via-pink-500 to-red-500',
+    link: '/tools/english-calligraphy',
+  },
+  {
+    id: 4,
     title: '数独挑战',
     subtitle: '锻炼逻辑思维',
     description: '多难度级别，计时挑战，自动校验',
@@ -49,6 +58,7 @@ const TOOL_CATEGORIES = [
     tools: [
       { name: '数学练习题', icon: '🧮', desc: '一键出题，PDF导出', link: '/tools/math-worksheet', color: 'blue', disabled: false },
       { name: '字帖生成器', icon: '✍️', desc: '田字格/米字格模板', link: '/tools/calligraphy', color: 'emerald', disabled: false },
+      { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '/tools/english-calligraphy', color: 'rose', disabled: false },
       { name: '数独游戏', icon: '🧩', desc: '多难度逻辑训练', link: '/tools/sudoku', color: 'orange', disabled: false },
       { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '/tools/pinyin', color: 'blue', disabled: false },
     ],
@@ -56,7 +66,6 @@ const TOOL_CATEGORIES = [
   {
     category: '🎨 敬请期待',
     tools: [
-      { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '#', color: 'gray', disabled: true },
       { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '#', color: 'gray', disabled: true },
     ],
   },
@@ -67,6 +76,7 @@ const COLOR_MAP: Record<string, string> = {
   blue: 'bg-blue-500 hover:bg-blue-600',
   emerald: 'bg-emerald-500 hover:bg-emerald-600',
   orange: 'bg-orange-500 hover:bg-orange-600',
+  rose: 'bg-rose-500 hover:bg-rose-600',
   gray: 'bg-gray-400',
 };
 
@@ -149,6 +159,9 @@ export default function HomePage() {
               <a href="/tools/calligraphy" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 ✍️ 字帖生成器
               </a>
+              <a href="/tools/english-calligraphy" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                🔤 英语字帖
+              </a>
               <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 🧩 数独游戏
               </a>
@@ -201,6 +214,7 @@ export default function HomePage() {
             <a href="/" className="block px-4 py-2 text-white bg-white/10 rounded-lg">首页</a>
             <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧮 数学练习卷</a>
             <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
+            <a href="/tools/english-calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🔤 英语字帖</a>
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
             <a href="/resources" className="block px-4 py-2 text-amber-400 bg-amber-500/10 rounded-lg">🎁 免费资源</a>
             <div className="border-t border-white/10 my-2"></div>
