@@ -204,6 +204,15 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen antialiased">
         {children}
+        <Script id="baidu-analytics" strategy="afterInteractive">
+          {`var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b1c5ccce83f4e80c4c12dea6bd544723";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();`}
+        </Script>
         <Script src="https://push.zhanzhang.baidu.com/push.js" strategy="afterInteractive" />
       </body>
     </html>
