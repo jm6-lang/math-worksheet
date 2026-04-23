@@ -25,11 +25,20 @@ export const metadata: Metadata = {
     url: "https://www.skillxm.cn",
     siteName: "教材工具箱",
     locale: "zh_CN",
+    images: [
+      {
+        url: "https://www.skillxm.cn/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "教材工具箱 - 免费在线教育工具",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "教材工具箱 - 免费在线教育工具",
     description: "免费在线生成数学练习卷、字帖、英语字帖、数独、口算速练、识字卡片、作文模板等，支持PDF导出打印",
+    images: ["https://www.skillxm.cn/og-image.jpg"],
   },
   alternates: {
     canonical: "https://www.skillxm.cn",
@@ -73,14 +82,6 @@ export default function RootLayout({
           "@type": "Organization",
           name: "教材工具箱",
           url: "https://www.skillxm.cn",
-        },
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: "https://www.skillxm.cn/?q={search_term_string}",
-          },
-          "query-input": "required name=search_term_string",
         },
       },
       {
@@ -195,60 +196,57 @@ export default function RootLayout({
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "首页",
-            item: "https://www.skillxm.cn",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "数学练习卷",
-            item: "https://www.skillxm.cn/tools/math-worksheet",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "字帖生成器",
-            item: "https://www.skillxm.cn/tools/calligraphy",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "英语字帖生成器",
-            item: "https://www.skillxm.cn/tools/english-calligraphy",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "拼音练习生成器",
-            item: "https://www.skillxm.cn/tools/pinyin",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "数独游戏",
-            item: "https://www.skillxm.cn/tools/sudoku",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "口算速练",
-            item: "https://www.skillxm.cn/tools/mental-math",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "识字卡片生成器",
-            item: "https://www.skillxm.cn/tools/flashcards",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "作文模板生成器",
-            item: "https://www.skillxm.cn/tools/writing-template",
-          },
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "数学练习卷", item: "https://www.skillxm.cn/tools/math-worksheet" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "字帖生成器", item: "https://www.skillxm.cn/tools/calligraphy" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "英语字帖生成器", item: "https://www.skillxm.cn/tools/english-calligraphy" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "拼音练习生成器", item: "https://www.skillxm.cn/tools/pinyin" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "数独游戏", item: "https://www.skillxm.cn/tools/sudoku" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "口算速练", item: "https://www.skillxm.cn/tools/mental-math" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "识字卡片生成器", item: "https://www.skillxm.cn/tools/flashcards" },
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
+          { "@type": "ListItem", position: 2, name: "作文模板生成器", item: "https://www.skillxm.cn/tools/writing-template" },
         ],
       },
     ],
