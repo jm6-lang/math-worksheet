@@ -32,10 +32,10 @@ function TianZiGe({ children, size }: { children: React.ReactNode; size: number 
     >
       <div
         className="absolute inset-0 border-2 border-black"
-        style={{ background: 'white', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
+        style={{ background: 'white' }}
       />
-      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-blue-300 opacity-60" style={{ transform: 'translateX(-50%)' }} />
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-red-300 opacity-60" style={{ transform: 'translateY(-50%)' }} />
+      <div className="absolute left-1/2 top-0 bottom-0 w-px" style={{ transform: 'translateX(-50%)', background: '#93c5fd' }} />
+      <div className="absolute top-1/2 left-0 right-0 h-px" style={{ transform: 'translateY(-50%)', background: '#fca5a5' }} />
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         {children}
       </div>

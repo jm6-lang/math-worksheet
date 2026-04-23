@@ -188,27 +188,6 @@ export default function WritingTemplatePage() {
     }
   }, [title, currentEssayConfig.label]);
 
-  // 打印
-  const handlePrint = useCallback(() => {
-    if (!previewRef.current) return;
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) return;
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>${title || currentEssayConfig.label} - 作文模板</title>
-          <style>
-            body { margin: 0; padding: 20px; }
-            @media print { body { padding: 0; } }
-          </style>
-        </head>
-        <body>${previewRef.current.innerHTML}</body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.print();
-  }, [title, currentEssayConfig.label]);
-
   // ===== 渲染稿纸 =====
   const renderPaper = () => {
     const lineCount = getLineCount();
@@ -642,13 +621,6 @@ export default function WritingTemplatePage() {
                       导出 PDF
                     </>
                   )}
-                </button>
-                <button
-                  onClick={handlePrint}
-                  className="px-8 py-3 bg-gradient-to-r from-slate-600 to-slate-700 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform flex items-center gap-2"
-                >
-                  <span>🖨️</span>
-                  打印模板
                 </button>
               </div>
             </div>

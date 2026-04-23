@@ -227,12 +227,17 @@ export default function FlashcardsPage() {
       const targetRef = side === 'front' ? frontExportRef.current : backExportRef.current;
       if (!targetRef) return;
 
-      // 临时显示导出区域
+      // 临时显示导出区域（放在可见区域，避免 html2canvas 无法渲染屏幕外元素）
       targetRef.style.display = 'block';
       targetRef.style.position = 'fixed';
-      targetRef.style.left = '-9999px';
+      targetRef.style.left = '0';
       targetRef.style.top = '0';
       targetRef.style.zIndex = '-1';
+      targetRef.style.opacity = '0';
+      targetRef.style.pointerEvents = 'none';
+
+      // 等待浏览器完成布局渲染
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       const config = cardSizeConfig[cardSize];
       const perPage = config.perPage;
@@ -253,6 +258,7 @@ export default function FlashcardsPage() {
           scale: 2,
           backgroundColor: '#ffffff',
           useCORS: true,
+          logging: false,
         });
 
         const imgData = canvas.toDataURL('image/png');
@@ -262,8 +268,14 @@ export default function FlashcardsPage() {
         pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, Math.min(imgHeight, pageHeight));
       }
 
-      // 隐藏导出区域
+      // 恢复导出区域的隐藏状态
       targetRef.style.display = 'none';
+      targetRef.style.opacity = '';
+      targetRef.style.pointerEvents = '';
+      targetRef.style.position = '';
+      targetRef.style.left = '';
+      targetRef.style.top = '';
+      targetRef.style.zIndex = '';
 
       pdf.save(`识字卡片_${side === 'front' ? '正面' : '反面'}.pdf`);
     } catch (error) {

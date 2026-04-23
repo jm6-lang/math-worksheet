@@ -34,26 +34,34 @@ const CELL_SIZE_OPTIONS = [
   { value: 32, label: '小格', desc: '6字/行' },
 ];
 
-// SVG grid lines for each cell
-function CellSvg({ gridType, size }: { gridType: GridType; size: number }) {
+// Grid guide lines for each cell (using divs instead of SVG for better html2canvas compatibility)
+function CellGuides({ gridType, size }: { gridType: GridType; size: number }) {
   if (gridType === 'fang') return null;
+  // Diagonal line length for mi grid: sqrt(2) * size
+  const diagLen = Math.ceil(size * 1.414);
+  const diagOffset = Math.ceil((diagLen - size) / 2);
   return (
-    <svg className="absolute inset-0 pointer-events-none" width={size} height={size} style={{ zIndex: 1 }}>
-      {gridType === 'tian' && (
-        <>
-          <line x1={size / 2} y1={2} x2={size / 2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
-          <line x1={2} y1={size / 2} x2={size - 2} y2={size / 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
-        </>
-      )}
+    <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+      {/* Vertical center line */}
+      <div style={{ position: 'absolute', width: 0, top: 2, bottom: 2, left: '50%', borderRight: '1px dashed #999' }} />
+      {/* Horizontal center line */}
+      <div style={{ position: 'absolute', height: 0, left: 2, right: 2, top: '50%', borderBottom: '1px dashed #999' }} />
+      {/* Diagonal lines for mi grid */}
       {gridType === 'mi' && (
         <>
-          <line x1={size / 2} y1={2} x2={size / 2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
-          <line x1={2} y1={size / 2} x2={size - 2} y2={size / 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
-          <line x1={2} y1={2} x2={size - 2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
-          <line x1={size - 2} y1={2} x2={2} y2={size - 2} stroke="#bbb" strokeWidth="0.6" strokeDasharray="3,2" />
+          <div style={{
+            position: 'absolute', width: diagLen, height: 0, top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            borderBottom: '1px dashed #999',
+          }} />
+          <div style={{
+            position: 'absolute', width: diagLen, height: 0, top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%) rotate(-45deg)',
+            borderBottom: '1px dashed #999',
+          }} />
         </>
       )}
-    </svg>
+    </div>
   );
 }
 
@@ -78,7 +86,7 @@ function GridCell({ char, showChar, fontFamily, gridType, size }: {
         borderRight: '1px solid #ccc',
       }}
     >
-      <CellSvg gridType={gridType} size={size} />
+      <CellGuides gridType={gridType} size={size} />
       {showChar && char && (
         <span
           className="absolute select-none"
@@ -181,8 +189,8 @@ export default function CalligraphyPage() {
         ${Array.from({ length: rows }, (_, rowIdx) =>
           chars.slice(0, colsPerRow).map(char => `
             <div style="width:${cellSize}px;height:${cellSize}px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;position:relative;background:#fff;">
-              ${gridType === 'tian' ? `<svg style="position:absolute;inset:0;"><line x1="${cellSize/2}" y1="2" x2="${cellSize/2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="${cellSize/2}" x2="${cellSize-2}" y2="${cellSize/2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/></svg>` : ''}
-              ${gridType === 'mi' ? `<svg style="position:absolute;inset:0;"><line x1="${cellSize/2}" y1="2" x2="${cellSize/2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="${cellSize/2}" x2="${cellSize-2}" y2="${cellSize/2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="2" y1="2" x2="${cellSize-2}" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/><line x1="${cellSize-2}" y1="2" x2="2" y2="${cellSize-2}" stroke="#bbb" stroke-width="0.6" stroke-dasharray="3,2"/></svg>` : ''}
+              ${gridType === 'tian' ? `<div style="position:absolute;width:0;top:2px;bottom:2px;left:50%;border-right:1px dashed #999;"></div><div style="position:absolute;height:0;left:2px;right:2px;top:50%;border-bottom:1px dashed #999;"></div>` : ''}
+              ${gridType === 'mi' ? `<div style="position:absolute;width:0;top:2px;bottom:2px;left:50%;border-right:1px dashed #999;"></div><div style="position:absolute;height:0;left:2px;right:2px;top:50%;border-bottom:1px dashed #999;"></div><div style="position:absolute;width:${Math.ceil(cellSize*1.414)}px;height:0;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);border-bottom:1px dashed #999;"></div><div style="position:absolute;width:${Math.ceil(cellSize*1.414)}px;height:0;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);border-bottom:1px dashed #999;"></div>` : ''}
               ${showGuide && rowIdx === 0 ? `<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${fontSize}px;font-family:'${fontFamily}';color:#b0b0b0;">${char}</span>` : ''}
             </div>
           `).join('')

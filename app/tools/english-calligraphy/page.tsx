@@ -32,14 +32,14 @@ function FourLineRow({ width, height }: { width: number; height: number }) {
   const line4 = height * 0.95;
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
-      <div style={{ position: 'absolute', left: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: '33.33%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: '66.66%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', right: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '0.8px solid #aaa' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line2, borderBottom: '0.6px dashed #ccc' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line3, borderBottom: '1.2px solid #888' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line4, borderBottom: '0.8px solid #aaa' }} />
+      <div style={{ position: 'absolute', left: 0, top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: '33.33%', top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: '66.66%', top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', right: 0, top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '1px solid #999' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line2, borderBottom: '1px dashed #aaa' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line3, borderBottom: '1.5px solid #666' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line4, borderBottom: '1px solid #999' }} />
     </div>
   );
 }
@@ -50,13 +50,13 @@ function ThreeLineRow({ width, height }: { width: number; height: number }) {
   const line3 = height * 0.95;
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
-      <div style={{ position: 'absolute', left: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: '33.33%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: '66.66%', top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', right: 0, top: line1, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '0.8px solid #aaa' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line2, borderBottom: '1.2px solid #888' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line3, borderBottom: '0.8px solid #aaa' }} />
+      <div style={{ position: 'absolute', left: 0, top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: '33.33%', top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: '66.66%', top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', right: 0, top: line1, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line1, borderBottom: '1px solid #999' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line2, borderBottom: '1.5px solid #666' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line3, borderBottom: '1px solid #999' }} />
     </div>
   );
 }
@@ -65,12 +65,12 @@ function BlankLineRow({ width, height }: { width: number; height: number }) {
   const line = height * 0.85;
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }}>
-      <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: '25%', top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: '75%', top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, borderRight: '0.5px solid #ddd' }} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: line, borderBottom: '0.8px solid #aaa' }} />
+      <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: '25%', top: 0, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: '75%', top: 0, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, borderRight: '1px solid #bbb' }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: line, borderBottom: '1px solid #999' }} />
     </div>
   );
 }

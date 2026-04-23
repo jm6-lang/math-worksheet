@@ -740,7 +740,7 @@ export default function PinyinPage() {
               <div className="space-y-4">
                 <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
                   {converted.map((item, i) => (
-                    <div key={i} className="flex flex-col items-center justify-center py-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200">
+                    <div key={i} className="flex flex-col items-center justify-center py-3 bg-slate-50 rounded-xl border-2 border-dashed border-slate-400">
                       <span className="font-bold text-slate-800" style={{ fontSize: FONT_SIZES[fontSize] * 1.2 }}>{item.char}</span>
                       <span className={`font-semibold mt-1 ${getToneColor(item.py)}`} style={{ fontSize: FONT_SIZES[fontSize] }}>
                         {item.py || '—'}
@@ -757,7 +757,7 @@ export default function PinyinPage() {
                 <div className="mb-3 text-sm text-gray-500 bg-blue-50 px-4 py-2 rounded-lg">练习要求：请在拼音栏填写正确的拼音（含声调）</div>
                 <div className="space-y-3">
                   {converted.map((item, i) => (
-                    <div key={i} className="flex items-center gap-3 py-2 border-b border-gray-100">
+                    <div key={i} className="flex items-center gap-3 py-2 border-b border-gray-300">
                       <span className="font-bold text-slate-800 w-12 text-center" style={{ fontSize: FONT_SIZES[fontSize] * 1.2 }}>{item.char}</span>
                       <div className="flex-1 flex items-center">
                         <div className="flex-1 h-10 border-b-2 border-blue-300 flex items-end pb-1">
@@ -786,11 +786,11 @@ export default function PinyinPage() {
                         </div>
                         <div className="absolute inset-0 flex">
                           {row.map((item, colIdx) => (
-                            <div key={colIdx} className="flex-1 flex flex-col items-center justify-around border-r border-gray-100 last:border-r-0">
+                            <div key={colIdx} className="flex-1 flex flex-col items-center justify-around border-r border-gray-300 last:border-r-0">
                               <div className="text-center" style={{ height: `${FONT_SIZES[fontSize] * 1.5}px`, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '2px' }}>
                                 <span className={`font-semibold ${getToneColor(item.py)}`} style={{ fontSize: FONT_SIZES[fontSize] }}>{showAnswer ? item.py : '　'}</span>
                               </div>
-                              <div className="h-0.5 w-full bg-pink-300"></div>
+                              <div className="h-0.5 w-full bg-pink-400"></div>
                               <div className="text-center font-bold text-slate-800" style={{ height: `${FONT_SIZES[fontSize] * 2}px`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: FONT_SIZES[fontSize] * 1.5 }}>{item.char}</div>
                             </div>
                           ))}
@@ -813,7 +813,7 @@ export default function PinyinPage() {
                       <div className="absolute bottom-0 left-0 right-0" style={{ borderTopWidth: '1px', borderTopStyle: 'dashed', borderTopColor: '#ccc', marginBottom: '2px' }}></div>
                       <div className="flex">
                         {row.map((item, colIdx) => (
-                          <div key={colIdx} className="flex-1 border-r border-gray-100 last:border-r-0">
+                          <div key={colIdx} className="flex-1 border-r border-gray-300 last:border-r-0">
                             <div className="text-center" style={{ height: `${FONT_SIZES[fontSize] * 1.2}px`, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '2px' }}>
                               <span className={`font-semibold ${getToneColor(item.py)}`} style={{ fontSize: FONT_SIZES[fontSize] }}>{showAnswer ? item.py : '　'}</span>
                             </div>
