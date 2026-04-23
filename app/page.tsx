@@ -282,6 +282,9 @@ export default function HomePage() {
               <a href="/resources" className="px-3 py-1.5 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">
                 🎁 免费资源
               </a>
+              <a href="/blog" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                📰 教育博客
+              </a>
 
               <button onClick={() => setShowTutorial(true)} className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 📖 使用教程
@@ -624,15 +627,15 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           {/* 链接行 */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-gray-400 mb-4">
-            <a href="#" className="hover:text-white transition-colors">关于我们</a>
+            <a href="/about" className="hover:text-white transition-colors">关于我们</a>
             <span className="text-gray-600">|</span>
-            <a href="#" className="hover:text-white transition-colors">免责声明</a>
+            <a href="/contact" className="hover:text-white transition-colors">联系我们</a>
             <span className="text-gray-600">|</span>
-            <a href="#" className="hover:text-white transition-colors">隐私政策</a>
+            <a href="/terms" className="hover:text-white transition-colors">服务条款</a>
             <span className="text-gray-600">|</span>
-            <a href="#" className="hover:text-white transition-colors">联系我们</a>
+            <a href="/blog" className="hover:text-white transition-colors">教育博客</a>
             <span className="text-gray-600">|</span>
-            <a href="#" className="hover:text-white transition-colors">广告合作</a>
+            <a href="/resources" className="hover:text-white transition-colors">免费资源</a>
           </div>
           {/* 友情链接 */}
           <div className="flex flex-wrap justify-center items-center gap-3 text-sm text-gray-500">
