@@ -163,6 +163,8 @@ export default function HomePage() {
   const [showDonate, setShowDonate] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [showShare, setShowShare] = useState(false);
+  const [showToolsMenu, setShowToolsMenu] = useState(false);
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const announcementRef = useRef<HTMLDivElement>(null);
@@ -214,108 +216,183 @@ export default function HomePage() {
       {/* ===== 顶部导航 ===== */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-14">
             {/* Logo */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">
+            <div className="flex items-center gap-2.5 shrink-0">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-base shadow-lg shadow-blue-500/20">
                 📚
               </div>
-              <a href="/" className="text-xl font-bold text-white hover:opacity-80 transition-opacity">
+              <a href="/" className="text-lg font-bold text-white hover:opacity-80 transition-opacity">
                 教材工具箱
               </a>
             </div>
 
             {/* 桌面导航 */}
-            <div className="hidden md:flex items-center gap-1">
-              <a href="/" className="px-4 py-2 text-sm text-white bg-white/10 rounded-lg font-medium">
+            <div className="hidden lg:flex items-center gap-1">
+              <a href="/" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 首页
               </a>
-              <a href="/tools/math-worksheet" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                🧮 数学练习卷
-              </a>
-              <a href="/tools/calligraphy" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                ✍️ 字帖生成器
-              </a>
-              <a href="/tools/english-calligraphy" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                🔤 英语字帖
-              </a>
-              <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                🧩 数独游戏
-              </a>
-              <a href="/tools/mental-math" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                ⚡ 口算速练
-              </a>
-              <a href="/tools/flashcards" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                🃏 识字卡片
-              </a>
-              <a href="/tools/writing-template" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                📝 作文模板
-              </a>
-              <a href="/resources" className="px-4 py-2 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">
+
+              {/* 学习工具下拉 */}
+              <div className="relative"
+                onMouseEnter={() => setShowToolsMenu(true)}
+                onMouseLeave={() => setShowToolsMenu(false)}
+              >
+                <button className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                  🛠️ 学习工具
+                  <svg className={`w-3.5 h-3.5 transition-transform ${showToolsMenu ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                {showToolsMenu && (
+                  <div className="absolute left-0 top-full mt-1 bg-slate-800 border border-white/10 rounded-xl shadow-2xl p-2 min-w-[200px] z-50">
+                    <a href="/tools/math-worksheet" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-blue-500/20 rounded-lg flex items-center justify-center text-sm">🧮</span>
+                      <div><div className="text-white font-medium">数学练习卷</div><div className="text-xs text-gray-500">一键出题，PDF导出</div></div>
+                    </a>
+                    <a href="/tools/calligraphy" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-emerald-500/20 rounded-lg flex items-center justify-center text-sm">✍️</span>
+                      <div><div className="text-white font-medium">字帖生成器</div><div className="text-xs text-gray-500">田字格/米字格模板</div></div>
+                    </a>
+                    <a href="/tools/english-calligraphy" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-rose-500/20 rounded-lg flex items-center justify-center text-sm">🔤</span>
+                      <div><div className="text-white font-medium">英语字帖</div><div className="text-xs text-gray-500">四线三格模板</div></div>
+                    </a>
+                    <a href="/tools/sudoku" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-orange-500/20 rounded-lg flex items-center justify-center text-sm">🧩</span>
+                      <div><div className="text-white font-medium">数独游戏</div><div className="text-xs text-gray-500">多难度逻辑训练</div></div>
+                    </a>
+                    <a href="/tools/mental-math" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-yellow-500/20 rounded-lg flex items-center justify-center text-sm">⚡</span>
+                      <div><div className="text-white font-medium">口算速练</div><div className="text-xs text-gray-500">在线计时练习</div></div>
+                    </a>
+                    <a href="/tools/flashcards" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-purple-500/20 rounded-lg flex items-center justify-center text-sm">🃏</span>
+                      <div><div className="text-white font-medium">识字卡片</div><div className="text-xs text-gray-500">汉字卡片生成</div></div>
+                    </a>
+                    <a href="/tools/writing-template" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-teal-500/20 rounded-lg flex items-center justify-center text-sm">📝</span>
+                      <div><div className="text-white font-medium">作文模板</div><div className="text-xs text-gray-500">多种写作模板</div></div>
+                    </a>
+                    <a href="/tools/pinyin" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span className="w-7 h-7 bg-blue-500/20 rounded-lg flex items-center justify-center text-sm">📝</span>
+                      <div><div className="text-white font-medium">拼音注音</div><div className="text-xs text-gray-500">汉字注音练习</div></div>
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <a href="/resources" className="px-3 py-1.5 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">
                 🎁 免费资源
               </a>
-              <div className="w-px h-6 bg-white/20 mx-2"></div>
-              <button onClick={() => setShowTutorial(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                📖 教程
-              </button>
-              <div className="relative">
-                <button onClick={() => setShowShare(!showShare)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                  🔗 分享
+
+              {/* 更多下拉 */}
+              <div className="relative"
+                onMouseEnter={() => setShowMoreMenu(true)}
+                onMouseLeave={() => setShowMoreMenu(false)}
+              >
+                <button className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                  ···
                 </button>
-                {showShare && (
-                  <div className="absolute right-0 top-full mt-2 bg-slate-800 border border-white/10 rounded-xl shadow-xl p-2 min-w-[140px] z-50">
-                    <a href={`https://service.weibo.com/share/share.php?url=${encodeURIComponent('https://math-worksheet.pages.dev')}&title=${encodeURIComponent('教材工具箱 - 免费生成数学练习卷、字帖、数独')}`} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span>📱</span> 微博
-                    </a>
-                    <a href={`https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent('https://math-worksheet.pages.dev')}&title=${encodeURIComponent('教材工具箱 - 免费生成数学练习卷、字帖、数独')}`} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span>💬</span> QQ
-                    </a>
-                    <a href={`weixin://` } onClick={(e) => { e.preventDefault(); alert('请在微信中打开，点击右上角「...」选择「发送给朋友」或「分享到朋友圈」'); navigator.clipboard.writeText('https://math-worksheet.pages.dev'); }} className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span>💚</span> 微信
-                    </a>
-                    <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); setCopySuccess(true); setTimeout(() => setCopySuccess(false), 2000); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span>📋</span> {copySuccess ? '已复制!' : '复制链接'}
+                {showMoreMenu && (
+                  <div className="absolute right-0 top-full mt-1 bg-slate-800 border border-white/10 rounded-xl shadow-2xl p-2 min-w-[140px] z-50">
+                    <button onClick={() => { setShowTutorial(true); setShowMoreMenu(false); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>📖</span> 使用教程
+                    </button>
+                    <button onClick={() => { setShowShare(true); setShowMoreMenu(false); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>🔗</span> 分享
+                    </button>
+                    <button onClick={() => { setShowDonate(true); setShowMoreMenu(false); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                      <span>💝</span> 赞助支持
                     </button>
                   </div>
                 )}
               </div>
-              <button onClick={() => setShowDonate(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                💝 赞助
-              </button>
             </div>
 
             {/* 移动端菜单按钮 */}
             <button
               onClick={() => setMobileMenu(!mobileMenu)}
-              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+              className="lg:hidden p-2 text-gray-300 hover:text-white transition-colors"
             >
               {mobileMenu ? '✕' : '☰'}
             </button>
           </div>
         </div>
 
-        {/* 移动端菜单 */}
-        {mobileMenu && (
-          <div className="md:hidden bg-slate-800 border-t border-white/10 py-4 px-4 space-y-1">
-            <a href="/" className="block px-4 py-2 text-white bg-white/10 rounded-lg">首页</a>
-            <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧮 数学练习卷</a>
-            <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
-            <a href="/tools/english-calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🔤 英语字帖</a>
-            <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
-            <a href="/tools/mental-math" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">⚡ 口算速练</a>
-            <a href="/tools/flashcards" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🃏 识字卡片</a>
-            <a href="/tools/writing-template" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📝 作文模板</a>
-            <a href="/resources" className="block px-4 py-2 text-amber-400 bg-amber-500/10 rounded-lg">🎁 免费资源</a>
-            <div className="border-t border-white/10 my-2"></div>
-            <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📖 使用教程</button>
-            <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); alert('链接已复制！可粘贴到微信分享给好友'); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💚 分享到微信</button>
-            <button onClick={() => { setShowDonate(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💝 赞助支持</button>
+        {/* 移动端菜单 - 全屏侧滑 */}
+        <div className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ${mobileMenu ? 'visible' : 'invisible'}`}>
+          {/* 遮罩 */}
+          <div className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${mobileMenu ? 'opacity-100' : 'opacity-0'}`} onClick={() => setMobileMenu(false)} />
+          {/* 菜单面板 */}
+          <div className={`absolute right-0 top-0 h-full w-72 bg-slate-900 border-l border-white/10 shadow-2xl transition-transform duration-300 ${mobileMenu ? 'translate-x-0' : 'translate-x-full'}`}>
+            {/* 头部 */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-sm">📚</div>
+                <span className="text-base font-bold text-white">教材工具箱</span>
+              </div>
+              <button onClick={() => setMobileMenu(false)} className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+
+            {/* 导航列表 */}
+            <div className="overflow-y-auto h-[calc(100%-60px)] py-3 px-3 space-y-1">
+              <a href="/" onClick={() => setMobileMenu(false)} className="flex items-center gap-3 px-3 py-2.5 text-sm text-white bg-white/10 rounded-xl">
+                <span className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">🏠</span>
+                首页
+              </a>
+
+              {/* 工具分组 */}
+              <div className="pt-2 pb-1 px-3">
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">学习工具</span>
+              </div>
+              {[
+                { icon: '🧮', name: '数学练习卷', desc: '一键出题', link: '/tools/math-worksheet', color: 'bg-blue-500/15' },
+                { icon: '✍️', name: '字帖生成器', desc: '田字格/米字格', link: '/tools/calligraphy', color: 'bg-emerald-500/15' },
+                { icon: '🔤', name: '英语字帖', desc: '四线三格', link: '/tools/english-calligraphy', color: 'bg-rose-500/15' },
+                { icon: '🧩', name: '数独游戏', desc: '逻辑训练', link: '/tools/sudoku', color: 'bg-orange-500/15' },
+                { icon: '⚡', name: '口算速练', desc: '计时练习', link: '/tools/mental-math', color: 'bg-yellow-500/15' },
+                { icon: '🃏', name: '识字卡片', desc: '汉字卡片', link: '/tools/flashcards', color: 'bg-purple-500/15' },
+                { icon: '📝', name: '作文模板', desc: '写作模板', link: '/tools/writing-template', color: 'bg-teal-500/15' },
+                { icon: '📝', name: '拼音注音', desc: '注音练习', link: '/tools/pinyin', color: 'bg-blue-500/15' },
+              ].map((tool) => (
+                <a key={tool.link} href={tool.link} onClick={() => setMobileMenu(false)} className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+                  <span className={`w-8 h-8 ${tool.color} rounded-lg flex items-center justify-center text-sm`}>{tool.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium">{tool.name}</div>
+                    <div className="text-xs text-gray-500">{tool.desc}</div>
+                  </div>
+                  <svg className="w-4 h-4 text-gray-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                </a>
+              ))}
+
+              {/* 资源 */}
+              <div className="pt-3 pb-1 px-3">
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">更多</span>
+              </div>
+              <a href="/resources" onClick={() => setMobileMenu(false)} className="flex items-center gap-3 px-3 py-2.5 text-sm text-amber-400 bg-amber-500/10 rounded-xl">
+                <span className="w-8 h-8 bg-amber-500/15 rounded-lg flex items-center justify-center text-sm">🎁</span>
+                <div className="font-medium">免费资源</div>
+              </a>
+              <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+                <span className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-sm">📖</span>
+                使用教程
+              </button>
+              <button onClick={() => { navigator.clipboard.writeText('https://www.skillxm.cn'); alert('链接已复制！'); setMobileMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+                <span className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-sm">🔗</span>
+                分享给朋友
+              </button>
+              <button onClick={() => { setShowDonate(true); setMobileMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+                <span className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-sm">💝</span>
+                赞助支持
+              </button>
+            </div>
           </div>
-        )}
+        </div>
       </nav>
 
       {/* ===== 轮播大图区域 ===== */}
-      <section className="pt-16">
+      <section className="pt-14">
         <div
           className="relative h-[500px] md:h-[600px] overflow-hidden"
           onMouseEnter={() => setIsPaused(true)}
