@@ -40,6 +40,15 @@ const CAROUSEL_ITEMS = [
     gradient: 'from-orange-500 via-red-500 to-pink-500',
     link: '/tools/sudoku',
   },
+  {
+    id: 5,
+    title: '口算速练',
+    subtitle: '在线计时答题',
+    description: '四则运算、难度分级、连击奖励',
+    icon: '⚡',
+    gradient: 'from-purple-500 via-violet-500 to-indigo-500',
+    link: '/tools/mental-math',
+  },
 ];
 
 // 公告数据
@@ -66,7 +75,7 @@ const TOOL_CATEGORIES = [
     tools: [
       { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '#', color: 'gray', disabled: true },
       { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '/tools/english-calligraphy', color: 'blue', disabled: false },
-      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '#', color: 'gray', disabled: true },
+      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '/tools/mental-math', color: 'purple', disabled: false },
     ],
   },
 ];
@@ -76,6 +85,7 @@ const COLOR_MAP: Record<string, string> = {
   blue: 'bg-blue-500 hover:bg-blue-600',
   emerald: 'bg-emerald-500 hover:bg-emerald-600',
   orange: 'bg-orange-500 hover:bg-orange-600',
+  purple: 'bg-purple-500 hover:bg-purple-600',
   gray: 'bg-gray-400',
 };
 
@@ -164,6 +174,9 @@ export default function HomePage() {
               <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 🧩 数独游戏
               </a>
+              <a href="/tools/mental-math" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                ⚡ 口算速练
+              </a>
               <div className="w-px h-6 bg-white/20 mx-2"></div>
               <button onClick={() => setShowTutorial(true)} className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 📖 教程
@@ -212,6 +225,7 @@ export default function HomePage() {
             <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
             <a href="/tools/english-calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🔤 英语字帖</a>
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
+            <a href="/tools/mental-math" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">⚡ 口算速练</a>
             <div className="border-t border-white/10 my-2"></div>
             <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📖 使用教程</button>
             <button onClick={() => { navigator.clipboard.writeText('https://math-worksheet.pages.dev'); alert('链接已复制！可粘贴到微信分享给好友'); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">💚 分享到微信</button>
