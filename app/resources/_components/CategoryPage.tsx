@@ -121,12 +121,13 @@ export default function CategoryPage({ categoryId }: CategoryPageProps) {
                 href={r.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-bold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg shadow-amber-500/20 group-hover:shadow-amber-500/40"
+                className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-red-600 to-rose-600 text-white text-sm font-bold rounded-xl hover:from-red-700 hover:to-rose-700 transition-all shadow-lg shadow-red-600/30 group-hover:shadow-red-600/50 ring-1 ring-red-500/30"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                 </svg>
                 {r.linkLabel}下载
+                <span className="text-[10px] font-normal opacity-80 ml-1">（需保存到网盘）</span>
               </a>
             </div>
           ))}
