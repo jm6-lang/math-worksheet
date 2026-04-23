@@ -143,6 +143,45 @@ export default function RootLayout({
         },
       },
       {
+        "@type": "SoftwareApplication",
+        name: "口算速练",
+        url: "https://www.skillxm.cn/tools/mental-math",
+        description: "在线口算计时练习，支持4个难度级别，即时反馈，适合小学生数学速算训练",
+        applicationCategory: "EducationApplication",
+        operatingSystem: "Web Browser",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "CNY",
+        },
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: "识字卡片生成器",
+        url: "https://www.skillxm.cn/tools/flashcards",
+        description: "免费在线生成识字卡片，支持自定义汉字、拼音、组词，可打印制作实体卡片",
+        applicationCategory: "EducationApplication",
+        operatingSystem: "Web Browser",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "CNY",
+        },
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: "作文模板生成器",
+        url: "https://www.skillxm.cn/tools/writing-template",
+        description: "免费在线生成作文模板，支持看图写话、日记、书信等多种格式，适合小学生写作练习",
+        applicationCategory: "EducationApplication",
+        operatingSystem: "Web Browser",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "CNY",
+        },
+      },
+      {
         "@type": "BreadcrumbList",
         itemListElement: [
           {
@@ -180,6 +219,24 @@ export default function RootLayout({
             position: 2,
             name: "数独游戏",
             item: "https://www.skillxm.cn/tools/sudoku",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "口算速练",
+            item: "https://www.skillxm.cn/tools/mental-math",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "识字卡片生成器",
+            item: "https://www.skillxm.cn/tools/flashcards",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "作文模板生成器",
+            item: "https://www.skillxm.cn/tools/writing-template",
           },
         ],
       },

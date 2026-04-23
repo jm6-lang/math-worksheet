@@ -40,13 +40,42 @@ const CAROUSEL_ITEMS = [
     gradient: 'from-orange-500 via-red-500 to-pink-500',
     link: '/tools/sudoku',
   },
+  {
+    id: 5,
+    title: '口算速练',
+    subtitle: '计时挑战极限速度',
+    description: '多难度级别，在线计时口算练习，即时反馈',
+    icon: '⚡',
+    gradient: 'from-yellow-500 via-amber-500 to-orange-500',
+    link: '/tools/mental-math',
+  },
+  {
+    id: 6,
+    title: '识字卡片',
+    subtitle: '轻松认识汉字',
+    description: '自定义汉字卡片，支持拼音组词，可打印制作',
+    icon: '🃏',
+    gradient: 'from-purple-500 via-violet-500 to-indigo-500',
+    link: '/tools/flashcards',
+  },
+  {
+    id: 7,
+    title: '作文模板',
+    subtitle: '写作不再困难',
+    description: '看图写话、日记、书信等多种模板，辅助写作练习',
+    icon: '📝',
+    gradient: 'from-teal-500 via-cyan-500 to-blue-500',
+    link: '/tools/writing-template',
+  },
 ];
 
 // 公告数据
 const ANNOUNCEMENTS = [
-  '🎉 算个题吧全新上线！支持11种题型，田字格/方格/横线格多模板',
+  '🎉 口算速练全新上线！支持4个难度级别，在线计时挑战',
+  '🆕 识字卡片上线！自定义汉字卡片，支持拼音组词，可打印',
+  '📝 作文模板生成器上线！看图写话、日记、书信等多种模板',
   '📢 字帖生成器上线！支持楷体/宋体/黑体等多种字体',
-  '🆕 数独游戏全新上线，支持4个难度级别',
+  '🧩 数独游戏全新上线，支持4个难度级别',
   '💡 小贴士：点击顶部菜单可快速访问各工具',
   '🔥 免费使用，无需注册，即开即用',
 ];
@@ -111,12 +140,9 @@ const TOOL_CATEGORIES = [
       { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '/tools/english-calligraphy', color: 'rose', disabled: false },
       { name: '数独游戏', icon: '🧩', desc: '多难度逻辑训练', link: '/tools/sudoku', color: 'orange', disabled: false },
       { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '/tools/pinyin', color: 'blue', disabled: false },
-    ],
-  },
-  {
-    category: '🎨 敬请期待',
-    tools: [
-      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '#', color: 'gray', disabled: true },
+      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '/tools/mental-math', color: 'orange', disabled: false },
+      { name: '识字卡片', icon: '🃏', desc: '汉字卡片生成', link: '/tools/flashcards', color: 'blue', disabled: false },
+      { name: '作文模板', icon: '📝', desc: '多种写作模板', link: '/tools/writing-template', color: 'emerald', disabled: false },
     ],
   },
 ];
@@ -216,6 +242,15 @@ export default function HomePage() {
               <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 🧩 数独游戏
               </a>
+              <a href="/tools/mental-math" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                ⚡ 口算速练
+              </a>
+              <a href="/tools/flashcards" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                🃏 识字卡片
+              </a>
+              <a href="/tools/writing-template" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                📝 作文模板
+              </a>
               <a href="/resources" className="px-4 py-2 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">
                 🎁 免费资源
               </a>
@@ -267,6 +302,9 @@ export default function HomePage() {
             <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
             <a href="/tools/english-calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🔤 英语字帖</a>
             <a href="/tools/sudoku" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧩 数独游戏</a>
+            <a href="/tools/mental-math" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">⚡ 口算速练</a>
+            <a href="/tools/flashcards" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🃏 识字卡片</a>
+            <a href="/tools/writing-template" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📝 作文模板</a>
             <a href="/resources" className="block px-4 py-2 text-amber-400 bg-amber-500/10 rounded-lg">🎁 免费资源</a>
             <div className="border-t border-white/10 my-2"></div>
             <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">📖 使用教程</button>
@@ -591,6 +629,45 @@ export default function HomePage() {
                   <li>点击<span className="text-yellow-400 font-bold">"笔记"</span>模式可记录候选数</li>
                   <li>点击<span className="text-blue-400 font-bold">"检查"</span>查看错误</li>
                   <li>完成后点击<span className="text-emerald-400 font-bold">"新游戏"</span>继续挑战</li>
+                </ol>
+              </div>
+
+              {/* 口算速练 */}
+              <div className="bg-white/5 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">⚡ 口算速练</h3>
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside">
+                  <li>点击首页轮播图进入<span className="text-white">"口算速练"</span></li>
+                  <li>选择难度：入门/简单/困难/专家</li>
+                  <li>设置题目数量（10/20/30/50题）</li>
+                  <li>点击<span className="text-emerald-400 font-bold">"开始挑战"</span>进入计时模式</li>
+                  <li>用数字键盘快速输入答案</li>
+                  <li>完成后查看成绩统计和错题回顾</li>
+                </ol>
+              </div>
+
+              {/* 识字卡片 */}
+              <div className="bg-white/5 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-purple-400 mb-3">🃏 识字卡片</h3>
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside">
+                  <li>点击首页轮播图进入<span className="text-white">"识字卡片"</span></li>
+                  <li>输入要学习的汉字（支持批量输入）</li>
+                  <li>或点击年级预设快速加载常用字</li>
+                  <li>选择卡片大小和样式</li>
+                  <li>点击卡片可翻转查看正反面</li>
+                  <li>点击<span className="text-blue-400 font-bold">"导出PDF"</span>打印制作实体卡片</li>
+                </ol>
+              </div>
+
+              {/* 作文模板 */}
+              <div className="bg-white/5 rounded-xl p-4">
+                <h3 className="text-lg font-bold text-teal-400 mb-3">📝 作文模板生成器</h3>
+                <ol className="space-y-2 text-gray-300 text-sm list-decimal list-inside">
+                  <li>点击首页轮播图进入<span className="text-white">"作文模板"</span></li>
+                  <li>选择作文类型：看图写话/日记/书信/读后感/议论文</li>
+                  <li>选择年级和稿纸样式</li>
+                  <li>输入标题，可开启写作提示</li>
+                  <li>实时预览作文稿纸效果</li>
+                  <li>点击<span className="text-blue-400 font-bold">"导出PDF"</span>下载打印</li>
                 </ol>
               </div>
 
