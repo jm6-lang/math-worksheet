@@ -193,11 +193,13 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-gray-400 mb-4">
             <a href="/about" className="hover:text-white transition-colors">关于我们</a>
             <span className="text-gray-600">|</span>
-            <a href="/terms" className="hover:text-white transition-colors">服务条款</a>
-            <span className="text-gray-600">|</span>
             <a href="/contact" className="hover:text-white transition-colors">联系我们</a>
             <span className="text-gray-600">|</span>
             <a href="/blog" className="hover:text-white transition-colors">教育博客</a>
+            <span className="text-gray-600">|</span>
+            <a href="/terms" className="hover:text-white transition-colors">服务条款</a>
+            <span className="text-gray-600">|</span>
+            <a href="/privacy" className="hover:text-white transition-colors">隐私政策</a>
           </div>
           <div className="text-center text-gray-500 text-sm">
             &copy; 2026 教材工具箱
