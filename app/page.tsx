@@ -164,7 +164,6 @@ export default function HomePage() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [showToolsMenu, setShowToolsMenu] = useState(false);
-  const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const announcementRef = useRef<HTMLDivElement>(null);
@@ -284,28 +283,15 @@ export default function HomePage() {
                 🎁 免费资源
               </a>
 
-              {/* 更多下拉 */}
-              <div className="relative"
-                onMouseEnter={() => setShowMoreMenu(true)}
-                onMouseLeave={() => setShowMoreMenu(false)}
-              >
-                <button className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                  ···
-                </button>
-                {showMoreMenu && (
-                  <div className="absolute right-0 top-full mt-1 bg-slate-800 border border-white/10 rounded-xl shadow-2xl p-2 min-w-[140px] z-50">
-                    <button onClick={() => { setShowTutorial(true); setShowMoreMenu(false); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span>📖</span> 使用教程
-                    </button>
-                    <button onClick={() => { setShowShare(true); setShowMoreMenu(false); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span>🔗</span> 分享
-                    </button>
-                    <button onClick={() => { setShowDonate(true); setShowMoreMenu(false); }} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span>💝</span> 赞助支持
-                    </button>
-                  </div>
-                )}
-              </div>
+              <button onClick={() => setShowTutorial(true)} className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                📖 使用教程
+              </button>
+              <button onClick={() => setShowShare(true)} className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                🔗 分享
+              </button>
+              <button onClick={() => setShowDonate(true)} className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                💝 赞助支持
+              </button>
             </div>
 
             {/* 移动端菜单按钮 */}
