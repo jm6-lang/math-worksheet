@@ -1,4 +1,4 @@
-// Post-build: copy static assets and fix dynamic route HTML files
+// Post-build: copy static assets and fix nested route HTML files
 const fs = require('fs');
 const path = require('path');
 
@@ -16,19 +16,25 @@ for (const file of files) {
   }
 }
 
-// 2. Fix dynamic route HTML files
-// Next.js static export puts dynamic route HTML at /resources/calligraphy.html
-// but Cloudflare Pages needs /resources/calligraphy/index.html
-const resourceDir = path.join(outDir, 'resources');
-if (fs.existsSync(resourceDir)) {
-  const items = fs.readdirSync(resourceDir);
+// 2. Fix nested route HTML files
+// Next.js static export creates both /resources/calligraphy.html and /resources/calligraphy/ dir
+// Cloudflare Pages matches the directory first (no index.html inside = 404)
+// Solution: copy .html content into the directory as index.html
+function fixNestedRoutes(dir) {
+  if (!fs.existsSync(dir)) return;
+  const items = fs.readdirSync(dir);
   for (const item of items) {
-    const htmlFile = path.join(resourceDir, `${item}.html`);
-    const subDir = path.join(resourceDir, item);
+    const htmlFile = path.join(dir, `${item}.html`);
+    const subDir = path.join(dir, item);
     if (fs.existsSync(htmlFile) && fs.existsSync(subDir) && fs.statSync(subDir).isDirectory()) {
       const indexFile = path.join(subDir, 'index.html');
-      fs.copyFileSync(htmlFile, indexFile);
-      console.log(`Fixed: ${item}.html -> ${item}/index.html`);
+      if (!fs.existsSync(indexFile)) {
+        fs.copyFileSync(htmlFile, indexFile);
+        console.log(`Fixed: ${path.relative(outDir, htmlFile)} -> ${path.relative(outDir, indexFile)}`);
+      }
     }
   }
 }
+
+fixNestedRoutes(path.join(outDir, 'resources'));
+fixNestedRoutes(path.join(outDir, 'tools'));

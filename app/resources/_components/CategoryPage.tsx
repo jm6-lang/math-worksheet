@@ -1,24 +1,21 @@
-import { notFound } from 'next/navigation';
-import { RESOURCE_CATEGORIES, CATEGORY_SEO } from '../data';
-import type { Metadata } from 'next';
+'use client';
 
-export function generateStaticParams() {
-  return RESOURCE_CATEGORIES.map((cat) => ({ category: cat.id }));
+import { RESOURCE_CATEGORIES } from '../data';
+
+interface CategoryPageProps {
+  categoryId: string;
 }
 
-export function generateMetadata({ params }: { params: { category: string } }): Metadata {
-  const seo = CATEGORY_SEO[params.category];
-  if (!seo) return { title: '资源未找到' };
-  return {
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords,
-  };
-}
+export default function CategoryPage({ categoryId }: CategoryPageProps) {
+  const category = RESOURCE_CATEGORIES.find((c) => c.id === categoryId);
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
-  const category = RESOURCE_CATEGORIES.find((c) => c.id === params.category);
-  if (!category) notFound();
+  if (!category) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <p className="text-gray-400 text-lg">分类未找到</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
