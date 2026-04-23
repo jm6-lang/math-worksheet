@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import ToolGuide from '@/components/ToolGuide';
+import { toolGuides } from '@/lib/toolGuides';
 
 // ===== 类型定义 =====
 type EssayType = 'picture' | 'diary' | 'letter' | 'reading' | 'argumentative';
@@ -634,6 +636,11 @@ export default function WritingTemplatePage() {
           <p>📝 作文模板生成器 - 教材工具箱 | 免费在线生成作文稿纸模板</p>
         </div>
       </footer>
+
+      {/* 使用指南 */}
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <ToolGuide {...toolGuides['writing-template']} />
+      </div>
     </div>
   );
 }

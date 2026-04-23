@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import ToolGuide from '@/components/ToolGuide';
+import { toolGuides } from '@/lib/toolGuides';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 type CellValue = number | null;
@@ -356,6 +358,11 @@ export default function SudokuPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* 使用指南 */}
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <ToolGuide {...toolGuides['sudoku']} />
       </div>
     </div>
   );

@@ -38,3 +38,4 @@ function fixNestedRoutes(dir) {
 
 fixNestedRoutes(path.join(outDir, 'resources'));
 fixNestedRoutes(path.join(outDir, 'tools'));
+fixNestedRoutes(path.join(outDir, 'blog'));

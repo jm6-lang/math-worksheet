@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import ToolGuide from '@/components/ToolGuide';
+import { toolGuides } from '@/lib/toolGuides';
 
 // ===== 类型定义 =====
 interface CharItem {
@@ -750,6 +752,11 @@ export default function FlashcardsPage() {
           <p className="mt-1">© 2024 教材工具箱</p>
         </div>
       </footer>
+
+      {/* 使用指南 */}
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <ToolGuide {...toolGuides['flashcards']} />
+      </div>
     </div>
   );
 }

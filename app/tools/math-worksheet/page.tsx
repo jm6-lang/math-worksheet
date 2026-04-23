@@ -16,6 +16,8 @@ import WorksheetPreview, {
   WorksheetMode,
 } from '@/components/WorksheetPreview';
 import { exportToPDF } from '@/lib/pdfExport';
+import ToolGuide from '@/components/ToolGuide';
+import { toolGuides } from '@/lib/toolGuides';
 
 // 快捷配置预设
 const QUICK_PRESETS = [
@@ -622,6 +624,11 @@ export default function MathWorksheetPage() {
       <footer className="print:hidden border-t border-white/10 py-8 px-4 text-center text-gray-500 text-sm">
         <p>© 2026 算个题吧 · 免费好用的数学练习卷生成器</p>
       </footer>
+
+      {/* 使用指南 */}
+      <div className="print:hidden max-w-4xl mx-auto px-4 py-12">
+        <ToolGuide {...toolGuides['math-worksheet']} />
+      </div>
 
       {/* 打印样式 */}
       <style jsx global>{`

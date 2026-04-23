@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 import { articles, categories } from './data';
 import type { Category } from './data';
-import BlogPost from './_components/BlogPost';
 
 const categoryColors: Record<string, string> = {
   '数学学习': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
@@ -18,75 +18,11 @@ const categoryColors: Record<string, string> = {
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState<Category>('全部');
-  const [activeArticleId, setActiveArticleId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        setActiveArticleId(hash);
-      } else {
-        setActiveArticleId(null);
-      }
-    };
-
-    handleHash();
-    window.addEventListener('hashchange', handleHash);
-    return () => window.removeEventListener('hashchange', handleHash);
-  }, []);
 
   const filteredArticles = activeCategory === '全部'
     ? articles
     : articles.filter(a => a.category === activeCategory);
 
-  const handleArticleClick = (id: string) => {
-    window.location.hash = id;
-    setActiveArticleId(id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBack = () => {
-    history.pushState(null, '', '/blog');
-    setActiveArticleId(null);
-  };
-
-  // If an article is active, show the article detail
-  if (activeArticleId) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-14">
-              <div className="flex items-center gap-2.5 shrink-0">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-base shadow-lg shadow-blue-500/20">
-                  📚
-                </div>
-                <a href="/" className="text-lg font-bold text-white hover:opacity-80 transition-opacity">
-                  教材工具箱
-                </a>
-              </div>
-              <div className="hidden lg:flex items-center gap-1">
-                <a href="/" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
-                <a href="/blog" onClick={(e) => { e.preventDefault(); handleBack(); }} className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">教育博客</a>
-                <a href="/about" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">关于我们</a>
-                <a href="/contact" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">联系我们</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <main className="pt-14">
-          <BlogPost articleId={activeArticleId} onBack={handleBack} />
-        </main>
-        <footer className="border-t border-white/10 py-8 px-4 mt-8">
-          <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm">
-            &copy; 2026 教材工具箱
-          </div>
-        </footer>
-      </div>
-    );
-  }
-
-  // Blog list view
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* Navigation */}
@@ -104,6 +40,7 @@ export default function BlogPage() {
             <div className="hidden lg:flex items-center gap-1">
               <a href="/" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
               <a href="/resources" className="px-3 py-1.5 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">免费资源</a>
+              <a href="/blog" className="px-3 py-1.5 text-sm text-white bg-white/10 rounded-lg font-medium">教育博客</a>
               <a href="/about" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">关于我们</a>
               <a href="/contact" className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">联系我们</a>
             </div>
@@ -149,9 +86,9 @@ export default function BlogPage() {
           {/* Article Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredArticles.map((article) => (
-              <button
+              <Link
                 key={article.id}
-                onClick={() => handleArticleClick(article.id)}
+                href={`/blog/${article.id}`}
                 className="text-left bg-slate-800/50 border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-slate-700/50 transition-all group"
               >
                 {/* Category & Read Time */}
@@ -179,7 +116,7 @@ export default function BlogPage() {
                     阅读全文 &rarr;
                   </span>
                 </div>
-              </button>
+              </Link>
             ))}
           </div>
 

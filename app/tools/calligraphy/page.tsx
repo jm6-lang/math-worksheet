@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import ToolGuide from '@/components/ToolGuide';
+import { toolGuides } from '@/lib/toolGuides';
 
 type GridType = 'tian' | 'mi' | 'fang' | 'hengxian';
 
@@ -456,6 +458,11 @@ export default function CalligraphyPage() {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* 使用指南 */}
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <ToolGuide {...toolGuides['calligraphy']} />
       </div>
 
       {/* Print styles */}

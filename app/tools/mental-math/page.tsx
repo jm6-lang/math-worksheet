@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import ToolGuide from '@/components/ToolGuide';
+import { toolGuides } from '@/lib/toolGuides';
 
 // 难度配置
 const DIFFICULTY_CONFIG = {
@@ -579,6 +581,11 @@ export default function MentalMathPage() {
           <p>⚡ 口算速练 - 锻炼口算速度，提升计算能力</p>
         </div>
       </footer>
+
+      {/* 使用指南 */}
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <ToolGuide {...toolGuides['mental-math']} />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,34 @@
+name: 自动发布博客文章
+on:
+  schedule:
+    - cron: '0 2 * * 1,4'  # 每周一和周四 UTC 2:00（北京时间 10:00）
+  workflow_dispatch:
+    inputs:
+      count:
+        description: '生成文章数量'
+        required: false
+        default: '2'
+        type: choice
+        options:
+          - '1'
+          - '2'
+          - '3'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: node scripts/generate-article.cjs ${{ github.event.inputs.count || '2' }}
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add app/blog/data.ts public/sitemap.xml
+          git diff --cached --quiet || (git commit -m "📝 自动发布新博客文章 $(date +%Y-%m-%d)" && git push)
