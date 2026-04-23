@@ -1,7 +1,2 @@
-# Disable SPA fallback - serve actual HTML files
-/tools/mental-math  /tools/mental-math.html  200
-/tools/mental-math/  /tools/mental-math.html  200
-/tools/flashcards  /tools/flashcards.html  200
-/tools/flashcards/  /tools/flashcards.html  200
-/tools/writing-template  /tools/writing-template.html  200
-/tools/writing-template/  /tools/writing-template.html  200
+# Cloudflare Pages - no custom redirects needed
+# Next.js static export handles all routing automatically via /tools/*/index.html
