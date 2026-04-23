@@ -1,0 +1,3 @@
+# Disable SPA fallback - serve actual HTML files
+/tools/mental-math  /tools/mental-math.html  200
+/tools/mental-math/  /tools/mental-math.html  200
