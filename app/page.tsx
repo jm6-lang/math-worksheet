@@ -631,11 +631,11 @@ export default function HomePage() {
             <span className="text-gray-600">|</span>
             <a href="/contact" className="hover:text-white transition-colors">联系我们</a>
             <span className="text-gray-600">|</span>
-            <a href="/terms" className="hover:text-white transition-colors">服务条款</a>
-            <span className="text-gray-600">|</span>
             <a href="/blog" className="hover:text-white transition-colors">教育博客</a>
             <span className="text-gray-600">|</span>
-            <a href="/resources" className="hover:text-white transition-colors">免费资源</a>
+            <a href="/terms" className="hover:text-white transition-colors">服务条款</a>
+            <span className="text-gray-600">|</span>
+            <a href="/privacy" className="hover:text-white transition-colors">隐私政策</a>
           </div>
           {/* 友情链接 */}
           <div className="flex flex-wrap justify-center items-center gap-3 text-sm text-gray-500">
