@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: CATEGORY_SEO.junior.title,
   description: CATEGORY_SEO.junior.description,
   keywords: CATEGORY_SEO.junior.keywords,
+  alternates: {
+    canonical: 'https://www.skillxm.cn/resources/junior',
+  },
 };
 
 export default function Page() {

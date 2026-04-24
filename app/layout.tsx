@@ -80,8 +80,16 @@ export default function RootLayout({
         inLanguage: "zh-CN",
         publisher: {
           "@type": "Organization",
-          name: "教材工具箱",
-          url: "https://www.skillxm.cn",
+          "name": "教材工具箱",
+          "url": "https://www.skillxm.cn",
+          "logo": "https://www.skillxm.cn/og-image.jpg",
+          "description": "免费在线教育工具集合，为小学生和家长提供数学练习卷、字帖、数独等8款实用工具",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "644428571@qq.com",
+            "contactType": "customer support",
+            "availableLanguage": "Chinese"
+          }
         },
       },
       {
@@ -248,6 +256,59 @@ export default function RootLayout({
           { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
           { "@type": "ListItem", position: 2, name: "作文模板生成器", item: "https://www.skillxm.cn/tools/writing-template" },
         ],
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "教材工具箱是免费的吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "是的，教材工具箱所有功能完全免费使用，无需注册账号，不收取任何费用。我们承诺永久免费，让每个孩子都能享受到优质的教育工具。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "生成的练习卷和字帖可以打印吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "可以。所有工具都支持一键导出PDF文件，您可以直接打印使用。PDF文件格式规范，打印效果清晰，适合A4纸打印。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "支持哪些年级？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "主要面向小学1-6年级学生，部分工具（如数独游戏、作文模板）也适合初中生和成年人使用。数学练习卷支持按年级选择题型和难度。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "需要注册账号吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不需要。所有工具打开即用，无需注册、登录或提供任何个人信息。您的数据完全在浏览器本地处理，不会上传到服务器。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "题目会重复吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不会。每次生成的练习卷都是随机出题，同一配置下每次结果都不同，避免机械重复，真正达到练习效果。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "手机上能用吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "可以。网站采用响应式设计，手机、平板、电脑都能正常使用。不过在手机上生成PDF后，建议发送到电脑或连接打印机进行打印。"
+            }
+          }
+        ]
       },
     ],
   };

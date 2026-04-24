@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: CATEGORY_SEO.history.title,
   description: CATEGORY_SEO.history.description,
   keywords: CATEGORY_SEO.history.keywords,
+  alternates: {
+    canonical: 'https://www.skillxm.cn/resources/history',
+  },
 };
 
 export default function Page() {

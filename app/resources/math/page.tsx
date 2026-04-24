@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: CATEGORY_SEO.math.title,
   description: CATEGORY_SEO.math.description,
   keywords: CATEGORY_SEO.math.keywords,
+  alternates: {
+    canonical: 'https://www.skillxm.cn/resources/math',
+  },
 };
 
 export default function Page() {

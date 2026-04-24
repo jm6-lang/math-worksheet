@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: CATEGORY_SEO.senior.title,
   description: CATEGORY_SEO.senior.description,
   keywords: CATEGORY_SEO.senior.keywords,
+  alternates: {
+    canonical: 'https://www.skillxm.cn/resources/senior',
+  },
 };
 
 export default function Page() {

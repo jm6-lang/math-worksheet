@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: CATEGORY_SEO.textbook.title,
   description: CATEGORY_SEO.textbook.description,
   keywords: CATEGORY_SEO.textbook.keywords,
+  alternates: {
+    canonical: 'https://www.skillxm.cn/resources/textbook',
+  },
 };
 
 export default function Page() {

@@ -14,6 +14,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${article.title} - 教材工具箱`,
     description: article.description,
+    alternates: {
+      canonical: `https://www.skillxm.cn/blog/${slug}`,
+    },
     openGraph: {
       title: article.title,
       description: article.description,
@@ -27,5 +30,41 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const article = articles.find(a => a.id === slug);
   if (!article) notFound();
-  return <BlogPostPage slug={slug} />;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": article.date,
+    "dateModified": article.date,
+    "author": {
+      "@type": "Organization",
+      "name": "教材工具箱",
+      "url": "https://www.skillxm.cn"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "教材工具箱",
+      "url": "https://www.skillxm.cn",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.skillxm.cn/og-image.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.skillxm.cn/blog/${slug}`
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <BlogPostPage slug={slug} />
+    </>
+  );
 }

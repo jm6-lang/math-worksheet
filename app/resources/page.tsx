@@ -4,6 +4,9 @@ export const metadata = {
   title: '免费资源中心 - 教材工具箱 | 小学初中高中学习资料免费下载',
   description: '免费下载小学初中高中语文、数学、英语学习资料，包括字帖、试卷、阅读理解、自然拼读、教辅电子版、小语种、历史故事等优质学习资源，持续更新。',
   keywords: '小学学习资料,初中学习资料,高中学习资料,免费下载,字帖,试卷,阅读理解,自然拼读,教辅,电子课本,小语种,历史故事,PDF打印',
+  alternates: {
+    canonical: 'https://www.skillxm.cn/resources',
+  },
 };
 
 export default function ResourcesPage() {
