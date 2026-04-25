@@ -281,12 +281,12 @@ export default function RootLayout({
           {
             "@type": "HowToStep",
             "name": "点击生成",
-            "text": "点击"立即出题"按钮，系统会随机生成不重复的数学练习卷"
+            "text": "点击「立即出题」按钮，系统会随机生成不重复的数学练习卷"
           },
           {
             "@type": "HowToStep",
             "name": "预览并导出PDF",
-            "text": "预览生成的练习卷，确认无误后点击"下载PDF"或"直接打印"按钮"
+            "text": "预览生成的练习卷，确认无误后点击「下载PDF」或「直接打印」按钮"
           }
         ]
       },
