@@ -263,6 +263,13 @@ export default function FlashcardsPage() {
           logging: false,
         });
 
+        // 添加网站水印
+        const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+        const fCtx = canvas.getContext('2d');
+        if (fCtx) {
+          drawWatermarkOnCanvas(fCtx, canvas.width, canvas.height);
+        }
+
         const imgData = canvas.toDataURL('image/png');
         const imgWidth = pageWidth;
         const imgHeight = (canvas.height * pageWidth) / canvas.width;
@@ -753,23 +760,93 @@ export default function FlashcardsPage() {
         </div>
       </footer>
 
-      {/* 工具介绍（SEO） */}
-      <section className="max-w-7xl mx-auto px-4 pb-8">
-        <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
-          <h2 className="text-xl font-bold text-white mb-4">识字卡片生成器 - 功能介绍与使用指南</h2>
+      {/* ===== 内容三件套 ===== */}
+      <div className="print:hidden max-w-7xl mx-auto px-4 pb-8 space-y-8">
+
+        {/* 使用指南 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>📖</span> 使用指南
+          </h2>
           <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
             <p>
-              识字卡片生成器是一款免费的在线汉字识字卡片制作工具，专为学前班到小学低年级的识字教学设计。用户只需输入需要学习的汉字，系统即可自动生成正反双面的识字卡片：正面显示大号汉字和拼音标注，反面显示常用组词和笔画数信息。内置一年级、二年级、三年级三个年级的常用汉字预设，方便家长和教师快速选择适合孩子学习阶段的汉字内容，也支持自定义输入任意汉字。
-            </p>
-            <p>
-              在卡片定制方面，工具提供大、中、小三种卡片尺寸规格，分别对应每页2张、4张、6张的排版密度。支持楷体、宋体、黑体三种字体选择，以及实线、虚线、无边框三种边框样式，满足不同审美和教学需求。生成的卡片支持正反面分别导出为PDF文件，方便进行双面打印。打印后沿裁切线剪裁即可得到实体识字卡片，非常适合课堂教学展示、家庭亲子互动和自主复习使用。在线预览支持点击翻转效果，方便在生成前确认卡片内容。
-            </p>
-            <p>
-              <strong className="text-gray-300">使用场景与技巧：</strong>学前识字启蒙、小学语文生字预习和复习、识字游戏互动、班级识字墙展示等。建议每次学习5-10个新字，配合间隔重复法（第1天、第3天、第7天、第15天复习）定期巩固，记忆效果最佳。使用卡片时可以先看正面认读汉字，再翻转看反面的拼音和组词进行验证，形成"看字-读音-组词"的完整认知链条。
+              识字卡片生成器可以快速制作个性化的汉字识字卡片。输入想要学习的汉字，系统会自动生成正面显示汉字、背面显示拼音和组词的双面卡片。支持自定义卡片大小、字体和排版样式，生成的卡片可以导出PDF格式，打印后沿裁切线剪开即可使用。建议每次学习5-10个新字，配合间隔重复法（第1天、第3天、第7天、第14天、第30天复习）进行长期记忆巩固。卡片背面留有空白区域，可以让孩子自己写拼音和组词，增强学习效果。
             </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 适用场景 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>🎯</span> 适用场景
+          </h2>
+          <ul className="space-y-3 text-gray-400 text-sm md:text-base">
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">学前识字启蒙：</strong>大班开始，每天认5个新字</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">一年级生字复习：</strong>配合语文课本的生字表制作卡片</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">间隔重复记忆：</strong>用卡片配合艾宾浩斯遗忘曲线进行高效复习</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">亲子互动：</strong>家长出示卡片正面，孩子认读并组词</span>
+            </li>
+          </ul>
+        </section>
+
+        {/* 常见问题FAQ */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>❓</span> 常见问题
+          </h2>
+          <div className="space-y-2">
+            <details className="group border border-white/10 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                <span>识字卡片和字帖有什么区别？</span>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">识字卡片侧重于"认字"，通过反复认读建立汉字的形音义联系；字帖侧重于"写字"，通过反复书写掌握汉字的笔画结构。建议先认后写，用卡片认字，用字帖练字。</div>
+            </details>
+            <details className="group border border-white/10 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                <span>多少张卡片比较合适？</span>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">建议每次制作10-20张，分批学习。一年级上学期识字量目标是300字左右，可以按每周20-30个新字的节奏推进。</div>
+            </details>
+          </div>
+        </section>
+
+        {/* 相关工具推荐 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>🔗</span> 相关工具推荐
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="/tools/pinyin" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">📚</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">拼音学习工具</div>
+              <div className="text-xs text-gray-500 mt-1">声母韵母练习</div>
+            </a>
+            <a href="/tools/calligraphy" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">✍️</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">字帖生成器</div>
+              <div className="text-xs text-gray-500 mt-1">田字格米字格练字</div>
+            </a>
+            <a href="/blog/识字方法与识字量提升" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">📖</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">识字方法文章</div>
+              <div className="text-xs text-gray-500 mt-1">识字量提升方法</div>
+            </a>
+          </div>
+        </section>
+      </div>
 
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">

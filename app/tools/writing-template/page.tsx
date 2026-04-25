@@ -180,7 +180,15 @@ export default function WritingTemplatePage() {
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
       const imgY = 0;
 
-      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+      // 添加网站水印
+      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      const wCtx = canvas.getContext('2d');
+      if (wCtx) {
+        drawWatermarkOnCanvas(wCtx, canvas.width, canvas.height);
+      }
+      const finalImgData = canvas.toDataURL('image/png');
+
+      pdf.addImage(finalImgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
       pdf.save(`${title || currentEssayConfig.label}_作文模板.pdf`);
     } catch (error) {
       console.error('PDF export failed:', error);
@@ -313,7 +321,7 @@ export default function WritingTemplatePage() {
           <div className="text-center mb-8">
             <div className="text-5xl mb-3">📝</div>
             <h1 className="text-3xl md:text-4xl font-black text-white mb-2">作文模板生成器</h1>
-            <p className="text-gray-400">选择类型，自定义配置，生成专属作文稿纸</p>
+            <p className="text-gray-400">看图写话/日记/作文格纸 · PDF打印</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -637,23 +645,93 @@ export default function WritingTemplatePage() {
         </div>
       </footer>
 
-      {/* 工具介绍（SEO） */}
-      <section className="max-w-7xl mx-auto px-4 pb-8">
-        <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
-          <h2 className="text-xl font-bold text-white mb-4">作文模板生成器 - 功能介绍与使用指南</h2>
+      {/* ===== 内容三件套 ===== */}
+      <div className="print:hidden max-w-7xl mx-auto px-4 pb-8 space-y-8">
+
+        {/* 使用指南 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>📖</span> 使用指南
+          </h2>
           <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
             <p>
-              作文模板生成器是一款专为小学1-6年级学生设计的作文稿纸在线生成工具，提供看图写话、日记、书信、读后感、议论文5种常见作文类型模板。每种类型都配有针对性的写作提示和开头引导语，帮助学生快速理清写作思路。例如，看图写话模板会引导学生从"观察图片-描述内容-展开想象"三个层次进行写作，书信模板则自动生成标准的称呼、此致敬礼、署名日期等格式要素。
-            </p>
-            <p>
-              在稿纸样式方面，工具提供方格稿纸、横线稿纸、空白纸三种格式。方格稿纸是最常用的小学作文书写格式，每个方格对应一个汉字，帮助学生控制字数和书写工整度；横线稿纸适合高年级学生进行流畅的段落书写；空白纸则给有更高自由度需求的学生使用。系统根据年级自动推荐合适的字数范围（低年级100-200字、中年级200-400字、高年级400-600字），并据此调整稿纸的行列数量。日记模板支持自定义日期、星期和天气信息，书信模板提供多种常用称呼选项。生成的模板支持PDF格式导出，可直接打印使用。
-            </p>
-            <p>
-              <strong className="text-gray-300">使用场景：</strong>日常写作练习、周末日记、读书笔记、语文课堂作文训练、假期作文作业等。建议孩子养成每天写日记的习惯，从低年级的几句话开始，逐步过渡到完整的段落和文章。写作时先列提纲再动笔，注意段落分明、语句通顺，善用学过的好词好句。坚持练习，写作能力会得到显著提升。
+              作文模板生成器提供多种小学作文格纸模板，包括方格稿纸（适合一、二年级看图写话）、横线稿纸（适合三至六年级作文写作）、拼音稿纸（适合一年级拼音写话）和作文格子纸（标准300格/400格/500格作文纸）。可以自定义稿纸的行列数、页面布局和页眉页脚信息（如班级、姓名、日期、题目等）。生成的模板支持PDF格式导出，A4纸打印效果规范，可以直接用于日常写作练习和作文考试训练。建议孩子养成每天写日记的习惯，从一年级的几句话开始，逐步过渡到完整的段落和文章。
             </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 适用场景 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>🎯</span> 适用场景
+          </h2>
+          <ul className="space-y-3 text-gray-400 text-sm md:text-base">
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">看图写话训练：</strong>一、二年级使用方格稿纸，配合图片进行写话练习</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">日常日记写作：</strong>每天用10-15分钟写日记，培养写作习惯</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">作文考试模拟：</strong>使用标准作文格子纸进行限时写作训练</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">教师布置作业：</strong>批量生成带班级姓名的统一作文稿纸</span>
+            </li>
+          </ul>
+        </section>
+
+        {/* 常见问题FAQ */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>❓</span> 常见问题
+          </h2>
+          <div className="space-y-2">
+            <details className="group border border-white/10 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                <span>一年级应该用哪种稿纸？</span>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">一年级上学期建议用拼音稿纸（四线三格+方格），拼音和汉字混合书写；一年级下学期可以过渡到方格稿纸，每个格子写一个字，帮助控制字形大小。</div>
+            </details>
+            <details className="group border border-white/10 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                <span>作文格子纸的格数怎么选？</span>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">一年级看图写话用100-200格，二年级用200-300格，三年级用300格，四年级用400格，五六年级用400-500格。</div>
+            </details>
+          </div>
+        </section>
+
+        {/* 相关工具推荐 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>🔗</span> 相关工具推荐
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="/tools/calligraphy" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">✍️</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">字帖生成器</div>
+              <div className="text-xs text-gray-500 mt-1">田字格米字格练字</div>
+            </a>
+            <a href="/blog/看图写话训练方法" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">🖼️</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">看图写话方法</div>
+              <div className="text-xs text-gray-500 mt-1">训练方法指导</div>
+            </a>
+            <a href="/blog/三年级作文入门指导" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">📖</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">三年级作文指导</div>
+              <div className="text-xs text-gray-500 mt-1">作文入门方法</div>
+            </a>
+          </div>
+        </section>
+      </div>
 
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">

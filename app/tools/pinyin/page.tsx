@@ -617,6 +617,14 @@ export default function PinyinPage() {
       el.style.background = '#ffffff';
       const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false });
       el.style.background = origBg;
+
+      // 添加网站水印
+      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      const pCtx = canvas.getContext('2d');
+      if (pCtx) {
+        drawWatermarkOnCanvas(pCtx, canvas.width, canvas.height);
+      }
+
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
       const pw = pdf.internal.pageSize.getWidth();
@@ -657,8 +665,8 @@ export default function PinyinPage() {
         {/* 标题 */}
         <div className="text-center mb-8">
           <div className="text-5xl mb-3">📝</div>
-          <h1 className="text-3xl md:text-4xl font-black text-white mb-2">拼音注音练习</h1>
-          <p className="text-gray-400">输入汉字，自动标注拼音，支持多种练习模式</p>
+          <h1 className="text-3xl md:text-4xl font-black text-white mb-2">拼音学习工具</h1>
+          <p className="text-gray-400">声母韵母 · 拼音注音 · 四线三格打印</p>
         </div>
 
         {/* 控制面板 */}
@@ -855,21 +863,93 @@ export default function PinyinPage() {
           </a>
         </div>
 
-        {/* 工具介绍（SEO） */}
-        <section className="mt-8 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-6">
-          <h2 className="text-lg font-bold text-white mb-3">拼音注音练习 - 功能介绍与使用指南</h2>
-          <div className="text-gray-400 leading-relaxed space-y-3 text-sm">
-            <p>
-              拼音注音练习工具是一款专为小学一年级学生设计的拼音学习辅助工具，内置530多个常用汉字的拼音词库，支持声母、韵母、整体认读音节的全面练习。输入任意汉字后，系统会自动进行智能分词并标注正确的拼音，声调使用不同颜色区分（一声红色、二声橙色、三声绿色、四声蓝色），帮助学生直观感知声调变化，加深对拼音规则的理解和记忆。
-            </p>
-            <p>
-              工具提供4种练习模式：学习模式将汉字与拼音对照展示，适合初学阶段认读记忆；练习模式只显示汉字，学生需要在横线上填写对应的拼音，支持显示/隐藏答案功能方便自查；四线三格模式提供标准拼音书写格，适合拼音书写规范练习；横线拼音模式生成横线格式的练习卷，适合课堂测验使用。字号支持小、中、大三档调节，生成的练习卷支持PDF格式导出，可直接打印使用。
-            </p>
-            <p>
-              <strong className="text-gray-300">使用场景：</strong>一年级拼音新课巩固、学前拼音启蒙、拼音单元复习测试、日常拼音朗读练习等。建议学生在学完拼音基础后，每天用10分钟进行拼音注音练习，先从简单的单字开始，逐步过渡到词语和短句。通过反复练习，帮助学生熟练掌握声母韵母的拼读规则和声调标注方法，为后续的识字阅读打下坚实基础。
-            </p>
-          </div>
-        </section>
+        {/* ===== 内容三件套 ===== */}
+        <div className="print:hidden mt-8 space-y-8">
+
+          {/* 使用指南 */}
+          <section className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-6">
+            <h2 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <span>📖</span> 使用指南
+            </h2>
+            <div className="text-gray-400 leading-relaxed space-y-3 text-sm">
+              <p>
+                拼音学习工具是专为小学一年级学生设计的拼音练习辅助工具。支持声母（23个）、韵母（24个）和整体认读音节（16个）的分类练习，可以给任意汉字标注正确的拼音声调。提供四线三格拼音书写模板，帮助学生掌握拼音字母的标准书写格式。工具还支持多音字识别和声调标注功能，生成的拼音练习内容可以导出PDF打印，方便日常复习使用。建议一年级学生在学完拼音基础后，每天用10分钟进行拼音注音练习，巩固声母、韵母和声调的组合规则。
+              </p>
+            </div>
+          </section>
+
+          {/* 适用场景 */}
+          <section className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-6">
+            <h2 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <span>🎯</span> 适用场景
+            </h2>
+            <ul className="space-y-3 text-gray-400 text-sm">
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                <span><strong className="text-gray-300">拼音入门：</strong>学完声母韵母后，用工具生成练习巩固记忆</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                <span><strong className="text-gray-300">拼音复习：</strong>期中期末考试前，生成专项拼音练习卷</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                <span><strong className="text-gray-300">多音字训练：</strong>针对容易读错的多音字进行专项练习</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                <span><strong className="text-gray-300">幼小衔接：</strong>大班下学期开始接触拼音，为一年级做准备</span>
+              </li>
+            </ul>
+          </section>
+
+          {/* 常见问题FAQ */}
+          <section className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-6">
+            <h2 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <span>❓</span> 常见问题
+            </h2>
+            <div className="space-y-2">
+              <details className="group border border-white/10 rounded-lg">
+                <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium text-sm">
+                  <span>拼音学习工具支持哪些功能？</span>
+                  <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                </summary>
+                <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">支持声母、韵母、整体认读音节的分类练习，汉字拼音标注，四线三格拼音书写模板生成，以及PDF导出打印功能。</div>
+              </details>
+              <details className="group border border-white/10 rounded-lg">
+                <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium text-sm">
+                  <span>孩子拼音学不会怎么办？</span>
+                  <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                </summary>
+                <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">拼音学习的关键是多读多练。建议每天10分钟大声朗读拼音，配合拼音卡片进行认读练习。b/d、p/q等易混淆的声母需要重点反复练习。</div>
+              </details>
+            </div>
+          </section>
+
+          {/* 相关工具推荐 */}
+          <section className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-6">
+            <h2 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <span>🔗</span> 相关工具推荐
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <a href="/tools/flashcards" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                <div className="text-2xl mb-2">🃏</div>
+                <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">识字卡片生成器</div>
+                <div className="text-xs text-gray-500 mt-1">自定义汉字卡片</div>
+              </a>
+              <a href="/tools/calligraphy" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                <div className="text-2xl mb-2">✍️</div>
+                <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">字帖生成器</div>
+                <div className="text-xs text-gray-500 mt-1">田字格米字格练字</div>
+              </a>
+              <a href="/resources/chinese" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                <div className="text-2xl mb-2">📚</div>
+                <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">拼音学习资源</div>
+                <div className="text-xs text-gray-500 mt-1">语文学习资料</div>
+              </a>
+            </div>
+          </section>
+        </div>
 
         {/* 使用指南 */}
         <div className="max-w-4xl mx-auto px-4 py-12">

@@ -163,7 +163,16 @@ export default function CalligraphyPage() {
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const pw = pdf.internal.pageSize.getWidth();
       const ph = pdf.internal.pageSize.getHeight();
-      pdf.addImage(imgData, 'PNG', 0, 0, pw, ph);
+
+      // 添加网站水印
+      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      const wCtx = (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).getContext('2d');
+      if (wCtx) {
+        drawWatermarkOnCanvas(wCtx, (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).width, (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).height);
+      }
+      const finalImgData = (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).toDataURL('image/png');
+
+      pdf.addImage(finalImgData, 'PNG', 0, 0, pw, ph);
       pdf.save('字帖.pdf');
     } catch (e) {
       console.error(e);
@@ -307,8 +316,8 @@ export default function CalligraphyPage() {
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">字帖生成器</h1>
-            <p className="text-gray-500 text-sm">输入汉字，一键生成田字格/米字格练习纸 · 支持多种字体 · PDF下载即印即用</p>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">免费字帖生成器</h1>
+            <p className="text-gray-500 text-sm">田字格/米字格/楷书行楷 · PDF下载打印</p>
           </div>
 
           {/* Controls Card */}
@@ -460,23 +469,100 @@ export default function CalligraphyPage() {
         </div>
       </div>
 
-      {/* 工具介绍（SEO） */}
-      <section className="max-w-4xl mx-auto px-4 pb-8">
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">字帖生成器 - 功能介绍与使用指南</h2>
+      {/* ===== 内容三件套 ===== */}
+      <div className="print:hidden max-w-4xl mx-auto px-4 pb-8 space-y-8">
+
+        {/* 使用指南 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>📖</span> 使用指南
+          </h2>
           <div className="text-gray-600 leading-relaxed space-y-3 text-sm md:text-base">
             <p>
-              字帖生成器是一款免费的在线汉字练字工具，支持楷体、行楷、宋体、黑体、仿宋、隶书、幼圆、彩云、舒体、姚体、新魏、琥珀等12种字体风格，适合幼儿园到成人各个阶段的书写练习需求。用户可以自定义练字内容，输入任意汉字、词语或句子，系统自动生成规范的字帖模板，真正做到"想练什么字就练什么字"。相比传统购买的字帖，在线生成字帖更加灵活，能够根据孩子的学习进度随时调整练习内容。
-            </p>
-            <p>
-              在格子样式方面，本工具提供田字格、米字格、方格、横线格4种常见练字格式。田字格和米字格适合初学者掌握汉字的结构比例和笔画位置，方格适合有一定基础的学生进行自由书写练习，横线格则适合词语和句子的连贯书写训练。系统支持大格、中大、中格、小格4种格子尺寸，以及3到15行的练习行数调节，并可选择是否显示首行范字作为书写参考。生成的字帖支持PDF格式下载和直接打印，A4纸输出效果清晰规范。
-            </p>
-            <p>
-              <strong className="text-gray-800">使用场景与技巧：</strong>小学生日常练字、学前班汉字启蒙、书法兴趣班辅助练习、成人书法入门等。建议小学生每天坚持15-20分钟的练字练习，从楷书基础笔画开始，逐步过渡到行楷。练习时注意坐姿端正、握笔正确，先观察范字的结构特点再下笔，一笔一画认真书写，养成良好的书写习惯。
+              字帖生成器支持楷书、行楷、隶书等12种字体风格，适合幼儿园到成人各个阶段的书写练习。在输入框中输入想要练习的汉字、词语或句子，选择字体、字号和格子样式后，系统会自动生成规范的字帖模板。提供田字格、米字格、回宫格、方格四种格子样式。田字格适合低年级基础笔画练习，米字格适合结构定位训练，回宫格适合间架结构精细调整。生成的字帖支持PDF格式下载，A4纸打印效果清晰，每个字都有规范的笔画顺序参考。
             </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 适用场景 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>🎯</span> 适用场景
+          </h2>
+          <ul className="space-y-3 text-gray-600 text-sm md:text-base">
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">幼儿控笔训练：</strong>打印大号田字格，练习基本笔画和简单汉字</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">小学生日常练字：</strong>每天15分钟，从楷书基础笔画过渡到常用字</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">成人书法入门：</strong>选择行楷字体，练习连笔和行书结构</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">教师布置作业：</strong>批量生成全班统一的练字作业</span>
+            </li>
+          </ul>
+        </section>
+
+        {/* 常见问题FAQ */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>❓</span> 常见问题
+          </h2>
+          <div className="space-y-2">
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium">
+                <span>支持哪些字体？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">目前支持楷书、行楷、隶书等12种字体。小学生建议从楷书开始练习，打好基础后再尝试行楷。</div>
+            </details>
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium">
+                <span>格子样式怎么选？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">一年级建议用田字格，帮助定位笔画起止点；二年级以上可以用米字格，更精细地控制汉字结构；三年级以上可以尝试方格或空白格，培养独立书写能力。</div>
+            </details>
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium">
+                <span>可以自定义练字内容吗？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">可以。输入任意汉字、词语、古诗或句子都可以生成对应的字帖。建议配合学校语文课本的生字表来练习。</div>
+            </details>
+          </div>
+        </section>
+
+        {/* 相关工具推荐 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>🔗</span> 相关工具推荐
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="/tools/pinyin" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">📚</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">拼音学习工具</div>
+              <div className="text-xs text-gray-400 mt-1">声母韵母练习</div>
+            </a>
+            <a href="/tools/flashcards" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">🃏</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">识字卡片生成器</div>
+              <div className="text-xs text-gray-400 mt-1">自定义汉字卡片</div>
+            </a>
+            <a href="/resources/calligraphy" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">✍️</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">小学生硬笔书法课程</div>
+              <div className="text-xs text-gray-400 mt-1">系统书法教学</div>
+            </a>
+          </div>
+        </section>
+      </div>
 
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">

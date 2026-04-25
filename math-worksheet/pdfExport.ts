@@ -4,6 +4,7 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Question } from '@/lib/questionGenerator';
 import { WorksheetConfig } from '@/components/WorksheetPreview';
+import { drawWatermarkOnCanvas } from '@/lib/pdfWatermark';
 
 export async function exportToPDF(
   worksheetElement: HTMLElement,
@@ -63,6 +64,9 @@ export async function exportToPDF(
       pageHeightPx
     );
 
+    // 添加网站水印
+    drawWatermarkOnCanvas(ctx, pageCanvas.width, pageCanvas.height);
+
     const imgData = pageCanvas.toDataURL('image/jpeg', 0.95);
     pdf.addImage(imgData, 'JPEG', 0, 0, pageWidth, pageHeight);
   }
@@ -92,6 +96,12 @@ export async function exportAllPagesToPDF(
       logging: false,
       backgroundColor: '#ffffff',
     });
+
+    // 添加网站水印
+    const wCtx = canvas.getContext('2d');
+    if (wCtx) {
+      drawWatermarkOnCanvas(wCtx, canvas.width, canvas.height);
+    }
 
     const imgData = canvas.toDataURL('image/jpeg', 0.95);
     const imgWidthMm = (canvas.width / canvas.height) * pageHeight;

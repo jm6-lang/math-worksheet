@@ -571,51 +571,114 @@ export default function MathWorksheetPage() {
         </div>
       )}
 
-      {/* ===== 功能介绍 + FAQ ===== */}
+      {/* ===== 内容三件套 ===== */}
       {!hasGenerated && (
         <div className="print:hidden px-4 pb-12">
-          <div className="max-w-4xl mx-auto">
-            {/* 功能介绍卡片 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
-                <div className="text-3xl mb-3">📐</div>
-                <h3 className="font-bold mb-2">11种题型</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">加减乘除、竖式计算、分数运算、一元一次方程，覆盖小学全阶段</p>
-              </div>
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
-                <div className="text-3xl mb-3">🖨️</div>
-                <h3 className="font-bold mb-2">即印即用</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">标准A4 PDF，支持直接浏览器打印，也可导出保存到本地</p>
-              </div>
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-blue-500/30 transition-colors">
-                <div className="text-3xl mb-3">♻️</div>
-                <h3 className="font-bold mb-2">题库随机</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">每次生成题目随机打乱，可无限次生成同一配置不重复</p>
-              </div>
-            </div>
+          <div className="max-w-4xl mx-auto space-y-8">
 
-            {/* FAQ 手风琴 */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <h2 className="text-2xl font-bold mb-6 text-center">常见问题</h2>
-              <div className="space-y-2">
-                {[
-                  { q: "支持哪些年级？", a: "覆盖小学1-6年级，支持加减乘除、竖式计算、分数、方程等11种题型，幼儿园大班也适用。" },
-                  { q: "导出的PDF能直接打印吗？", a: "是的，生成的PDF为标准A4尺寸，可直接在浏览器中按 Ctrl+P 打印，也可导出保存到本地。" },
-                  { q: "可以只导出题目卷或答案卷吗？", a: "可以。支持分别导出题目卷、答案卷，或一键同时导出两份PDF，满足不同使用场景。" },
-                  { q: "字体大小可以调整吗？", a: "支持小/中/大三种字号，也可自定义每行题目数量，适配不同年级和打印需求。" },
-                  { q: "题目会自动打乱吗？", a: "默认开启随机打乱，每次生成的题目顺序不同，防止学生背答案。关闭随机可保持稳定顺序。" },
-                  { q: "收费吗？有水印吗？", a: "完全免费，无水印，无广告，可无限次使用。" },
-                ].map((item, i) => (
-                  <details key={i} className="group border border-white/10 rounded-lg">
-                    <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
-                      <span>{item.q}</span>
-                      <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
-                    </summary>
-                    <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">{item.a}</div>
-                  </details>
-                ))}
+            {/* 使用指南 */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">📖</span> 使用指南
+              </h2>
+              <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
+                <p>
+                  一年级数学练习卷生成器支持11种题型，包括20以内加减法、100以内进退位加减法、表内乘除法、有余数除法、混合运算、比较大小、填空题、竖式计算、脱式计算、单位换算和时间计算。选择年级后系统会自动推荐适合的题型和数字范围，也可以手动调整。题目数量支持10道、20道、50道、100道四种规格，每次生成的题目完全随机，不会出现重复。生成后可以在线预览，确认无误后一键导出PDF文件，A4纸打印效果清晰规范。田字格模板适合低年级书写练习，方格纸模板适合列竖式计算，横线格模板适合解答题，空白纸模板适合自由作答。
+                </p>
               </div>
-            </div>
+            </section>
+
+            {/* 适用场景 */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">🎯</span> 适用场景
+              </h2>
+              <ul className="space-y-3 text-gray-400 text-sm md:text-base">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">家长日常辅导：</strong>每天一页口算练习，10分钟提升计算能力</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">教师布置作业：</strong>一键生成全班练习卷，支持不同难度分层布置</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">暑假衔接训练：</strong>幼升小数学准备，每天20道保持计算手感</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">期末复习冲刺：</strong>按知识点分类生成专项练习卷</span>
+                </li>
+              </ul>
+            </section>
+
+            {/* 常见问题FAQ */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">❓</span> 常见问题
+              </h2>
+              <div className="space-y-2">
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>一年级数学练习卷包含哪些题型？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">包含20以内加减法、比较大小、填空题等基础题型。选择一年级后系统会自动推荐适合的题型组合，涵盖人教版、北师大版等主流教材的知识点。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>数字范围可以自定义吗？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">可以。一年级建议选择20以内或100以内，系统默认根据年级智能推荐。如果孩子水平较高，可以手动调大数字范围增加难度。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>生成的题目会重复吗？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">不会。每次点击生成都是随机出题，同一配置下每次结果都不同。即使多次生成同类型练习卷，题目也不会重复。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>可以打印多份给孩子反复练习吗？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">可以。导出的PDF文件支持多次打印。但建议每次生成新的练习卷，避免孩子记住答案失去练习效果。</div>
+                </details>
+              </div>
+            </section>
+
+            {/* 相关工具推荐 */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">🔗</span> 相关工具推荐
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="/tools/math-worksheet" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">📐</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">二年级竖式计算生成器</div>
+                  <div className="text-xs text-gray-500 mt-1">调整年级为二年级</div>
+                </a>
+                <a href="/blog/乘法口诀表记忆技巧" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">✖️</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">乘法口诀表打印</div>
+                  <div className="text-xs text-gray-500 mt-1">记忆技巧与方法</div>
+                </a>
+                <a href="/tools/sudoku" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">🧩</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">数独游戏</div>
+                  <div className="text-xs text-gray-500 mt-1">逻辑思维训练</div>
+                </a>
+                <a href="/tools/mental-math" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">⚡</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">口算速练</div>
+                  <div className="text-xs text-gray-500 mt-1">计时挑战训练</div>
+                </a>
+              </div>
+            </section>
+
           </div>
         </div>
       )}
@@ -625,25 +688,7 @@ export default function MathWorksheetPage() {
         <p>© 2026 算个题吧 · 免费好用的数学练习卷生成器</p>
       </footer>
 
-      {/* ===== 工具介绍（SEO） ===== */}
-      <section className="print:hidden max-w-4xl mx-auto px-4 pb-10">
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
-          <h2 className="text-2xl font-bold text-white mb-4">数学练习卷生成器 - 功能介绍与使用指南</h2>
-          <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
-            <p>
-              数学练习卷生成器是一款专为小学1-6年级学生设计的在线出题工具，覆盖小学数学全部核心知识点。支持加法、减法、乘法、除法、混合运算、比较大小、填空题、竖式计算、脱式计算、单位换算、时间计算、分数运算等11种题型，教师和家长可以根据孩子的年级和实际水平灵活选择。系统提供从10以内到10000以内的多档数字范围设置，题目数量支持10道、20道、50道、100道等多种规格，一键即可生成不重复的随机练习卷，满足日常练习和单元测试的不同需求。
-            </p>
-            <p>
-              在打印模板方面，本工具提供田字格、方格纸、横线格、空白纸4种标准模板样式，低年级学生可以使用田字格规范书写数字，高年级学生则适合方格纸和横线格进行复杂运算。生成的练习卷支持PDF格式导出，A4纸打印效果清晰规范，同时提供题目卷和答案卷分别导出的功能，方便家长批改和学生自查。系统内置4种快捷预设方案，包括基础加减法、竖式计算、综合运算和混合强化，帮助用户快速生成适合不同学习阶段的练习卷。
-            </p>
-            <p>
-              <strong className="text-gray-300">使用场景：</strong>日常课后作业练习、周末复习巩固、考前模拟测试、假期专项训练等。研究表明，每天坚持10-15道口算练习，配合每周一次的阶段性测试，可以有效提升孩子的计算速度和准确率。建议从基础题型开始，逐步增加难度和题量，让孩子在循序渐进中建立数学信心。本工具完全免费，无水印无广告，可无限次使用。
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 使用指南 */}
+      {/* 使用指南（ToolGuide组件） */}
       <div className="print:hidden max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['math-worksheet']} />
       </div>

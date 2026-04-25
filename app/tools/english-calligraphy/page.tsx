@@ -172,7 +172,16 @@ export default function EnglishCalligraphyPage() {
       const imgData = canvas.toDataURL('image/png');
       const pdfHeight = canvas.height / 2;
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'px', format: [pageWidth, pdfHeight] });
-      pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pdfHeight);
+
+      // 添加网站水印
+      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      const eCtx = canvas.getContext('2d');
+      if (eCtx) {
+        drawWatermarkOnCanvas(eCtx, canvas.width, canvas.height);
+      }
+      const finalImgData = canvas.toDataURL('image/png');
+
+      pdf.addImage(finalImgData, 'PNG', 0, 0, pageWidth, pdfHeight);
       pdf.save('英语字帖.pdf');
     } catch (e) {
       console.error(e);
@@ -219,8 +228,8 @@ export default function EnglishCalligraphyPage() {
       <div className="pt-20 pb-12 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">英语字帖生成器</h1>
-            <p className="text-gray-500 text-sm">输入英文单词或句子，生成四线三格练习纸</p>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">英文字帖生成器</h1>
+            <p className="text-gray-500 text-sm">四线三格 · 多种字体 · PDF下载打印</p>
           </div>
 
           {/* Controls */}
@@ -381,23 +390,93 @@ export default function EnglishCalligraphyPage() {
         </div>
       </div>
 
-      {/* 工具介绍（SEO） */}
-      <section className="max-w-5xl mx-auto px-4 pb-8">
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">英语字帖生成器 - 功能介绍与使用指南</h2>
+      {/* ===== 内容三件套 ===== */}
+      <div className="print:hidden max-w-5xl mx-auto px-4 pb-8 space-y-8">
+
+        {/* 使用指南 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>📖</span> 使用指南
+          </h2>
           <div className="text-gray-600 leading-relaxed space-y-3 text-sm md:text-base">
             <p>
-              英语字帖生成器是一款专为小学生英语书写练习设计的在线工具，提供四线三格、三线格、横线格三种标准英语书写格式。四线三格是国际通用的英语书写练习格式，通过顶线、中线、基线和底线四条参考线，帮助学生掌握英文字母的正确书写高度和比例关系。工具支持衬线体、无衬线体、手写体、Times New Roman、Verdana、等宽体等多种英文字体风格，满足不同学习阶段和审美偏好。
-            </p>
-            <p>
-              使用方法非常简单：输入需要练习的英文单词或句子，系统会自动将每个单词拆分为独立的练习组，每组包含可调节的练习行数（1-6行）。首行显示灰色范字作为书写参考，后续行为空白练习区域。行高支持宽松、适中、紧凑三档调节，适配不同年级学生的书写能力。生成的字帖支持PDF格式下载和浏览器直接打印，打印效果清晰规范，非常适合课堂教学和家庭练习使用。
-            </p>
-            <p>
-              <strong className="text-gray-800">使用场景与技巧：</strong>小学英语课堂书写练习、课后作业巩固、英文字母启蒙教学、英语单词抄写训练等。建议从26个英文字母的大小写基本笔画开始练习，掌握每个字母在四线三格中的正确位置，再逐步过渡到单词和短句书写。每天练习10-15分钟，注重字母的书写规范和连笔流畅性，养成良好的英文书写习惯。
+              英文字帖生成器提供标准的四线三格英文字帖模板，支持手写体、印刷体、圆体等多种英文字体风格。可以自定义练习内容，包括26个英文字母、单词、句子等。四线三格是国际通用的英语书写格式，第一线为顶线，第二线为中线（小写字母的主体高度），第三线为基础线，第四线为下降线（g、p、y等字母的尾部延伸）。选择适合的字体和内容后，一键生成PDF下载打印。建议从26个字母的基本笔画开始练习，掌握每个字母的标准占格位置，再过渡到单词和短句书写。
             </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 适用场景 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>🎯</span> 适用场景
+          </h2>
+          <ul className="space-y-3 text-gray-600 text-sm md:text-base">
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">英文启蒙：</strong>学完26个字母后，用字帖巩固书写规范</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">小学英语作业：</strong>配合学校英语课的书写要求进行练习</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">书写纠错：</strong>孩子英文字母大小不分、占格混乱时针对性练习</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">考试准备：</strong>剑桥少儿英语、PET等考试的书写规范训练</span>
+            </li>
+          </ul>
+        </section>
+
+        {/* 常见问题FAQ */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>❓</span> 常见问题
+          </h2>
+          <div className="space-y-2">
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium">
+                <span>四线三格怎么用？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">小写字母的主体写在第二线和第三线之间（中间两格），字母的竖笔向上延伸到第一线，有尾部延伸的字母（如g、p、y）向下延伸到第四线。大写字母占满上面三格。</div>
+            </details>
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium">
+                <span>英文字帖和中文田字格字帖有什么区别？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">英文字帖使用四线三格格式，重点训练字母的占格位置和连笔；中文字帖使用田字格或米字格，重点训练笔画的起止位置和汉字结构。</div>
+            </details>
+          </div>
+        </section>
+
+        {/* 相关工具推荐 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span>🔗</span> 相关工具推荐
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="/tools/pinyin" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">📚</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">拼音学习工具</div>
+              <div className="text-xs text-gray-400 mt-1">声母韵母练习</div>
+            </a>
+            <a href="/tools/flashcards" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">🃏</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">识字卡片生成器</div>
+              <div className="text-xs text-gray-400 mt-1">自定义汉字卡片</div>
+            </a>
+            <a href="/resources/english" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">📖</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">英语学习资源</div>
+              <div className="text-xs text-gray-400 mt-1">英语学习资料</div>
+            </a>
+          </div>
+        </section>
+      </div>
 
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">

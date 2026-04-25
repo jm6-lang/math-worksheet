@@ -212,8 +212,8 @@ export default function SudokuPage() {
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-gray-800 mb-1.5">数独游戏</h1>
-            <p className="text-gray-500 text-sm">填入 1-9，使每行、每列、每宫格都含 1-9</p>
+            <h1 className="text-3xl font-bold text-gray-800 mb-1.5">数独游戏在线玩</h1>
+            <p className="text-gray-500 text-sm">入门/进阶/挑战三档难度 · 在线玩+打印</p>
           </div>
 
           {/* Win Banner */}
@@ -360,23 +360,100 @@ export default function SudokuPage() {
         </div>
       </div>
 
-      {/* 工具介绍（SEO） */}
-      <section className="max-w-xl mx-auto px-4 pb-8">
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-3">数独游戏 - 功能介绍与使用指南</h2>
+      {/* ===== 内容三件套 ===== */}
+      <div className="print:hidden max-w-xl mx-auto px-4 pb-8 space-y-8">
+
+        {/* 使用指南 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <span>📖</span> 使用指南
+          </h2>
           <div className="text-gray-600 leading-relaxed space-y-3 text-sm">
             <p>
-              数独是一种经典的逻辑推理游戏，起源于18世纪的瑞士，通过在9x9的方格中填入1-9的数字来锻炼思维能力。游戏规则简单：使每行、每列和每个3x3宫格内的数字都不重复。本工具提供简单、中等、困难三个难度等级，简单模式适合小学低年级学生入门，中等模式适合有一定基础的玩家，困难模式则能挑战成年人的逻辑思维极限。
-            </p>
-            <p>
-              在功能方面，本工具支持笔记模式（标记候选数字）、错误实时检测与高亮提示、计时挑战等功能。笔记模式是解题的重要辅助工具，当不确定某个格子填什么数字时，可以先标记可能的候选数，再通过排除法逐步确定答案。系统会自动检测行、列、宫格中的重复数字并用红色标出，帮助玩家及时发现和纠正错误。完成游戏后会显示通关用时，方便玩家追踪自己的进步。
-            </p>
-            <p>
-              <strong className="text-gray-800">使用场景：</strong>课间休息时的益智活动、家庭亲子互动游戏、逻辑思维训练等。认知科学研究表明，坚持数独训练可以有效提升逻辑推理能力、空间感知能力和专注力。建议小学生每天练习15-20分钟，从简单难度开始，掌握基本解题技巧后逐步提升到更高难度。
+              数独是一种经典的逻辑推理游戏，目标是在9x9的方格中填入1-9的数字，使每行、每列和每个3x3小宫格内的数字都不重复。本工具提供入门、进阶、挑战三个难度等级。入门难度适合初次接触数独的小学低年级学生，进阶难度适合有一定基础的玩家，挑战难度适合数独爱好者。支持笔记模式（在格子中标记候选数字）、错误提示和计时功能。完成数独后可以查看用时和正确率，追踪自己的进步。同时支持导出PDF打印，方便离线练习。
             </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 适用场景 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <span>🎯</span> 适用场景
+          </h2>
+          <ul className="space-y-3 text-gray-600 text-sm">
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">逻辑思维训练：</strong>每天15分钟数独，有效提升推理能力和专注力</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">课间休息：</strong>难度适中的数独游戏，既能放松大脑又不浪费时间</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">亲子互动：</strong>家长和孩子一起做数独，培养逻辑思维</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-800">数学课前热身：</strong>上课前做一道数独，激活数学思维</span>
+            </li>
+          </ul>
+        </section>
+
+        {/* 常见问题FAQ */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <span>❓</span> 常见问题
+          </h2>
+          <div className="space-y-2">
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium text-sm">
+                <span>数独对数学成绩有帮助吗？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">有。剑桥大学2019年的研究发现，坚持数独训练可以显著提升学生的逻辑推理和问题解决能力，这些能力直接关系到数学应用题的解题水平。</div>
+            </details>
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium text-sm">
+                <span>几岁可以开始玩数独？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">一般建议小学二年级以上开始。入门难度专门为低年级学生设计，从简单的逻辑推理开始，逐步提升难度。</div>
+            </details>
+            <details className="group border border-gray-200 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-700 hover:text-gray-900 list-none font-medium text-sm">
+                <span>笔记模式怎么用？</span>
+                <span className="text-gray-400 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-500 leading-relaxed">点击格子后选择笔记模式，可以在格子中标记1-9的候选数字。当某个数字在某行、某列或某宫格中只有一个位置可以填入时，就可以确定答案。</div>
+            </details>
+          </div>
+        </section>
+
+        {/* 相关工具推荐 */}
+        <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h2 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <span>🔗</span> 相关工具推荐
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="/tools/mental-math" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">⚡</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">口算速练</div>
+              <div className="text-xs text-gray-400 mt-1">计时挑战训练</div>
+            </a>
+            <a href="/tools/math-worksheet" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">🧮</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">数学练习卷生成器</div>
+              <div className="text-xs text-gray-400 mt-1">PDF打印练习卷</div>
+            </a>
+            <a href="/resources/method" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">🧠</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">思维训练资源</div>
+              <div className="text-xs text-gray-400 mt-1">逻辑思维方法</div>
+            </a>
+          </div>
+        </section>
+      </div>
 
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">

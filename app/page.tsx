@@ -684,11 +684,13 @@ export default function HomePage() {
             <a href="/privacy" className="hover:text-white transition-colors">隐私政策</a>
           </div>
           {/* 友情链接 */}
-          <div className="flex flex-wrap justify-center items-center gap-3 text-sm text-gray-500">
-            <span>友情链接：</span>
-            <a href="https://docs.skillxm.cn" target="_blank" rel="noopener" className="text-gray-400 hover:text-blue-400 transition-colors">docs.skillxm.cn</a>
-            <span className="text-gray-600">|</span>
-            <a href="https://ziwei.skillxm.cn" target="_blank" rel="noopener" className="text-gray-400 hover:text-blue-400 transition-colors">ziwei.skillxm.cn</a>
+          <div className="border-t border-gray-200 py-4 text-center text-sm text-gray-500">
+            <p className="mb-2">友情链接</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="https://docs.skillxm.cn" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">小二郎文档站</a>
+              <a href="https://tool.skillxm.cn" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">在线工具箱</a>
+              <a href="https://ziwei.skillxm.cn" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">紫微资源站</a>
+            </div>
           </div>
         </div>
       </footer>

@@ -2,6 +2,7 @@
 
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import { drawWatermarkOnCanvas } from './pdfWatermark';
 
 // 强制白色背景的 canvas 处理
 function ensureWhiteBackground(canvas: HTMLCanvasElement): HTMLCanvasElement {
@@ -88,6 +89,9 @@ export async function exportToPDF(
       pageHeightPx
     );
 
+    // 添加网站水印
+    drawWatermarkOnCanvas(ctx, pageCanvas.width, pageCanvas.height);
+
     const imgData = pageCanvas.toDataURL('image/png', 1.0);
     pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
   }
@@ -127,6 +131,12 @@ export async function exportAllPagesToPDF(
 
     // 确保白色背景
     const whiteCanvas = ensureWhiteBackground(canvas);
+
+    // 添加网站水印
+    const wCtx = whiteCanvas.getContext('2d');
+    if (wCtx) {
+      drawWatermarkOnCanvas(wCtx, whiteCanvas.width, whiteCanvas.height);
+    }
 
     const imgData = whiteCanvas.toDataURL('image/png', 1.0);
     const imgWidthMm = (whiteCanvas.width / whiteCanvas.height) * pageHeight;

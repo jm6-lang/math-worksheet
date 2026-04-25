@@ -582,23 +582,93 @@ export default function MentalMathPage() {
         </div>
       </footer>
 
-      {/* 工具介绍（SEO） */}
-      <section className="max-w-4xl mx-auto px-4 pb-8">
-        <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
-          <h2 className="text-xl font-bold text-white mb-4">口算速练 - 功能介绍与使用指南</h2>
+      {/* ===== 内容三件套 ===== */}
+      <div className="print:hidden max-w-4xl mx-auto px-4 pb-8 space-y-8">
+
+        {/* 使用指南 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>📖</span> 使用指南
+          </h2>
           <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
             <p>
-              口算速练是一款专为小学生设计的数学口算计时训练工具，旨在通过限时答题的方式提升学生的计算速度和数感。工具提供简单、中等、困难、专家四个难度等级：简单模式涵盖20以内加减法，适合一年级学生入门练习；中等模式扩展到50以内加减乘，适合二三年级学生；困难模式包含100以内四则混合运算，适合四年级以上学生；专家模式挑战200以内四则运算，能够满足高年级学生的强化训练需求。
-            </p>
-            <p>
-              在训练功能方面，系统支持10题、20题、30题、50题四种题目数量选择，每个难度等级配有对应的倒计时限制。答题过程中实时显示剩余时间、正确数量和连击数，连击机制能够有效激发学生的答题积极性。完成挑战后，系统会展示正确率、总用时、最高连击等详细统计数据，并提供错题回顾功能，帮助学生精准定位薄弱环节，有针对性地进行强化练习。界面内置虚拟数字键盘，支持手机和平板等移动设备使用。
-            </p>
-            <p>
-              <strong className="text-gray-300">使用场景：</strong>课前5分钟热身练习、课后口算巩固、口算竞赛训练、假期每日打卡等。教育研究表明，坚持每天5-10分钟的口算训练，可以有效提升学生的计算速度、数感和数学自信心。建议选择适合孩子当前水平的难度等级，确保正确率保持在80%以上后再提升难度，循序渐进地提高口算能力。
+              口算速练是一款数学口算计时训练工具，提供入门（10以内加减法）、基础（20以内加减法）、进阶（100以内加减法）、挑战（100以内四则混合运算）四个难度等级。选择适合的难度后开始计时挑战，系统会随机生成口算题目，学生需要快速心算并输入答案。每轮练习结束后会显示正确率、用时和错题列表，方便针对性复习。研究表明，每天坚持5-10分钟的口算训练，可以有效提升计算速度和数感，建议从适合孩子当前水平的难度开始，逐步提升。
             </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 适用场景 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>🎯</span> 适用场景
+          </h2>
+          <ul className="space-y-3 text-gray-400 text-sm md:text-base">
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">每日口算打卡：</strong>每天5分钟，养成口算习惯</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">课前热身：</strong>上课前做一轮口算，激活数学思维</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">计算能力检测：</strong>定期测试，追踪孩子的口算速度进步</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+              <span><strong className="text-gray-300">期末冲刺：</strong>选择对应年级的难度等级进行强化训练</span>
+            </li>
+          </ul>
+        </section>
+
+        {/* 常见问题FAQ */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>❓</span> 常见问题
+          </h2>
+          <div className="space-y-2">
+            <details className="group border border-white/10 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                <span>各年级口算速度标准是多少？</span>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">一年级20以内加减法要求每分钟8-10题，二年级100以内加减法要求每分钟6-8题，三年级表内乘除法要求每分钟10-12题，四年级以上混合运算要求每分钟4-6题。</div>
+            </details>
+            <details className="group border border-white/10 rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                <span>错题回顾功能怎么用？</span>
+                <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">每轮练习结束后，系统会记录所有做错的题目。点击"错题回顾"可以查看错题列表和正确答案，建议针对错题进行二次练习。</div>
+            </details>
+          </div>
+        </section>
+
+        {/* 相关工具推荐 */}
+        <section className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <span>🔗</span> 相关工具推荐
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="/tools/math-worksheet" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">🧮</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">数学练习卷生成器</div>
+              <div className="text-xs text-gray-500 mt-1">PDF打印练习卷</div>
+            </a>
+            <a href="/tools/sudoku" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">🧩</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">数独游戏</div>
+              <div className="text-xs text-gray-500 mt-1">逻辑思维训练</div>
+            </a>
+            <a href="/blog/竖式计算完整教学指南" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+              <div className="text-2xl mb-2">📐</div>
+              <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">竖式计算指南</div>
+              <div className="text-xs text-gray-500 mt-1">完整教学指南</div>
+            </a>
+          </div>
+        </section>
+      </div>
 
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">

@@ -147,6 +147,16 @@ export default function BlogPostPage({ slug }: BlogPostPageProps) {
           dangerouslySetInnerHTML={{ __html: parseMarkdown(article.content) }}
         />
 
+        {/* 更多学习资源 */}
+        <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">
+          <h3 className="text-sm font-bold text-blue-800 mb-2">📚 更多学习资源</h3>
+          <div className="flex flex-wrap gap-3 text-sm">
+            <a href="https://docs.skillxm.cn" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">小二郎文档站 - 教育资料下载</a>
+            <a href="https://tool.skillxm.cn" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">在线工具箱 - 实用在线工具</a>
+            <a href="https://ziwei.skillxm.cn" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">紫微资源站 - 学习资源</a>
+          </div>
+        </div>
+
         {/* Back Button & Related Articles */}
         <div className="mt-12 pt-8 border-t border-white/10">
           <Link
