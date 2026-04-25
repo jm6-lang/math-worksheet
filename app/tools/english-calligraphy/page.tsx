@@ -211,7 +211,7 @@ export default function EnglishCalligraphyPage() {
               <a href="/tools/english-calligraphy" className="px-3 py-2 text-sm text-white bg-white/10 rounded-lg font-medium">🔤 英语字帖</a>
               <a href="/tools/sudoku" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🧩 数独游戏</a>
             </div>
-            <button onClick={() => setMobileMenu(!mobileMenu)} className="md:hidden p-2 text-gray-300 hover:text-white transition-colors">{mobileMenu ? '✕' : '☰'}</button>
+            <button onClick={() => setMobileMenu(!mobileMenu)} aria-label={mobileMenu ? '关闭菜单' : '打开菜单'} className="md:hidden p-2 text-gray-300 hover:text-white transition-colors">{mobileMenu ? '✕' : '☰'}</button>
           </div>
         </div>
         {mobileMenu && (

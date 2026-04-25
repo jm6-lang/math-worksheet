@@ -297,6 +297,7 @@ export default function WritingTemplatePage() {
 
             <button
               onClick={() => setMobileMenu(!mobileMenu)}
+              aria-label={mobileMenu ? '关闭菜单' : '打开菜单'}
               className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
             >
               {mobileMenu ? '✕' : '☰'}

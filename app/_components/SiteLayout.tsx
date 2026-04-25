@@ -111,6 +111,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             {/* 移动端菜单按钮 */}
             <button
               onClick={() => setMobileMenu(!mobileMenu)}
+              aria-label={mobileMenu ? '关闭菜单' : '打开菜单'}
               className="lg:hidden p-2 text-gray-300 hover:text-white transition-colors"
             >
               {mobileMenu ? '✕' : '☰'}
@@ -127,7 +128,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 <div className="w-7 h-7 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-sm">📚</div>
                 <span className="text-base font-bold text-white">教材工具箱</span>
               </div>
-              <button onClick={() => setMobileMenu(false)} className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+              <button onClick={() => setMobileMenu(false)} aria-label="关闭菜单" className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
@@ -213,7 +214,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl max-w-md w-full p-8" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-white">赞助支持</h2>
-              <button onClick={() => setShowDonate(false)} className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+              <button onClick={() => setShowDonate(false)} aria-label="关闭赞助弹窗" className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
             </div>
             <p className="text-gray-400 text-center mb-6">
               如果这些工具对您有帮助，欢迎赞助支持开发维护！
@@ -239,7 +240,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl max-w-md w-full p-8" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-white">分享给朋友</h2>
-              <button onClick={() => setShowShare(false)} className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+              <button onClick={() => setShowShare(false)} aria-label="关闭分享弹窗" className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
             </div>
             <p className="text-gray-400 text-center mb-4">复制下方链接分享给您的朋友</p>
             <div className="flex items-center gap-2 bg-white/5 rounded-xl p-3 border border-white/10">

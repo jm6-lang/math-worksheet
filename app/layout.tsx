@@ -84,17 +84,39 @@ export default function RootLayout({
           "query-input": "required name=search_term_string"
         },
         publisher: {
-          "@type": "Organization",
-          "name": "教材工具箱",
-          "url": "https://www.skillxm.cn",
-          "logo": "https://www.skillxm.cn/og-image.jpg",
-          "description": "免费在线教育工具集合，为小学生和家长提供数学练习卷、字帖、数独等8款实用工具",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "644428571@qq.com",
-            "contactType": "customer support",
-            "availableLanguage": "Chinese"
-          }
+          "@id": "https://www.skillxm.cn/#organization"
+        },
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.skillxm.cn/#organization",
+        name: "教材工具箱",
+        url: "https://www.skillxm.cn",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://www.skillxm.cn/og-image.jpg",
+        },
+        description: "免费在线教育工具集合，为小学生和家长提供数学练习卷、字帖、数独等8款实用工具",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "CN",
+          addressRegion: "广东",
+          addressLocality: "深圳",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 22.5431,
+          longitude: 114.0579,
+        },
+        areaServed: {
+          "@type": "Country",
+          name: "CN",
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "644428571@qq.com",
+          contactType: "customer support",
+          availableLanguage: "Chinese",
         },
       },
       {

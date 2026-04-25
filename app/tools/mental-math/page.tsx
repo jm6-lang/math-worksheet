@@ -272,6 +272,7 @@ export default function MentalMathPage() {
             
             <button
               onClick={() => setMobileMenu(!mobileMenu)}
+              aria-label={mobileMenu ? '关闭菜单' : '打开菜单'}
               className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
             >
               {mobileMenu ? '✕' : '☰'}
@@ -435,6 +436,7 @@ export default function MentalMathPage() {
                         <button
                           key={i}
                           onClick={() => handleNumPad(key)}
+                          aria-label={key === '←' ? '退格' : key === 'C' ? '清除' : key === 'OK' ? '确认' : key}
                           className={`py-4 rounded-xl font-bold text-xl transition-all ${
                             key === 'OK'
                               ? 'bg-green-500 hover:bg-green-600 text-white col-span-1'
