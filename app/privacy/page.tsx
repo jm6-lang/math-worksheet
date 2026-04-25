@@ -86,7 +86,7 @@ export default function PrivacyPage() {
               </div>
               <div>
                 <h3 className="text-white font-medium mb-2">2.2 不用于商业营销</h3>
-                <p>我们不会将收集到的任何数据用于商业营销、广告定向、用户画像或出售给第三方。本站承诺永久免费、无广告干扰。</p>
+                <p>我们不会将收集到的任何数据用于商业营销、广告定向、用户画像或出售给第三方。本站承诺核心功能永久免费。</p>
               </div>
             </div>
           </div>
@@ -186,7 +186,6 @@ export default function PrivacyPage() {
               <li>本站不收集任何14岁以下儿童的个人信息</li>
               <li>不要求用户注册账号或提供任何身份信息</li>
               <li>不设有社交功能、聊天功能或用户互动功能</li>
-              <li>不向儿童展示任何第三方广告</li>
               <li>工具生成的所有内容均在本地处理，不会上传或存储</li>
             </ul>
             <p className="text-gray-300 leading-relaxed mt-3">
