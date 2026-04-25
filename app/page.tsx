@@ -168,6 +168,12 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const announcementRef = useRef<HTMLDivElement>(null);
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText('https://www.skillxm.cn');
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
+  };
+
   // 自动轮播
   useEffect(() => {
     if (isPaused) return;
@@ -803,6 +809,33 @@ export default function HomePage() {
                   <li>如觉得有帮助，欢迎<span className="text-pink-400">赞助支持</span>或<span className="text-blue-400">分享给朋友</span>！</li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== 分享弹窗 ===== */}
+      {showShare && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setShowShare(false)}>
+          <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl max-w-md w-full p-8" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">🔗 分享给朋友</h2>
+              <button onClick={() => setShowShare(false)} className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+            </div>
+            <p className="text-gray-400 text-center mb-4">复制下方链接分享给您的朋友</p>
+            <div className="flex items-center gap-2 bg-white/5 rounded-xl p-3 border border-white/10">
+              <input
+                type="text"
+                value="https://www.skillxm.cn"
+                readOnly
+                className="flex-1 bg-transparent text-white text-sm outline-none"
+              />
+              <button
+                onClick={handleCopy}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors shrink-0"
+              >
+                {copySuccess ? '已复制' : '复制'}
+              </button>
             </div>
           </div>
         </div>
