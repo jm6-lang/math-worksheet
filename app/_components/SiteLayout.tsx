@@ -267,7 +267,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-8" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-white">使用教程</h2>
-              <button onClick={() => setShowTutorial(false)} className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+              <button onClick={() => setShowTutorial(false)} aria-label="关闭使用教程" className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
             </div>
             <div className="space-y-6">
               <div className="bg-white/5 rounded-xl p-4">

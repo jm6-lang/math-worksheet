@@ -267,6 +267,7 @@ export default function SudokuPage() {
                     <button
                       key={idx}
                       onClick={() => setSelected([r, c])}
+                      aria-label={`第${r+1}行第${c+1}列`}
                       className="relative flex items-center justify-center font-medium transition-colors"
                       style={{
                         width: cellSize,

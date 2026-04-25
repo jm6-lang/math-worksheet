@@ -390,6 +390,7 @@ export default function MathWorksheetPage() {
                           <button
                             key={n}
                             onClick={() => setQuestionsPerRow(n)}
+                            aria-label={`每行${n}题`}
                             className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-all ${
                               questionsPerRow === n
                                 ? 'bg-blue-500 text-white'

@@ -100,13 +100,13 @@ export default function RootLayout({
         address: {
           "@type": "PostalAddress",
           addressCountry: "CN",
-          addressRegion: "广东",
-          addressLocality: "深圳",
+          addressRegion: "浙江",
+          addressLocality: "绍兴",
         },
         geo: {
           "@type": "GeoCoordinates",
-          latitude: 22.5431,
-          longitude: 114.0579,
+          latitude: 30.0,
+          longitude: 120.5833,
         },
         areaServed: {
           "@type": "Country",
