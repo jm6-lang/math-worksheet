@@ -212,6 +212,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+      {/* 主 H1 - 视觉隐藏但搜索引擎可见 */}
+      <h1 className="sr-only">教材工具箱 - 免费在线教育工具</h1>
+
       {/* ===== 顶部导航 ===== */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -425,7 +428,7 @@ export default function HomePage() {
               <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
                 {/* 3D 悬浮标题 */}
                 <div className="perspective-1000 mb-6">
-                  <h1
+                  <h2
                     className="text-6xl md:text-8xl font-black text-white tracking-tight"
                     style={{
                       textShadow: '0 4px 0 rgba(0,0,0,0.2), 0 8px 0 rgba(0,0,0,0.1), 0 12px 20px rgba(0,0,0,0.3)',
@@ -433,7 +436,7 @@ export default function HomePage() {
                     }}
                   >
                     {item.title}
-                  </h1>
+                  </h2>
                 </div>
 
                 {/* 副标题 */}

@@ -258,6 +258,39 @@ export default function RootLayout({
         ],
       },
       {
+        "@type": "HowTo",
+        "name": "如何使用数学练习卷生成器",
+        "description": "使用教材工具箱的数学练习卷生成器，只需5步即可生成可打印的数学练习卷",
+        "totalTime": "PT3M",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "选择题型和年级",
+            "text": "在工具页面选择需要的题型（加法、减法、乘法、除法等）和对应的年级（1-6年级）"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "设置题目数量和数字范围",
+            "text": "设定每次生成的题目数量（10/20/50/100道）和数字范围（10以内到10000以内）"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "选择模板样式",
+            "text": "从田字格、方格纸、横线格、空白纸4种模板中选择适合的打印样式"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "点击生成",
+            "text": "点击"立即出题"按钮，系统会随机生成不重复的数学练习卷"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "预览并导出PDF",
+            "text": "预览生成的练习卷，确认无误后点击"下载PDF"或"直接打印"按钮"
+          }
+        ]
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           {

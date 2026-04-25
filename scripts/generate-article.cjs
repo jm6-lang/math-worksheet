@@ -2726,7 +2726,15 @@ function main() {
 
   // 生成文章对象
   const newArticles = selected.map((template, index) => {
-    const id = `auto-${todayCompact}-${index + 1}`;
+    // 从标题生成 slug：取前20个字符，去除特殊字符，用连字符连接
+    function titleToSlug(title) {
+      return title
+        .replace(/[？?!！，。、：；""''（）【】《》\s]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '')
+        .substring(0, 30);
+    }
+    const id = titleToSlug(template.title);
 
     // 检查 id 是否已存在
     if (existingIds.includes(id)) {
