@@ -78,6 +78,11 @@ export default function RootLayout({
         url: "https://www.skillxm.cn",
         description: "免费在线教育工具集合，包括数学练习卷生成器、字帖生成器、英语字帖、数独游戏、口算速练、识字卡片、作文模板、拼音注音，支持PDF导出打印",
         inLanguage: "zh-CN",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: "https://www.skillxm.cn/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        },
         publisher: {
           "@type": "Organization",
           "name": "教材工具箱",

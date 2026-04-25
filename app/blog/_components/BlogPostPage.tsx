@@ -105,7 +105,7 @@ export default function BlogPostPage({ slug }: BlogPostPageProps) {
   // Related articles: same category, excluding current
   const relatedArticles = articles
     .filter(a => a.category === article.category && a.id !== article.id)
-    .slice(0, 3);
+    .slice(0, 5);
 
   return (
     <SiteLayout>
@@ -146,6 +146,31 @@ export default function BlogPostPage({ slug }: BlogPostPageProps) {
           className="prose prose-invert max-w-none"
           dangerouslySetInnerHTML={{ __html: parseMarkdown(article.content) }}
         />
+
+        {/* 相关文章推荐 */}
+        {relatedArticles.length > 0 && (
+          <div className="mt-8 p-6 bg-slate-800/50 rounded-xl border border-white/10">
+            <h3 className="text-lg font-bold text-white mb-4">相关推荐</h3>
+            <ul className="space-y-3">
+              {relatedArticles.map((related) => (
+                <li key={related.id}>
+                  <Link
+                    href={`/blog/${related.id}`}
+                    className="flex items-start gap-3 group"
+                  >
+                    <span className="text-blue-400 mt-0.5">→</span>
+                    <div>
+                      <span className="text-gray-300 font-medium group-hover:text-blue-400 transition-colors">
+                        {related.title}
+                      </span>
+                      <span className="text-sm text-gray-500 ml-2">{related.category}</span>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* 更多学习资源 */}
         <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">

@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${article.title} | 教材工具箱`,
     description: article.description,
+    authors: [{ name: '教材工具箱' }],
     alternates: {
       canonical: `https://www.skillxm.cn/blog/${slug}`,
     },
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: article.description,
       type: 'article',
       publishedTime: article.date,
+      authors: ['教材工具箱'],
     },
   };
 }
