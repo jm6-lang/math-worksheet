@@ -625,6 +625,24 @@ export default function MathWorksheetPage() {
         <p>© 2026 算个题吧 · 免费好用的数学练习卷生成器</p>
       </footer>
 
+      {/* ===== 工具介绍（SEO） ===== */}
+      <section className="print:hidden max-w-4xl mx-auto px-4 pb-10">
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-2xl font-bold text-white mb-4">数学练习卷生成器 - 功能介绍与使用指南</h2>
+          <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
+            <p>
+              数学练习卷生成器是一款专为小学1-6年级学生设计的在线出题工具，覆盖小学数学全部核心知识点。支持加法、减法、乘法、除法、混合运算、比较大小、填空题、竖式计算、脱式计算、单位换算、时间计算、分数运算等11种题型，教师和家长可以根据孩子的年级和实际水平灵活选择。系统提供从10以内到10000以内的多档数字范围设置，题目数量支持10道、20道、50道、100道等多种规格，一键即可生成不重复的随机练习卷，满足日常练习和单元测试的不同需求。
+            </p>
+            <p>
+              在打印模板方面，本工具提供田字格、方格纸、横线格、空白纸4种标准模板样式，低年级学生可以使用田字格规范书写数字，高年级学生则适合方格纸和横线格进行复杂运算。生成的练习卷支持PDF格式导出，A4纸打印效果清晰规范，同时提供题目卷和答案卷分别导出的功能，方便家长批改和学生自查。系统内置4种快捷预设方案，包括基础加减法、竖式计算、综合运算和混合强化，帮助用户快速生成适合不同学习阶段的练习卷。
+            </p>
+            <p>
+              <strong className="text-gray-300">使用场景：</strong>日常课后作业练习、周末复习巩固、考前模拟测试、假期专项训练等。研究表明，每天坚持10-15道口算练习，配合每周一次的阶段性测试，可以有效提升孩子的计算速度和准确率。建议从基础题型开始，逐步增加难度和题量，让孩子在循序渐进中建立数学信心。本工具完全免费，无水印无广告，可无限次使用。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 使用指南 */}
       <div className="print:hidden max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['math-worksheet']} />

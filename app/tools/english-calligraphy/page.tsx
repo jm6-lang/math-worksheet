@@ -381,6 +381,24 @@ export default function EnglishCalligraphyPage() {
         </div>
       </div>
 
+      {/* 工具介绍（SEO） */}
+      <section className="max-w-5xl mx-auto px-4 pb-8">
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">英语字帖生成器 - 功能介绍与使用指南</h2>
+          <div className="text-gray-600 leading-relaxed space-y-3 text-sm md:text-base">
+            <p>
+              英语字帖生成器是一款专为小学生英语书写练习设计的在线工具，提供四线三格、三线格、横线格三种标准英语书写格式。四线三格是国际通用的英语书写练习格式，通过顶线、中线、基线和底线四条参考线，帮助学生掌握英文字母的正确书写高度和比例关系。工具支持衬线体、无衬线体、手写体、Times New Roman、Verdana、等宽体等多种英文字体风格，满足不同学习阶段和审美偏好。
+            </p>
+            <p>
+              使用方法非常简单：输入需要练习的英文单词或句子，系统会自动将每个单词拆分为独立的练习组，每组包含可调节的练习行数（1-6行）。首行显示灰色范字作为书写参考，后续行为空白练习区域。行高支持宽松、适中、紧凑三档调节，适配不同年级学生的书写能力。生成的字帖支持PDF格式下载和浏览器直接打印，打印效果清晰规范，非常适合课堂教学和家庭练习使用。
+            </p>
+            <p>
+              <strong className="text-gray-800">使用场景与技巧：</strong>小学英语课堂书写练习、课后作业巩固、英文字母启蒙教学、英语单词抄写训练等。建议从26个英文字母的大小写基本笔画开始练习，掌握每个字母在四线三格中的正确位置，再逐步过渡到单词和短句书写。每天练习10-15分钟，注重字母的书写规范和连笔流畅性，养成良好的英文书写习惯。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['english-calligraphy']} />

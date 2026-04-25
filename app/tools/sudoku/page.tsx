@@ -360,6 +360,24 @@ export default function SudokuPage() {
         </div>
       </div>
 
+      {/* 工具介绍（SEO） */}
+      <section className="max-w-xl mx-auto px-4 pb-8">
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+          <h2 className="text-lg font-bold text-gray-800 mb-3">数独游戏 - 功能介绍与使用指南</h2>
+          <div className="text-gray-600 leading-relaxed space-y-3 text-sm">
+            <p>
+              数独是一种经典的逻辑推理游戏，起源于18世纪的瑞士，通过在9x9的方格中填入1-9的数字来锻炼思维能力。游戏规则简单：使每行、每列和每个3x3宫格内的数字都不重复。本工具提供简单、中等、困难三个难度等级，简单模式适合小学低年级学生入门，中等模式适合有一定基础的玩家，困难模式则能挑战成年人的逻辑思维极限。
+            </p>
+            <p>
+              在功能方面，本工具支持笔记模式（标记候选数字）、错误实时检测与高亮提示、计时挑战等功能。笔记模式是解题的重要辅助工具，当不确定某个格子填什么数字时，可以先标记可能的候选数，再通过排除法逐步确定答案。系统会自动检测行、列、宫格中的重复数字并用红色标出，帮助玩家及时发现和纠正错误。完成游戏后会显示通关用时，方便玩家追踪自己的进步。
+            </p>
+            <p>
+              <strong className="text-gray-800">使用场景：</strong>课间休息时的益智活动、家庭亲子互动游戏、逻辑思维训练等。认知科学研究表明，坚持数独训练可以有效提升逻辑推理能力、空间感知能力和专注力。建议小学生每天练习15-20分钟，从简单难度开始，掌握基本解题技巧后逐步提升到更高难度。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['sudoku']} />

@@ -582,6 +582,24 @@ export default function MentalMathPage() {
         </div>
       </footer>
 
+      {/* 工具介绍（SEO） */}
+      <section className="max-w-4xl mx-auto px-4 pb-8">
+        <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4">口算速练 - 功能介绍与使用指南</h2>
+          <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
+            <p>
+              口算速练是一款专为小学生设计的数学口算计时训练工具，旨在通过限时答题的方式提升学生的计算速度和数感。工具提供简单、中等、困难、专家四个难度等级：简单模式涵盖20以内加减法，适合一年级学生入门练习；中等模式扩展到50以内加减乘，适合二三年级学生；困难模式包含100以内四则混合运算，适合四年级以上学生；专家模式挑战200以内四则运算，能够满足高年级学生的强化训练需求。
+            </p>
+            <p>
+              在训练功能方面，系统支持10题、20题、30题、50题四种题目数量选择，每个难度等级配有对应的倒计时限制。答题过程中实时显示剩余时间、正确数量和连击数，连击机制能够有效激发学生的答题积极性。完成挑战后，系统会展示正确率、总用时、最高连击等详细统计数据，并提供错题回顾功能，帮助学生精准定位薄弱环节，有针对性地进行强化练习。界面内置虚拟数字键盘，支持手机和平板等移动设备使用。
+            </p>
+            <p>
+              <strong className="text-gray-300">使用场景：</strong>课前5分钟热身练习、课后口算巩固、口算竞赛训练、假期每日打卡等。教育研究表明，坚持每天5-10分钟的口算训练，可以有效提升学生的计算速度、数感和数学自信心。建议选择适合孩子当前水平的难度等级，确保正确率保持在80%以上后再提升难度，循序渐进地提高口算能力。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['mental-math']} />

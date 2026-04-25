@@ -753,6 +753,24 @@ export default function FlashcardsPage() {
         </div>
       </footer>
 
+      {/* 工具介绍（SEO） */}
+      <section className="max-w-7xl mx-auto px-4 pb-8">
+        <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4">识字卡片生成器 - 功能介绍与使用指南</h2>
+          <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
+            <p>
+              识字卡片生成器是一款免费的在线汉字识字卡片制作工具，专为学前班到小学低年级的识字教学设计。用户只需输入需要学习的汉字，系统即可自动生成正反双面的识字卡片：正面显示大号汉字和拼音标注，反面显示常用组词和笔画数信息。内置一年级、二年级、三年级三个年级的常用汉字预设，方便家长和教师快速选择适合孩子学习阶段的汉字内容，也支持自定义输入任意汉字。
+            </p>
+            <p>
+              在卡片定制方面，工具提供大、中、小三种卡片尺寸规格，分别对应每页2张、4张、6张的排版密度。支持楷体、宋体、黑体三种字体选择，以及实线、虚线、无边框三种边框样式，满足不同审美和教学需求。生成的卡片支持正反面分别导出为PDF文件，方便进行双面打印。打印后沿裁切线剪裁即可得到实体识字卡片，非常适合课堂教学展示、家庭亲子互动和自主复习使用。在线预览支持点击翻转效果，方便在生成前确认卡片内容。
+            </p>
+            <p>
+              <strong className="text-gray-300">使用场景与技巧：</strong>学前识字启蒙、小学语文生字预习和复习、识字游戏互动、班级识字墙展示等。建议每次学习5-10个新字，配合间隔重复法（第1天、第3天、第7天、第15天复习）定期巩固，记忆效果最佳。使用卡片时可以先看正面认读汉字，再翻转看反面的拼音和组词进行验证，形成"看字-读音-组词"的完整认知链条。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['flashcards']} />

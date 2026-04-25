@@ -855,6 +855,22 @@ export default function PinyinPage() {
           </a>
         </div>
 
+        {/* 工具介绍（SEO） */}
+        <section className="mt-8 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-6">
+          <h2 className="text-lg font-bold text-white mb-3">拼音注音练习 - 功能介绍与使用指南</h2>
+          <div className="text-gray-400 leading-relaxed space-y-3 text-sm">
+            <p>
+              拼音注音练习工具是一款专为小学一年级学生设计的拼音学习辅助工具，内置530多个常用汉字的拼音词库，支持声母、韵母、整体认读音节的全面练习。输入任意汉字后，系统会自动进行智能分词并标注正确的拼音，声调使用不同颜色区分（一声红色、二声橙色、三声绿色、四声蓝色），帮助学生直观感知声调变化，加深对拼音规则的理解和记忆。
+            </p>
+            <p>
+              工具提供4种练习模式：学习模式将汉字与拼音对照展示，适合初学阶段认读记忆；练习模式只显示汉字，学生需要在横线上填写对应的拼音，支持显示/隐藏答案功能方便自查；四线三格模式提供标准拼音书写格，适合拼音书写规范练习；横线拼音模式生成横线格式的练习卷，适合课堂测验使用。字号支持小、中、大三档调节，生成的练习卷支持PDF格式导出，可直接打印使用。
+            </p>
+            <p>
+              <strong className="text-gray-300">使用场景：</strong>一年级拼音新课巩固、学前拼音启蒙、拼音单元复习测试、日常拼音朗读练习等。建议学生在学完拼音基础后，每天用10分钟进行拼音注音练习，先从简单的单字开始，逐步过渡到词语和短句。通过反复练习，帮助学生熟练掌握声母韵母的拼读规则和声调标注方法，为后续的识字阅读打下坚实基础。
+            </p>
+          </div>
+        </section>
+
         {/* 使用指南 */}
         <div className="max-w-4xl mx-auto px-4 py-12">
           <ToolGuide {...toolGuides['pinyin']} />

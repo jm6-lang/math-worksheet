@@ -637,6 +637,24 @@ export default function WritingTemplatePage() {
         </div>
       </footer>
 
+      {/* 工具介绍（SEO） */}
+      <section className="max-w-7xl mx-auto px-4 pb-8">
+        <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl font-bold text-white mb-4">作文模板生成器 - 功能介绍与使用指南</h2>
+          <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
+            <p>
+              作文模板生成器是一款专为小学1-6年级学生设计的作文稿纸在线生成工具，提供看图写话、日记、书信、读后感、议论文5种常见作文类型模板。每种类型都配有针对性的写作提示和开头引导语，帮助学生快速理清写作思路。例如，看图写话模板会引导学生从"观察图片-描述内容-展开想象"三个层次进行写作，书信模板则自动生成标准的称呼、此致敬礼、署名日期等格式要素。
+            </p>
+            <p>
+              在稿纸样式方面，工具提供方格稿纸、横线稿纸、空白纸三种格式。方格稿纸是最常用的小学作文书写格式，每个方格对应一个汉字，帮助学生控制字数和书写工整度；横线稿纸适合高年级学生进行流畅的段落书写；空白纸则给有更高自由度需求的学生使用。系统根据年级自动推荐合适的字数范围（低年级100-200字、中年级200-400字、高年级400-600字），并据此调整稿纸的行列数量。日记模板支持自定义日期、星期和天气信息，书信模板提供多种常用称呼选项。生成的模板支持PDF格式导出，可直接打印使用。
+            </p>
+            <p>
+              <strong className="text-gray-300">使用场景：</strong>日常写作练习、周末日记、读书笔记、语文课堂作文训练、假期作文作业等。建议孩子养成每天写日记的习惯，从低年级的几句话开始，逐步过渡到完整的段落和文章。写作时先列提纲再动笔，注意段落分明、语句通顺，善用学过的好词好句。坚持练习，写作能力会得到显著提升。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['writing-template']} />

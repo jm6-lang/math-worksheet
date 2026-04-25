@@ -460,6 +460,24 @@ export default function CalligraphyPage() {
         </div>
       </div>
 
+      {/* 工具介绍（SEO） */}
+      <section className="max-w-4xl mx-auto px-4 pb-8">
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">字帖生成器 - 功能介绍与使用指南</h2>
+          <div className="text-gray-600 leading-relaxed space-y-3 text-sm md:text-base">
+            <p>
+              字帖生成器是一款免费的在线汉字练字工具，支持楷体、行楷、宋体、黑体、仿宋、隶书、幼圆、彩云、舒体、姚体、新魏、琥珀等12种字体风格，适合幼儿园到成人各个阶段的书写练习需求。用户可以自定义练字内容，输入任意汉字、词语或句子，系统自动生成规范的字帖模板，真正做到"想练什么字就练什么字"。相比传统购买的字帖，在线生成字帖更加灵活，能够根据孩子的学习进度随时调整练习内容。
+            </p>
+            <p>
+              在格子样式方面，本工具提供田字格、米字格、方格、横线格4种常见练字格式。田字格和米字格适合初学者掌握汉字的结构比例和笔画位置，方格适合有一定基础的学生进行自由书写练习，横线格则适合词语和句子的连贯书写训练。系统支持大格、中大、中格、小格4种格子尺寸，以及3到15行的练习行数调节，并可选择是否显示首行范字作为书写参考。生成的字帖支持PDF格式下载和直接打印，A4纸输出效果清晰规范。
+            </p>
+            <p>
+              <strong className="text-gray-800">使用场景与技巧：</strong>小学生日常练字、学前班汉字启蒙、书法兴趣班辅助练习、成人书法入门等。建议小学生每天坚持15-20分钟的练字练习，从楷书基础笔画开始，逐步过渡到行楷。练习时注意坐姿端正、握笔正确，先观察范字的结构特点再下笔，一笔一画认真书写，养成良好的书写习惯。
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 使用指南 */}
       <div className="max-w-4xl mx-auto px-4 py-12">
         <ToolGuide {...toolGuides['calligraphy']} />
