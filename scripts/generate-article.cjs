@@ -10,8 +10,36 @@ const fs = require('fs');
 const path = require('path');
 
 // ============================================================
-// 文章模板库（30 个模板）
+// 文章模板库（原有 30 个 + 扩展 75 个 = 共 105 个模板）
 // ============================================================
+
+// 加载扩展模板
+const batch1Path = path.join(__dirname, 'templates-batch1.cjs');
+const batch2Path = path.join(__dirname, 'templates-batch2.cjs');
+const batch3Path = path.join(__dirname, 'templates-batch3.cjs');
+
+let extraTemplates = [];
+try {
+  if (fs.existsSync(batch1Path)) {
+    const b1 = require(batch1Path);
+    const arr = Array.isArray(b1) ? b1 : (b1.BATCH1_TEMPLATES || []);
+    extraTemplates = extraTemplates.concat(arr);
+  }
+} catch(e) { console.warn('加载 batch1 模板失败:', e.message); }
+try {
+  if (fs.existsSync(batch2Path)) {
+    const b2 = require(batch2Path);
+    const arr = Array.isArray(b2) ? b2 : (b2.BATCH2_TEMPLATES || []);
+    extraTemplates = extraTemplates.concat(arr);
+  }
+} catch(e) { console.warn('加载 batch2 模板失败:', e.message); }
+try {
+  if (fs.existsSync(batch3Path)) {
+    const b3 = require(batch3Path);
+    const arr = Array.isArray(b3) ? b3 : (b3.BATCH3_TEMPLATES || []);
+    extraTemplates = extraTemplates.concat(arr);
+  }
+} catch(e) { console.warn('加载 batch3 模板失败:', e.message); }
 
 const ARTICLE_TEMPLATES = [
   // ==================== 数学学习（8 个）====================
@@ -2576,6 +2604,10 @@ Hello, my name is ___. I am ___ years old. I am from ___. I like ___. My favorit
   },
 ];
 
+// 合并扩展模板
+const ALL_TEMPLATES = [...ARTICLE_TEMPLATES, ...extraTemplates];
+console.log(`模板总数: ${ALL_TEMPLATES.length}（原有 ${ARTICLE_TEMPLATES.length} + 扩展 ${extraTemplates.length}）`);
+
 // ============================================================
 // 工具函数
 // ============================================================
@@ -2677,7 +2709,7 @@ function main() {
     usedTitles.add(titleMatch[1]);
   }
 
-  const availableTemplates = ARTICLE_TEMPLATES.filter(
+  const availableTemplates = ALL_TEMPLATES.filter(
     (t) => !usedTitles.has(t.title)
   );
   console.log(`可用模板数量: ${availableTemplates.length}`);
