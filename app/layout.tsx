@@ -15,7 +15,7 @@ const notoSansSC = Noto_Sans_SC({
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "教材工具箱 - 免费小学数学练习卷生成器/字帖生成工具/作文模板生成器",
+  title: "教材工具箱 - 免费小学数学练习卷/字帖/口算题生成器",
   description: "免费在线教育工具，支持小学1-6年级数学练习卷、字帖、拼音卡片、数独、作文模板等，PDF导出即印即用，无需注册完全免费。",
   keywords: "小学练习卷生成器,字帖生成器,数学练习题,作文模板,拼音学习工具,免费教育资源,小学数学,字帖打印,数独游戏,口算练习,识字卡片,英语字帖,在线教育工具,免费打印",
   openGraph: {

@@ -168,32 +168,30 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 技术栈 */}
+        {/* 技术保障 */}
         <section className="mb-12">
-          <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-8">
-            <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-              <span className="text-2xl">⚙️</span> 技术栈
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-white/5 rounded-xl">
-                <div className="text-3xl mb-2">⚛️</div>
-                <div className="text-white font-medium">Next.js + React</div>
-                <div className="text-gray-500 text-sm mt-1">前端框架</div>
+          <div className="bg-slate-800 rounded-xl p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-2xl">⚙️</span>
+              <h3 className="text-white text-lg font-bold">技术保障</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-slate-700/50 rounded-lg p-4 text-center">
+                <div className="text-3xl mb-2">⚡</div>
+                <div className="text-white font-medium">极速加载</div>
+                <div className="text-slate-400 text-sm">全球CDN加速，毫秒级响应</div>
               </div>
-              <div className="text-center p-4 bg-white/5 rounded-xl">
-                <div className="text-3xl mb-2">🎨</div>
-                <div className="text-white font-medium">Tailwind CSS</div>
-                <div className="text-gray-500 text-sm mt-1">样式框架</div>
+              <div className="bg-slate-700/50 rounded-lg p-4 text-center">
+                <div className="text-3xl mb-2">🛡️</div>
+                <div className="text-white font-medium">安全可靠</div>
+                <div className="text-slate-400 text-sm">数据本地处理，隐私安全保障</div>
               </div>
-              <div className="text-center p-4 bg-white/5 rounded-xl">
-                <div className="text-3xl mb-2">☁️</div>
-                <div className="text-white font-medium">Cloudflare Pages</div>
-                <div className="text-gray-500 text-sm mt-1">部署平台</div>
+              <div className="bg-slate-700/50 rounded-lg p-4 text-center">
+                <div className="text-3xl mb-2">📱</div>
+                <div className="text-white font-medium">全端适配</div>
+                <div className="text-slate-400 text-sm">手机平板电脑均可流畅使用</div>
               </div>
             </div>
-            <p className="text-gray-400 text-sm mt-4 text-center">
-              采用静态导出 + CDN 分发架构，确保全球访问速度和稳定性
-            </p>
           </div>
         </section>
       </div>

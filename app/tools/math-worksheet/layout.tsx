@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const pathname = headersList.get("x-invoke-path") ?? headersList.get("x-matched-path") ?? "/tools/math-worksheet";
   const canonicalUrl = `${protocol}://${host}${pathname}`;
   return {
-    title: "数学练习卷生成器 - 免费在线出题打印 | 教材工具箱",
+    title: "一年级数学练习卷生成器 - 免费在线生成PDF打印 | 教材工具箱",
     description: "免费在线生成小学数学练习卷，支持加减乘除、竖式计算、分数运算、一元一次方程等11种题型，田字格/方格/横线格多模板，PDF即印即用，1-6年级全覆盖。",
     keywords: "数学练习卷,数学出题器,小学数学,加减乘除,竖式计算,分数运算,数学打印,免费数学题",
     alternates: { canonical: canonicalUrl },

@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = articles.find(a => a.id === slug);
   if (!article) return { title: '文章未找到' };
   return {
-    title: `${article.title} - 教材工具箱`,
+    title: `${article.title} | 教材工具箱`,
     description: article.description,
     alternates: {
       canonical: `https://www.skillxm.cn/blog/${slug}`,
