@@ -10,10 +10,38 @@ const fs = require('fs');
 const path = require('path');
 
 // ============================================================
-// 文章模板库（原有 30 个 + 扩展 75 个 = 共 105 个模板）
+// 文章模板库（V2深度模板优先 + 原有模板 + 扩展模板）
 // ============================================================
 
-// 加载扩展模板
+// 加载 V2 深度模板（优先使用）
+const v2Batch1Path = path.join(__dirname, 'templates-v2-batch1.cjs');
+const v2Batch2Path = path.join(__dirname, 'templates-v2-batch2.cjs');
+const v2Batch3Path = path.join(__dirname, 'templates-v2-batch3.cjs');
+
+let v2Templates = [];
+try {
+  if (fs.existsSync(v2Batch1Path)) {
+    const b = require(v2Batch1Path);
+    const arr = Array.isArray(b) ? b : (b.TEMPLATES_V2_BATCH1 || []);
+    v2Templates = v2Templates.concat(arr);
+  }
+} catch(e) { console.warn('加载 v2-batch1 模板失败:', e.message); }
+try {
+  if (fs.existsSync(v2Batch2Path)) {
+    const b = require(v2Batch2Path);
+    const arr = Array.isArray(b) ? b : (b.TEMPLATES_V2_BATCH2 || []);
+    v2Templates = v2Templates.concat(arr);
+  }
+} catch(e) { console.warn('加载 v2-batch2 模板失败:', e.message); }
+try {
+  if (fs.existsSync(v2Batch3Path)) {
+    const b = require(v2Batch3Path);
+    const arr = Array.isArray(b) ? b : (b.TEMPLATES_V2_BATCH3 || []);
+    v2Templates = v2Templates.concat(arr);
+  }
+} catch(e) { console.warn('加载 v2-batch3 模板失败:', e.message); }
+
+// 加载扩展模板（batch1-3）
 const batch1Path = path.join(__dirname, 'templates-batch1.cjs');
 const batch2Path = path.join(__dirname, 'templates-batch2.cjs');
 const batch3Path = path.join(__dirname, 'templates-batch3.cjs');
@@ -2604,9 +2632,9 @@ Hello, my name is ___. I am ___ years old. I am from ___. I like ___. My favorit
   },
 ];
 
-// 合并扩展模板
-const ALL_TEMPLATES = [...ARTICLE_TEMPLATES, ...extraTemplates];
-console.log(`模板总数: ${ALL_TEMPLATES.length}（原有 ${ARTICLE_TEMPLATES.length} + 扩展 ${extraTemplates.length}）`);
+// 合并模板：V2深度模板优先，然后是扩展模板，最后是原有模板
+const ALL_TEMPLATES = [...v2Templates, ...extraTemplates, ...ARTICLE_TEMPLATES];
+console.log(`模板总数: ${ALL_TEMPLATES.length}（V2深度 ${v2Templates.length} + 扩展 ${extraTemplates.length} + 原有 ${ARTICLE_TEMPLATES.length}）`);
 
 // ============================================================
 // 工具函数

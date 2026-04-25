@@ -1,13 +1,13 @@
 name: 自动发布博客文章
 on:
   schedule:
-    - cron: '0 2 * * 1,4'  # 每周一和周四 UTC 2:00（北京时间 10:00）
+    - cron: '0 2 * * 1-5'  # 周一到周五 UTC 2:00（北京时间 10:00），每天发布1篇
   workflow_dispatch:
     inputs:
       count:
         description: '生成文章数量'
         required: false
-        default: '2'
+        default: '1'
         type: choice
         options:
           - '1'
