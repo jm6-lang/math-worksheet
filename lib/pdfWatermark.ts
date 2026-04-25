@@ -1,41 +1,78 @@
 /**
- * 在 canvas 上绘制网站水印（底部居中）
- * @param ctx - Canvas 2D 上下文
- * @param canvasWidth - canvas 宽度（像素）
- * @param canvasHeight - canvas 高度（像素）
+ * PDF 水印工具 - 在 canvas 上绘制来源信息
  */
-export function drawWatermarkOnCanvas(
+
+/** 来源水印文字 */
+const WATERMARK_TEXT = '来源：教材工具箱 | 免费下载：www.skillxm.cn';
+
+/**
+ * 在 canvas 顶部绘制来源水印（首页）
+ */
+export function drawHeaderWatermark(
   ctx: CanvasRenderingContext2D,
   canvasWidth: number,
-  canvasHeight: number
 ): void {
-  // 水印区域高度
-  const watermarkHeight = 40;
-  const watermarkY = canvasHeight - watermarkHeight;
+  const headerHeight = 28;
 
-  // 白色背景覆盖水印区域
+  // 白色背景
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, watermarkY, canvasWidth, watermarkHeight);
+  ctx.fillRect(0, 0, canvasWidth, headerHeight);
 
-  // 分隔线
+  // 底部分隔线
   ctx.strokeStyle = '#eeeeee';
   ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.moveTo(canvasWidth * 0.2, watermarkY + 4);
-  ctx.lineTo(canvasWidth * 0.8, watermarkY + 4);
+  ctx.moveTo(canvasWidth * 0.1, headerHeight - 1);
+  ctx.lineTo(canvasWidth * 0.9, headerHeight - 1);
   ctx.stroke();
 
   // 水印文字
   ctx.fillStyle = '#999999';
-  ctx.font = '14px sans-serif';
+  ctx.font = '12px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText(WATERMARK_TEXT, canvasWidth / 2, headerHeight - 5);
+}
+
+/**
+ * 在 canvas 底部绘制来源水印（末页）
+ */
+export function drawFooterWatermark(
+  ctx: CanvasRenderingContext2D,
+  canvasWidth: number,
+  canvasHeight: number,
+): void {
+  const footerHeight = 28;
+  const footerY = canvasHeight - footerHeight;
+
+  // 白色背景
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, footerY, canvasWidth, footerHeight);
+
+  // 顶部分隔线
+  ctx.strokeStyle = '#eeeeee';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(canvasWidth * 0.1, footerY + 1);
+  ctx.lineTo(canvasWidth * 0.9, footerY + 1);
+  ctx.stroke();
+
+  // 水印文字
+  ctx.fillStyle = '#999999';
+  ctx.font = '12px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
+  ctx.fillText(WATERMARK_TEXT, canvasWidth / 2, footerY + 6);
+}
 
-  // 第一行
-  const line1 = '\uD83D\uDCE7 \u66F4\u591A\u514D\u8D39\u7EC3\u4E60\u5377 \u2192 skillxm.cn';
-  ctx.fillText(line1, canvasWidth / 2, watermarkY + 10);
-
-  // 第二行
-  const line2 = '\uD83D\uDD0D \u641C\u7D22"\u6559\u6750\u5DE5\u5177\u7BB1"\u83B7\u53D6\u66F4\u591A\u5DE5\u5177';
-  ctx.fillText(line2, canvasWidth / 2, watermarkY + 26);
+/**
+ * 兼容旧调用的统一水印函数（底部）
+ * @deprecated 请使用 drawFooterWatermark
+ */
+export function drawWatermarkOnCanvas(
+  ctx: CanvasRenderingContext2D,
+  canvasWidth: number,
+  canvasHeight: number,
+): void {
+  drawFooterWatermark(ctx, canvasWidth, canvasHeight);
 }

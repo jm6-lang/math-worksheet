@@ -263,10 +263,13 @@ export default function FlashcardsPage() {
           logging: false,
         });
 
-        // 添加网站水印
-        const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+        // 添加网站水印（首页顶部 + 底部）
+        const { drawWatermarkOnCanvas, drawHeaderWatermark } = await import('@/lib/pdfWatermark');
         const fCtx = canvas.getContext('2d');
         if (fCtx) {
+          if (page === 0) {
+            drawHeaderWatermark(fCtx, canvas.width);
+          }
           drawWatermarkOnCanvas(fCtx, canvas.width, canvas.height);
         }
 

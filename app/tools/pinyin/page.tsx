@@ -618,10 +618,11 @@ export default function PinyinPage() {
       const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false });
       el.style.background = origBg;
 
-      // 添加网站水印
-      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      // 添加网站水印（顶部 + 底部）
+      const { drawWatermarkOnCanvas, drawHeaderWatermark } = await import('@/lib/pdfWatermark');
       const pCtx = canvas.getContext('2d');
       if (pCtx) {
+        drawHeaderWatermark(pCtx, canvas.width);
         drawWatermarkOnCanvas(pCtx, canvas.width, canvas.height);
       }
 

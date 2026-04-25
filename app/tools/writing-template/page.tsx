@@ -180,10 +180,11 @@ export default function WritingTemplatePage() {
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
       const imgY = 0;
 
-      // 添加网站水印
-      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      // 添加网站水印（顶部 + 底部）
+      const { drawWatermarkOnCanvas, drawHeaderWatermark } = await import('@/lib/pdfWatermark');
       const wCtx = canvas.getContext('2d');
       if (wCtx) {
+        drawHeaderWatermark(wCtx, canvas.width);
         drawWatermarkOnCanvas(wCtx, canvas.width, canvas.height);
       }
       const finalImgData = canvas.toDataURL('image/png');

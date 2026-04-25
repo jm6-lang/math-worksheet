@@ -164,11 +164,13 @@ export default function CalligraphyPage() {
       const pw = pdf.internal.pageSize.getWidth();
       const ph = pdf.internal.pageSize.getHeight();
 
-      // 添加网站水印
-      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      // 添加网站水印（顶部 + 底部）
+      const { drawWatermarkOnCanvas, drawHeaderWatermark } = await import('@/lib/pdfWatermark');
       const wCtx = (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).getContext('2d');
       if (wCtx) {
-        drawWatermarkOnCanvas(wCtx, (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).width, (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).height);
+        const target = (whiteCanvas.getContext('2d') ? whiteCanvas : canvas);
+        drawHeaderWatermark(wCtx, target.width);
+        drawWatermarkOnCanvas(wCtx, target.width, target.height);
       }
       const finalImgData = (whiteCanvas.getContext('2d') ? whiteCanvas : canvas).toDataURL('image/png');
 

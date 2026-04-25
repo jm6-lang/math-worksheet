@@ -173,10 +173,11 @@ export default function EnglishCalligraphyPage() {
       const pdfHeight = canvas.height / 2;
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'px', format: [pageWidth, pdfHeight] });
 
-      // 添加网站水印
-      const { drawWatermarkOnCanvas } = await import('@/lib/pdfWatermark');
+      // 添加网站水印（顶部 + 底部）
+      const { drawWatermarkOnCanvas, drawHeaderWatermark } = await import('@/lib/pdfWatermark');
       const eCtx = canvas.getContext('2d');
       if (eCtx) {
+        drawHeaderWatermark(eCtx, canvas.width);
         drawWatermarkOnCanvas(eCtx, canvas.width, canvas.height);
       }
       const finalImgData = canvas.toDataURL('image/png');
