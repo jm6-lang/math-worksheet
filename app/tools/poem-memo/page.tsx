@@ -40,7 +40,7 @@ const GRID_OPTIONS: GridOption[] = [
   { id: 'hengxian', name: '横线格', icon: '☰', desc: '横线书写' },
 ];
 
-const CELL_SIZE = 36;
+const CELL_SIZE = 48;
 const FILL_RATIO = 0.4; // 填空模式下隐藏字词的比例
 
 /* ============================================================
@@ -85,8 +85,8 @@ function generateUpDownLines(poem: Poem) {
 function TianGuide({ size }: { size: number }) {
   return (
     <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-      <div style={{ position: 'absolute', width: 0, top: 2, bottom: 2, left: '50%', borderRight: '1px dashed #ccc' }} />
-      <div style={{ position: 'absolute', height: 0, left: 2, right: 2, top: '50%', borderBottom: '1px dashed #ccc' }} />
+      <div style={{ position: 'absolute', width: 0, top: 2, bottom: 2, left: '50%', borderRight: '1px dashed #e74c3c' }} />
+      <div style={{ position: 'absolute', height: 0, left: 2, right: 2, top: '50%', borderBottom: '1px dashed #e74c3c' }} />
     </div>
   );
 }
@@ -106,7 +106,7 @@ function MemoCell({
   gridTemplate: GridTemplate;
   size: number;
 }) {
-  const fontSize = Math.floor(size * 0.65);
+  const fontSize = Math.floor(size * 0.72);
 
   if (gridTemplate === 'hengxian') {
     // 横线格：每个字占一个固定宽度
@@ -120,7 +120,7 @@ function MemoCell({
           textAlign: 'center',
           fontSize,
           fontFamily: "'KaiTi', 'STKaiti', '楷体', serif",
-          borderBottom: hidden ? '1px solid #ccc' : 'none',
+          borderBottom: '1px solid #ccc',
           color: hidden ? 'transparent' : '#333',
         }}
       >
@@ -287,7 +287,7 @@ export default function PoemMemoPage() {
                     ))}
                   </div>
                 ) : (
-                  <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', borderTop: '1px solid #ccc', borderLeft: '1px solid #ccc' }}>
                     {line.map((item, charIdx) => (
                       <MemoCell
                         key={charIdx}
@@ -336,7 +336,7 @@ export default function PoemMemoPage() {
                       ))}
                     </div>
                   ) : (
-                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', borderTop: '1px solid #ccc', borderLeft: '1px solid #ccc' }}>
                       {[...item.line].map((_, ci) => (
                         <MemoCell key={ci} char="" hidden={true} gridTemplate={gridTemplate} size={CELL_SIZE} />
                       ))}
@@ -391,7 +391,7 @@ export default function PoemMemoPage() {
                   ))}
                 </div>
               ) : (
-                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', borderTop: '1px solid #ccc', borderLeft: '1px solid #ccc' }}>
                   {[...line].map((_, ci) => (
                     <MemoCell key={ci} char="" hidden={true} gridTemplate={gridTemplate} size={CELL_SIZE} />
                   ))}
@@ -770,10 +770,11 @@ export default function PoemMemoPage() {
                     ref={previewRef}
                     className="bg-white shadow-lg"
                     style={{
-                      width: 650,
-                      minHeight: 850,
-                      padding: 30,
+                      width: '210mm',
+                      minHeight: '297mm',
+                      padding: '15mm',
                       background: '#fff',
+                      boxSizing: 'border-box',
                     }}
                   >
                     {/* 练习卷标题 */}

@@ -170,7 +170,17 @@ export default function UnitTestPage() {
   }, [grade, semester, examType, selectedUnits, availableUnits]);
 
   // 打印
-  const handlePrint = useCallback(() => window.print(), []);
+  const handlePrint = useCallback(() => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow || !previewRef.current) return;
+    const title = getExamTitle(grade, semester, examType, availableUnits.filter(u => selectedUnits.includes(u.id)).map(u => u.unitName));
+    const content = previewRef.current.innerHTML;
+    printWindow.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${title}</title><style>@page{margin:10mm;size:A4 portrait;}body{margin:0;font-family:'Microsoft YaHei','SimSun',sans-serif;color:#000;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style></head><body>${content}</body></html>`);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+  }, [grade, semester, examType, selectedUnits, availableUnits]);
 
   // 按题型分组
   const groupedQuestions = questions.reduce<Record<string, SelectedQuestion[]>>((acc, q) => {
