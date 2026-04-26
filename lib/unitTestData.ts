@@ -1,13 +1,16 @@
 /**
- * 单元测试卷题库数据 - 人教版小学数学
+ * 单元测试卷题库数据 - 人教版小学数学、语文、英语、科学
  * 按年级、学期、单元组织，每个单元至少8道题
  */
+
+export type Subject = '数学' | '语文' | '英语' | '科学';
 
 export interface UnitQuestion {
   id: string;
   unitName: string;
   grade: number;
   semester: '上' | '下';
+  subject: Subject;
   questions: {
     type: string;
     content: string;
@@ -23,6 +26,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '准备课',
     grade: 1,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '数一数，图中有（  ）朵花。\n（图略：5朵花）', answer: '5', difficulty: 1 },
       { type: '填空题', content: '在多的后面画"√"。\n△△△    ○○○○', answer: '○○○○ 后面画√', difficulty: 1 },
@@ -41,6 +45,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '位置',
     grade: 1,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '小明前面有3人，后面有2人，这一排一共有（  ）人。', answer: '6', difficulty: 2 },
       { type: '填空题', content: '看图填空：小鸟在小狗的（  ）面，小狗在小鸟的（  ）面。\n（小鸟在上，小狗在下）', answer: '上；下', difficulty: 1 },
@@ -59,6 +64,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '1-5的认识和加减法',
     grade: 1,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '1 + 2 =', answer: '3', difficulty: 1 },
       { type: '计算题', content: '3 + 1 =', answer: '4', difficulty: 1 },
@@ -79,6 +85,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '6-10的认识和加减法',
     grade: 1,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '4 + 3 =', answer: '7', difficulty: 1 },
       { type: '计算题', content: '6 + 2 =', answer: '8', difficulty: 1 },
@@ -99,6 +106,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '11-20各数的认识',
     grade: 1,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '1个十和5个一组成（  ）。', answer: '15', difficulty: 1 },
       { type: '填空题', content: '20里面有（  ）个十。', answer: '2', difficulty: 1 },
@@ -121,6 +129,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '认识图形（二）',
     grade: 1,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '长方形有（  ）条边，（  ）个角。', answer: '4；4', difficulty: 1 },
       { type: '填空题', content: '正方形有（  ）条边，每条边都（  ）。', answer: '4；相等', difficulty: 1 },
@@ -139,6 +148,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '20以内的退位减法',
     grade: 1,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '12 - 5 =', answer: '7', difficulty: 1 },
       { type: '计算题', content: '15 - 8 =', answer: '7', difficulty: 1 },
@@ -159,6 +169,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '100以内数的认识',
     grade: 1,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '3个十和5个一组成（  ）。', answer: '35', difficulty: 1 },
       { type: '填空题', content: '68里面有（  ）个十和（  ）个一。', answer: '6；8', difficulty: 1 },
@@ -181,6 +192,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '长度单位',
     grade: 2,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '1米 =（  ）厘米', answer: '100', difficulty: 1 },
       { type: '填空题', content: '课桌高约70（  ）。（填"米"或"厘米"）', answer: '厘米', difficulty: 1 },
@@ -201,6 +213,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '100以内的加法和减法（二）',
     grade: 2,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '36 + 47 =', answer: '83', difficulty: 1 },
       { type: '计算题', content: '53 + 29 =', answer: '82', difficulty: 1 },
@@ -221,6 +234,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '角的初步认识',
     grade: 2,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '一个角有（  ）个顶点和（  ）条边。', answer: '1；2', difficulty: 1 },
       { type: '填空题', content: '角的大小与边的（  ）无关，与两条边张开的（  ）有关。', answer: '长短；大小', difficulty: 2 },
@@ -241,6 +255,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '数据收集整理',
     grade: 2,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '统计表可以帮助我们清楚地看出数据的（  ）。', answer: '多少', difficulty: 1 },
       { type: '应用题', content: '二（1）班同学最喜欢的颜色统计如下：\n红色8人，蓝色12人，绿色6人，黄色4人。\n（1）喜欢（  ）色的人最多。\n（2）喜欢蓝色的比喜欢红色的多（  ）人。', answer: '（1）蓝；（2）4', difficulty: 2 },
@@ -259,6 +274,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '表内除法（一）',
     grade: 2,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '6 ÷ 2 =', answer: '3', difficulty: 1 },
       { type: '计算题', content: '12 ÷ 3 =', answer: '4', difficulty: 1 },
@@ -279,6 +295,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '混合运算',
     grade: 2,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '5 + 3 × 2 =', answer: '11', difficulty: 1 },
       { type: '计算题', content: '12 - 4 × 2 =', answer: '4', difficulty: 1 },
@@ -301,6 +318,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '时、分、秒',
     grade: 3,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '1时 =（  ）分', answer: '60', difficulty: 1 },
       { type: '填空题', content: '1分 =（  ）秒', answer: '60', difficulty: 1 },
@@ -321,6 +339,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '万以内的加法和减法（一）',
     grade: 3,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '230 + 450 =', answer: '680', difficulty: 1 },
       { type: '计算题', content: '560 - 280 =', answer: '280', difficulty: 1 },
@@ -341,6 +360,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '倍的认识',
     grade: 3,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '5的3倍是（  ）。', answer: '15', difficulty: 1 },
       { type: '填空题', content: '24是6的（  ）倍。', answer: '4', difficulty: 1 },
@@ -363,6 +383,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '位置与方向（一）',
     grade: 3,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '早晨起来，面向太阳，前面是（  ），后面是（  ），左面是（  ），右面是（  ）。', answer: '东；西；北；南', difficulty: 1 },
       { type: '填空题', content: '地图通常是按上（  ）、下（  ）、左（  ）、右（  ）绘制的。', answer: '北；南；西；东', difficulty: 1 },
@@ -381,6 +402,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '除数是一位数的除法',
     grade: 3,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '84 ÷ 4 =', answer: '21', difficulty: 1 },
       { type: '计算题', content: '96 ÷ 3 =', answer: '32', difficulty: 1 },
@@ -402,6 +424,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '面积',
     grade: 3,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '长方形的面积 =（  ）×（  ）', answer: '长；宽', difficulty: 1 },
       { type: '填空题', content: '正方形的面积 =（  ）×（  ）', answer: '边长；边长', difficulty: 1 },
@@ -426,6 +449,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '大数的认识',
     grade: 4,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '从个位起，每（  ）个数位是一级，分别是个级、万级、亿级。', answer: '四', difficulty: 1 },
       { type: '填空题', content: '10个一万是（  ），10个一百万是（  ）。', answer: '十万；一千万', difficulty: 1 },
@@ -446,6 +470,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '公顷和平方千米',
     grade: 4,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '1公顷 =（  ）平方米', answer: '10000', difficulty: 1 },
       { type: '填空题', content: '1平方千米 =（  ）公顷', answer: '100', difficulty: 1 },
@@ -466,6 +491,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '角的度量',
     grade: 4,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '线段有（  ）个端点，射线有（  ）个端点，直线（  ）端点。', answer: '两；一；没有', difficulty: 1 },
       { type: '填空题', content: '1个平角 =（  ）度 =（  ）个直角', answer: '180；2', difficulty: 1 },
@@ -486,6 +512,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '三位数乘两位数',
     grade: 4,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '123 × 12 =', answer: '1476', difficulty: 1 },
       { type: '计算题', content: '245 × 13 =', answer: '3185', difficulty: 1 },
@@ -506,6 +533,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '平行四边形和梯形',
     grade: 4,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '在同一个平面内不相交的两条直线叫做（  ），也可以说这两条直线（  ）。', answer: '平行线；互相平行', difficulty: 1 },
       { type: '填空题', content: '两条直线相交成直角，就说这两条直线互相（  ），其中一条直线是另一条直线的（  ）。', answer: '垂直；垂线', difficulty: 1 },
@@ -528,6 +556,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '四则运算',
     grade: 4,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '125 + 75 - 50 =', answer: '150', difficulty: 1 },
       { type: '计算题', content: '360 ÷ 9 × 4 =', answer: '160', difficulty: 1 },
@@ -548,6 +577,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '运算定律',
     grade: 4,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '两个数相加，交换加数的位置，（  ）不变，这叫做加法交换律。', answer: '和', difficulty: 1 },
       { type: '填空题', content: '三个数相加，先把前两个数相加，或者先把后两个数相加，（  ）不变，这叫做加法结合律。', answer: '和', difficulty: 1 },
@@ -568,6 +598,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '小数的意义和性质',
     grade: 4,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '0.3里面有（  ）个十分之一，0.03里面有（  ）个百分之一。', answer: '3；3', difficulty: 1 },
       { type: '填空题', content: '0.8的计数单位是（  ），它有（  ）个这样的单位。', answer: '0.1（或十分之一）；8', difficulty: 1 },
@@ -588,6 +619,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '三角形',
     grade: 4,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '三角形有（  ）条边，（  ）个角，（  ）个顶点。', answer: '3；3；3', difficulty: 1 },
       { type: '填空题', content: '三角形的内角和是（  ）度。', answer: '180', difficulty: 1 },
@@ -608,6 +640,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '小数的加法和减法',
     grade: 4,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '3.5 + 2.8 =', answer: '6.3', difficulty: 1 },
       { type: '计算题', content: '7.2 - 3.5 =', answer: '3.7', difficulty: 1 },
@@ -630,6 +663,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '小数乘法',
     grade: 5,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '2.5 × 3 =', answer: '7.5', difficulty: 1 },
       { type: '计算题', content: '0.8 × 0.5 =', answer: '0.4', difficulty: 1 },
@@ -650,6 +684,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '小数除法',
     grade: 5,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '7.2 ÷ 0.8 =', answer: '9', difficulty: 1 },
       { type: '计算题', content: '4.5 ÷ 0.05 =', answer: '90', difficulty: 1 },
@@ -670,6 +705,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '简易方程',
     grade: 5,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '用字母表示乘法分配律：（a + b）× c =（  ）', answer: 'a×c + b×c', difficulty: 1 },
       { type: '填空题', content: '用字母表示长方形的周长公式：C =（  ）', answer: '2(a + b)', difficulty: 1 },
@@ -690,6 +726,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '多边形的面积',
     grade: 5,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '平行四边形的面积 =（  ）×（  ）', answer: '底；高', difficulty: 1 },
       { type: '填空题', content: '三角形的面积 =（  ）×（  ）÷ 2', answer: '底；高', difficulty: 1 },
@@ -712,6 +749,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '观察物体',
     grade: 5,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '判断题', content: '从不同方向观察同一个物体，看到的形状可能不同。（  ）', answer: '√', difficulty: 1 },
       { type: '判断题', content: '从正面看到的形状是正方形，这个物体一定是正方体。（  ）', answer: '×', difficulty: 2 },
@@ -730,6 +768,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '因数与倍数',
     grade: 5,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '在算式 3 × 7 = 21 中，（  ）和（  ）是21的因数，21是（  ）和（  ）的倍数。', answer: '3；7；3；7', difficulty: 1 },
       { type: '填空题', content: '一个数的最小因数是（  ），最大因数是（  ）。', answer: '1；它本身', difficulty: 1 },
@@ -750,6 +789,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '长方体和正方体',
     grade: 5,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '长方体有（  ）个面，（  ）条棱，（  ）个顶点。', answer: '6；12；8', difficulty: 1 },
       { type: '填空题', content: '长方体的表面积 =（  ）', answer: '(长×宽+长×高+宽×高)×2', difficulty: 1 },
@@ -770,6 +810,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '分数的意义和性质',
     grade: 5,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '把单位"1"平均分成8份，表示其中的3份，用分数表示是（  ），它的分数单位是（  ）。', answer: '3/8；1/8', difficulty: 1 },
       { type: '填空题', content: '3/4的分数单位是（  ），它有（  ）个这样的分数单位。', answer: '1/4；3', difficulty: 1 },
@@ -790,6 +831,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '分数的加法和减法',
     grade: 5,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '1/4 + 2/4 =', answer: '3/4', difficulty: 1 },
       { type: '计算题', content: '5/6 - 1/6 =', answer: '2/3', difficulty: 1 },
@@ -812,6 +854,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '分数乘法',
     grade: 6,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '2/3 × 3/4 =', answer: '1/2', difficulty: 1 },
       { type: '计算题', content: '5/6 × 12 =', answer: '10', difficulty: 1 },
@@ -832,6 +875,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '位置与方向（二）',
     grade: 6,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '确定物体位置的两个条件是（  ）和（  ）。', answer: '方向；距离', difficulty: 1 },
       { type: '填空题', content: '小明在小红的北偏东30度方向200米处，那么小红在小明的（  ）方向（  ）米处。', answer: '南偏西30度；200', difficulty: 2 },
@@ -850,6 +894,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '分数除法',
     grade: 6,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '计算题', content: '3/4 ÷ 3 =', answer: '1/4', difficulty: 1 },
       { type: '计算题', content: '5/6 ÷ 5/12 =', answer: '2', difficulty: 1 },
@@ -870,6 +915,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '比',
     grade: 6,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '两个数（  ）又叫做两个数的比。', answer: '相除', difficulty: 1 },
       { type: '填空题', content: '15 ÷ 10 =（  ）：（  ） =（  ）/（  ）', answer: '15；10；15；10', difficulty: 1 },
@@ -890,6 +936,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '圆',
     grade: 6,
     semester: '上',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '圆的周长 C =（  ）或 C =（  ）', answer: 'πd；2πr', difficulty: 1 },
       { type: '填空题', content: '圆的面积 S =（  ）', answer: 'πr²', difficulty: 1 },
@@ -912,6 +959,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '负数',
     grade: 6,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '在数轴上，0右边的数是（  ）数，左边的数是（  ）数。', answer: '正；负', difficulty: 1 },
       { type: '填空题', content: '如果零上5度记作+5度，那么零下3度记作（  ）度。', answer: '-3', difficulty: 1 },
@@ -932,6 +980,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '百分数',
     grade: 6,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '3/5 =（  ）/20 =（  ）% =（  ）（填小数）', answer: '12；60；0.6', difficulty: 1 },
       { type: '填空题', content: '45%读作（  ），百分之三十五写作（  ）。', answer: '百分之四十五；35%', difficulty: 1 },
@@ -952,6 +1001,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '圆柱与圆锥',
     grade: 6,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '圆柱的侧面积 =（  ）×（  ）', answer: '底面周长；高', difficulty: 1 },
       { type: '填空题', content: '圆柱的体积 =（  ）', answer: '底面积×高', difficulty: 1 },
@@ -972,6 +1022,7 @@ export const unitTestData: UnitQuestion[] = [
     unitName: '比例',
     grade: 6,
     semester: '下',
+    subject: '数学',
     questions: [
       { type: '填空题', content: '表示两个比相等的式子叫做（  ）。', answer: '比例', difficulty: 1 },
       { type: '填空题', content: '在比例中，两个外项的积（  ）两个内项的积。', answer: '等于', difficulty: 1 },
@@ -987,13 +1038,675 @@ export const unitTestData: UnitQuestion[] = [
       { type: '应用题', content: '一辆汽车3小时行驶了180千米，照这样的速度，5小时行驶多少千米？（用比例解）', answer: '180/3=x/5，x=300（千米）', difficulty: 3 },
     ],
   },
+
+  
+
+  // ==================== 语文题库 ====================
+
+  {
+    id: "cn-g1s-u1",
+    unitName: "汉语拼音",
+    grade: 1,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nmā ma（ ）", answer: "妈妈", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nshān shuǐ（ ）", answer: "山水", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\ntiān dì（ ）", answer: "天地", difficulty: 1 },
+      { type: "选择题", content: "下列拼音中，声母是\"b\"的是（ ）。\nA. pō  B. bō  C. mō", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "\"花\"的正确拼音是（ ）。\nA. huā  B. hāu  C. huá", answer: "A", difficulty: 1 },
+      { type: "判断题", content: "\"ü\"和\"j、q、x\"相拼时，上面的两点要省去。（ ）", answer: "√", difficulty: 2 },
+      { type: "判断题", content: "\"zi\"是整体认读音节。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "写出下列字母的大写形式：\na —（ ）  b —（ ）  d —（ ）", answer: "A；B；D", difficulty: 1 },
+      { type: "填空题", content: "给下列汉字注音：\n日（ ）  月（ ）  水（ ）", answer: "rì；yuè；shuǐ", difficulty: 2 },
+      { type: "组词", content: "用\"大\"字组两个词：（ ）、（ ）", answer: "大人；大家（答案不唯一）", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "cn-g1s-u2",
+    unitName: "识字一",
+    grade: 1,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "组词", content: "用\"一\"字组两个词：（ ）、（ ）", answer: "一个；一天（答案不唯一）", difficulty: 1 },
+      { type: "组词", content: "用\"二\"字组两个词：（ ）、（ ）", answer: "二月；二十（答案不唯一）", difficulty: 1 },
+      { type: "组词", content: "用\"三\"字组两个词：（ ）、（ ）", answer: "三月；三个（答案不唯一）", difficulty: 1 },
+      { type: "填空题", content: "\"十\"字共（ ）画，第一画是（ ）", answer: "2；横", difficulty: 1 },
+      { type: "填空题", content: "\"木\"字共（ ）画，第三画是（ ）", answer: "4；撇", difficulty: 2 },
+      { type: "选择题", content: "\"人\"字的笔顺是（ ）。\nA. 先撇后捺  B. 先捺后撇", answer: "A", difficulty: 1 },
+      { type: "判断题", content: "\"口\"字是三面包围结构。（ ）", answer: "√", difficulty: 2 },
+      { type: "判断题", content: "\"日\"和\"目\"是同一个字。（ ）", answer: "×", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：人  入\n门口（ ）了很多（ ）。", answer: "入；人", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n我是小学生。\n________是________。", answer: "我是好孩子。（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g1s-u3",
+    unitName: "课文",
+    grade: 1,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "填空题", content: "补充句子：\n弯弯的月亮像（ ）。", answer: "小船（答案不唯一）", difficulty: 1 },
+      { type: "填空题", content: "补充句子：\n蓝蓝的天空是（ ）的家。", answer: "白云", difficulty: 1 },
+      { type: "选择题", content: "\"小小的船\"指的是（ ）。\nA. 小船  B. 月亮  C. 星星", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "\"影子在左，影子在右\"这句话中，影子会一直跟着我们。（ ）", answer: "√", difficulty: 1 },
+      { type: "照样子写句子", content: "照样子写词语：\n大大的  ________  ________", answer: "红红的；高高的（答案不唯一）", difficulty: 1 },
+      { type: "组词", content: "用\"白\"字组两个词：（ ）、（ ）", answer: "白云；白天（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：什么  怎么\n你（ ）名字？\n这是（ ）？", answer: "什么；什么", difficulty: 2 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"天上的白云，一会儿变成小羊，一会儿变成小马。\"\n白云变成了什么？\n答：____________________", answer: "白云变成了小羊和小马。", difficulty: 2 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nxiǎo niǎo（ ）", answer: "小鸟", difficulty: 1 },
+      { type: "古诗文填空", content: "补充古诗：\n鹅鹅鹅，曲项向（ ）歌。\n白毛浮绿水，红掌拨（ ）波。", answer: "天；清", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g1x-u1",
+    unitName: "识字",
+    grade: 1,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nchūn tiān（ ）", answer: "春天", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nhuā duǒ（ ）", answer: "花朵", difficulty: 1 },
+      { type: "组词", content: "用\"春\"字组两个词：（ ）、（ ）", answer: "春天；春风（答案不唯一）", difficulty: 1 },
+      { type: "组词", content: "用\"风\"字组两个词：（ ）、（ ）", answer: "大风；风车（答案不唯一）", difficulty: 1 },
+      { type: "填空题", content: "\"春\"字共（ ）画，第五画是（ ）", answer: "9；日", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：青  清\n（ ）草  （ ）水", answer: "青；清", difficulty: 2 },
+      { type: "判断题", content: "\"冬\"和\"东\"读音相同。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "\"雪\"字上面是\"雨\"字头。（ ）", answer: "√", difficulty: 1 },
+      { type: "照样子写句子", content: "照样子写句子：\n春天来了，小草绿了。\n________来了，________。", answer: "秋天来了，树叶黄了。（答案不唯一）", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n春眠不觉晓，处处闻（ ）鸟。\n夜来（ ）声，花落知多少。", answer: "啼；风雨", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g1x-u2",
+    unitName: "课文",
+    grade: 1,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "填空题", content: "补充句子：\n我替爸爸（ ）。", answer: "拿拖鞋（答案不唯一）", difficulty: 1 },
+      { type: "选择题", content: "\"小壁虎借尾巴\"中，小壁虎最后（ ）。\nA. 借到了尾巴  B. 自己长出了新尾巴", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "小壁虎的尾巴断了可以再长出来。（ ）", answer: "√", difficulty: 1 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"小白兔割草。一只小鸡走过来，小白兔把草给小鸡吃。\"\n小白兔把草给了谁？\n答：____________________", answer: "小白兔把草给了小鸡。", difficulty: 1 },
+      { type: "照样子写句子", content: "照样子写句子：\n他正在写字。\n________正在________。", answer: "我正在读书。（答案不唯一）", difficulty: 2 },
+      { type: "组词", content: "用\"吃\"字组两个词：（ ）、（ ）", answer: "吃饭；好吃（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：他  她  它\n（ ）是我的妈妈。（ ）是一只小猫。", answer: "她；它", difficulty: 2 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nzhuó yú（ ）", answer: "捉鱼", difficulty: 1 },
+      { type: "古诗文填空", content: "补充古诗：\n（ ）眠不觉晓，处处闻啼鸟。", answer: "春", difficulty: 1 },
+      { type: "填空题", content: "\"草\"字头是（ ），带有这个偏旁的字大多与（ ）有关。", answer: "艹；植物", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g2s-u1",
+    unitName: "识字",
+    grade: 2,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nyí qiè（ ）", answer: "一切", difficulty: 1 },
+      { type: "组词", content: "用\"识\"字组两个词：（ ）、（ ）", answer: "认识；识字（答案不唯一）", difficulty: 1 },
+      { type: "组词", content: "用\"交\"字组两个词：（ ）、（ ）", answer: "交朋友；交通（答案不唯一）", difficulty: 1 },
+      { type: "填空题", content: "\"识\"字的偏旁是（ ），右边是（ ）", answer: "讠；只", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：园  圆\n花（ ）  （ ）月", answer: "园；圆", difficulty: 2 },
+      { type: "判断题", content: "\"棉\"和\"绵\"读音相同，意思也相同。（ ）", answer: "×", difficulty: 2 },
+      { type: "判断题", content: "\"枫\"字的偏旁是\"木\"字旁。（ ）", answer: "√", difficulty: 1 },
+      { type: "照样子写词语", content: "照样子写词语：\nABB式：绿油油  ________  ________", answer: "红彤彤；黄澄澄（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"黄山有四绝：奇松、怪石、云海、温泉。\"\n黄山有哪四绝？\n答：____________________", answer: "奇松、怪石、云海、温泉。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n（ ）寒山径斜，白云生处有人家。\n停车坐爱枫林晚，霜叶红于（ ）花。", answer: "远上；二月", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g2s-u2",
+    unitName: "课文",
+    grade: 2,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "填空题", content: "补充句子：\n（ ）的树叶从树上落下来。", answer: "黄黄（答案不唯一）", difficulty: 1 },
+      { type: "选择题", content: "\"曹冲称象\"中，曹冲用了（ ）的方法称象。\nA. 用大秤  B. 用船代替秤", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "曹冲是曹操的儿子。（ ）", answer: "√", difficulty: 1 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"小蝌蚪先长出后腿，再长出前腿，最后尾巴不见了，变成了青蛙。\"\n小蝌蚪先长出什么？\n答：____________________", answer: "小蝌蚪先长出后腿。", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n他一边唱歌一边跳舞。\n________一边________一边________。", answer: "妈妈一边做饭一边唱歌。（答案不唯一）", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：飘  漂\n树叶（ ）落下来。\n这件衣服真（ ）亮。", answer: "飘；漂", difficulty: 2 },
+      { type: "组词", content: "用\"快\"字组两个词：（ ）、（ ）", answer: "快乐；赶快（答案不唯一）", difficulty: 1 },
+      { type: "古诗文填空", content: "补充古诗：\n床前明月光，疑是地上（ ）。\n举头望明月，低头思（ ）。", answer: "霜；故乡", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nzhōng yú（ ）", answer: "终于", difficulty: 1 },
+      { type: "照样子写词语", content: "照样子写词语：\nAABB式：高高兴兴  ________  ________", answer: "开开心心；快快乐乐（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g2x-u1",
+    unitName: "课文",
+    grade: 2,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "填空题", content: "补充句子：\n春天来了，（ ）绿了，（ ）开了。", answer: "小草；花（答案不唯一）", difficulty: 1 },
+      { type: "选择题", content: "\"小柳树和小枣树\"中，小枣树的特点是（ ）。\nA. 长得漂亮  B. 结了很多枣子", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "每个人都有自己的长处和短处。（ ）", answer: "√", difficulty: 1 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"笋芽儿终于钻出了地面。她睁开眼睛一看，啊，多么明亮、多么美丽的世界呀！\"\n笋芽儿看到了什么？\n答：____________________", answer: "笋芽儿看到了明亮、美丽的世界。", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n渐渐地，雨停了。\n________，________。", answer: "渐渐地，天亮了。（答案不唯一）", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：急  及\n（ ）时  着（ ）", answer: "及；急", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n草长莺飞（ ）天，拂堤杨柳醉春烟。\n儿童散学归来早，忙趁（ ）放纸鸢。", answer: "二；东风", difficulty: 2 },
+      { type: "组词", content: "用\"找\"字组两个词：（ ）、（ ）", answer: "找到；找人（答案不唯一）", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nzhù yì（ ）", answer: "注意", difficulty: 1 },
+      { type: "照样子写词语", content: "照样子写词语：\n又大又圆  ________  ________", answer: "又高又壮；又白又胖（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g3s-u1",
+    unitName: "课文",
+    grade: 3,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "填空题", content: "补充句子：\n秋天的雨，有一盒（ ）的颜料。", answer: "五彩缤纷", difficulty: 1 },
+      { type: "选择题", content: "\"望天门山\"的作者是（ ）。\nA. 杜甫  B. 李白  C. 白居易", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "\"天门中断楚江开\"中\"楚江\"指的是长江。（ ）", answer: "√", difficulty: 2 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"秋天的雨，把黄色给了银杏树，红红的枫叶像一枚枚邮票，飘哇飘哇，邮来了秋天的凉爽。\"\n短文把枫叶比作什么？\n答：____________________", answer: "短文把枫叶比作邮票。", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n它把红色给了枫树，红红的枫叶像一枚枚邮票。\n它把________给了________，________像________。", answer: "它把黄色给了银杏树，黄黄的叶子像一把把小扇子。（答案不唯一）", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n望天门山\n天门中断楚江开，（ ）水东流至此回。\n两岸青山相对出，（ ）一片日边来。", answer: "碧；孤帆", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：安静  平静\n教室里非常（ ）。\n湖面十分（ ）。", answer: "安静；平静", difficulty: 2 },
+      { type: "组词", content: "用\"飘\"字组两个词：（ ）、（ ）", answer: "飘动；飘扬（答案不唯一）", difficulty: 1 },
+      { type: "照样子写词语", content: "照样子写词语：\n表示颜色：金黄  ________  ________", answer: "火红；翠绿（答案不唯一）", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nfēng shōu（ ）", answer: "丰收", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "cn-g3s-u2",
+    unitName: "习作",
+    grade: 3,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "照样子写句子", content: "把下面的句子写具体：\n原句：花开了。\n具体：____________________", answer: "美丽的鲜花在春风中轻轻地开放了。（答案不唯一）", difficulty: 2 },
+      { type: "照样子写句子", content: "用比喻句补充句子：\n弯弯的月亮像________。", answer: "一把镰刀（答案不唯一）", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：陆续  继续  连续\n同学们（ ）走进教室。\n他（ ）三天没来上学了。\n请大家（ ）做作业。", answer: "陆续；连续；继续", difficulty: 3 },
+      { type: "判断题", content: "\"他跑得像兔子一样快\"是一个比喻句。（ ）", answer: "√", difficulty: 1 },
+      { type: "照样子写句子", content: "照样子写句子：\n不但……而且……\n____________________", answer: "他不但学习好，而且品德好。（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "写出一个拟人句：\n____________________", answer: "小草从土里探出头来。（答案不唯一）", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n因为……所以……\n____________________", answer: "因为下雨了，所以我带了伞。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读短文，找出比喻句并抄写下来：\n\"荷叶圆圆的，绿绿的。小水珠说：荷叶是我的摇篮。\"\n比喻句：____________________", answer: "荷叶是我的摇篮。", difficulty: 2 },
+      { type: "照样子写句子", content: "用\"有的……有的……有的……\"写一句话：\n____________________", answer: "下课了，同学们有的在跑步，有的在跳绳，有的在做游戏。（答案不唯一）", difficulty: 2 },
+      { type: "组词", content: "用\"观察\"写一句话：\n____________________", answer: "我仔细观察了小蚂蚁搬家的过程。（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g3x-u1",
+    unitName: "课文",
+    grade: 3,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "填空题", content: "补充句子：\n荷花已经开了不少了。荷叶（ ）的，像一个个碧绿的大圆盘。", answer: "挨挨挤挤", difficulty: 1 },
+      { type: "选择题", content: "\"绝句\"的作者是（ ）。\nA. 杜甫  B. 李白  C. 苏轼", answer: "A", difficulty: 1 },
+      { type: "判断题", content: "\"泥融飞燕子，沙暖睡鸳鸯\"描写的是春天的景色。（ ）", answer: "√", difficulty: 2 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"有的才展开两三片花瓣儿。有的花瓣儿全展开了，露出嫩黄色的小莲蓬。有的还是花骨朵儿，看起来饱胀得马上要破裂似的。\"\n这段话写了几种形态的荷花？\n答：____________________", answer: "这段话写了三种形态的荷花。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n绝句\n迟日江山丽，春风花草（ ）。\n泥融飞燕子，沙暖睡（ ）鸯。", answer: "香；鸳", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n荷叶像一个个碧绿的大圆盘。\n________像________。", answer: "白云像一群洁白的绵羊。（答案不唯一）", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：清香  芳香\n荷花的（ ）吸引了很多游客。\n花园里飘来阵阵（ ）。", answer: "清香；芳香", difficulty: 2 },
+      { type: "组词", content: "用\"莲\"字组两个词：（ ）、（ ）", answer: "莲花；莲子（答案不唯一）", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nfǎng fú（ ）", answer: "仿佛", difficulty: 1 },
+      { type: "照样子写词语", content: "照样子写词语：\n挨挨挤挤（AABB式）________  ________", answer: "清清楚楚；明明白白（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g3x-u2",
+    unitName: "习作",
+    grade: 3,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "照样子写句子", content: "把句子改成比喻句：\n原句：秋风吹过，树叶落了下来。\n改写：____________________", answer: "秋风吹过，树叶像蝴蝶一样飘落下来。（答案不唯一）", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n不仅……还……\n____________________", answer: "小明不仅学习好，还乐于助人。（答案不唯一）", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：希望  盼望  愿望\n我的（ ）是当一名老师。\n妈妈（ ）我能考个好成绩。\n我（ ）着假期的到来。", answer: "愿望；希望；盼望", difficulty: 3 },
+      { type: "判断题", content: "\"小明长得像他爸爸\"是一个比喻句。（ ）", answer: "×", difficulty: 2 },
+      { type: "照样子写句子", content: "用\"如果……就……\"写一句话：\n____________________", answer: "如果明天不下雨，我们就去公园玩。（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "写出一个排比句：\n____________________", answer: "天上的云，有的像小狗，有的像小猫，有的像小兔。（答案不唯一）", difficulty: 3 },
+      { type: "照样子写句子", content: "用修改符号修改病句：\n\"我忍不住不禁笑了起来。\"", answer: "去掉\"忍不住\"或去掉\"不禁\"", difficulty: 3 },
+      { type: "阅读理解", content: "阅读短文，找出拟人句：\n\"春天来了，小草从土里探出头来，桃花笑红了脸。\"\n拟人句：____________________", answer: "小草从土里探出头来，桃花笑红了脸。", difficulty: 2 },
+      { type: "照样子写句子", content: "用\"虽然……但是……\"写一句话：\n____________________", answer: "虽然今天很冷，但是我仍然坚持上学。（答案不唯一）", difficulty: 2 },
+      { type: "组词", content: "用\"惊讶\"写一句话：\n____________________", answer: "听到这个消息，我感到非常惊讶。（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "en-g3s-u1",
+    unitName: "Hello",
+    grade: 3,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "当你早上见到老师时，你应该说（ ）。\nA. Good morning!  B. Good evening!  C. Good night!", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"再见\"用英语怎么说？（ ）\nA. Hello  B. Goodbye  C. Hi", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nruler —（ ）  pencil —（ ）  eraser —（ ）", answer: "尺子；铅笔；橡皮", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n书包 —（ ）  文具盒 —（ ）", answer: "bag；pencil box", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nare / you / How（ ? ）", answer: "How are you?", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nI / am / fine（ . ）", answer: "I am fine.", difficulty: 1 },
+      { type: "情景交际", content: "当你想问别人的名字时，你应该说（ ）。\nA. How are you?  B. What's your name?  C. Good morning.", answer: "B", difficulty: 1 },
+      { type: "情景交际", content: "别人对你说\"How are you?\"，你应该回答（ ）。\nA. I'm fine, thank you.  B. My name is Tom.  C. Goodbye.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"crayon\"的意思是（ ）。\nA. 蜡笔  B. 钢笔  C. 尺子", answer: "A", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Hello! I'm Mike.\nB: Hi! I'm Wu Yifan.\nA: What's your name?\nC: My name is Sarah.\nWho is C?\n答：____________________", answer: "C is Sarah.", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "en-g3s-u2",
+    unitName: "Colours",
+    grade: 3,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"红色\"用英语怎么说？（ ）\nA. blue  B. red  C. green", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"yellow\"的意思是（ ）。\nA. 蓝色  B. 绿色  C. 黄色", answer: "C", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nblack —（ ）  white —（ ）  orange —（ ）", answer: "黑色；白色；橙色", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n蓝色 —（ ）  绿色 —（ ）  棕色 —（ ）", answer: "blue；green；brown", difficulty: 1 },
+      { type: "情景交际", content: "你想告诉别人你看到了一朵红色的花，你应该说（ ）。\nA. I see a red flower.  B. I see a blue flower.  C. I see a green flower.", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nis / it / What / colour（ ? ）", answer: "What colour is it?", difficulty: 2 },
+      { type: "情景交际", content: "别人问你\"What colour is it?\"，它是绿色的，你应回答（ ）。\nA. It's green.  B. It's a green.  C. I see green.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"purple\"的意思是（ ）。\nA. 粉色  B. 紫色  C. 橙色", answer: "B", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Good morning, Miss White!\nB: Good morning! I have a bag.\nA: What colour is it?\nB: It's yellow.\nWhat colour is the bag?\n答：____________________", answer: "It's yellow.", difficulty: 2 },
+      { type: "单词选择", content: "\"pink\"的意思是（ ）。\nA. 粉色  B. 红色  C. 白色", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g3s-u3",
+    unitName: "Look at me",
+    grade: 3,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"face\"的意思是（ ）。\nA. 脸  B. 手  C. 脚", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"ear\"的意思是（ ）。\nA. 眼睛  B. 鼻子  C. 耳朵", answer: "C", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\neye —（ ）  nose —（ ）  mouth —（ ）", answer: "眼睛；鼻子；嘴巴", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n头 —（ ）  手 —（ ）  脚 —（ ）", answer: "head；hand；foot", difficulty: 1 },
+      { type: "情景交际", content: "你想让别人看你，你应该说（ ）。\nA. Look at me!  B. Look at my face!  C. Touch your face.", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nyour / Touch / nose（ . ）", answer: "Touch your nose.", difficulty: 1 },
+      { type: "情景交际", content: "老师让你摸摸你的脸，你应该（ ）。\nA. Touch your face.  B. Clap your hands.  C. Stamp your foot.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"arm\"的意思是（ ）。\nA. 腿  B. 胳膊  C. 手指", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"leg\"的意思是（ ）。\nA. 手  B. 脚  C. 腿", answer: "C", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Let's make a puppet!\nB: Great!\nA: This is the face.\nB: OK.\nWhat are they making?\n答：____________________", answer: "They are making a puppet.", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "en-g3x-u1",
+    unitName: "Welcome back",
+    grade: 3,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"boy\"的意思是（ ）。\nA. 女孩  B. 男孩  C. 老师", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"girl\"的意思是（ ）。\nA. 男孩  B. 女孩  C. 朋友", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nteacher —（ ）  student —（ ）  pupil —（ ）", answer: "老师；学生；小学生", difficulty: 1 },
+      { type: "情景交际", content: "你想介绍自己是新同学，你应该说（ ）。\nA. I'm a new student.  B. I'm a new teacher.  C. I'm a boy.", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\na / I / am / student（ . ）", answer: "I am a student.", difficulty: 1 },
+      { type: "情景交际", content: "你想问别人是哪里人，你应该说（ ）。\nA. Where are you from?  B. Who are you?  C. How are you?", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"she\"的意思是（ ）。\nA. 他  B. 她  C. 它", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"he\"的意思是（ ）。\nA. 他  B. 她  C. 它", answer: "A", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Hi, I'm Amy. I'm from the UK.\nB: Hi, I'm Zhang Peng. I'm from China.\nWhere is Amy from?\n答：____________________", answer: "She is from the UK.", difficulty: 2 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n他 —（ ）  她 —（ ）  它 —（ ）", answer: "he；she；it", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g3x-u2",
+    unitName: "My family",
+    grade: 3,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"father\"的意思是（ ）。\nA. 妈妈  B. 爸爸  C. 兄弟", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"mother\"的意思是（ ）。\nA. 妈妈  B. 爸爸  C. 姐妹", answer: "A", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nbrother —（ ）  sister —（ ）  grandmother —（ ）", answer: "兄弟；姐妹；奶奶/外婆", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n爷爷/外公 —（ ）  家人 —（ ）", answer: "grandfather/grandpa；family", difficulty: 1 },
+      { type: "情景交际", content: "你想介绍你的爸爸，你应该说（ ）。\nA. This is my father.  B. That is my mother.  C. He is my brother.", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nis / Who / that / man（ ? ）", answer: "Who is that man?", difficulty: 2 },
+      { type: "情景交际", content: "别人问你\"Who's that woman?\"，她是你的妈妈，你应回答（ ）。\nA. She is my mother.  B. He is my father.  C. She is my sister.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"uncle\"的意思是（ ）。\nA. 叔叔/舅舅  B. 阿姨/姑姑  C. 表兄弟", answer: "A", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Who's that man?\nB: He's my father.\nA: Who's that woman?\nB: She's my mother.\nWho is the man?\n答：____________________", answer: "B's father.", difficulty: 2 },
+      { type: "单词选择", content: "\"aunt\"的意思是（ ）。\nA. 叔叔  B. 阿姨/姑姑  C. 奶奶", answer: "B", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g3x-u3",
+    unitName: "At the zoo",
+    grade: 3,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"monkey\"的意思是（ ）。\nA. 猴子  B. 大象  C. 老虎", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"elephant\"的意思是（ ）。\nA. 狮子  B. 大象  C. 熊猫", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\ngiraffe —（ ）  tiger —（ ）  panda —（ ）", answer: "长颈鹿；老虎；熊猫", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n大的 —（ ）  小的 —（ ）  高的 —（ ）", answer: "big；small；tall", difficulty: 1 },
+      { type: "情景交际", content: "你想描述一只大象很大，你应该说（ ）。\nA. Look at the elephant. It's so big!  B. Look at the monkey. It's small.", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nis / It / so / big（ ! ）", answer: "It is so big!", difficulty: 1 },
+      { type: "情景交际", content: "你想描述长颈鹿很高，你应该说（ ）。\nA. The giraffe is so tall.  B. The giraffe is so short.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"fat\"的反义词是（ ）。\nA. thin  B. tall  C. big", answer: "A", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Look at that giraffe!\nB: Wow! It's so tall!\nA: Look at that bear!\nB: Ha! It's short and fat!\nIs the giraffe tall?\n答：____________________", answer: "Yes, it is.", difficulty: 2 },
+      { type: "单词选择", content: "\"short\"的反义词是（ ）。\nA. fat  B. tall  C. long", answer: "B", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g4s-u1",
+    unitName: "My classroom",
+    grade: 4,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"classroom\"的意思是（ ）。\nA. 教室  B. 学校  C. 操场", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"window\"的意思是（ ）。\nA. 门  B. 窗户  C. 黑板", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nblackboard —（ ）  light —（ ）  picture —（ ）", answer: "黑板；灯；图画", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n门 —（ ）  电脑 —（ ）  书桌 —（ ）", answer: "door；computer；desk", difficulty: 1 },
+      { type: "情景交际", content: "你想问教室里有什么，你应该说（ ）。\nA. What's in the classroom?  B. Where is the classroom?", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nis / This / my / classroom（ . ）", answer: "This is my classroom.", difficulty: 1 },
+      { type: "情景交际", content: "你想说\"让我们擦黑板吧\"，你应该说（ ）。\nA. Let's clean the blackboard.  B. Let's clean the window.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"floor\"的意思是（ ）。\nA. 墙壁  B. 地板  C. 天花板", answer: "B", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: What's in the classroom?\nB: One blackboard, one TV, many desks and chairs.\nHow many blackboards are there?\n答：____________________", answer: "One blackboard.", difficulty: 2 },
+      { type: "情景交际", content: "你想表达\"它在窗户旁边\"，你应该说（ ）。\nA. It's near the window.  B. It's on the window.", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g4s-u2",
+    unitName: "My schoolbag",
+    grade: 4,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"schoolbag\"的意思是（ ）。\nA. 书包  B. 书本  C. 文具盒", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"notebook\"的意思是（ ）。\nA. 故事书  B. 笔记本  C. 数学书", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nstorybook —（ ）  maths book —（ ）  English book —（ ）", answer: "故事书；数学书；英语书", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n语文书 —（ ）  玩具 —（ ）  糖果 —（ ）", answer: "Chinese book；toy；candy", difficulty: 1 },
+      { type: "情景交际", content: "你想问书包里有什么，你应该说（ ）。\nA. What's in your schoolbag?  B. Where is your schoolbag?", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nin / What / your / is / schoolbag（ ? ）", answer: "What is in your schoolbag?", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我有一个新书包\"，你应该说（ ）。\nA. I have a new schoolbag.  B. I have a new book.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"key\"的意思是（ ）。\nA. 钥匙  B. 钢笔  C. 铅笔", answer: "A", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: I have a new schoolbag.\nB: What's in it?\nA: An English book, a maths book and three storybooks.\nHow many books are in the schoolbag?\n答：____________________", answer: "Five books.", difficulty: 2 },
+      { type: "单词选择", content: "\"candy\"的意思是（ ）。\nA. 面包  B. 糖果  C. 蛋糕", answer: "B", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g4s-u3",
+    unitName: "My friends",
+    grade: 4,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"friendly\"的意思是（ ）。\nA. 友好的  B. 安静的  C. 高的", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"quiet\"的意思是（ ）。\nA. 强壮的  B. 安静的  C. 友好的", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\ntall —（ ）  strong —（ ）  thin —（ ）", answer: "高的；强壮的；瘦的", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n头发 —（ ）  鞋子 —（ ）  眼镜 —（ ）", answer: "hair；shoes；glasses", difficulty: 1 },
+      { type: "情景交际", content: "你想介绍你的朋友，你应该说（ ）。\nA. This is my friend. His name is Tom.  B. He is my teacher.", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nHe / is / tall / and / strong（ . ）", answer: "He is tall and strong.", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"他叫什么名字？\"，你应该说（ ）。\nA. What's his name?  B. What's her name?  C. Who is he?", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"glasses\"的意思是（ ）。\nA. 帽子  B. 眼镜  C. 鞋子", answer: "B", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: I have a good friend. He's tall and strong. He has big eyes.\nB: Who is he?\nA: His name is Zhang Peng.\nIs Zhang Peng tall?\n答：____________________", answer: "Yes, he is.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"她又高又瘦\"，你应该说（ ）。\nA. She is tall and thin.  B. She is short and thin.", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g4x-u1",
+    unitName: "My school",
+    grade: 4,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"playground\"的意思是（ ）。\nA. 教室  B. 操场  C. 图书馆", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"library\"的意思是（ ）。\nA. 图书馆  B. 操场  C. 花园", answer: "A", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nfirst floor —（ ）  second floor —（ ）  garden —（ ）", answer: "一楼；二楼；花园", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n教师办公室 —（ ）  电脑房 —（ ）  美术教室 —（ ）", answer: "teachers' office；computer room；art room", difficulty: 1 },
+      { type: "情景交际", content: "你想问图书馆在哪里，你应该说（ ）。\nA. Where is the library?  B. Is this the library?", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nthe / Where / is / library（ ? ）", answer: "Where is the library?", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"这是教师办公室吗？\"，你应该说（ ）。\nA. Is this the teachers' office?  B. Where is the teachers' office?", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"music room\"的意思是（ ）。\nA. 音乐教室  B. 美术教室  C. 电脑房", answer: "A", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Excuse me. Where is the library?\nB: It's on the second floor.\nA: Is it next to the computer room?\nB: Yes, it is.\nWhere is the library?\n答：____________________", answer: "It's on the second floor.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"教室在一楼\"，你应该说（ ）。\nA. The classroom is on the first floor.  B. The classroom is on the second floor.", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g4x-u2",
+    unitName: "What time is it",
+    grade: 4,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"breakfast\"的意思是（ ）。\nA. 早餐  B. 午餐  C. 晚餐", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"lunch\"的意思是（ ）。\nA. 早餐  B. 午餐  C. 晚餐", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\ndinner —（ ）  English class —（ ）  PE class —（ ）", answer: "晚餐；英语课；体育课", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"现在几点了？\"，你应该说（ ）。\nA. What time is it?  B. What day is it?", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nit / is / What / time（ ? ）", answer: "What time is it?", difficulty: 1 },
+      { type: "情景交际", content: "现在是9点，你想说\"It's nine o'clock.\"，对吗？（ ）", answer: "√", difficulty: 1 },
+      { type: "单词选择", content: "\"dinner\"的意思是（ ）。\nA. 早餐  B. 午餐  C. 晚餐", answer: "C", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n该上学了 —（ ）  该起床了 —（ ）", answer: "It's time for school；It's time to get up", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: What time is it?\nB: It's 8 o'clock. It's time for English class.\nWhat class is it?\n答：____________________", answer: "It's English class.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"到吃午餐的时间了\"，你应该说（ ）。\nA. It's time for lunch.  B. It's time for breakfast.", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g4x-u3",
+    unitName: "Weather",
+    grade: 4,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"sunny\"的意思是（ ）。\nA. 晴天的  B. 多云的  C. 下雨的", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"cloudy\"的意思是（ ）。\nA. 晴天的  B. 多云的  C. 下雪的", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nrainy —（ ）  snowy —（ ）  windy —（ ）", answer: "下雨的；下雪的；有风的", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n温暖的 —（ ）  寒冷的 —（ ）  凉爽的 —（ ）", answer: "warm；cold；cool", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"今天天气怎么样？\"，你应该说（ ）。\nA. What's the weather like today?  B. How are you today?", answer: "A", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\nis / the / weather / What / like（ ? ）", answer: "What is the weather like?", difficulty: 2 },
+      { type: "情景交际", content: "外面在下雨，妈妈让你带伞，她应该说（ ）。\nA. It's rainy. Take your umbrella.  B. It's sunny. Put on your sunglasses.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"hot\"的反义词是（ ）。\nA. warm  B. cold  C. cool", answer: "B", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: What's the weather like in Beijing?\nB: It's warm and sunny.\nA: Can I go outside?\nB: Yes, you can.\nWhat's the weather like in Beijing?\n答：____________________", answer: "It's warm and sunny.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"今天很冷\"，你应该说（ ）。\nA. It's cold today.  B. It's hot today.", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g3s-u1",
+    unitName: "植物",
+    grade: 3,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "植物的根的主要作用是（ ）。\nA. 吸收水分  B. 进行光合作用  C. 开花结果", answer: "A", difficulty: 1 },
+      { type: "选择题", content: "植物的叶子主要作用是（ ）。\nA. 吸收水分  B. 进行光合作用  C. 输送养分", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "所有植物都开花结果。（ ）", answer: "×", difficulty: 2 },
+      { type: "判断题", content: "植物的茎能将水分和养料输送到叶子和花。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "植物的六大器官是根、茎、叶、花、（ ）、（ ）。", answer: "果实；种子", difficulty: 2 },
+      { type: "填空题", content: "植物的叶子是绿色的，因为叶子中含有（ ）。", answer: "叶绿素", difficulty: 2 },
+      { type: "选择题", content: "下列哪种植物是用种子繁殖的？（ ）\nA. 蕨类  B. 苹果树  C. 青苔", answer: "B", difficulty: 2 },
+      { type: "简答题", content: "请说出植物的根有什么作用。", answer: "根能固定植物，吸收土壤中的水分和矿物质。", difficulty: 2 },
+      { type: "填空题", content: "植物生长需要（ ）、（ ）、适宜的温度和空气。", answer: "阳光；水", difficulty: 1 },
+      { type: "判断题", content: "没有阳光，植物也能正常生长。（ ）", answer: "×", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g3s-u2",
+    unitName: "动物",
+    grade: 3,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列动物中属于哺乳动物的是（ ）。\nA. 鸡  B. 狗  C. 鱼", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列动物中属于昆虫的是（ ）。\nA. 蝴蝶  B. 蜘蛛  C. 蜈蚣", answer: "A", difficulty: 2 },
+      { type: "判断题", content: "鱼用鳃呼吸。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "所有动物都是胎生的。（ ）", answer: "×", difficulty: 1 },
+      { type: "填空题", content: "动物可以分为脊椎动物和（ ）动物两大类。", answer: "无脊椎", difficulty: 2 },
+      { type: "填空题", content: "鸟类身体表面覆盖着（ ），用（ ）呼吸。", answer: "羽毛；肺", difficulty: 1 },
+      { type: "选择题", content: "下列动物中生活在水中的是（ ）。\nA. 麻雀  B. 蝴蝶  C. 金鱼", answer: "C", difficulty: 1 },
+      { type: "简答题", content: "请说出鱼类和哺乳动物的一个区别。", answer: "鱼类用鳃呼吸，哺乳动物用肺呼吸。（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "动物的运动方式有飞行、（ ）、游泳、爬行等。", answer: "奔跑（或行走）", difficulty: 1 },
+      { type: "判断题", content: "蜻蜓有四只翅膀。（ ）", answer: "√", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "sc-g3s-u3",
+    unitName: "我们周围的材料",
+    grade: 3,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列材料中属于天然材料的是（ ）。\nA. 塑料  B. 木材  C. 玻璃", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列材料中属于人造材料的是（ ）。\nA. 棉花  B. 皮革  C. 塑料", answer: "C", difficulty: 1 },
+      { type: "判断题", content: "金属能导电。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "塑料是天然材料。（ ）", answer: "×", difficulty: 1 },
+      { type: "填空题", content: "我们常见的材料有金属、木头、（ ）、（ ）、塑料等。", answer: "纸；玻璃（答案不唯一）", difficulty: 1 },
+      { type: "填空题", content: "金属的共同性质是：有光泽、能导热、能（ ）、有延展性。", answer: "导电", difficulty: 2 },
+      { type: "选择题", content: "做衣服最常用的材料是（ ）。\nA. 金属  B. 玻璃  C. 棉布", answer: "C", difficulty: 1 },
+      { type: "简答题", content: "请说出木头和塑料各有什么优点。", answer: "木头：天然、环保、较轻。塑料：防水、耐用、轻便。（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "玻璃的特点是透明、（ ）、易碎。", answer: "光滑", difficulty: 1 },
+      { type: "判断题", content: "不同材料有不同的性质，用途也不同。（ ）", answer: "√", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g3x-u1",
+    unitName: "物体的运动",
+    grade: 3,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列运动中属于直线运动的是（ ）。\nA. 荡秋千  B. 电梯升降  C. 旋转的陀螺", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列运动中属于曲线运动的是（ ）。\nA. 滑滑梯  B. 荡秋千  C. 拉抽屉", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "物体的运动方式只有直线运动和曲线运动两种。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "滚动的足球既在做直线运动，也在做旋转运动。（ ）", answer: "√", difficulty: 2 },
+      { type: "填空题", content: "物体的运动方式有（ ）运动和（ ）运动。", answer: "直线；曲线", difficulty: 1 },
+      { type: "填空题", content: "在相同距离内，所用时间越（ ），物体运动越快。", answer: "短", difficulty: 2 },
+      { type: "选择题", content: "测量物体运动快慢需要用到的工具是（ ）。\nA. 温度计  B. 秒表  C. 天平", answer: "B", difficulty: 1 },
+      { type: "简答题", content: "怎样比较两个物体运动的快慢？", answer: "在相同距离内比较时间，时间短的快；在相同时间内比较距离，距离长的快。", difficulty: 2 },
+      { type: "填空题", content: "在相同时间内，通过的（ ）越长，物体运动越快。", answer: "距离", difficulty: 2 },
+      { type: "判断题", content: "运动物体的速度与方向无关。（ ）", answer: "×", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "sc-g3x-u2",
+    unitName: "动物的生命周期",
+    grade: 3,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "蝴蝶的一生要经历（ ）个阶段。\nA. 3  B. 4  C. 5", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列动物中经历完全变态发育的是（ ）。\nA. 蝗虫  B. 蝴蝶  C. 蜻蜓", answer: "B", difficulty: 2 },
+      { type: "判断题", content: "青蛙的幼体和成体长得一样。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "所有动物都是从卵孵化出来的。（ ）", answer: "×", difficulty: 2 },
+      { type: "填空题", content: "蝴蝶的发育过程经历卵、（ ）、（ ）、成虫四个阶段。", answer: "幼虫；蛹", difficulty: 2 },
+      { type: "填空题", content: "鸡的发育过程经历卵、（ ）、成鸡三个阶段。", answer: "雏鸡", difficulty: 1 },
+      { type: "选择题", content: "青蛙的幼体叫（ ）。\nA. 蝌蚪  B. 毛毛虫  C. 子孓", answer: "A", difficulty: 1 },
+      { type: "简答题", content: "请说出蝴蝶和蚕的生命周期有什么相同点。", answer: "它们都经历卵、幼虫、蛹、成虫四个阶段，都属于完全变态发育。", difficulty: 3 },
+      { type: "填空题", content: "蚕的一生经历卵、（ ）、蛹、（ ）四个阶段。", answer: "幼虫；成虫", difficulty: 2 },
+      { type: "判断题", content: "蚕蛹不会变成蚕蛾。（ ）", answer: "×", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g4s-u1",
+    unitName: "声音",
+    grade: 4,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "声音是由物体的（ ）产生的。\nA. 静止  B. 振动  C. 转动", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "声音的传播需要（ ）。\nA. 空气  B. 介质  C. 光", answer: "B", difficulty: 2 },
+      { type: "判断题", content: "声音能在真空中传播。（ ）", answer: "×", difficulty: 2 },
+      { type: "判断题", content: "声音在固体中传播速度最快。（ ）", answer: "√", difficulty: 2 },
+      { type: "填空题", content: "声音可以在（ ）、液体和（ ）中传播。", answer: "气体；固体", difficulty: 1 },
+      { type: "填空题", content: "声音的高低叫做（ ），声音的大小叫做（ ）。", answer: "音调；响度", difficulty: 2 },
+      { type: "选择题", content: "下列哪种方法可以减小声音的响度？（ ）\nA. 用更大的力敲鼓  B. 用更小的力敲鼓  C. 换一个更大的鼓", answer: "B", difficulty: 1 },
+      { type: "简答题", content: "怎样使声音变大？", answer: "增大振动的幅度，声音就会变大。", difficulty: 2 },
+      { type: "填空题", content: "控制噪声的三种方法：在声源处（ ）、在传播过程中（ ）、在人耳处（ ）。", answer: "减弱；减弱；减弱", difficulty: 3 },
+      { type: "判断题", content: "物体振动越快，声音越高。（ ）", answer: "√", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g4s-u2",
+    unitName: "呼吸与消化",
+    grade: 4,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "人体的呼吸器官中，进行气体交换的主要场所是（ ）。\nA. 鼻腔  B. 气管  C. 肺", answer: "C", difficulty: 1 },
+      { type: "选择题", content: "我们吸入的气体中含量最多的是（ ）。\nA. 氧气  B. 氮气  C. 二氧化碳", answer: "B", difficulty: 2 },
+      { type: "判断题", content: "食物的营养主要在小肠中被吸收。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "口腔是消化的第一站。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "人呼吸时，吸入（ ），呼出（ ）。", answer: "氧气；二氧化碳", difficulty: 1 },
+      { type: "填空题", content: "人体的消化器官有口腔、食道、胃、（ ）、大肠和肛门。", answer: "小肠", difficulty: 2 },
+      { type: "选择题", content: "下列食物中富含蛋白质的是（ ）。\nA. 米饭  B. 鸡蛋  C. 苹果", answer: "B", difficulty: 1 },
+      { type: "简答题", content: "请说出保护呼吸器官的方法（至少两种）。", answer: "不吸烟、多运动、保持空气清新、戴口罩等。（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "食物中的营养成分主要有蛋白质、糖类、脂肪、维生素、（ ）和（ ）。", answer: "矿物质；水", difficulty: 2 },
+      { type: "判断题", content: "运动后呼吸会加快。（ ）", answer: "√", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g4x-u1",
+    unitName: "电",
+    grade: 4,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列物体中属于导体的是（ ）。\nA. 塑料  B. 铁丝  C. 木头", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列物体中属于绝缘体的是（ ）。\nA. 铜线  B. 铝箔  C. 橡胶", answer: "C", difficulty: 1 },
+      { type: "判断题", content: "一个完整的电路需要电源、导线、用电器和开关。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "干电池的铜帽一端是正极。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "电路有两种连接方式：（ ）联和（ ）联。", answer: "串；并", difficulty: 2 },
+      { type: "填空题", content: "容易导电的物体叫做（ ），不容易导电的物体叫做（ ）。", answer: "导体；绝缘体", difficulty: 1 },
+      { type: "选择题", content: "下列做法中安全的是（ ）。\nA. 用湿手触摸开关  B. 在高压线下放风筝  C. 使用绝缘手柄的工具", answer: "C", difficulty: 1 },
+      { type: "简答题", content: "请说出安全用电的注意事项（至少两条）。", answer: "不用湿手触摸电器、不私自拆装电器、不在高压线下玩耍等。（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "开关的作用是控制（ ）的通断。", answer: "电流", difficulty: 1 },
+      { type: "判断题", content: "人体是导体。（ ）", answer: "√", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g4x-u2",
+    unitName: "岩石与土壤",
+    grade: 4,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列岩石中属于沉积岩的是（ ）。\nA. 花岗岩  B. 砂岩  C. 大理岩", answer: "B", difficulty: 2 },
+      { type: "选择题", content: "土壤中最多的成分是（ ）。\nA. 空气  B. 水分  C. 矿物质", answer: "C", difficulty: 2 },
+      { type: "判断题", content: "花岗岩很坚硬，不容易被划伤。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "土壤是由岩石变化而来的。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "常见的岩石有花岗岩、（ ）、（ ）和石灰岩等。", answer: "砂岩；大理岩（答案不唯一）", difficulty: 1 },
+      { type: "填空题", content: "土壤按含量从多到少排列为：矿物质、（ ）、（ ）、腐殖质。", answer: "水分；空气", difficulty: 2 },
+      { type: "选择题", content: "下列哪种行为会破坏土壤？（ ）\nA. 种树  B. 乱砍滥伐  C. 轮作", answer: "B", difficulty: 1 },
+      { type: "简答题", content: "请说出保护土壤的方法（至少两种）。", answer: "植树造林、合理使用化肥、减少乱砍滥伐、垃圾分类等。（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "岩石可以分为岩浆岩、（ ）和变质岩三大类。", answer: "沉积岩", difficulty: 2 },
+      { type: "判断题", content: "所有的土壤都适合种植农作物。（ ）", answer: "×", difficulty: 2 }
+    ],
+  }
+
 ];
 
-/**
- * 根据年级和学期获取可用单元列表
- */
-export function getUnitsByGradeAndSemester(grade: number, semester: '上' | '下'): UnitQuestion[] {
-  return unitTestData.filter(u => u.grade === grade && u.semester === semester);
+export function getUnitsByGradeAndSemester(grade: number, semester: '上' | '下', subject?: Subject): UnitQuestion[] {
+  return unitTestData.filter(u => u.grade === grade && u.semester === semester && (subject === undefined || u.subject === subject));
 }
 
 /**
@@ -1015,13 +1728,14 @@ export function getRandomQuestions(
   unitIds: string[],
   count: number,
   difficulty?: 1 | 2 | 3,
+  subject?: Subject,
 ): { type: string; content: string; answer: string; difficulty: 1 | 2 | 3; unitName: string }[] {
   // 收集所有符合条件的题目
   let pool: { type: string; content: string; answer: string; difficulty: 1 | 2 | 3; unitName: string }[] = [];
 
   for (const unitId of unitIds) {
     const unit = unitTestData.find(u => u.id === unitId);
-    if (unit) {
+    if (unit && (subject === undefined || unit.subject === subject)) {
       for (const q of unit.questions) {
         if (difficulty === undefined || q.difficulty === difficulty) {
           pool.push({ ...q, unitName: unit.unitName });
@@ -1034,7 +1748,7 @@ export function getRandomQuestions(
   if (pool.length < count && difficulty !== undefined) {
     for (const unitId of unitIds) {
       const unit = unitTestData.find(u => u.id === unitId);
-      if (unit) {
+      if (unit && (subject === undefined || unit.subject === subject)) {
         for (const q of unit.questions) {
           if (q.difficulty !== difficulty && !pool.find(p => p.content === q.content)) {
             pool.push({ ...q, unitName: unit.unitName });

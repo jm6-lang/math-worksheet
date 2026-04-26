@@ -64,15 +64,17 @@ function getExamTitle(
   semester: '上' | '下',
   examType: ExamType,
   unitNames: string[],
+  subjectName?: string,
 ): string {
   const gradeLabel = `${grade}年级${semester}册`;
+  const subjectStr = subjectName ? ` ${subjectName}` : '';
   switch (examType) {
     case 'unit':
-      return `${gradeLabel} ${unitNames.length > 0 ? unitNames[0] : ''}测试卷`;
+      return `${gradeLabel}${subjectStr} ${unitNames.length > 0 ? unitNames[0] : ''}测试卷`;
     case 'midterm':
-      return `${gradeLabel} 期中测试卷`;
+      return `${gradeLabel}${subjectStr} 期中测试卷`;
     case 'final':
-      return `${gradeLabel} 期末测试卷`;
+      return `${gradeLabel}${subjectStr} 期末测试卷`;
   }
 }
 
@@ -88,6 +90,7 @@ function shuffleArray<T>(arr: T[]): T[] {
 // ===== 主组件 =====
 export default function UnitTestPage() {
   // 配置状态
+  const [subject, setSubject] = useState<'数学' | '语文' | '英语' | '科学'>('数学');
   const [grade, setGrade] = useState(1);
   const [semester, setSemester] = useState<'上' | '下'>('上');
   const [selectedUnits, setSelectedUnits] = useState<string[]>([]);
@@ -103,8 +106,8 @@ export default function UnitTestPage() {
 
   const previewRef = useRef<HTMLDivElement>(null);
 
-  // 获取当前年级学期的可用单元
-  const availableUnits = getUnitsByGradeAndSemester(grade, semester);
+  // 获取当前年级学期的可用单元（按科目过滤）
+  const availableUnits = getUnitsByGradeAndSemester(grade, semester, subject);
 
   // 年级或学期变化时重置单元选择
   useEffect(() => {
@@ -113,7 +116,7 @@ export default function UnitTestPage() {
 
   // 根据试卷类型自动选择单元
   const getAutoUnitIds = useCallback((): string[] => {
-    const units = getUnitsByGradeAndSemester(grade, semester);
+    const units = availableUnits;
     if (examType === 'unit') {
       return selectedUnits.length > 0 ? selectedUnits : [];
     }
@@ -127,7 +130,7 @@ export default function UnitTestPage() {
       return units.map(u => u.id);
     }
     return [];
-  }, [grade, semester, examType, selectedUnits]);
+  }, [availableUnits, examType, selectedUnits]);
 
   // 切换单元选择
   const toggleUnit = (unitId: string) => {
@@ -161,26 +164,26 @@ export default function UnitTestPage() {
   const handleExportPDF = useCallback(async () => {
     if (!previewRef.current) return;
     try {
-      const title = getExamTitle(grade, semester, examType, availableUnits.filter(u => selectedUnits.includes(u.id)).map(u => u.unitName));
+      const title = getExamTitle(grade, semester, examType, availableUnits.filter(u => selectedUnits.includes(u.id)).map(u => u.unitName), subject);
       await exportToPDF(previewRef.current, `${title}.pdf`);
     } catch (err) {
       console.error(err);
       alert('PDF导出失败，请重试');
     }
-  }, [grade, semester, examType, selectedUnits, availableUnits]);
+  }, [grade, semester, examType, selectedUnits, availableUnits, subject]);
 
   // 打印
   const handlePrint = useCallback(() => {
     const printWindow = window.open('', '_blank');
     if (!printWindow || !previewRef.current) return;
-    const title = getExamTitle(grade, semester, examType, availableUnits.filter(u => selectedUnits.includes(u.id)).map(u => u.unitName));
+    const title = getExamTitle(grade, semester, examType, availableUnits.filter(u => selectedUnits.includes(u.id)).map(u => u.unitName), subject);
     const content = previewRef.current.innerHTML;
     printWindow.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${title}</title><style>@page{margin:10mm;size:A4 portrait;}body{margin:0;font-family:'Microsoft YaHei','SimSun',sans-serif;color:#000;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style></head><body>${content}<p style="text-align:center;color:#999;font-size:12px;margin-top:20px;">来源：教材工具箱 | 免费下载：www.skillxm.cn</p></body></html>`);
     printWindow.document.close();
     printWindow.focus();
     printWindow.print();
     printWindow.close();
-  }, [grade, semester, examType, selectedUnits, availableUnits]);
+  }, [grade, semester, examType, selectedUnits, availableUnits, subject]);
 
   // 按题型分组
   const groupedQuestions = questions.reduce<Record<string, SelectedQuestion[]>>((acc, q) => {
@@ -204,6 +207,7 @@ export default function UnitTestPage() {
           const ids = getAutoUnitIds();
           return ids.includes(u.id);
         }).map(u => u.unitName),
+        subject,
       )
     : '';
 
@@ -228,7 +232,7 @@ export default function UnitTestPage() {
               单元测试卷生成器
             </h1>
             <p className="text-xl text-gray-400 mb-10">
-              按教材单元出题 · 覆盖人教版1-6年级上下册 · 期中/期末/单元测试 · PDF即印即用
+              按教材单元出题 · 覆盖人教版1-6年级上下册 · 支持数学/语文/英语/科学四科 · 期中/期末/单元测试 · PDF即印即用
             </p>
           </div>
         </div>
@@ -240,10 +244,33 @@ export default function UnitTestPage() {
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-              {/* 年级选择 */}
+              {/* 科目选择 */}
               <div>
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
                   <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">1</span>
+                  选择科目
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {(['数学', '语文', '英语', '科学'] as const).map(s => (
+                    <button
+                      key={s}
+                      onClick={() => { setSubject(s); setSelectedUnits([]); setQuestions([]); setHasGenerated(false); }}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                        subject === s
+                          ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20'
+                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                      }`}
+                    >
+                      {s === '数学' ? '🧮' : s === '语文' ? '📖' : s === '英语' ? '🔤' : '🔬'} {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 年级选择 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">2</span>
                   选择年级
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -266,7 +293,7 @@ export default function UnitTestPage() {
               {/* 学期选择 */}
               <div>
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">2</span>
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">3</span>
                   选择学期
                 </h3>
                 <div className="flex gap-2">
@@ -289,11 +316,11 @@ export default function UnitTestPage() {
               {/* 单元选择 */}
               <div>
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">3</span>
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">4</span>
                   选择单元
                 </h3>
                 {availableUnits.length === 0 ? (
-                  <p className="text-gray-500 text-sm">暂无该年级学期的单元数据</p>
+                  <p className="text-gray-500 text-sm">暂无该科目的单元数据</p>
                 ) : (
                   <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
                     {availableUnits.map(u => (
@@ -324,7 +351,7 @@ export default function UnitTestPage() {
               {/* 试卷类型 */}
               <div>
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">4</span>
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">5</span>
                   试卷类型
                 </h3>
                 <div className="grid grid-cols-3 gap-2">
@@ -348,7 +375,7 @@ export default function UnitTestPage() {
               {/* 难度选择 */}
               <div>
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">5</span>
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">6</span>
                   难度选择
                 </h3>
                 <div className="flex gap-2">
@@ -373,7 +400,7 @@ export default function UnitTestPage() {
               {/* 题目数量 + 生成按钮 */}
               <div>
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">6</span>
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">7</span>
                   题目数量
                 </h3>
                 <div className="flex gap-2 mb-4">
@@ -533,7 +560,7 @@ export default function UnitTestPage() {
               </h2>
               <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
                 <p>
-                  单元测试卷生成器按照人教版小学数学教材单元体系组织题库，覆盖一年级到六年级上下册共46个单元，每个单元包含填空题、选择题、判断题、计算题、应用题等多种题型。使用时先选择年级和学期，系统会自动显示该学期的可用单元。选择单元后可以设定试卷类型（单元测试、期中测试或期末测试），期中和期末测试会自动选取对应范围内的单元。支持三档难度调节，基础难度侧重概念理解，中等难度侧重综合运用，提高难度侧重拓展思维。题目数量可选10、15、20、25、30或40题，每次生成都会从题库中随机抽取，保证每次练习内容不重复。生成后可在线预览试卷效果，支持显示/隐藏答案，确认无误后一键导出PDF文件，A4纸打印效果清晰规范。
+                  单元测试卷生成器按照人教版小学教材单元体系组织题库，支持数学、语文、英语、科学四个科目，覆盖一年级到六年级上下册。每个单元包含填空题、选择题、判断题、计算题、应用题等多种题型。使用时先选择科目、年级和学期，系统会自动显示该学期的可用单元。选择单元后可以设定试卷类型（单元测试、期中测试或期末测试），期中和期末测试会自动选取对应范围内的单元。支持三档难度调节，基础难度侧重概念理解，中等难度侧重综合运用，提高难度侧重拓展思维。题目数量可选10、15、20、25、30或40题，每次生成都会从题库中随机抽取，保证每次练习内容不重复。生成后可在线预览试卷效果，支持显示/隐藏答案，确认无误后一键导出PDF文件，A4纸打印效果清晰规范。
                 </p>
               </div>
             </section>
@@ -574,7 +601,7 @@ export default function UnitTestPage() {
                     <span>覆盖哪些教材版本？</span>
                     <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
                   </summary>
-                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">目前支持人教版小学数学教材，覆盖一年级到三年级上下册共18个核心单元。后续将持续更新四年级到六年级的单元数据，并计划支持北师大版、苏教版等主流教材版本。</div>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">目前支持人教版小学数学、语文、英语、科学四个科目，覆盖一年级到三年级上下册共18个核心单元。后续将持续更新四年级到六年级的单元数据，并计划支持北师大版、苏教版等主流教材版本。</div>
                 </details>
                 <details className="group border border-white/10 rounded-lg">
                   <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
