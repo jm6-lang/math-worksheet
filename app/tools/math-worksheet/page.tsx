@@ -712,13 +712,16 @@ export default function MathWorksheetPage() {
             height: auto !important;
             overflow: visible !important;
           }
-          body > * {
+          /* 隐藏导航、按钮、配置面板等非打印元素 */
+          nav, footer, button, .no-print, .print\\:hidden {
             display: none !important;
           }
-          .print\:block {
+          /* 确保所有容器可见 */
+          body > * {
             display: block !important;
           }
-          nav, footer, .no-print {
+          /* 隐藏非预览区块 */
+          .hide-on-print {
             display: none !important;
           }
           .worksheet-wrapper {
@@ -728,6 +731,12 @@ export default function MathWorksheetPage() {
           }
           .worksheet-wrapper > * {
             display: block !important;
+          }
+          /* 去掉卡片圆角和阴影 */
+          .bg-white.rounded-xl {
+            box-shadow: none !important;
+            border: none !important;
+            border-radius: 0 !important;
           }
           /* 每页分页控制 */
           .worksheet-page {

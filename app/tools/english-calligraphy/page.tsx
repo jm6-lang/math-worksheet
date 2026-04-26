@@ -192,7 +192,16 @@ export default function EnglishCalligraphyPage() {
     }
   };
 
-  const handlePrint = function() { window.print(); };
+  const handlePrint = function() {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow || !previewRef.current) return;
+    const content = previewRef.current.innerHTML;
+    printWindow.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>英语字帖</title><style>@page{margin:10mm;size:A4 portrait;}body{margin:0;font-family:'Comic Sans MS','Arial',sans-serif;color:#000;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style></head><body>${content}</body></html>`);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+  };
 
   return (
     <div className="min-h-screen bg-gray-100" style={{ fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif' }}>
@@ -333,14 +342,18 @@ export default function EnglishCalligraphyPage() {
             </div>
           </div>
 
-          {/* Preview - 打印时显示 */}
-          <div className="print-only print-preview bg-white rounded-2xl border border-gray-200 shadow-sm p-4 mb-6">
-            <p className="text-xs text-gray-400 mb-3 text-center">预览</p>
-            <div className="flex justify-center overflow-x-auto">
+          {/* Preview */}
+          <div className="print-preview bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
+            <div className="text-xs text-gray-400 mb-3 text-center">
+              A4 预览 · {words.length} 个词 · 每词 {rowsPerWord} 行
+            </div>
+            <div className="flex justify-center overflow-x-auto bg-gray-50 rounded-xl p-4">
               <div
                 ref={previewRef}
+                className="bg-white shadow-lg"
                 style={{
                   width: pageWidth,
+                  minHeight: 850,
                   background: '#ffffff',
                   padding: pagePadding,
                   boxSizing: 'border-box',

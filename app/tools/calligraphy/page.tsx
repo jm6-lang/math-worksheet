@@ -84,8 +84,8 @@ function GridCell({ char, showChar, fontFamily, gridType, size }: {
         height: size,
         flexShrink: 0,
         background: '#fff',
-        borderBottom: '1px solid #ccc',
-        borderRight: '1px solid #ccc',
+        border: '1px solid #ccc',
+        boxSizing: 'border-box',
       }}
     >
       <CellGuides gridType={gridType} size={size} />
@@ -201,7 +201,7 @@ export default function CalligraphyPage() {
       <div style="width:180mm;margin:10mm auto;display:grid;grid-template-columns:repeat(${Math.min(chars.length, colsPerRow)},${cellSize}px);border:2px solid #333;">
         ${Array.from({ length: rows }, (_, rowIdx) =>
           chars.slice(0, colsPerRow).map(char => `
-            <div style="width:${cellSize}px;height:${cellSize}px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;position:relative;background:#fff;">
+            <div style="width:${cellSize}px;height:${cellSize}px;border:1px solid #ccc;box-sizing:border-box;position:relative;background:#fff;">
               ${gridType === 'tian' ? `<div style="position:absolute;width:0;top:2px;bottom:2px;left:50%;border-right:1px dashed #999;"></div><div style="position:absolute;height:0;left:2px;right:2px;top:50%;border-bottom:1px dashed #999;"></div>` : ''}
               ${gridType === 'mi' ? `<div style="position:absolute;width:0;top:2px;bottom:2px;left:50%;border-right:1px dashed #999;"></div><div style="position:absolute;height:0;left:2px;right:2px;top:50%;border-bottom:1px dashed #999;"></div><div style="position:absolute;width:${Math.ceil(cellSize*1.414)}px;height:0;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg);border-bottom:1px dashed #999;"></div><div style="position:absolute;width:${Math.ceil(cellSize*1.414)}px;height:0;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-45deg);border-bottom:1px dashed #999;"></div>` : ''}
               ${showGuide && rowIdx === 0 ? `<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${fontSize}px;font-family:'${fontFamily}';color:#b0b0b0;">${char}</span>` : ''}
