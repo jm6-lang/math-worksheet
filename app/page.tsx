@@ -223,7 +223,7 @@ export default function HomePage() {
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-base shadow-lg shadow-blue-500/20">
                 📚
               </div>
-              <a href="/" className="text-xl font-bold text-white hover:opacity-80 transition-opacity">
+              <a href="/" className="text-2xl font-bold text-white hover:opacity-80 transition-opacity">
                 教材工具箱
               </a>
             </div>
