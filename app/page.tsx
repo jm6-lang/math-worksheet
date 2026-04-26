@@ -212,7 +212,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* 主 H1 - 视觉隐藏但搜索引擎可见 */}
-      <h1 className="sr-only">教材工具箱 - 免费在线教育工具</h1>
+      <h1 className="sr-only">教材工具箱 - 免费小学教学工具/试卷生成器/字帖生成器/古诗词默写</h1>
 
       {/* ===== 顶部导航 ===== */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">

@@ -9,9 +9,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const canonicalUrl = `${protocol}://${host}${pathname}`;
   return {
     title: "作文模板生成器 - 看图写话/日记/作文格纸 | 教材工具箱",
-    description: "免费在线生成作文模板，支持看图写话、日记、书信等多种格式，适合小学生写作练习",
+    description: "免费生成小学作文格纸模板，看图写话、日记、作文格子纸",
     alternates: { canonical: canonicalUrl },
-    openGraph: { url: canonicalUrl, title: "作文模板生成器 - 教材工具箱", description: "免费在线生成作文模板，支持看图写话、日记、书信等多种格式" },
+    openGraph: { url: canonicalUrl, title: "作文模板生成器 - 教材工具箱", description: "免费生成小学作文格纸模板，看图写话、日记、作文格子纸" },
   };
 }
 
