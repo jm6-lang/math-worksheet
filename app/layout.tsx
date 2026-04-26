@@ -96,7 +96,7 @@ export default function RootLayout({
           "@type": "ImageObject",
           url: "https://www.skillxm.cn/og-image.jpg",
         },
-        description: "免费在线教育工具集合，为小学生和家长提供数学练习卷、字帖、数独等8款实用工具",
+        description: "免费在线教育工具集合，为小学生和家长提供数学练习卷、字帖、数独等10款实用工具",
         address: {
           "@type": "PostalAddress",
           addressCountry: "CN",
@@ -220,6 +220,32 @@ export default function RootLayout({
         name: "作文模板生成器",
         url: "https://www.skillxm.cn/tools/writing-template",
         description: "免费在线生成作文模板，支持看图写话、日记、书信等多种格式，适合小学生写作练习",
+        applicationCategory: "EducationApplication",
+        operatingSystem: "Web Browser",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "CNY",
+        },
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: "古诗词默写生成器",
+        url: "https://www.skillxm.cn/tools/poem-memo",
+        description: "免费在线生成古诗词默写练习卷，覆盖小学1-6年级必背古诗词，支持填空默写、全诗默写、上下句默写三种模式",
+        applicationCategory: "EducationApplication",
+        operatingSystem: "Web Browser",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "CNY",
+        },
+      },
+      {
+        "@type": "SoftwareApplication",
+        name: "单元测试卷生成器",
+        url: "https://www.skillxm.cn/tools/unit-test",
+        description: "免费在线生成小学数学单元测试卷，按人教版教材单元出题，支持期中期末测试，PDF导出即印即用",
         applicationCategory: "EducationApplication",
         operatingSystem: "Web Browser",
         offers: {
@@ -383,6 +409,14 @@ export default function RootLayout({
         <meta name="msapplication-TileImage" content="/favicons/favicon-32x32.png" />
         <meta name="msapplication-TileColor" content="#1e40af" />
         <meta name="theme-color" content="#1e40af" />
+
+        {/* hreflang GEO 信号 */}
+        <link rel="alternate" hrefLang="zh-CN" href="https://www.skillxm.cn/" />
+
+        {/* dns-prefetch 第三方资源 */}
+        <link rel="dns-prefetch" href="https://hm.baidu.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://zz.bdstatic.com" />
 
         <script
           type="application/ld+json"

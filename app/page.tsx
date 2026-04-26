@@ -143,6 +143,8 @@ const TOOL_CATEGORIES = [
       { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '/tools/mental-math', color: 'orange', disabled: false },
       { name: '识字卡片', icon: '🃏', desc: '汉字卡片生成', link: '/tools/flashcards', color: 'blue', disabled: false },
       { name: '作文模板', icon: '📝', desc: '多种写作模板', link: '/tools/writing-template', color: 'emerald', disabled: false },
+      { name: '古诗词默写', icon: '📜', desc: '必背古诗默写练习', link: '/tools/poem-memo', color: 'blue', disabled: false },
+      { name: '单元测试卷', icon: '📋', desc: '按教材单元出题', link: '/tools/unit-test', color: 'orange', disabled: false },
     ],
   },
 ];

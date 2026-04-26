@@ -1,0 +1,685 @@
+'use client';
+
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { exportToPDF } from '@/lib/pdfExport';
+import {
+  unitTestData,
+  getUnitsByGradeAndSemester,
+  getRandomQuestions,
+  type UnitQuestion,
+} from '@/lib/unitTestData';
+
+// ===== 类型定义 =====
+type ExamType = 'unit' | 'midterm' | 'final';
+type Difficulty = 1 | 2 | 3;
+
+interface SelectedQuestion {
+  type: string;
+  content: string;
+  answer: string;
+  difficulty: 1 | 2 | 3;
+  unitName: string;
+}
+
+// ===== 配置常量 =====
+const GRADES = [1, 2, 3, 4, 5, 6];
+const SEMESTERS: { value: '上' | '下'; label: string }[] = [
+  { value: '上', label: '上册' },
+  { value: '下', label: '下册' },
+];
+const EXAM_TYPES: { value: ExamType; label: string; icon: string }[] = [
+  { value: 'unit', label: '单元测试', icon: '📝' },
+  { value: 'midterm', label: '期中测试', icon: '📋' },
+  { value: 'final', label: '期末测试', icon: '📊' },
+];
+const DIFFICULTY_OPTIONS: { value: Difficulty; label: string; icon: string; desc: string }[] = [
+  { value: 1, label: '基础', icon: '🌱', desc: '基础概念' },
+  { value: 2, label: '中等', icon: '🌿', desc: '综合运用' },
+  { value: 3, label: '提高', icon: '🌳', desc: '拓展提升' },
+];
+const COUNT_OPTIONS = [10, 15, 20, 25];
+
+const DIFFICULTY_LABEL: Record<Difficulty, string> = {
+  1: '基础',
+  2: '中等',
+  3: '提高',
+};
+
+// ===== 题型排序映射 =====
+const TYPE_ORDER: Record<string, number> = {
+  '填空题': 1,
+  '选择题': 2,
+  '判断题': 3,
+  '比较大小': 4,
+  '计算题': 5,
+  '竖式计算': 6,
+  '估算题': 7,
+  '应用题': 8,
+};
+
+// ===== 工具函数 =====
+function getExamTitle(
+  grade: number,
+  semester: '上' | '下',
+  examType: ExamType,
+  unitNames: string[],
+): string {
+  const gradeLabel = `${grade}年级${semester}册`;
+  switch (examType) {
+    case 'unit':
+      return `${gradeLabel} ${unitNames.length > 0 ? unitNames[0] : ''}测试卷`;
+    case 'midterm':
+      return `${gradeLabel} 期中测试卷`;
+    case 'final':
+      return `${gradeLabel} 期末测试卷`;
+  }
+}
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// ===== 主组件 =====
+export default function UnitTestPage() {
+  // 配置状态
+  const [grade, setGrade] = useState(1);
+  const [semester, setSemester] = useState<'上' | '下'>('上');
+  const [selectedUnits, setSelectedUnits] = useState<string[]>([]);
+  const [examType, setExamType] = useState<ExamType>('unit');
+  const [difficulty, setDifficulty] = useState<Difficulty>(1);
+  const [questionCount, setQuestionCount] = useState(15);
+
+  // 生成状态
+  const [questions, setQuestions] = useState<SelectedQuestion[]>([]);
+  const [hasGenerated, setHasGenerated] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  const previewRef = useRef<HTMLDivElement>(null);
+
+  // 获取当前年级学期的可用单元
+  const availableUnits = getUnitsByGradeAndSemester(grade, semester);
+
+  // 年级或学期变化时重置单元选择
+  useEffect(() => {
+    setSelectedUnits([]);
+  }, [grade, semester]);
+
+  // 根据试卷类型自动选择单元
+  const getAutoUnitIds = useCallback((): string[] => {
+    const units = getUnitsByGradeAndSemester(grade, semester);
+    if (examType === 'unit') {
+      return selectedUnits.length > 0 ? selectedUnits : [];
+    }
+    if (examType === 'midterm') {
+      // 期中：前一半单元
+      const half = Math.ceil(units.length / 2);
+      return units.slice(0, half).map(u => u.id);
+    }
+    if (examType === 'final') {
+      // 期末：所有单元
+      return units.map(u => u.id);
+    }
+    return [];
+  }, [grade, semester, examType, selectedUnits]);
+
+  // 切换单元选择
+  const toggleUnit = (unitId: string) => {
+    setSelectedUnits(prev =>
+      prev.includes(unitId) ? prev.filter(id => id !== unitId) : [...prev, unitId],
+    );
+  };
+
+  // 生成试卷
+  const handleGenerate = useCallback(() => {
+    setIsGenerating(true);
+    setHasGenerated(false);
+
+    setTimeout(() => {
+      const unitIds = getAutoUnitIds();
+      if (unitIds.length === 0) {
+        alert('请至少选择一个单元');
+        setIsGenerating(false);
+        return;
+      }
+
+      const qs = getRandomQuestions(unitIds, questionCount, difficulty);
+      setQuestions(qs);
+      setHasGenerated(true);
+      setIsGenerating(false);
+      setShowAnswers(false);
+    }, 100);
+  }, [getAutoUnitIds, questionCount, difficulty]);
+
+  // 导出 PDF
+  const handleExportPDF = useCallback(async () => {
+    if (!previewRef.current) return;
+    try {
+      const title = getExamTitle(grade, semester, examType, availableUnits.filter(u => selectedUnits.includes(u.id)).map(u => u.unitName));
+      await exportToPDF(previewRef.current, `${title}.pdf`);
+    } catch (err) {
+      console.error(err);
+      alert('PDF导出失败，请重试');
+    }
+  }, [grade, semester, examType, selectedUnits, availableUnits]);
+
+  // 打印
+  const handlePrint = useCallback(() => window.print(), []);
+
+  // 按题型分组
+  const groupedQuestions = questions.reduce<Record<string, SelectedQuestion[]>>((acc, q) => {
+    if (!acc[q.type]) acc[q.type] = [];
+    acc[q.type].push(q);
+    return acc;
+  }, {});
+
+  // 按题型排序
+  const sortedTypes = Object.keys(groupedQuestions).sort(
+    (a, b) => (TYPE_ORDER[a] ?? 99) - (TYPE_ORDER[b] ?? 99),
+  );
+
+  // 试卷标题
+  const examTitle = hasGenerated
+    ? getExamTitle(
+        grade,
+        semester,
+        examType,
+        availableUnits.filter(u => {
+          const ids = getAutoUnitIds();
+          return ids.includes(u.id);
+        }).map(u => u.unitName),
+      )
+    : '';
+
+  // 滚动到预览区
+  useEffect(() => {
+    if (hasGenerated) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [hasGenerated]);
+
+  return (
+    <div className="min-h-screen bg-[#0f0f0f] text-white" style={{ fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif' }}>
+
+      {/* ===== 顶部导航 ===== */}
+      <nav className="print:hidden fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-xl">📝</div>
+              <a href="/" className="text-xl font-bold hover:opacity-80 transition-opacity text-white">教材工具箱</a>
+            </div>
+            <div className="hidden md:flex items-center gap-1">
+              <a href="/" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
+              <a href="/tools/math-worksheet" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">数学练习卷</a>
+              <a href="/tools/poem-memo" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">古诗词默写</a>
+              <a href="/tools/unit-test" className="px-3 py-2 text-sm text-white bg-white/10 rounded-lg font-medium">单元测试卷</a>
+            </div>
+            <button onClick={() => setMobileMenu(!mobileMenu)} aria-label={mobileMenu ? '关闭菜单' : '打开菜单'} className="md:hidden p-2 text-gray-300 hover:text-white transition-colors">{mobileMenu ? '✕' : '☰'}</button>
+          </div>
+        </div>
+        {mobileMenu && (
+          <div className="md:hidden bg-[#1a1a1a] border-t border-white/10 py-4 px-4 space-y-1">
+            <a href="/" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
+            <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">数学练习卷</a>
+            <a href="/tools/poem-memo" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">古诗词默写</a>
+            <a href="/tools/unit-test" className="block px-4 py-2 text-white bg-white/10 rounded-lg">单元测试卷</a>
+          </div>
+        )}
+      </nav>
+
+      {/* ===== Hero 区域 ===== */}
+      {!hasGenerated && (
+        <div className="print:hidden pt-24 pb-12 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl sm:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              单元测试卷生成器
+            </h1>
+            <p className="text-xl text-gray-400 mb-10">
+              按教材单元出题 · 覆盖人教版1-6年级上下册 · 期中/期末/单元测试 · PDF即印即用
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ===== 配置面板 ===== */}
+      <div className={`print:hidden ${hasGenerated ? 'pt-20' : ''} px-4 pb-12`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+              {/* 年级选择 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">1</span>
+                  选择年级
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {GRADES.map(g => (
+                    <button
+                      key={g}
+                      onClick={() => setGrade(g)}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                        grade === g
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                      }`}
+                    >
+                      {g}年级
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 学期选择 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">2</span>
+                  选择学期
+                </h3>
+                <div className="flex gap-2">
+                  {SEMESTERS.map(s => (
+                    <button
+                      key={s.value}
+                      onClick={() => setSemester(s.value)}
+                      className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                        semester === s.value
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 单元选择 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">3</span>
+                  选择单元
+                </h3>
+                {availableUnits.length === 0 ? (
+                  <p className="text-gray-500 text-sm">暂无该年级学期的单元数据</p>
+                ) : (
+                  <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
+                    {availableUnits.map(u => (
+                      <button
+                        key={u.id}
+                        onClick={() => toggleUnit(u.id)}
+                        disabled={examType !== 'unit'}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                          examType !== 'unit'
+                            ? 'bg-white/5 text-gray-600 cursor-not-allowed'
+                            : selectedUnits.includes(u.id)
+                              ? 'bg-blue-500 text-white'
+                              : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                        }`}
+                      >
+                        {u.unitName}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {examType !== 'unit' && (
+                  <p className="text-gray-500 text-xs mt-2">
+                    {examType === 'midterm' ? '期中测试自动选取前半单元' : '期末测试自动选取全部单元'}
+                  </p>
+                )}
+              </div>
+
+              {/* 试卷类型 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">4</span>
+                  试卷类型
+                </h3>
+                <div className="grid grid-cols-3 gap-2">
+                  {EXAM_TYPES.map(t => (
+                    <button
+                      key={t.value}
+                      onClick={() => setExamType(t.value)}
+                      className={`px-3 py-3 rounded-xl text-sm font-medium transition-all text-center ${
+                        examType === t.value
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                      }`}
+                    >
+                      <div className="text-xl mb-1">{t.icon}</div>
+                      <div>{t.label}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 难度选择 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">5</span>
+                  难度选择
+                </h3>
+                <div className="flex gap-2">
+                  {DIFFICULTY_OPTIONS.map(d => (
+                    <button
+                      key={d.value}
+                      onClick={() => setDifficulty(d.value)}
+                      className={`flex-1 px-3 py-3 rounded-xl text-sm font-medium transition-all text-center ${
+                        difficulty === d.value
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                      }`}
+                    >
+                      <div className="text-xl mb-1">{d.icon}</div>
+                      <div>{d.label}</div>
+                      <div className="text-xs opacity-60">{d.desc}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 题目数量 + 生成按钮 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <span className="w-6 h-6 bg-blue-500 rounded-full text-xs flex items-center justify-center">6</span>
+                  题目数量
+                </h3>
+                <div className="flex gap-2 mb-4">
+                  {COUNT_OPTIONS.map(c => (
+                    <button
+                      key={c}
+                      onClick={() => setQuestionCount(c)}
+                      className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                        questionCount === c
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                      }`}
+                    >
+                      {c}题
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={handleGenerate}
+                  disabled={isGenerating || (examType === 'unit' && selectedUnits.length === 0)}
+                  className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 disabled:opacity-50 text-white font-bold rounded-xl transition-all"
+                >
+                  {isGenerating ? '生成中...' : '生成试卷'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== 试卷预览 ===== */}
+      {hasGenerated && (
+        <div className="px-4 pb-20">
+          <div className="max-w-4xl mx-auto">
+            {/* 预览工具栏 */}
+            <div className="print:hidden flex flex-wrap items-center justify-between mb-6 gap-4">
+              <div className="flex items-center gap-4">
+                <h2 className="text-2xl font-bold">试卷预览</h2>
+                <span className="text-gray-500">共 {questions.length} 题</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowAnswers(!showAnswers)}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                    showAnswers
+                      ? 'bg-amber-500 text-white'
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  }`}
+                >
+                  {showAnswers ? '隐藏答案' : '显示答案'}
+                </button>
+                <button
+                  onClick={handleExportPDF}
+                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors"
+                >
+                  导出PDF
+                </button>
+                <button
+                  onClick={handlePrint}
+                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-gray-300 rounded-lg font-medium transition-colors"
+                >
+                  打印
+                </button>
+                <button
+                  onClick={() => { setHasGenerated(false); setQuestions([]); }}
+                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-gray-300 rounded-lg font-medium transition-all ml-2"
+                >
+                  返回配置
+                </button>
+              </div>
+            </div>
+
+            {/* A4 纸效果试卷 */}
+            <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
+              <div ref={previewRef} className="bg-white text-black p-8 sm:p-12" style={{ minHeight: '1123px', width: '100%', maxWidth: '794px', margin: '0 auto' }}>
+                {/* 试卷标题 */}
+                <div className="text-center mb-8">
+                  <h1 className="text-2xl font-bold mb-2">{examTitle}</h1>
+                  <p className="text-sm text-gray-500">（人教版 · {DIFFICULTY_LABEL[difficulty]}难度）</p>
+                </div>
+
+                {/* 姓名班级等信息栏 */}
+                <div className="flex justify-between mb-8 border-b border-gray-300 pb-4 text-sm">
+                  <div className="flex-1">姓名：______________</div>
+                  <div className="flex-1">班级：______________</div>
+                  <div className="flex-1">日期：______________</div>
+                  <div className="flex-1">分数：______________</div>
+                </div>
+
+                {/* 题目区域 */}
+                <div className="space-y-8">
+                  {sortedTypes.map((type, typeIdx) => {
+                    const typeQuestions = groupedQuestions[type];
+                    const chineseNum = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+                    return (
+                      <div key={type}>
+                        <h2 className="text-lg font-bold mb-4 border-b border-gray-200 pb-2">
+                          {chineseNum[typeIdx] ?? typeIdx}、{type}（共{typeQuestions.length}题）
+                        </h2>
+                        <div className="space-y-4">
+                          {typeQuestions.map((q, qIdx) => (
+                            <div key={qIdx} className="leading-relaxed">
+                              <p className="text-sm whitespace-pre-line">
+                                <span className="font-medium">{qIdx + 1}.</span> {q.content}
+                              </p>
+                              {showAnswers && (
+                                <div className="mt-1 text-sm text-red-600 bg-red-50 px-2 py-1 rounded inline-block">
+                                  答案：{q.answer}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* 答案区（独立区域，可选显示） */}
+                {showAnswers && (
+                  <div className="mt-12 pt-8 border-t-2 border-gray-300">
+                    <h2 className="text-lg font-bold mb-4 text-center">参考答案</h2>
+                    <div className="space-y-3 text-sm">
+                      {sortedTypes.map(type => {
+                        const typeQuestions = groupedQuestions[type];
+                        return (
+                          <div key={type}>
+                            <p className="font-bold text-gray-700 mb-1">{type}：</p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                              {typeQuestions.map((q, qIdx) => (
+                                <p key={qIdx} className="text-gray-600">
+                                  {qIdx + 1}. {q.answer}
+                                </p>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== 内容三件套 ===== */}
+      {!hasGenerated && (
+        <div className="print:hidden px-4 pb-12">
+          <div className="max-w-4xl mx-auto space-y-8">
+
+            {/* 使用指南 */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">📖</span> 使用指南
+              </h2>
+              <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
+                <p>
+                  单元测试卷生成器按照人教版小学数学教材单元体系组织题库，覆盖一年级到三年级上下册共18个单元，每个单元包含填空题、选择题、判断题、计算题、应用题等多种题型。使用时先选择年级和学期，系统会自动显示该学期的可用单元。选择单元后可以设定试卷类型（单元测试、期中测试或期末测试），期中和期末测试会自动选取对应范围内的单元。支持三档难度调节，基础难度侧重概念理解，中等难度侧重综合运用，提高难度侧重拓展思维。题目数量可选10、15、20或25题，每次生成都会从题库中随机抽取，保证每次练习内容不重复。生成后可在线预览试卷效果，支持显示/隐藏答案，确认无误后一键导出PDF文件，A4纸打印效果清晰规范。
+                </p>
+              </div>
+            </section>
+
+            {/* 适用场景 */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">🎯</span> 适用场景
+              </h2>
+              <ul className="space-y-3 text-gray-400 text-sm md:text-base">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">单元复习检测：</strong>学完一个单元后，生成对应的单元测试卷检验学习效果</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">期中模拟考试：</strong>期中考试前生成模拟试卷，提前熟悉考试形式</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">期末总复习：</strong>期末考试前生成综合测试卷，覆盖所有单元知识点</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400 mt-0.5 shrink-0">●</span>
+                  <span><strong className="text-gray-300">分层教学布置：</strong>根据学生水平选择不同难度，实现分层作业布置</span>
+                </li>
+              </ul>
+            </section>
+
+            {/* 常见问题FAQ */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">❓</span> 常见问题
+              </h2>
+              <div className="space-y-2">
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>覆盖哪些教材版本？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">目前支持人教版小学数学教材，覆盖一年级到三年级上下册共18个核心单元。后续将持续更新四年级到六年级的单元数据，并计划支持北师大版、苏教版等主流教材版本。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>试卷难度如何划分？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">试卷分为三档难度：基础难度侧重基本概念和简单计算，适合课后巩固；中等难度侧重知识点的综合运用，适合单元检测；提高难度包含拓展思维题和综合应用题，适合培优训练。每道题目都标注了难度等级。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>每次生成的题目一样吗？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">不会。每次点击生成按钮，系统都会从题库中随机抽取题目并打乱顺序。即使使用相同的配置参数，每次生成的试卷内容也不一样，确保练习的多样性和有效性。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>可以打印吗？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">可以。支持导出为A4标准尺寸的PDF文件，排版规范清晰，可直接打印使用。也可以使用浏览器的打印功能直接打印预览。PDF文件带有来源水印，方便识别试卷出处。</div>
+                </details>
+              </div>
+            </section>
+
+            {/* 相关工具推荐 */}
+            <section className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <span className="text-2xl">🔗</span> 相关工具推荐
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="/tools/math-worksheet" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">📐</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">数学练习卷</div>
+                  <div className="text-xs text-gray-500 mt-1">自由出题打印</div>
+                </a>
+                <a href="/tools/mental-math" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">⚡</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">口算速练</div>
+                  <div className="text-xs text-gray-500 mt-1">计时挑战训练</div>
+                </a>
+                <a href="/tools/poem-memo" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">📜</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">古诗词默写</div>
+                  <div className="text-xs text-gray-500 mt-1">古诗文默写生成</div>
+                </a>
+                <a href="/tools/sudoku" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">🧩</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">数独游戏</div>
+                  <div className="text-xs text-gray-500 mt-1">逻辑思维训练</div>
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+      )}
+
+      {/* ===== 底部 ===== */}
+      <footer className="print:hidden border-t border-white/10 py-8 px-4 text-center text-gray-500 text-sm">
+        <p>© 2026 教材工具箱 · 免费好用的单元测试卷生成器</p>
+      </footer>
+
+      {/* 打印样式 */}
+      <style jsx global>{`
+        @page {
+          size: A4 portrait;
+          margin: 0;
+        }
+        @media print {
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: white !important;
+            height: auto !important;
+            overflow: visible !important;
+          }
+          body > * {
+            display: none !important;
+          }
+          .print\\:block {
+            display: block !important;
+          }
+          nav, footer, .no-print {
+            display: none !important;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
