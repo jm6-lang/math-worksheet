@@ -38,7 +38,7 @@ const DIFFICULTY_OPTIONS: { value: Difficulty; label: string; icon: string; desc
   { value: 2, label: '中等', icon: '🌿', desc: '综合运用' },
   { value: 3, label: '提高', icon: '🌳', desc: '拓展提升' },
 ];
-const COUNT_OPTIONS = [10, 15, 20, 25, 30, 40];
+const COUNT_OPTIONS = [10, 20, 40, 60, 80];
 
 const DIFFICULTY_LABEL: Record<Difficulty, string> = {
   1: '基础',
@@ -560,8 +560,12 @@ export default function UnitTestPage() {
               </h2>
               <div className="text-gray-400 leading-relaxed space-y-3 text-sm md:text-base">
                 <p>
-                  单元测试卷生成器按照人教版小学教材单元体系组织题库，支持数学、语文、英语、科学四个科目，覆盖一年级到六年级上下册。每个单元包含填空题、选择题、判断题、计算题、应用题等多种题型。使用时先选择科目、年级和学期，系统会自动显示该学期的可用单元。选择单元后可以设定试卷类型（单元测试、期中测试或期末测试），期中和期末测试会自动选取对应范围内的单元。支持三档难度调节，基础难度侧重概念理解，中等难度侧重综合运用，提高难度侧重拓展思维。题目数量可选10、15、20、25、30或40题，每次生成都会从题库中随机抽取，保证每次练习内容不重复。生成后可在线预览试卷效果，支持显示/隐藏答案，确认无误后一键导出PDF文件，A4纸打印效果清晰规范。
+                  单元测试卷生成器按照人教版小学教材单元体系组织题库，支持数学、语文、英语、科学四个科目，覆盖一年级到六年级上下册。使用时先选择科目、年级和学期，系统会自动显示该学期的可用单元。选择单元后可以设定试卷类型（单元测试、期中测试或期末测试），期中和期末测试会自动选取对应范围内的单元。支持三档难度调节，题目数量可选10、20、40、60或80题，每次生成都会从题库中随机抽取，保证每次练习内容不重复。生成后可在线预览试卷效果，支持显示/隐藏答案，确认无误后一键导出PDF文件，A4纸打印效果清晰规范。
                 </p>
+                <p><strong className="text-gray-300">数学：</strong>涵盖计算题、填空题、选择题、判断题、比较大小、应用题等题型。低年级侧重加减法运算和基础概念，中年级引入乘除法、分数、面积等知识点，高年级覆盖小数、百分数、方程、几何等综合内容。每道计算题均自动生成，确保题目不重复。</p>
+                <p><strong className="text-gray-300">语文：</strong>包含字词填空、选择题、判断题、句子改写、阅读理解等题型。题库紧密贴合人教版教材单元主题，涵盖生字词、成语、修辞手法、课文理解等核心考点，帮助学生巩固每单元的语文基础知识。</p>
+                <p><strong className="text-gray-300">英语：</strong>提供单词选择、句型填空、情景交际、阅读理解等题型。题库按单元话题组织，涵盖字母、单词拼写、日常用语、语法结构等内容，适合小学生英语单元复习和阶段性检测。</p>
+                <p><strong className="text-gray-300">科学：</strong>涵盖科学概念填空、判断题、选择题、简答题等题型。题库依据人教版科学教材单元编排，涉及生命科学、物质科学、地球与宇宙、技术与工程等领域，培养学生科学探究能力和基础知识掌握。</p>
               </div>
             </section>
 
@@ -624,6 +628,34 @@ export default function UnitTestPage() {
                   </summary>
                   <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">可以。支持导出为A4标准尺寸的PDF文件，排版规范清晰，可直接打印使用。也可以使用浏览器的打印功能直接打印预览。PDF文件带有来源水印，方便识别试卷出处。</div>
                 </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>支持哪些年级？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">覆盖小学一年级到六年级上下册，共12个学期的完整单元体系。每个年级每个学期都包含对应的教材单元数据，教师和家长可以根据实际教学进度灵活选择对应的年级和学期生成试卷。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>期中/期末试卷怎么出？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">选择"期中测试"或"期末测试"试卷类型后，系统会自动选取对应学期范围内的单元。期中测试自动选取前半学期的所有单元，期末测试自动选取该学期的全部单元，无需手动逐个选择单元，一键即可生成综合性试卷。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>可以混合不同单元的题目吗？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">可以。在单元测试模式下，您可以同时勾选多个单元，系统会从所有选中的单元中随机抽取题目组合成一份试卷。这样非常适合跨单元综合复习，帮助学生巩固多个单元的知识点。</div>
+                </details>
+                <details className="group border border-white/10 rounded-lg">
+                  <summary className="flex items-center justify-between cursor-pointer p-4 text-gray-300 hover:text-white list-none font-medium">
+                    <span>试卷格式是什么样的？</span>
+                    <span className="text-gray-500 group-open:rotate-180 transition-transform text-xs">▼</span>
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">试卷采用A4标准纸张排版，包含完整的试卷标题、姓名、班级、日期、分数栏等信息栏。题目按题型自动分组排列（如填空题、选择题、计算题、应用题等），排版规范清晰，打印效果与正式考试试卷一致，可直接用于课堂测试或家庭练习。</div>
+                </details>
               </div>
             </section>
 
@@ -648,10 +680,10 @@ export default function UnitTestPage() {
                   <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">古诗词默写</div>
                   <div className="text-xs text-gray-500 mt-1">古诗文默写生成</div>
                 </a>
-                <a href="/tools/sudoku" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
-                  <div className="text-2xl mb-2">🧩</div>
-                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">数独游戏</div>
-                  <div className="text-xs text-gray-500 mt-1">逻辑思维训练</div>
+                <a href="/tools/calligraphy" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
+                  <div className="text-2xl mb-2">✍️</div>
+                  <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">字帖生成器</div>
+                  <div className="text-xs text-gray-500 mt-1">汉字书写练习</div>
                 </a>
               </div>
             </section>

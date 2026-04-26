@@ -1701,7 +1701,861 @@ export const unitTestData: UnitQuestion[] = [
       { type: "填空题", content: "岩石可以分为岩浆岩、（ ）和变质岩三大类。", answer: "沉积岩", difficulty: 2 },
       { type: "判断题", content: "所有的土壤都适合种植农作物。（ ）", answer: "×", difficulty: 2 }
     ],
-  }
+  },
+
+  // ==================== 语文 - 四年级上册 ====================
+  {
+    id: "cn-g4s-u1",
+    unitName: "观潮",
+    grade: 4,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nguān cháo（ ）", answer: "观潮", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nlóng zhào（ ）", answer: "笼罩", difficulty: 1 },
+      { type: "组词", content: "用\"潮\"字组两个词：（ ）、（ ）", answer: "潮水；潮汐（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：奔腾  沸腾\n只见东边水天相接的地方出现了一条白线，人群又（ ）起来。\n那浪越来越近，犹如千万匹白色战马（ ）而来。", answer: "沸腾；奔腾", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n浪潮越来越近，犹如千万匹白色战马齐头并进。\n________犹如________。", answer: "落叶纷纷飘落，犹如一只只蝴蝶翩翩起舞。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"那条白线很快地向我们移来，逐渐拉长，变粗，横贯江面。\"\n\"那条白线\"指的是什么？\n答：____________________", answer: "\"那条白线\"指的是钱塘江大潮。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"浪潮越来越近，犹如千万匹白色战马齐头并进。\"\n答：____________________", answer: "比喻", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"钱塘江大潮，自古以来被称为天下奇观。\"", answer: "原句没有语病。（此题为判断题）", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n八月十八潮，壮观天下（ ）。\n鲲鹏水击三千里，组练长驱十万（ ）。", answer: "无；夫", difficulty: 3 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"霎时，潮头奔腾西去，可是余波还在漫天卷地般涌来，江面上依旧风号浪吼。\"\n\"霎时\"是什么意思？\n答：____________________", answer: "\"霎时\"的意思是极短的时间，一会儿。", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g4s-u2",
+    unitName: "走月亮",
+    grade: 4,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\ntián sǒng（ ）", answer: "田埂", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nshuì lián（ ）", answer: "睡莲", difficulty: 1 },
+      { type: "组词", content: "用\"淘\"字组两个词：（ ）、（ ）", answer: "淘气；淘洗（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：柔和  柔软\n月光是那样（ ），照亮了高高的点苍山。\n草地上铺着（ ）的青苔。", answer: "柔和；柔软", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n月光照亮了高高的点苍山，照亮了村头的大青树，也照亮了村间的大道和小路。\n________照亮了________，照亮了________。", answer: "阳光照亮了田野，照亮了河流，也照亮了我们的校园。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"秋天的夜晚，月亮升起来了，从洱海那边升起来了。\"\n月亮是从哪里升起来的？\n答：____________________", answer: "月亮是从洱海那边升起来的。", difficulty: 1 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"月盘是那样明亮，月光是那样柔和。\"\n答：____________________", answer: "排比（反复）", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"走月亮，让我看到了美丽的景色。\"", answer: "去掉\"走月亮\"前面的逗号，改为：走月亮让我看到了美丽的景色。或：在\"走月亮\"前加\"和妈妈\"。", difficulty: 3 },
+      { type: "古诗文填空", content: "补充诗句：\n床前明月光，疑是地上（ ）。\n举头望明月，低头思（ ）。", answer: "霜；故乡", difficulty: 1 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"细细的溪水，流着山草和野花的香味，流着月光。\"\n溪水流着什么？\n答：____________________", answer: "溪水流着山草和野花的香味，流着月光。", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g4s-u3",
+    unitName: "现代诗二首",
+    grade: 4,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nluò yè（ ）", answer: "落叶", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nfán xīng（ ）", answer: "繁星", difficulty: 1 },
+      { type: "组词", content: "用\"巢\"字组两个词：（ ）、（ ）", answer: "鸟巢；巢穴（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：归巢  回家\n鸟儿（ ）了，在叽叽喳喳地聊着天。\n天黑了，小朋友们都（ ）了。", answer: "归巢；回家", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"秋天的声音，在每一片叶子里，在每一朵花里，在每一滴水里。\"\n________在________，在________，在________。", answer: "春天的气息在每一棵小草里，在每一朵鲜花里，在每一缕微风中。（答案不唯一）", difficulty: 3 },
+      { type: "阅读理解", content: "阅读诗歌回答问题：\n\"花牛在草地里坐，压扁了一穗剪秋罗。\"\n花牛在做什么？\n答：____________________", answer: "花牛在草地里坐着。", difficulty: 1 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"花牛在草地里眠，白云霸占了半个天。\"\n答：____________________", answer: "拟人", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"现代诗很优美，我喜欢读现代诗和古诗。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n《繁星》（七一）\n这些事——是永不漫灭的（ ）：月明的（ ），藤萝的（ ），母亲的膝上。", answer: "回忆；园中；叶下", difficulty: 2 },
+      { type: "阅读理解", content: "阅读诗歌回答问题：\n\"花牛在草地里走，小尾巴甩得滴溜溜。\"\n花牛的小尾巴怎么样？\n答：____________________", answer: "花牛的小尾巴甩得滴溜溜。", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 语文 - 四年级下册 ====================
+  {
+    id: "cn-g4x-u1",
+    unitName: "古诗词三首",
+    grade: 4,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "古诗文填空", content: "补充古诗：\n四时田园杂兴（其二十五）\n梅子金黄杏子肥，麦花雪白菜花（ ）。\n日长篱落无人过，惟有蜻蜓蛱蝶（ ）。", answer: "稀；飞", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n宿新市徐公店\n篱落疏疏一径深，树头新绿未成（ ）。\n儿童急走追黄蝶，飞入菜花（ ）处寻。", answer: "阴；无", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n清平乐·村居\n茅檐低小，溪上青青（ ）。\n醉里吴音相媚好，白发谁家（ ）媪？", answer: "草；翁", difficulty: 2 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nshū lí（ ）", answer: "疏篱", difficulty: 1 },
+      { type: "组词", content: "用\"篱\"字组两个词：（ ）、（ ）", answer: "篱落；篱笆（答案不唯一）", difficulty: 1 },
+      { type: "阅读理解", content: "阅读古诗回答问题：\n\"儿童急走追黄蝶，飞入菜花无处寻。\"\n儿童在做什么？为什么\"无处寻\"？\n答：____________________", answer: "儿童在追黄蝴蝶。因为蝴蝶飞入了黄色的菜花中，和菜花颜色一样，所以找不到。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列诗句用了什么修辞手法：\n\"白发谁家翁媪？\"\n答：____________________", answer: "设问", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"我大概差不多把作业写完了。\"", answer: "去掉\"大概\"或\"差不多\"（语义重复）。", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：稀疏  繁密\n篱笆（ ），小路幽深。\n树叶（ ），遮住了阳光。", answer: "稀疏；繁密", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"最喜小儿亡赖，溪头卧剥莲蓬。\"\n用\"最喜……\"写一句话：\n____________________", answer: "最喜春天到来，满园的花儿竞相开放。（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g4x-u2",
+    unitName: "乡下人家",
+    grade: 4,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\ngòu chéng（ ）", answer: "构成", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nshuài lǐng（ ）", answer: "率领", difficulty: 1 },
+      { type: "组词", content: "用\"饰\"字组两个词：（ ）、（ ）", answer: "装饰；修饰（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：独特  特别\n乡下人家的生活有一种（ ）的韵味。\n今天天气（ ）好。", answer: "独特；特别", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"几场春雨过后，到那里走走，常常会看见许多鲜嫩的笋，成群地从土里探出头来。\"\n________常常会________。", answer: "春天到了，到公园走走，常常会看见许多美丽的花朵竞相开放。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"有些人家，还在门前的场地上种几株花，芍药、凤仙、鸡冠花，大丽菊，它们依着时令，顺序开放。\"\n门前种了哪些花？\n答：____________________", answer: "种了芍药、凤仙、鸡冠花和大丽菊。", difficulty: 1 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"几场春雨过后，到那里走走，常常会看见许多鲜嫩的笋，成群地从土里探出头来。\"\n答：____________________", answer: "拟人", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"乡下人家，虽然住着小小的房屋，但总爱在屋前搭一瓜架。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n昼出耘田夜绩麻，村庄儿女各当（ ）。\n童孙未解供耕织，也傍桑阴学种（ ）。", answer: "家；瓜", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"若是在夏天的傍晚出去散步，常常会瞧见乡下人家吃晚饭的情景。\"\n乡下人家在什么时候吃晚饭？\n答：____________________", answer: "在夏天的傍晚。", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "cn-g4x-u3",
+    unitName: "纳米技术就在我们身边",
+    grade: 4,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nnà mǐ（ ）", answer: "纳米", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nxiāo fáng（ ）", answer: "消防", difficulty: 1 },
+      { type: "组词", content: "用\"钢\"字组两个词：（ ）、（ ）", answer: "钢铁；钢琴（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：无能为力  神奇\n纳米技术非常（ ），可以让很多以前（ ）的事情变成可能。", answer: "神奇；无能为力", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"纳米技术就在我们身边。\"\n用\"就在我们身边\"写一句话：\n____________________", answer: "科学就在我们身边。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"纳米技术是20世纪90年代出现的高新技术。\"\n纳米技术是什么时候出现的？\n答：____________________", answer: "纳米技术是20世纪90年代出现的高新技术。", difficulty: 1 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"纳米技术就在我们身边。\"\n答：____________________", answer: "没有使用修辞手法（陈述句）", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"纳米技术可以让人类的生活变得更方便和美好。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n不识庐山真面目，只缘身在此（ ）中。", answer: "山", difficulty: 1 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"纳米涂层具有杀菌和除臭功能。\"\n纳米涂层有什么功能？\n答：____________________", answer: "纳米涂层具有杀菌和除臭功能。", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 语文 - 五年级上册 ====================
+  {
+    id: "cn-g5s-u1",
+    unitName: "白鹭",
+    grade: 5,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nbái lù（ ）", answer: "白鹭", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nxián shì（ ）", answer: "嫌弃", difficulty: 1 },
+      { type: "组词", content: "用\"嵌\"字组两个词：（ ）、（ ）", answer: "镶嵌；嵌入（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：精巧  精美\n白鹭是一首（ ）的诗。\n这件工艺品非常（ ）。", answer: "精巧；精美", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"白鹭是一首精巧的诗。\"\n________是________。", answer: "荷花是一幅美丽的画。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"白鹤太大而嫌生硬，即使如粉红的朱鹭或灰色的苍鹭，也觉得大了一些，而且太不寻常了。\"\n作者为什么说白鹤和朱鹭等不如白鹭？\n答：____________________", answer: "因为白鹤太大而嫌生硬，朱鹭和苍鹭也太不寻常了，不如白鹭大小适宜、自然优美。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"白鹭是一首精巧的诗。\"\n答：____________________", answer: "比喻（暗喻）", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"白鹭实在是一首诗，一首韵在骨子里的散文诗。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n两个黄鹂鸣翠柳，一行（ ）上青天。", answer: "白鹭", difficulty: 1 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"晴天的清晨，每每看见它孤独地站立于小树的绝顶，看来像是不安稳，而它却很悠然。\"\n白鹭站在哪里？看起来怎样？\n答：____________________", answer: "白鹭站立于小树的绝顶，看起来像是不安稳，实际上却很悠然。", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g5s-u2",
+    unitName: "落花生",
+    grade: 5,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nmǔ qīn（ ）", answer: "母亲", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\njiào huì（ ）", answer: "教诲", difficulty: 1 },
+      { type: "组词", content: "用\"播\"字组两个词：（ ）、（ ）", answer: "播种；播放（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：爱慕  羡慕\n不要做只讲体面，而对别人没有（ ）的人。\n我很（ ）小明取得了好成绩。", answer: "好处；羡慕", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"所以你们要像花生，它虽然不好看，可是很有用。\"\n用\"虽然……可是……\"写一句话：\n____________________", answer: "虽然这道题很难，可是我还是做出来了。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"父亲说：'花生的好处很多，有一样最可贵。它的果实埋在地里，不像桃子、石榴、苹果那样，把鲜红嫩绿的果实高高地挂在枝上。'\"\n花生最可贵的地方是什么？\n答：____________________", answer: "花生最可贵的地方是果实埋在地里，不张扬，朴实无华。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"花生矮矮地长在地上，等到成熟了，也不能立刻分辨出来它有没有果实。\"\n答：____________________", answer: "没有使用修辞手法（对比）", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"大家都喜欢花生，因为花生很便宜，而且很好吃。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n春种一粒粟，秋收（ ）颗子。\n四海无闲田，农夫犹饿（ ）。", answer: "万；死", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n课文借落花生告诉了我们什么道理？\n答：____________________", answer: "做人要做有用的人，不要做只讲体面而对别人没有好处的人。", difficulty: 3 }
+    ],
+  },
+
+  {
+    id: "cn-g5s-u3",
+    unitName: "桂花雨",
+    grade: 5,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nguì huā（ ）", answer: "桂花", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nchán rào（ ）", answer: "缠绕", difficulty: 1 },
+      { type: "组词", content: "用\"缠\"字组两个词：（ ）、（ ）", answer: "缠绕；缠绵（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：欣赏  观赏\n母亲每天都要在院子里（ ）桂花。\n我们到公园去（ ）菊花展。", answer: "欣赏；观赏", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"桂花盛开的时候，不说香飘十里，至少前后左右十几家邻居，没有不浸在桂花香里的。\"\n用\"没有不……\"写一句话：\n____________________", answer: "听了这个好消息，同学们没有不高兴的。（答案不唯一）", difficulty: 3 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"摇花对我来说是件大事，我总是缠着母亲问：'妈，怎么还不摇桂花呢？'\"\n\"我\"为什么急着要摇桂花？\n答：____________________", answer: "因为\"我\"很喜欢桂花，摇下来的桂花可以做桂花糕、泡桂花茶，非常香。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"全年，整个村子都浸在桂花的香气里。\"\n答：____________________", answer: "夸张", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"这里的桂花再香，也比不上家乡院子里的桂花。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n人闲桂花落，夜静春山（ ）。\n月出惊山鸟，时鸣春涧（ ）。", answer: "空；中", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n\"于是，我又想起了在故乡童年时代的'摇花乐'，和那摇落的阵阵桂花雨。\"\n\"摇花乐\"指的是什么？\n答：____________________", answer: "\"摇花乐\"指的是小时候在故乡摇桂花树，桂花纷纷落下的快乐时光。", difficulty: 2 }
+    ],
+  },
+
+  // ==================== 语文 - 五年级下册 ====================
+  {
+    id: "cn-g5x-u1",
+    unitName: "古诗三首",
+    grade: 5,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "古诗文填空", content: "补充古诗：\n四时田园杂兴（其三十一）\n昼出耘田夜绩麻，村庄儿女各当（ ）。\n童孙未解供耕织，也傍桑阴学种（ ）。", answer: "家；瓜", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n稚子弄冰\n稚子金盆脱晓冰，彩丝穿取当银（ ）。\n敲成玉磬穿林响，忽作玻璃碎地（ ）。", answer: "钲；声", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n村晚\n草满池塘水满陂，山衔落日浸寒（ ）。\n牧童归去横牛背，短笛无腔信口（ ）。", answer: "漪；吹", difficulty: 2 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nyún tián（ ）", answer: "耘田", difficulty: 1 },
+      { type: "组词", content: "用\"昼\"字组两个词：（ ）、（ ）", answer: "白昼；昼夜（答案不唯一）", difficulty: 1 },
+      { type: "阅读理解", content: "阅读古诗回答问题：\n\"童孙未解供耕织，也傍桑阴学种瓜。\"\n小孩子在做什么？表现了什么？\n答：____________________", answer: "小孩子虽然不懂耕织，但也在桑树阴下学着种瓜。表现了农村儿童的勤劳和天真可爱。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列诗句用了什么修辞手法：\n\"山衔落日浸寒漪。\"\n答：____________________", answer: "拟人", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"牧童骑着牛，吹着笛子回家了。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：稚子  儿童\n（ ）弄冰，天真可爱。\n（ ）散学归来早，忙趁东风放纸鸢。", answer: "稚子；儿童", difficulty: 2 },
+      { type: "阅读理解", content: "阅读古诗回答问题：\n\"稚子金盆脱晓冰，彩丝穿取当银钲。\"\n小孩子把冰当成了什么？\n答：____________________", answer: "小孩子把冰当成了银钲（一种乐器）。", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g5x-u2",
+    unitName: "祖父的园子",
+    grade: 5,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nchí nào（ ）", answer: "蝴蝶", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nyīng tao（ ）", answer: "樱桃", difficulty: 1 },
+      { type: "组词", content: "用\"蚂\"字组两个词：（ ）、（ ）", answer: "蚂蚁；蚂蚱（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：随意  随便\n在祖父的园子里，（ ）地玩，想做什么就做什么。\n这道题不会做，不能（ ）猜答案。", answer: "随意；随便", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"花开了，就像睡醒了似的。鸟飞了，就像在天上逛似的。虫子叫了，就像虫子在说话似的。\"\n________，就像________似的。", answer: "树叶落了，就像蝴蝶飞舞似的。（答案不唯一）", difficulty: 3 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"祖父的园子是一幅明丽的漂亮的童话画。\"\n为什么说祖父的园子是童话画？\n答：____________________", answer: "因为园子里有各种各样的植物和昆虫，充满了生机和童趣，像童话一样美好。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"花开了，就像睡醒了似的。\"\n答：____________________", answer: "拟人", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"花园里明晃晃的，红的红，绿的绿，新鲜漂亮。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n草铺横野六七里，笛弄晚风三四（ ）。\n归来饱饭黄昏后，不脱蓑衣卧月（ ）。", answer: "声；明", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n'我'在祖父的园子里做了哪些事情？\n答：____________________", answer: "'我'在园子里栽花、拔草、种菜、铲地、摘黄瓜、追蜻蜓、采倭瓜花等。（答案不唯一）", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g5x-u3",
+    unitName: "月是故乡明",
+    grade: 5,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nxiāng yì（ ）", answer: "乡谊", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nqī liáng（ ）", answer: "凄凉", difficulty: 1 },
+      { type: "组词", content: "用\"萌\"字组两个词：（ ）、（ ）", answer: "萌发；萌芽（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：盼望  期望\n我（ ）着能早日回到故乡。\n父母对我充满了（ ）。", answer: "盼望；期望", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"每个人都有个故乡，每个人的故乡都有个月亮。人人都爱自己故乡的月亮。\"\n用\"人人都……\"写一句话：\n____________________", answer: "人人都爱自己的家乡。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"然而，每逢望夜，一轮当空，月光闪耀于碧波之上，上下空蒙，一碧数顷。\"\n这段话描写了什么景色？\n答：____________________", answer: "描写了月亮当空、月光照耀在水面上的美丽景色。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"山高月小，水落石出。\"\n答：____________________", answer: "对偶", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"我看了很多书，有《西游记》《水浒传》和四大名著。\"", answer: "去掉\"和四大名著\"（包含关系不能并列）。", difficulty: 3 },
+      { type: "古诗文填空", content: "补充诗句：\n露从今夜白，月是故乡（ ）。\n（ ）明月何时照我还？", answer: "明；春风又绿江南岸", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n\"月是故乡明\"表达了作者怎样的感情？\n答：____________________", answer: "表达了作者对故乡深深的思念和热爱之情。", difficulty: 2 }
+    ],
+  },
+
+  // ==================== 语文 - 六年级上册 ====================
+  {
+    id: "cn-g6s-u1",
+    unitName: "草原",
+    grade: 6,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nlǜ tǎn（ ）", answer: "绿毯", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nmǎ tí（ ）", answer: "马蹄", difficulty: 1 },
+      { type: "组词", content: "用\"渲染\"的\"渲\"字组两个词：（ ）、（ ）", answer: "渲染；渲泄（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：洒脱  自然\n蒙古族同胞非常（ ）好客。\n草原上的风光十分（ ）。", answer: "洒脱；自然", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"那些小丘的线条是那么柔美，就像只用绿色渲染，不用墨线勾勒的中国画。\"\n________就像________。", answer: "西湖的水是那么清澈，就像一面巨大的镜子。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"在天底下，一碧千里，而并不茫茫。\"\n\"一碧千里\"是什么意思？\n答：____________________", answer: "\"一碧千里\"的意思是一眼望去全部都是绿色，形容范围很广。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"羊群一会儿上了小丘，一会儿又下来，走在哪里都像给无边的绿毯绣上了白色的大花。\"\n答：____________________", answer: "比喻", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"这次到草原去，我看到了一望无际的草原和清新的空气。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n敕勒川，阴山下，天似穹庐，笼盖四（ ）。\n天苍苍，野茫茫，风吹草低见牛（ ）。", answer: "野；羊", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n\"蒙汉情深何忍别，天涯碧草话斜阳。\"\n这句话表达了什么感情？\n答：____________________", answer: "表达了蒙汉两族人民之间的深厚情谊和依依惜别之情。", difficulty: 3 }
+    ],
+  },
+
+  {
+    id: "cn-g6s-u2",
+    unitName: "丁香结",
+    grade: 6,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\ndīng xiāng（ ）", answer: "丁香", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nyōu yǎ（ ）", answer: "幽雅", difficulty: 1 },
+      { type: "组词", content: "用\"愁\"字组两个词：（ ）、（ ）", answer: "忧愁；愁闷（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：幽雅  优雅\n丁香花的香气令人感到（ ）。\n她举止（ ），深受大家喜欢。", answer: "幽雅；优雅", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"丁香结，这三个字给人许多想象。\"\n用\"……，这三个字给人许多想象\"写一句话：\n____________________", answer: "故乡情，这三个字给人许多想象。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"今年的丁香花似乎开得格外茂盛，城里城外，都是一样。\"\n丁香花开得怎么样？\n答：____________________", answer: "今年的丁香花开得格外茂盛，城里城外都是一样。", difficulty: 1 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"小小的花苞圆圆的，鼓鼓的，恰如衣襟上的盘花扣。\"\n答：____________________", answer: "比喻", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"丁香结年年都有，因为丁香结象征着解不开的愁怨。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n芭蕉不展丁香结，同向春风各自（ ）。\n殷勤解却丁香结，纵放繁枝散（ ）香。", answer: "愁；诞", difficulty: 3 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n\"丁香结\"在课文中象征什么？\n答：____________________", answer: "\"丁香结\"象征着生活中解不开的愁怨和人生中遇到的困难与挫折。", difficulty: 3 }
+    ],
+  },
+
+  {
+    id: "cn-g6s-u3",
+    unitName: "古诗词三首",
+    grade: 6,
+    semester: "上",
+    subject: "语文",
+    questions: [
+      { type: "古诗文填空", content: "补充古诗：\n宿建德江\n移舟泊烟渚，日暮客愁（ ）。\n野旷天低树，江清月近（ ）。", answer: "新；人", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n六月二十七日望湖楼醉书\n黑云翻墨未遮山，白雨跳珠乱入（ ）。\n卷地风来忽吹散，望湖楼下水如（ ）。", answer: "船；天", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n西江月·夜行黄沙道中\n明月别枝惊鹊，清风半夜鸣（ ）。\n稻花香里说丰年，听取蛙声一（ ）。", answer: "蝉；片", difficulty: 2 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\njuàn lián（ ）", answer: "卷帘", difficulty: 1 },
+      { type: "组词", content: "用\"渚\"字组两个词：（ ）、（ ）", answer: "汀渚；洲渚（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读古诗回答问题：\n\"野旷天低树，江清月近人。\"\n\"月近人\"表达了诗人怎样的感情？\n答：____________________", answer: "表达了诗人旅途中的孤独寂寞和对故乡的思念之情。", difficulty: 3 },
+      { type: "修辞手法判断", content: "判断下列诗句用了什么修辞手法：\n\"黑云翻墨未遮山，白雨跳珠乱入船。\"\n答：____________________", answer: "比喻", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"辛弃疾是宋代著名的诗人，他写了很多著名的词。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：愁  愁绪\n日暮客（ ）新。\n丁香结象征着解不开的（ ）。", answer: "愁；愁绪", difficulty: 2 },
+      { type: "阅读理解", content: "阅读古诗回答问题：\n\"稻花香里说丰年，听取蛙声一片。\"\n词人听到了什么？想到了什么？\n答：____________________", answer: "词人听到了蛙声一片，想到了今年是一个丰收年。", difficulty: 2 }
+    ],
+  },
+
+  // ==================== 语文 - 六年级下册 ====================
+  {
+    id: "cn-g6x-u1",
+    unitName: "北京的春节",
+    grade: 6,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nzhǎn lǎn（ ）", answer: "展览", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\njiào zi（ ）", answer: "饺子", difficulty: 1 },
+      { type: "组词", content: "用\"腊\"字组两个词：（ ）、（ ）", answer: "腊月；腊肉（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：热闹  喧闹\n除夕夜，家家户户（ ）非凡。\n市场上（ ）的人群渐渐散去。", answer: "热闹；喧闹", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"这不是粥，而是小型的农业展览会。\"\n用\"不是……而是……\"写一句话：\n____________________", answer: "这不是浪费时间，而是在积累经验。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"腊八这天，家家都熬腊八粥。粥是用各种米、各种豆、各种干果熬成的。\"\n腊八粥是用什么熬成的？\n答：____________________", answer: "腊八粥是用各种米、各种豆和各种干果熬成的。", difficulty: 1 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"这不是粥，而是小型的农业展览会。\"\n答：____________________", answer: "比喻", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"春节是我国最重要的传统节日之一。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n爆竹声中一岁除，春风送暖入屠（ ）。\n千门万户曈曈日，总把新桃换旧（ ）。", answer: "苏；符", difficulty: 1 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n课文中北京的春节从什么时候开始，到什么时候结束？\n答：____________________", answer: "从腊月初开始，到正月十九结束。", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g6x-u2",
+    unitName: "腊八粥",
+    grade: 6,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "拼音写汉字", content: "看拼音写汉字：\nzhǒu（ ）", answer: "粥", difficulty: 1 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\ntān chī（ ）", answer: "贪吃", difficulty: 1 },
+      { type: "组词", content: "用\"熬\"字组两个词：（ ）、（ ）", answer: "熬粥；熬夜（答案不唯一）", difficulty: 1 },
+      { type: "选词填空", content: "选词填空：叹气  叹息\n八儿（ ）着说：\"妈，什么时候才能熬好呢？\"\n他望着空空的碗，不由得（ ）。", answer: "叹气；叹息", difficulty: 2 },
+      { type: "照样子写句子", content: "照样子写句子：\n\"初学喊爸爸的小孩子，会出门叫迎春回来的燕子，不会说话的婴儿，嗡嗡嗡的蜜蜂，甚至飘落的树叶，都感受到腊八粥的香甜。\"\n用\"甚至\"写一句话：\n____________________", answer: "大家都喜欢这本书，甚至老师也爱不释手。（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读课文片段回答问题：\n\"住方家大院的八儿，今天喜得快要发疯了。\"\n八儿为什么\"喜得快要发疯了\"？\n答：____________________", answer: "因为今天是腊八节，可以吃到盼望已久的腊八粥。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列句子用了什么修辞手法：\n\"初学喊爸爸的小孩子，会出门叫迎春回来的燕子，不会说话的婴儿，嗡嗡嗡的蜜蜂，甚至飘落的树叶，都感受到腊八粥的香甜。\"\n答：____________________", answer: "排比", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"腊八粥是用大米、小米、红枣、花生、栗子和白糖等熬成的。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "古诗文填空", content: "补充诗句：\n（ ）（ ）一粒粟，秋收万颗子。\n四海无闲田，农夫犹饿死。", answer: "春种", difficulty: 1 },
+      { type: "阅读理解", content: "阅读课文回答问题：\n八儿是一个怎样的孩子？\n答：____________________", answer: "八儿是一个天真可爱、嘴馋、活泼的孩子。", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "cn-g6x-u3",
+    unitName: "古诗三首",
+    grade: 6,
+    semester: "下",
+    subject: "语文",
+    questions: [
+      { type: "古诗文填空", content: "补充古诗：\n寒食\n春城无处不飞花，寒食东风御柳（ ）。\n日暮汉宫传蜡烛，轻烟散入五侯（ ）。", answer: "斜；家", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n迢迢牵牛星\n迢迢牵牛星，皎皎河汉（ ）。\n纤纤擢素手，札札弄机（ ）。", answer: "女；杼", difficulty: 2 },
+      { type: "古诗文填空", content: "补充古诗：\n十五夜望月\n中庭地白树栖鸦，冷露无声湿（ ）花。\n今夜月明人尽望，不知秋思落谁（ ）。", answer: "桂；家", difficulty: 2 },
+      { type: "拼音写汉字", content: "看拼音写汉字：\nqī xī（ ）", answer: "七夕", difficulty: 1 },
+      { type: "组词", content: "用\"栖\"字组两个词：（ ）、（ ）", answer: "栖息；栖身（答案不唯一）", difficulty: 2 },
+      { type: "阅读理解", content: "阅读古诗回答问题：\n\"今夜月明人尽望，不知秋思落谁家。\"\n\"秋思\"指的是什么？\n答：____________________", answer: "\"秋思\"指的是中秋之夜对亲人的思念之情。", difficulty: 2 },
+      { type: "修辞手法判断", content: "判断下列诗句用了什么修辞手法：\n\"迢迢牵牛星，皎皎河汉女。\"\n答：____________________", answer: "对偶", difficulty: 2 },
+      { type: "修改病句", content: "修改病句：\n\"中秋节是我国的传统节日，人们有赏月和吃月饼的习惯。\"", answer: "原句没有语病。", difficulty: 2 },
+      { type: "选词填空", content: "选词填空：望  看\n十五夜（ ）月。\n我（ ）见天上有许多星星。", answer: "望；看", difficulty: 1 },
+      { type: "阅读理解", content: "阅读古诗回答问题：\n\"日暮汉宫传蜡烛，轻烟散入五侯家。\"\n这首诗描写了哪个节日的情景？\n答：____________________", answer: "描写了寒食节的情景。", difficulty: 2 }
+    ],
+  },
+
+  // ==================== 英语 - 五年级上册 ====================
+  {
+    id: "en-g5s-u1",
+    unitName: "What's he like?",
+    grade: 5,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"old\"的意思是（ ）。\nA. 年轻的  B. 年老的  C. 高的", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"kind\"的意思是（ ）。\nA. 严格的  B. 和蔼的  C. 聪明的", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nyoung —（ ）  funny —（ ）  strict —（ ）", answer: "年轻的；滑稽的；严格的", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n聪明的 —（ ）  有礼貌的 —（ ）  努力的 —（ ）", answer: "clever；polite；hard-working", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\nis / he / What / like（ ? ）", answer: "What is he like?", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"她长什么样？\"，你应该说（ ）。\nA. What's she like?  B. What does she do?  C. Where is she?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nMr. Jones ________ (be) tall and strong.", answer: "is", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Who's your English teacher?\nB: Miss White.\nA: Is she kind?\nB: Yes, she is.\nWho is the English teacher?\n答：____________________", answer: "Miss White.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"他又高又壮\"，你应该说（ ）。\nA. He is tall and strong.  B. She is tall and strong.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"shy\"的意思是（ ）。\nA. 害羞的  B. 友好的  C. 安静的", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g5s-u2",
+    unitName: "My week",
+    grade: 5,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"Monday\"的意思是（ ）。\nA. 星期一  B. 星期二  C. 星期三", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"Wednesday\"的意思是（ ）。\nA. 星期一  B. 星期三  C. 星期五", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nTuesday —（ ）  Thursday —（ ）  Friday —（ ）", answer: "星期二；星期四；星期五", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n星期六 —（ ）  星期日 —（ ）  周末 —（ ）", answer: "Saturday；Sunday；weekend", difficulty: 1 },
+      { type: "连词成句", content: "连词成句：\ndo / you / What / have / on / Mondays（ ? ）", answer: "What do you have on Mondays?", difficulty: 2 },
+      { type: "情景交际", content: "你想问\"你星期一有什么课？\"，你应该说（ ）。\nA. What do you have on Mondays?  B. What day is it today?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI often ________ (read) books on weekends.", answer: "read", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: What day is it today?\nB: It's Wednesday.\nA: What do you have on Wednesdays?\nB: I have Chinese, English and music.\nWhat classes does B have on Wednesdays?\n答：____________________", answer: "Chinese, English and music.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我经常在周末做作业\"，你应该说（ ）。\nA. I often do homework on weekends.  B. I often play football on weekends.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"weekend\"的意思是（ ）。\nA. 工作日  B. 周末  C. 假期", answer: "B", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g5s-u3",
+    unitName: "What would you like?",
+    grade: 5,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"sandwich\"的意思是（ ）。\nA. 汉堡包  B. 三明治  C. 面条", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"thirsty\"的意思是（ ）。\nA. 饥饿的  B. 口渴的  C. 疲倦的", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nsalad —（ ）  hamburger —（ ）  ice cream —（ ）", answer: "沙拉；汉堡包；冰淇淋", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n新鲜的 —（ ）  健康的 —（ ）  美味的 —（ ）", answer: "fresh；healthy；delicious", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\nwould / What / you / like（ ? ）", answer: "What would you like?", difficulty: 1 },
+      { type: "情景交际", content: "在餐厅，服务员问你想要什么，你应该回答（ ）。\nA. I'd like some beef, please.  B. I like beef.", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI'd like some ________ (juice).", answer: "juice", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: What would you like to eat?\nB: I'd like a sandwich, please.\nA: What would you like to drink?\nB: I'd like some milk.\nWhat would B like to eat?\n答：____________________", answer: "A sandwich.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我最喜欢的食物是鱼\"，你应该说（ ）。\nA. My favourite food is fish.  B. I'd like some fish.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"favourite\"的意思是（ ）。\nA. 最喜欢的  B. 不喜欢的  C. 普通的", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 英语 - 五年级下册 ====================
+  {
+    id: "en-g5x-u1",
+    unitName: "My day",
+    grade: 5,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"eat breakfast\"的意思是（ ）。\nA. 吃早餐  B. 吃午餐  C. 吃晚餐", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"do morning exercises\"的意思是（ ）。\nA. 做作业  B. 做早操  C. 做运动", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\neat dinner —（ ）  go to school —（ ）  go to bed —（ ）", answer: "吃晚餐；去上学；去睡觉", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n做早操 —（ ）  上课 —（ ）  回家 —（ ）", answer: "do morning exercises；have class；go home", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\nyou / When / do / breakfast / eat（ ? ）", answer: "When do you eat breakfast?", difficulty: 2 },
+      { type: "情景交际", content: "你想问\"你什么时候起床？\"，你应该说（ ）。\nA. When do you get up?  B. What do you do?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI usually ________ (get) up at 6:30.", answer: "get", difficulty: 1 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: When do you get up?\nB: I get up at 6:00.\nA: What do you do at 7:00?\nB: I eat breakfast.\nWhen does B eat breakfast?\n答：____________________", answer: "At 7:00.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我通常在晚上9点睡觉\"，你应该说（ ）。\nA. I usually go to bed at 9:00 p.m.  B. I usually get up at 9:00 p.m.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"usually\"的意思是（ ）。\nA. 通常  B. 有时  C. 总是", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g5x-u2",
+    unitName: "My favourite season",
+    grade: 5,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"spring\"的意思是（ ）。\nA. 夏天  B. 春天  C. 秋天", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"winter\"的意思是（ ）。\nA. 春天  B. 秋天  C. 冬天", answer: "C", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nsummer —（ ）  autumn —（ ）  season —（ ）", answer: "夏天；秋天；季节", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n去游泳 —（ ）  堆雪人 —（ ）  放风筝 —（ ）", answer: "go swimming；make a snowman；fly kites", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\nseason / Which / do / you / like / best（ ? ）", answer: "Which season do you like best?", difficulty: 2 },
+      { type: "情景交际", content: "你想问\"你最喜欢哪个季节？\"，你应该说（ ）。\nA. Which season do you like best?  B. What's your favourite colour?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI like ________ (snow) in winter.", answer: "snow", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Which season do you like best?\nB: I like summer best.\nA: Why?\nB: Because I can go swimming.\nWhy does B like summer?\n答：____________________", answer: "Because he/she can go swimming.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我喜欢春天，因为可以放风筝\"，你应该说（ ）。\nA. I like spring because I can fly kites.  B. I like winter because I can make a snowman.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"pick apples\"的意思是（ ）。\nA. 摘苹果  B. 吃苹果  C. 买苹果", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g5x-u3",
+    unitName: "Whose dog is it?",
+    grade: 5,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"climbing\"的意思是（ ）。\nA. 跑步  B. 攀爬  C. 跳跃", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"eating\"的意思是（ ）。\nA. 喝  B. 吃  C. 睡", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\njumping —（ ）  drinking —（ ）  sleeping —（ ）", answer: "跳跃；喝水；睡觉", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n玩耍 —（ ）  攀爬 —（ ）  游泳 —（ ）", answer: "playing；climbing；swimming", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\ndog / Whose / it / is（ ? ）", answer: "Whose dog is it?", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"这是谁的狗？\"，你应该说（ ）。\nA. Whose dog is this?  B. What is this?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nLook! The cat ________ (sleep) under the tree.", answer: "is sleeping", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Whose dog is it?\nB: It's Mike's.\nA: What is the dog doing?\nB: It's running.\nWhose dog is it?\n答：____________________", answer: "It's Mike's.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"兔子在跳\"，你应该说（ ）。\nA. The rabbit is jumping.  B. The rabbit is running.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"mine\"的意思是（ ）。\nA. 我的  B. 你的  C. 他的", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 英语 - 六年级上册 ====================
+  {
+    id: "en-g6s-u1",
+    unitName: "How can I get there?",
+    grade: 6,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"science museum\"的意思是（ ）。\nA. 科学博物馆  B. 图书馆  C. 邮局", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"post office\"的意思是（ ）。\nA. 医院  B. 邮局  C. 书店", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nhospital —（ ）  cinema —（ ）  bookstore —（ ）", answer: "医院；电影院；书店", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n左转 —（ ）  右转 —（ ）  直走 —（ ）", answer: "turn left；turn right；go straight", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\nI / How / can / get / there（ ? ）", answer: "How can I get there?", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"我怎么才能到那里？\"，你应该说（ ）。\nA. How can I get there?  B. Where is it?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nTurn left at the ________ (two) traffic lights.", answer: "second", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Excuse me, where is the cinema?\nB: It's next to the bookstore.\nA: How can I get there?\nB: Turn left at the school. Then go straight.\nWhere is the cinema?\n答：____________________", answer: "It's next to the bookstore.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"在医院左转\"，你应该说（ ）。\nA. Turn left at the hospital.  B. Turn right at the hospital.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"crossing\"的意思是（ ）。\nA. 十字路口  B. 路灯  C. 斑马线", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g6s-u2",
+    unitName: "My weekend plan",
+    grade: 6,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"visit\"的意思是（ ）。\nA. 参观  B. 离开  C. 到达", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"trip\"的意思是（ ）。\nA. 旅行  B. 聚会  C. 比赛", answer: "A", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nsupermarket —（ ）  evening —（ ）  tonight —（ ）", answer: "超市；晚上；今晚", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n下周 —（ ）  看电影 —（ ）  去旅行 —（ ）", answer: "next week；see a film；take a trip", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\nare / What / you / going / to / do（ ? ）", answer: "What are you going to do?", difficulty: 2 },
+      { type: "情景交际", content: "你想问\"你打算做什么？\"，你应该说（ ）。\nA. What are you going to do?  B. What do you do?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI ________ (visit) my grandparents this weekend.", answer: "am going to visit / will visit", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: What are you going to do tomorrow?\nB: I'm going to see a film.\nA: Where are you going?\nB: To the cinema.\nWhat is B going to do tomorrow?\n答：____________________", answer: "He/She is going to see a film.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我打算这周末去超市\"，你应该说（ ）。\nA. I'm going to the supermarket this weekend.  B. I go to the supermarket every weekend.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"dictionary\"的意思是（ ）。\nA. 字典  B. 漫画书  C. 故事书", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g6s-u3",
+    unitName: "I have a pen pal",
+    grade: 6,
+    semester: "上",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"hobby\"的意思是（ ）。\nA. 爱好  B. 工作  C. 家庭", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"jasmine\"的意思是（ ）。\nA. 玫瑰  B. 茉莉花  C. 百合花", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\npen pal —（ ）  idea —（ ）  hiking —（ ）", answer: "笔友；主意；远足", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n唱歌 —（ ）  跳舞 —（ ）  读故事 —（ ）", answer: "singing；dancing；reading stories", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\ndoes / he / What / do（ ? ）", answer: "What does he do?", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"他的爱好是什么？\"，你应该说（ ）。\nA. What are his hobbies?  B. What does he like?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nHe likes ________ (cook) Chinese food.", answer: "cooking", difficulty: 2 },
+      { type: "阅读理解", content: "阅读短文回答问题：\n\"My pen pal is Peter. He lives in Australia. He likes reading stories and doing kung fu.\"\nWhere does Peter live?\n答：____________________", answer: "He lives in Australia.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"他住在悉尼\"，你应该说（ ）。\nA. He lives in Sydney.  B. He is from Sydney.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"also\"的意思是（ ）。\nA. 也  B. 不  C. 非常", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 英语 - 六年级下册 ====================
+  {
+    id: "en-g6x-u1",
+    unitName: "How tall are you?",
+    grade: 6,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"taller\"的意思是（ ）。\nA. 更矮的  B. 更高的  C. 更胖的", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"heavier\"的意思是（ ）。\nA. 更轻的  B. 更瘦的  C. 更重的", answer: "C", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nshorter —（ ）  longer —（ ）  thinner —（ ）", answer: "更矮的；更长的；更瘦的", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n更大的 —（ ）  更小的 —（ ）  更强壮的 —（ ）", answer: "bigger；smaller；stronger", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\ntall / How / are / you（ ? ）", answer: "How tall are you?", difficulty: 1 },
+      { type: "情景交际", content: "你想问\"你有多高？\"，你应该说（ ）。\nA. How tall are you?  B. How old are you?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI am ________ (tall) than my brother.", answer: "taller", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: How tall are you?\nB: I'm 1.65 metres.\nA: I'm 1.60 metres. You are taller than me.\nWho is taller?\n答：____________________", answer: "B is taller.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我的手比你的大\"，你应该说（ ）。\nA. My hands are bigger than yours.  B. My hands are smaller than yours.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"dinosaur\"的意思是（ ）。\nA. 大象  B. 恐龙  C. 长颈鹿", answer: "B", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g6x-u2",
+    unitName: "Last weekend",
+    grade: 6,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"watched TV\"的意思是（ ）。\nA. 看电影  B. 看电视  C. 看书", answer: "B", difficulty: 1 },
+      { type: "单词选择", content: "\"washed clothes\"的意思是（ ）。\nA. 洗衣服  B. 洗碗  C. 拖地", answer: "A", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nstayed at home —（ ）  cleaned the room —（ ）  had a cold —（ ）", answer: "待在家里；打扫房间；感冒了", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n看电影 —（ ）  读书 —（ ）  睡觉 —（ ）", answer: "saw a film；read a book；slept", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\ndid / What / you / do / weekend / last（ ? ）", answer: "What did you do last weekend?", difficulty: 2 },
+      { type: "情景交际", content: "你想问\"你上周末做了什么？\"，你应该说（ ）。\nA. What did you do last weekend?  B. What do you do?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI ________ (watch) TV last night.", answer: "watched", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: How was your weekend?\nB: It was good.\nA: What did you do?\nB: I stayed at home and read a book.\nWhat did B do last weekend?\n答：____________________", answer: "He/She stayed at home and read a book.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我昨天感冒了\"，你应该说（ ）。\nA. I had a cold yesterday.  B. I have a cold today.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"yesterday\"的意思是（ ）。\nA. 今天  B. 昨天  C. 明天", answer: "B", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "en-g6x-u3",
+    unitName: "Where did you go?",
+    grade: 6,
+    semester: "下",
+    subject: "英语",
+    questions: [
+      { type: "单词选择", content: "\"went swimming\"的意思是（ ）。\nA. 去游泳  B. 去钓鱼  C. 去购物", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"took pictures\"的意思是（ ）。\nA. 画画  B. 拍照  C. 写字", answer: "B", difficulty: 1 },
+      { type: "英汉互译", content: "将下列英文翻译成中文：\nbought gifts —（ ）  ate good food —（ ）  went camping —（ ）", answer: "买礼物；吃美食；去露营", difficulty: 1 },
+      { type: "英汉互译", content: "将下列中文翻译成英文：\n去海滩 —（ ）  骑马 —（ ）  滑冰 —（ ）", answer: "went to the beach；rode a horse；went ice-skating", difficulty: 2 },
+      { type: "连词成句", content: "连词成句：\nyou / Where / go / did / yesterday（ ? ）", answer: "Where did you go yesterday?", difficulty: 2 },
+      { type: "情景交际", content: "你想问\"你昨天去哪里了？\"，你应该说（ ）。\nA. Where did you go yesterday?  B. Where are you going?", answer: "A", difficulty: 1 },
+      { type: "用所给词的正确形式填空", content: "用所给词的正确形式填空：\nI ________ (go) to Beijing last summer holiday.", answer: "went", difficulty: 2 },
+      { type: "阅读理解", content: "阅读对话回答问题：\nA: Where did you go over the winter holiday?\nB: I went to Sanya.\nA: What did you do there?\nB: I went swimming and took lots of pictures.\nWhere did B go over the winter holiday?\n答：____________________", answer: "He/She went to Sanya.", difficulty: 2 },
+      { type: "情景交际", content: "你想说\"我拍了很多照片\"，你应该说（ ）。\nA. I took lots of pictures.  B. I take lots of pictures.", answer: "A", difficulty: 1 },
+      { type: "单词选择", content: "\"beach\"的意思是（ ）。\nA. 海滩  B. 山  C. 森林", answer: "A", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 科学 - 五年级上册 ====================
+  {
+    id: "sc-g5s-u1",
+    unitName: "光",
+    grade: 5,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "光在空气中是以（ ）形式传播的。\nA. 曲线  B. 直线  C. 波浪线", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列物体中属于光源的是（ ）。\nA. 月亮  B. 镜子  C. 太阳", answer: "C", difficulty: 1 },
+      { type: "判断题", content: "光的速度比声音的速度快。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "月亮是光源。（ ）", answer: "×", difficulty: 1 },
+      { type: "填空题", content: "光从空气进入水中时会发生（ ）现象。", answer: "折射", difficulty: 2 },
+      { type: "填空题", content: "光遇到物体表面会被（ ）回来，这种现象叫做光的反射。", answer: "反射", difficulty: 1 },
+      { type: "选择题", content: "下列哪种现象是光的折射？（ ）\nA. 水中筷子看起来弯了  B. 镜子中的像  C. 影子的形成", answer: "A", difficulty: 2 },
+      { type: "简答题", content: "请说出彩虹是怎样形成的。", answer: "太阳光经过空气中的水滴折射和反射后，分解成七种颜色的光，形成彩虹。", difficulty: 3 },
+      { type: "实验探究题", content: "小明做了一个实验：把一根铅笔放入装满水的玻璃杯中，从侧面观察铅笔。他看到了什么现象？这是什么原理？\n答：____________________", answer: "他看到铅笔在水面处好像折断了。这是光的折射原理。", difficulty: 2 },
+      { type: "填空题", content: "光是由（ ）种颜色组成的。", answer: "七", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g5s-u2",
+    unitName: "地球表面及其变化",
+    grade: 5,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "地球表面大部分被（ ）覆盖。\nA. 陆地  B. 海洋  C. 冰川", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列地形中海拔最高的是（ ）。\nA. 平原  B. 高原  C. 山地", answer: "C", difficulty: 1 },
+      { type: "判断题", content: "地球表面的地形是永远不变的。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "地震和火山喷发会改变地球表面的地形。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "地球表面的主要地形有山地、高原、平原、（ ）和（ ）。", answer: "盆地；丘陵", difficulty: 2 },
+      { type: "填空题", content: "地球内部由外到内分为地壳、（ ）和地核三层。", answer: "地幔", difficulty: 2 },
+      { type: "选择题", content: "下列哪种力量会缓慢改变地球表面？（ ）\nA. 火山喷发  B. 风力侵蚀  C. 地震", answer: "B", difficulty: 2 },
+      { type: "简答题", content: "请说出两种改变地球表面的力量。", answer: "地震、火山喷发、风化作用、侵蚀作用、沉积作用等。（答案不唯一）", difficulty: 2 },
+      { type: "实验探究题", content: "在模拟地震的实验中，我们用多层泡沫板叠放，从两侧向中间挤压，观察到了什么现象？\n答：____________________", answer: "泡沫板会弯曲、隆起甚至断裂，模拟了地震时地壳的运动。", difficulty: 2 },
+      { type: "填空题", content: "地球的陆地面积约占地球总面积的（ ）%。", answer: "29", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "sc-g5s-u3",
+    unitName: "计量时间",
+    grade: 5,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "古代人们最早利用（ ）来计时。\nA. 钟表  B. 太阳  C. 沙漏", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列计时工具中，利用水来计时的是（ ）。\nA. 日晷  B. 沙漏  C. 水钟", answer: "C", difficulty: 1 },
+      { type: "判断题", content: "日晷在阴天也能正常使用。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "摆钟是利用摆的等时性来计时的。（ ）", answer: "√", difficulty: 2 },
+      { type: "填空题", content: "古代的计时工具有日晷、（ ）、水钟和（ ）等。", answer: "沙漏；燃香（答案不唯一）", difficulty: 2 },
+      { type: "填空题", content: "一分钟等于（ ）秒。", answer: "60", difficulty: 1 },
+      { type: "选择题", content: "摆的快慢与（ ）有关。\nA. 摆锤重量  B. 摆线长度  C. 摆动幅度", answer: "B", difficulty: 2 },
+      { type: "简答题", content: "请说出日晷的计时原理。", answer: "日晷利用太阳光照射在晷针上产生的影子来指示时间，影子随太阳位置变化而移动。", difficulty: 2 },
+      { type: "实验探究题", content: "小明做了一个摆，发现它每分钟摆动30次。他想让摆动加快，应该怎样调整？\n答：____________________", answer: "应该缩短摆线的长度，摆线越短，摆动越快。", difficulty: 3 },
+      { type: "填空题", content: "钟表上时针走一圈是（ ）小时。", answer: "12", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 科学 - 五年级下册 ====================
+  {
+    id: "sc-g5x-u1",
+    unitName: "生物与环境",
+    grade: 5,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "绿豆种子发芽需要的条件是（ ）。\nA. 阳光、土壤  B. 水分、空气、适宜温度  C. 肥料、阳光", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列食物链正确的是（ ）。\nA. 草→兔→鹰  B. 鹰→兔→草  C. 兔→草→鹰", answer: "A", difficulty: 2 },
+      { type: "判断题", content: "植物的生长不需要阳光。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "同一种生物在不同环境中，形态可能不同。（ ）", answer: "√", difficulty: 2 },
+      { type: "填空题", content: "食物链通常从（ ）开始，到凶猛的（ ）结束。", answer: "绿色植物；肉食动物", difficulty: 2 },
+      { type: "填空题", content: "生物与环境相互（ ）、相互（ ）。", answer: "依存；影响", difficulty: 2 },
+      { type: "选择题", content: "仙人掌的叶子变成刺是为了（ ）。\nA. 减少水分蒸发  B. 防止被动物吃  C. 进行光合作用", answer: "A", difficulty: 2 },
+      { type: "简答题", content: "请说出植物适应环境的两个例子。", answer: "仙人掌叶子变成刺减少水分蒸发；浮萍有气囊能浮在水面；蒲公英种子有绒毛能随风传播等。（答案不唯一）", difficulty: 2 },
+      { type: "实验探究题", content: "小明把绿豆种子放在不同环境中观察发芽情况：一组有水、有空气、温度适宜；另一组没有水。结果会怎样？\n答：____________________", answer: "有水、有空气、温度适宜的一组绿豆种子会发芽，没有水的一组不会发芽。", difficulty: 2 },
+      { type: "填空题", content: "动物适应环境的方式有冬眠、（ ）、保护色等。", answer: "迁徙", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g5x-u2",
+    unitName: "船的研究",
+    grade: 5,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "同样重的物体，做成（ ）形状受到的浮力最大。\nA. 实心球  B. 空心船形  C. 正方体", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "钢铁做的船能浮在水面上是因为（ ）。\nA. 钢铁比水轻  B. 船是空心的，排开的水量大  C. 船有发动机", answer: "B", difficulty: 2 },
+      { type: "判断题", content: "物体在水中受到向上的浮力。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "船的载重量与船的体积无关。（ ）", answer: "×", difficulty: 1 },
+      { type: "填空题", content: "船的发展经历了独木舟、（ ）、蒸汽船和现代轮船等阶段。", answer: "帆船（或摇橹木船）", difficulty: 2 },
+      { type: "填空题", content: "相同重量的橡皮泥，做成（ ）的形状能装载更多的货物。", answer: "船形（或空心碗形）", difficulty: 2 },
+      { type: "选择题", content: "下列哪种方法可以使船更稳定？（ ）\nA. 把船做得很高  B. 把船底做得很宽  C. 减少船的重量", answer: "B", difficulty: 2 },
+      { type: "简答题", content: "请说出使船浮在水面上的原理。", answer: "船做成空心形状后，排开的水量增大，受到的浮力增大，当浮力大于船的重力时，船就能浮在水面上。", difficulty: 3 },
+      { type: "实验探究题", content: "小明用橡皮泥做船，第一次做成实心球沉入水中，第二次做成船形浮在了水面上。这说明什么？\n答：____________________", answer: "这说明改变物体的形状可以改变它受到的浮力，做成空心船形能增大排开的水量，从而增大浮力。", difficulty: 2 },
+      { type: "填空题", content: "现代船的动力来源有风力和（ ）等。", answer: "发动机（或电力）", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g5x-u3",
+    unitName: "环境与我们",
+    grade: 5,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列行为中有利于保护环境的是（ ）。\nA. 随意丢弃塑料袋  B. 垃圾分类回收  C. 乱砍滥伐", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "下列能源中属于可再生能源的是（ ）。\nA. 煤  B. 石油  C. 太阳能", answer: "C", difficulty: 1 },
+      { type: "判断题", content: "地球上的水资源是取之不尽的。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "温室效应会导致全球气候变暖。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "垃圾处理的方法有填埋、（ ）和回收利用。", answer: "焚烧", difficulty: 2 },
+      { type: "填空题", content: "减少空气污染的方法有少开私家车、（ ）、使用清洁能源等。", answer: "多植树造林", difficulty: 2 },
+      { type: "选择题", content: "下列垃圾中属于可回收物的是（ ）。\nA. 废电池  B. 废纸  C. 剩饭", answer: "B", difficulty: 1 },
+      { type: "简答题", content: "请说出三种保护环境的方法。", answer: "垃圾分类、节约用水、少用塑料袋、多植树、使用清洁能源等。（答案不唯一）", difficulty: 2 },
+      { type: "实验探究题", content: "小明做了一个对比实验：在两个密封袋中各放一块面包，一个袋中加干燥剂，另一个不加。一周后观察，哪个面包更容易发霉？为什么？\n答：____________________", answer: "不加干燥剂的面包更容易发霉，因为霉菌生长需要水分，干燥的环境不利于霉菌生长。", difficulty: 2 },
+      { type: "填空题", content: "地球上的淡水资源非常（ ），我们要节约用水。", answer: "有限（或稀少）", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 科学 - 六年级上册 ====================
+  {
+    id: "sc-g6s-u1",
+    unitName: "微小世界",
+    grade: 6,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列工具中能放大物体的是（ ）。\nA. 平面镜  B. 放大镜  C. 哈哈镜", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "放大镜的镜片特点是（ ）。\nA. 中间厚边缘薄  B. 中间薄边缘厚  C. 一样厚", answer: "A", difficulty: 1 },
+      { type: "判断题", content: "肉眼能看到所有的微小物体。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "列文虎克发明了世界上第一台显微镜。（ ）", answer: "×", difficulty: 2 },
+      { type: "填空题", content: "放大镜又叫（ ）镜，它的特点是透明、（ ）。", answer: "凸透；中间厚边缘薄", difficulty: 2 },
+      { type: "填空题", content: "显微镜主要由目镜和（ ）组成，能将物体放大很多倍。", answer: "物镜", difficulty: 1 },
+      { type: "选择题", content: "下列生物中属于微生物的是（ ）。\nA. 蚂蚁  B. 细菌  C. 蚯蚓", answer: "B", difficulty: 1 },
+      { type: "简答题", content: "请说出显微镜和放大镜的区别。", answer: "放大镜只能放大几倍到几十倍，显微镜可以放大几百倍到几千倍；显微镜由目镜和物镜两组镜片组成，放大镜只有一块镜片。", difficulty: 2 },
+      { type: "实验探究题", content: "小明用放大镜观察报纸上的文字，发现放大镜离文字越近，文字看起来越大还是越小？\n答：____________________", answer: "在一定范围内，放大镜离文字越近，文字看起来越大。但太近了会模糊。", difficulty: 2 },
+      { type: "填空题", content: "（ ）是生命体最基本的单位，用显微镜才能看清。", answer: "细胞", difficulty: 1 }
+    ],
+  },
+
+  {
+    id: "sc-g6s-u2",
+    unitName: "地球的运动",
+    grade: 6,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "地球绕太阳公转一周大约需要（ ）。\nA. 一天  B. 一个月  C. 一年", answer: "C", difficulty: 1 },
+      { type: "选择题", content: "地球自转一周大约需要（ ）。\nA. 12小时  B. 24小时  C. 365天", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "地球自转产生了昼夜交替现象。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "太阳绕地球转。（ ）", answer: "×", difficulty: 1 },
+      { type: "填空题", content: "地球的自转方向是自（ ）向（ ）。", answer: "西；东", difficulty: 2 },
+      { type: "填空题", content: "地球绕着（ ）公转，公转方向是自（ ）向（ ）。", answer: "太阳；西；东", difficulty: 2 },
+      { type: "选择题", content: "四季变化是由（ ）引起的。\nA. 地球自转  B. 地球公转  C. 月球运动", answer: "B", difficulty: 2 },
+      { type: "简答题", content: "请说出昼夜交替是怎样形成的。", answer: "地球是一个不发光也不透明的球体，太阳只能照亮地球的一半。地球不停地自转，被照亮和未被照亮的部分不断交替，就形成了昼夜交替。", difficulty: 2 },
+      { type: "实验探究题", content: "小明用手电筒照射地球仪，并转动地球仪，模拟的是什么现象？\n答：____________________", answer: "模拟的是地球自转产生的昼夜交替现象。手电筒代表太阳，地球仪代表地球。", difficulty: 2 },
+      { type: "填空题", content: "当北半球是夏季时，南半球是（ ）季。", answer: "冬", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "sc-g6s-u3",
+    unitName: "物质的变化",
+    grade: 6,
+    semester: "上",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列变化中属于物理变化的是（ ）。\nA. 铁生锈  B. 木头燃烧  C. 冰融化", answer: "C", difficulty: 1 },
+      { type: "选择题", content: "下列变化中产生了新物质的是（ ）。\nA. 把纸撕碎  B. 把糖溶于水  C. 铁生锈", answer: "C", difficulty: 2 },
+      { type: "判断题", content: "物理变化和化学变化的本质区别是有没有新物质生成。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "蜡烛燃烧只发生了化学变化。（ ）", answer: "×", difficulty: 2 },
+      { type: "填空题", content: "物质的变化可以分为（ ）变化和（ ）变化两大类。", answer: "物理；化学", difficulty: 1 },
+      { type: "填空题", content: "铁生锈是铁与（ ）和（ ）发生化学反应的结果。", answer: "氧气；水", difficulty: 2 },
+      { type: "选择题", content: "下列方法中能防止铁生锈的是（ ）。\nA. 放在潮湿处  B. 涂上油漆  C. 放在盐水中", answer: "B", difficulty: 1 },
+      { type: "简答题", content: "请说出物理变化和化学变化的区别。", answer: "物理变化没有产生新物质，化学变化产生了新物质。化学变化常伴随发光、发热、变色、产生气体或沉淀等现象。", difficulty: 2 },
+      { type: "实验探究题", content: "小明把小苏打和白醋混合在一起，观察到产生了大量气泡。这是什么变化？产生了什么气体？\n答：____________________", answer: "这是化学变化，产生了二氧化碳气体。", difficulty: 2 },
+      { type: "填空题", content: "小苏打和白醋混合会产生（ ）气体。", answer: "二氧化碳", difficulty: 1 }
+    ],
+  },
+
+  // ==================== 科学 - 六年级下册 ====================
+  {
+    id: "sc-g6x-u1",
+    unitName: "进化",
+    grade: 6,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "化石是研究（ ）的重要证据。\nA. 天气变化  B. 生物进化  C. 地震", answer: "B", difficulty: 1 },
+      { type: "选择题", content: "达尔文提出了（ ）学说。\nA. 相对论  B. 进化论  C. 万有引力", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "现代人类是由猿进化而来的。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "所有生物从出现到现在都没有变化。（ ）", answer: "×", difficulty: 1 },
+      { type: "填空题", content: "生物进化的规律是从（ ）到（ ），从（ ）到（ ）。", answer: "简单；复杂；低等；高等", difficulty: 2 },
+      { type: "填空题", content: "自然选择学说的核心是（ ）。", answer: "适者生存，不适者被淘汰", difficulty: 2 },
+      { type: "选择题", content: "长颈鹿的长脖子是通过（ ）形成的。\nA. 自己努力伸长  B. 自然选择  C. 人工选择", answer: "B", difficulty: 2 },
+      { type: "简答题", content: "请说出化石对研究生物进化的意义。", answer: "化石是古代生物的遗体或遗迹，通过研究化石可以了解古代生物的形态结构和生活环境，推断生物的进化过程。", difficulty: 2 },
+      { type: "实验探究题", content: "科学家在不同地层中发现了不同的生物化石，越古老的地层中发现的生物越简单。这说明什么？\n答：____________________", answer: "这说明生物是不断进化的，从简单到复杂，从低等到高等，经历了漫长的变化过程。", difficulty: 2 },
+      { type: "填空题", content: "恐龙灭绝大约发生在（ ）万年前。", answer: "6500", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "sc-g6x-u2",
+    unitName: "宇宙",
+    grade: 6,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "太阳系中最大的行星是（ ）。\nA. 地球  B. 火星  C. 木星", answer: "C", difficulty: 1 },
+      { type: "选择题", content: "月球绕地球公转一周大约需要（ ）。\nA. 一天  B. 一个月  C. 一年", answer: "B", difficulty: 1 },
+      { type: "判断题", content: "太阳是一颗恒星。（ ）", answer: "√", difficulty: 1 },
+      { type: "判断题", content: "银河系就是整个宇宙。（ ）", answer: "×", difficulty: 1 },
+      { type: "填空题", content: "太阳系有（ ）大行星，其中离太阳最近的是（ ）。", answer: "八；水星", difficulty: 2 },
+      { type: "填空题", content: "月球表面高低不平，有许多大大小小的（ ），没有（ ）和（ ）。", answer: "环形山；空气；水", difficulty: 2 },
+      { type: "选择题", content: "下列天体中属于卫星的是（ ）。\nA. 太阳  B. 地球  C. 月球", answer: "C", difficulty: 1 },
+      { type: "简答题", content: "请说出太阳系八大行星的名称。", answer: "水星、金星、地球、火星、木星、土星、天王星、海王星。", difficulty: 2 },
+      { type: "实验探究题", content: "在模拟月相变化的实验中，用乒乓球代表月球，手电筒代表太阳，观察乒乓球被照亮的部分。当乒乓球在太阳和观察者之间时，看到的是什么月相？\n答：____________________", answer: "看到的是新月（或朔月），因为被照亮的一面背对着观察者。", difficulty: 3 },
+      { type: "填空题", content: "人类第一位登上月球的宇航员是（ ）。", answer: "阿姆斯特朗", difficulty: 2 }
+    ],
+  },
+
+  {
+    id: "sc-g6x-u3",
+    unitName: "物质在我们身边",
+    grade: 6,
+    semester: "下",
+    subject: "科学",
+    questions: [
+      { type: "选择题", content: "下列物质中属于混合物的是（ ）。\nA. 纯水  B. 食盐  C. 空气", answer: "C", difficulty: 1 },
+      { type: "选择题", content: "下列方法中能将盐从盐水中分离出来的是（ ）。\nA. 过滤  B. 蒸发  C. 沉淀", answer: "B", difficulty: 2 },
+      { type: "判断题", content: "水可以溶解所有的物质。（ ）", answer: "×", difficulty: 1 },
+      { type: "判断题", content: "铁、铜、铝都是金属材料。（ ）", answer: "√", difficulty: 1 },
+      { type: "填空题", content: "物质有三种常见状态：（ ）、（ ）和（ ）。", answer: "固态；液态；气态", difficulty: 1 },
+      { type: "填空题", content: "分离混合物的方法有过滤、（ ）、蒸发和（ ）等。", answer: "沉淀；蒸馏（答案不唯一）", difficulty: 2 },
+      { type: "选择题", content: "下列变化中，水的状态发生变化的是（ ）。\nA. 水结冰  B. 铁生锈  C. 木头燃烧", answer: "A", difficulty: 1 },
+      { type: "简答题", content: "请说出三种分离混合物的方法及其适用情况。", answer: "过滤：分离不溶于液体的固体和液体；蒸发：从溶液中分离出溶解的固体；沉淀：利用重力使不溶物沉降。", difficulty: 2 },
+      { type: "实验探究题", content: "小明把一杯盐水放在阳光下，几天后杯底出现了白色的盐粒。这是什么过程？\n答：____________________", answer: "这是蒸发过程。水蒸发后，溶解在水中的盐结晶析出，留在杯底。", difficulty: 2 },
+      { type: "填空题", content: "把糖放入水中搅拌后看不见了，说明糖（ ）在水中了。", answer: "溶解", difficulty: 1 }
+    ],
+  },
 
 ];
 
