@@ -2,39 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.skillxm.cn/</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/blog</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.skillxm.cn/about</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.skillxm.cn/contact</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.skillxm.cn/terms</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.skillxm.cn/privacy</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/resources</loc>
@@ -110,43 +86,43 @@
   </url>
   <url>
     <loc>https://www.skillxm.cn/tools/math-worksheet</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/tools/calligraphy</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/tools/english-calligraphy</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/tools/sudoku</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/tools/pinyin</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/tools/mental-math</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/tools/flashcards</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -167,6 +143,24 @@
     <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/auto-20260425-1</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/auto-20260425-2</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/auto-20260425-3</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.skillxm.cn/blog/yinianji-shuxue-ruxue</loc>
@@ -286,24 +280,6 @@
     <loc>https://www.skillxm.cn/blog/wei-shenme-mianfei-gongju</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.skillxm.cn/blog/auto-20260425-1</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.skillxm.cn/blog/auto-20260425-2</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.skillxm.cn/blog/auto-20260425-3</loc>
-    <lastmod>2026-04-25</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 </urlset>

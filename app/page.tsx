@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { getHomeToolCards } from '@/lib/toolRegistry';
 
 // 轮播图数据
 const CAROUSEL_ITEMS = [
@@ -134,18 +136,7 @@ const FAQ_ITEMS = [
 const TOOL_CATEGORIES = [
   {
     category: '📚 学习工具',
-    tools: [
-      { name: '数学练习题', icon: '🧮', desc: '一键出题，PDF导出', link: '/tools/math-worksheet', color: 'blue', disabled: false },
-      { name: '字帖生成器', icon: '✍️', desc: '田字格/米字格模板', link: '/tools/calligraphy', color: 'emerald', disabled: false },
-      { name: '英语字帖', icon: '🔤', desc: '四线三格模板', link: '/tools/english-calligraphy', color: 'rose', disabled: false },
-      { name: '数独游戏', icon: '🧩', desc: '多难度逻辑训练', link: '/tools/sudoku', color: 'orange', disabled: false },
-      { name: '拼音注音', icon: '📝', desc: '汉字注音练习', link: '/tools/pinyin', color: 'blue', disabled: false },
-      { name: '口算速练', icon: '⚡', desc: '在线计时练习', link: '/tools/mental-math', color: 'orange', disabled: false },
-      { name: '识字卡片', icon: '🃏', desc: '汉字卡片生成', link: '/tools/flashcards', color: 'blue', disabled: false },
-      { name: '作文模板', icon: '📝', desc: '多种写作模板', link: '/tools/writing-template', color: 'emerald', disabled: false },
-      { name: '古诗词默写', icon: '📜', desc: '必背古诗默写练习', link: '/tools/poem-memo', color: 'blue', disabled: false },
-      { name: '单元测试卷', icon: '📋', desc: '按教材单元出题', link: '/tools/unit-test', color: 'orange', disabled: false },
-    ],
+    tools: getHomeToolCards(),
   },
 ];
 

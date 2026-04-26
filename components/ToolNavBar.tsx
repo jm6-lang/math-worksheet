@@ -1,19 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { getNavBarLinks } from '@/lib/toolRegistry';
 
-const ALL_TOOLS = [
-  { name: '数学练习卷', href: '/tools/math-worksheet', icon: '🧮' },
-  { name: '字帖生成器', href: '/tools/calligraphy', icon: '✍️' },
-  { name: '英语字帖', href: '/tools/english-calligraphy', icon: '🔤' },
-  { name: '数独游戏', href: '/tools/sudoku', icon: '🧩' },
-  { name: '拼音注音', href: '/tools/pinyin', icon: '📝' },
-  { name: '口算速练', href: '/tools/mental-math', icon: '⚡' },
-  { name: '识字卡片', href: '/tools/flashcards', icon: '🃏' },
-  { name: '作文模板', href: '/tools/writing-template', icon: '📄' },
-  { name: '古诗词默写', href: '/tools/poem-memo', icon: '📜' },
-  { name: '单元测试卷', href: '/tools/unit-test', icon: '📋' },
-];
+const navLinks = getNavBarLinks();
 
 interface ToolNavBarProps {
   /** 当前页面的路径，用于高亮 */
@@ -52,7 +42,7 @@ export default function ToolNavBar({ currentPath = '', title }: ToolNavBarProps)
             <a href="/" className="px-2.5 py-1.5 text-xs text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-all">
               首页
             </a>
-            {ALL_TOOLS.map(tool => (
+            {navLinks.map(tool => (
               <a
                 key={tool.href}
                 href={tool.href}
@@ -84,7 +74,7 @@ export default function ToolNavBar({ currentPath = '', title }: ToolNavBarProps)
           <a href="/" className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
             🏠 首页
           </a>
-          {ALL_TOOLS.map(tool => (
+          {navLinks.map(tool => (
             <a
               key={tool.href}
               href={tool.href}
@@ -94,7 +84,7 @@ export default function ToolNavBar({ currentPath = '', title }: ToolNavBarProps)
                   : 'text-gray-300 hover:text-white hover:bg-white/10'
               }`}
             >
-              {tool.icon} {tool.name}
+              {tool.name}
             </a>
           ))}
         </div>

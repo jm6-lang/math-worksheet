@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
+import { TOOLS, generateSchemaApps, generateSchemaBreadcrumbs, ACTIVE_TOOL_COUNT } from "@/lib/toolRegistry";
 
 
 const notoSansSC = Noto_Sans_SC({
@@ -96,7 +97,7 @@ export default function RootLayout({
           "@type": "ImageObject",
           url: "https://www.skillxm.cn/og-image.jpg",
         },
-        description: "免费在线教育工具集合，为小学生和家长提供数学练习卷、字帖、数独等10款实用工具",
+        description: `免费在线教育工具集合，为小学生和家长提供数学练习卷、字帖、数独等${ACTIVE_TOOL_COUNT}款实用工具`,
         address: {
           "@type": "PostalAddress",
           addressCountry: "CN",
@@ -119,197 +120,8 @@ export default function RootLayout({
           availableLanguage: "Chinese",
         },
       },
-      {
-        "@type": "SoftwareApplication",
-        name: "数学练习卷生成器",
-        url: "https://www.skillxm.cn/tools/math-worksheet",
-        description: "免费在线生成小学数学练习卷，支持加减乘除竖式、分数、方程等题型，一键打印PDF",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "328",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "字帖生成器",
-        url: "https://www.skillxm.cn/tools/calligraphy",
-        description: "在线生成田字格/米字格字帖，四种格子样式可选，支持直接打印，适合小学生练字",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "英语字帖生成器",
-        url: "https://www.skillxm.cn/tools/english-calligraphy",
-        description: "输入英文单词或句子，自动生成四线三格练习纸，支持多种字体和行高，一键打印",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "拼音练习生成器",
-        url: "https://www.skillxm.cn/tools/pinyin",
-        description: "生成拼音四线三格练习纸，支持声母、韵母、整体认读音节，一键打印PDF",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "数独游戏",
-        url: "https://www.skillxm.cn/tools/sudoku",
-        description: "在线数独游戏，支持多个难度等级，数字键盘输入，适合各年龄段益智训练",
-        applicationCategory: "GameApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "口算速练",
-        url: "https://www.skillxm.cn/tools/mental-math",
-        description: "在线口算计时练习，支持4个难度级别，即时反馈，适合小学生数学速算训练",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "识字卡片生成器",
-        url: "https://www.skillxm.cn/tools/flashcards",
-        description: "免费在线生成识字卡片，支持自定义汉字、拼音、组词，可打印制作实体卡片",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "作文模板生成器",
-        url: "https://www.skillxm.cn/tools/writing-template",
-        description: "免费在线生成作文模板，支持看图写话、日记、书信等多种格式，适合小学生写作练习",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "古诗词默写生成器",
-        url: "https://www.skillxm.cn/tools/poem-memo",
-        description: "免费在线生成古诗词默写练习卷，覆盖小学1-6年级必背古诗词，支持填空默写、全诗默写、上下句默写三种模式",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "SoftwareApplication",
-        name: "单元测试卷生成器",
-        url: "https://www.skillxm.cn/tools/unit-test",
-        description: "免费在线生成小学数学单元测试卷，按人教版教材单元出题，支持期中期末测试，PDF导出即印即用",
-        applicationCategory: "EducationApplication",
-        operatingSystem: "Web Browser",
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "CNY",
-        },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "数学练习卷", item: "https://www.skillxm.cn/tools/math-worksheet" },
-        ],
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "字帖生成器", item: "https://www.skillxm.cn/tools/calligraphy" },
-        ],
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "英语字帖生成器", item: "https://www.skillxm.cn/tools/english-calligraphy" },
-        ],
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "拼音练习生成器", item: "https://www.skillxm.cn/tools/pinyin" },
-        ],
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "数独游戏", item: "https://www.skillxm.cn/tools/sudoku" },
-        ],
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "口算速练", item: "https://www.skillxm.cn/tools/mental-math" },
-        ],
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "识字卡片生成器", item: "https://www.skillxm.cn/tools/flashcards" },
-        ],
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "首页", item: "https://www.skillxm.cn" },
-          { "@type": "ListItem", position: 2, name: "作文模板生成器", item: "https://www.skillxm.cn/tools/writing-template" },
-        ],
-      },
+      ...generateSchemaApps(),
+      ...generateSchemaBreadcrumbs(),
       {
         "@type": "HowTo",
         "name": "如何使用数学练习卷生成器",
