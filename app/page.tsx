@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { getHomeToolCards } from '@/lib/toolRegistry';
+import { getHomeToolCards, TOOLS } from '@/lib/toolRegistry';
 
 // 轮播图数据
 const CAROUSEL_ITEMS = [
@@ -244,39 +244,13 @@ export default function HomePage() {
                   <svg className={`w-3.5 h-3.5 transition-transform ${showToolsMenu ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                 </button>
                 {showToolsMenu && (
-                  <div className="absolute left-0 top-full mt-1 bg-slate-800 border border-white/10 rounded-xl shadow-2xl p-2 min-w-[200px] z-50">
-                    <a href="/tools/math-worksheet" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-blue-500/20 rounded-lg flex items-center justify-center text-sm">🧮</span>
-                      <div><div className="text-white font-medium">数学练习卷</div><div className="text-xs text-gray-500">一键出题，PDF导出</div></div>
-                    </a>
-                    <a href="/tools/calligraphy" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-emerald-500/20 rounded-lg flex items-center justify-center text-sm">✍️</span>
-                      <div><div className="text-white font-medium">字帖生成器</div><div className="text-xs text-gray-500">田字格/米字格模板</div></div>
-                    </a>
-                    <a href="/tools/english-calligraphy" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-rose-500/20 rounded-lg flex items-center justify-center text-sm">🔤</span>
-                      <div><div className="text-white font-medium">英语字帖</div><div className="text-xs text-gray-500">四线三格模板</div></div>
-                    </a>
-                    <a href="/tools/sudoku" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-orange-500/20 rounded-lg flex items-center justify-center text-sm">🧩</span>
-                      <div><div className="text-white font-medium">数独游戏</div><div className="text-xs text-gray-500">多难度逻辑训练</div></div>
-                    </a>
-                    <a href="/tools/mental-math" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-yellow-500/20 rounded-lg flex items-center justify-center text-sm">⚡</span>
-                      <div><div className="text-white font-medium">口算速练</div><div className="text-xs text-gray-500">在线计时练习</div></div>
-                    </a>
-                    <a href="/tools/flashcards" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-purple-500/20 rounded-lg flex items-center justify-center text-sm">🃏</span>
-                      <div><div className="text-white font-medium">识字卡片</div><div className="text-xs text-gray-500">汉字卡片生成</div></div>
-                    </a>
-                    <a href="/tools/writing-template" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-teal-500/20 rounded-lg flex items-center justify-center text-sm">📝</span>
-                      <div><div className="text-white font-medium">作文模板</div><div className="text-xs text-gray-500">多种写作模板</div></div>
-                    </a>
-                    <a href="/tools/pinyin" className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
-                      <span className="w-7 h-7 bg-blue-500/20 rounded-lg flex items-center justify-center text-sm">📝</span>
-                      <div><div className="text-white font-medium">拼音注音</div><div className="text-xs text-gray-500">汉字注音练习</div></div>
-                    </a>
+                  <div className="absolute left-0 top-full mt-1 bg-slate-800 border border-white/10 rounded-xl shadow-2xl p-2 min-w-[200px] z-50 max-h-[60vh] overflow-y-auto">
+                    {TOOLS.filter(t => t.active).map(tool => (
+                      <a key={tool.path} href={tool.path} className="flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                        <span className="w-7 h-7 bg-blue-500/20 rounded-lg flex items-center justify-center text-sm">{tool.icon}</span>
+                        <div><div className="text-white font-medium">{tool.name}</div><div className="text-xs text-gray-500">{tool.desc}</div></div>
+                      </a>
+                    ))}
                   </div>
                 )}
               </div>
