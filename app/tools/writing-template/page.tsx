@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from 'react';
 import ToolGuide from '@/components/ToolGuide';
+import ToolNavBar from '@/components/ToolNavBar';
 import { toolGuides } from '@/lib/toolGuides';
 
 // ===== 类型定义 =====
@@ -124,7 +125,6 @@ export default function WritingTemplatePage() {
   const [title, setTitle] = useState('');
   const [showTips, setShowTips] = useState(true);
   const [showOpeningGuide, setShowOpeningGuide] = useState(true);
-  const [mobileMenu, setMobileMenu] = useState(false);
 
   // 日记特有状态
   const [diaryDate, setDiaryDate] = useState(() => {
@@ -282,39 +282,7 @@ export default function WritingTemplatePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* ===== 顶部导航 ===== */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              <a href="/" className="text-xl font-bold text-white hover:opacity-80 transition-opacity">
-                ← 教材工具箱
-              </a>
-            </div>
-
-            <div className="hidden md:flex items-center gap-2">
-              <span className="text-2xl">📝</span>
-              <span className="text-lg font-bold text-white">作文模板生成器</span>
-            </div>
-
-            <button
-              onClick={() => setMobileMenu(!mobileMenu)}
-              aria-label={mobileMenu ? '关闭菜单' : '打开菜单'}
-              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
-            >
-              {mobileMenu ? '✕' : '☰'}
-            </button>
-          </div>
-        </div>
-
-        {mobileMenu && (
-          <div className="md:hidden bg-slate-800 border-t border-white/10 py-4 px-4 space-y-1">
-            <a href="/" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">首页</a>
-            <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">🧮 数学练习卷</a>
-            <a href="/tools/calligraphy" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">✍️ 字帖生成器</a>
-            <a href="/tools/mental-math" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">⚡ 口算速练</a>
-          </div>
-        )}
-      </nav>
+      <ToolNavBar currentPath="/tools/writing-template" title="作文模板" />
 
       {/* ===== 主内容 ===== */}
       <main className="pt-20 pb-8 px-4">

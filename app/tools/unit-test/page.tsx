@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
+import ToolNavBar from '@/components/ToolNavBar';
 import { exportToPDF } from '@/lib/pdfExport';
 import {
   unitTestData,
@@ -99,7 +100,6 @@ export default function UnitTestPage() {
   const [hasGenerated, setHasGenerated] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showAnswers, setShowAnswers] = useState(false);
-  const [mobileMenu, setMobileMenu] = useState(false);
 
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -175,7 +175,7 @@ export default function UnitTestPage() {
     if (!printWindow || !previewRef.current) return;
     const title = getExamTitle(grade, semester, examType, availableUnits.filter(u => selectedUnits.includes(u.id)).map(u => u.unitName));
     const content = previewRef.current.innerHTML;
-    printWindow.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${title}</title><style>@page{margin:10mm;size:A4 portrait;}body{margin:0;font-family:'Microsoft YaHei','SimSun',sans-serif;color:#000;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style></head><body>${content}</body></html>`);
+    printWindow.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${title}</title><style>@page{margin:10mm;size:A4 portrait;}body{margin:0;font-family:'Microsoft YaHei','SimSun',sans-serif;color:#000;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style></head><body>${content}<p style="text-align:center;color:#999;font-size:12px;margin-top:20px;">来源：教材工具箱 | 免费下载：www.skillxm.cn</p></body></html>`);
     printWindow.document.close();
     printWindow.focus();
     printWindow.print();
@@ -218,31 +218,7 @@ export default function UnitTestPage() {
     <div className="min-h-screen bg-[#0f0f0f] text-white" style={{ fontFamily: '"Noto Sans SC", "Microsoft YaHei", sans-serif' }}>
 
       {/* ===== 顶部导航 ===== */}
-      <nav className="print:hidden fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-xl">📝</div>
-              <a href="/" className="text-xl font-bold hover:opacity-80 transition-opacity text-white">教材工具箱</a>
-            </div>
-            <div className="hidden md:flex items-center gap-1">
-              <a href="/" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
-              <a href="/tools/math-worksheet" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">数学练习卷</a>
-              <a href="/tools/poem-memo" className="px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">古诗词默写</a>
-              <a href="/tools/unit-test" className="px-3 py-2 text-sm text-white bg-white/10 rounded-lg font-medium">单元测试卷</a>
-            </div>
-            <button onClick={() => setMobileMenu(!mobileMenu)} aria-label={mobileMenu ? '关闭菜单' : '打开菜单'} className="md:hidden p-2 text-gray-300 hover:text-white transition-colors">{mobileMenu ? '✕' : '☰'}</button>
-          </div>
-        </div>
-        {mobileMenu && (
-          <div className="md:hidden bg-[#1a1a1a] border-t border-white/10 py-4 px-4 space-y-1">
-            <a href="/" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">首页</a>
-            <a href="/tools/math-worksheet" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">数学练习卷</a>
-            <a href="/tools/poem-memo" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">古诗词默写</a>
-            <a href="/tools/unit-test" className="block px-4 py-2 text-white bg-white/10 rounded-lg">单元测试卷</a>
-          </div>
-        )}
-      </nav>
+      <ToolNavBar currentPath="/tools/unit-test" title="单元测试卷" />
 
       {/* ===== Hero 区域 ===== */}
       {!hasGenerated && (

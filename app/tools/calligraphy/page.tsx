@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import ToolGuide from '@/components/ToolGuide';
 import { toolGuides } from '@/lib/toolGuides';
+import ToolNavBar from '@/components/ToolNavBar';
 
 type GridType = 'tian' | 'mi' | 'fang' | 'hengxian';
 
@@ -222,7 +223,7 @@ export default function CalligraphyPage() {
           @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
         </style>
       </head>
-      <body>${gridHtml}</body>
+      <body>${gridHtml}<p style="text-align:center;color:#999;font-size:12px;margin-top:20px;">来源：教材工具箱 | 免费下载：www.skillxm.cn</p></body>
       </html>
     `);
     printWindow.document.close();
@@ -301,18 +302,7 @@ export default function CalligraphyPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-base">🧮</div>
-            <span className="text-base font-bold text-gray-800">字帖生成器</span>
-          </a>
-          <div className="flex items-center gap-5">
-            <a href="/tools/sudoku" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">数独游戏</a>
-            <a href="/" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">数学练习卷</a>
-          </div>
-        </div>
-      </nav>
+      <ToolNavBar currentPath="/tools/calligraphy" title="字帖生成器" />
 
       <div className="pt-20 pb-12 px-4">
         <div className="max-w-5xl mx-auto">

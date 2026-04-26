@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import ToolGuide from '@/components/ToolGuide';
 import { toolGuides } from '@/lib/toolGuides';
+import ToolNavBar from '@/components/ToolNavBar';
 
 // ===== 内置拼音词库（去重后共 530 条）=====
 const PY: Record<string, string> = {
@@ -642,24 +643,7 @@ export default function PinyinPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* 导航栏 */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <a href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">📚</div>
-              <span className="text-xl font-bold text-white group-hover:opacity-80 transition-opacity">拼音注音练习</span>
-            </a>
-            <div className="flex items-center gap-1">
-              <a href="/" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🏠 首页</a>
-              <a href="/tools/math-worksheet" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🧮 数学练习卷</a>
-              <a href="/tools/calligraphy" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">✍️ 字帖生成器</a>
-              <a href="/tools/sudoku" className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">🧩 数独游戏</a>
-              <div className="w-px h-6 bg-white/20 mx-2"></div>
-              <a href="/resources" className="px-4 py-2 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">🎁 免费资源</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <ToolNavBar currentPath="/tools/pinyin" title="拼音注音" />
 
       {/* 主内容 */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">

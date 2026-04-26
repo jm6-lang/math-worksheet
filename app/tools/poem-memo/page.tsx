@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useMemo } from 'react';
+import ToolNavBar from '@/components/ToolNavBar';
 import { poems, gradeGroups, type Poem } from '@/lib/poemData';
 
 /* ============================================================
@@ -179,7 +180,6 @@ export default function PoemMemoPage() {
   const [memoMode, setMemoMode] = useState<MemoMode>('fill');
   const [gridTemplate, setGridTemplate] = useState<GridTemplate>('tian');
   const [isExporting, setIsExporting] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
   /* ---- 过滤诗词列表 ---- */
@@ -503,7 +503,7 @@ export default function PoemMemoPage() {
           @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
         </style>
       </head>
-      <body>${content}</body>
+      <body>${content}<p style="text-align:center;color:#999;font-size:12px;margin-top:20px;">来源：教材工具箱 | 免费下载：www.skillxm.cn</p></body>
       </html>
     `);
     printWindow.document.close();
@@ -519,85 +519,7 @@ export default function PoemMemoPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* ===== 导航栏（深色主题）===== */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center text-base">
-              📜
-            </div>
-            <span className="text-base font-bold text-white">教材工具箱</span>
-          </a>
-
-          {/* 桌面导航 */}
-          <div className="hidden md:flex items-center gap-6">
-            <a href="/" className="text-sm text-gray-300 hover:text-white transition-colors">
-              首页
-            </a>
-            <a href="/tools/math-worksheet" className="text-sm text-gray-300 hover:text-white transition-colors">
-              数学练习卷
-            </a>
-            <a href="/tools/calligraphy" className="text-sm text-gray-300 hover:text-white transition-colors">
-              字帖生成器
-            </a>
-            <a
-              href="/tools/poem-memo"
-              className="text-sm text-amber-400 font-medium border-b-2 border-amber-400 pb-0.5"
-            >
-              古诗词默写
-            </a>
-          </div>
-
-          {/* 移动端菜单按钮 */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-white p-2"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* 移动端菜单 */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-gray-800 border-t border-gray-700">
-            <div className="px-4 py-3 space-y-2">
-              <a
-                href="/"
-                className="block text-sm text-gray-300 hover:text-white py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                首页
-              </a>
-              <a
-                href="/tools/math-worksheet"
-                className="block text-sm text-gray-300 hover:text-white py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                数学练习卷
-              </a>
-              <a
-                href="/tools/calligraphy"
-                className="block text-sm text-gray-300 hover:text-white py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                字帖生成器
-              </a>
-              <a
-                href="/tools/poem-memo"
-                className="block text-sm text-amber-400 font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                古诗词默写
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+      <ToolNavBar currentPath="/tools/poem-memo" title="古诗词默写" />
 
       {/* ===== 主内容 ===== */}
       <div className="pt-20 pb-12 px-4">
