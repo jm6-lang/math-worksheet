@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "英语字帖生成器 - 免费四线三格英语练习 | 教材工具箱",
       description: "免费生成四线三格英文字帖，多种字体，PDF导出A4打印",
       type: "website",
-    },
+      images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
   };
 }
 

@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "小学单元测试卷生成器 - 数语英科全科试卷免费打印 | 教材工具箱",
       description: "免费生成小学1-6年级单元测试卷，数学语文英语科学四科，305个单元PDF打印",
       type: "website",
-    },
+      images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
   };
 }
 

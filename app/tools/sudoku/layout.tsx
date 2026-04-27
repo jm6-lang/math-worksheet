@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "数独游戏 - 免费在线数独挑战 | 教材工具箱",
       description: "免费在线数独游戏，3档难度，锻炼逻辑思维，适合小学生课余训练",
       type: "website",
-    },
+      images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
   };
 }
 

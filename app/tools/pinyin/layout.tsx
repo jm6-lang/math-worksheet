@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "拼音注音练习 - 免费在线拼音学习工具 | 教材工具箱",
       description: "免费拼音学习工具，声母韵母练习，四线三格标准格式PDF打印",
       type: "website",
-    },
+      images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
   };
 }
 

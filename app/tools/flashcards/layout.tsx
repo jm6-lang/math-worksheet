@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: "免费生成汉字识字卡片，支持拼音组词，双面卡片PDF打印",
     keywords: "识字卡片,汉字卡片,拼音识字,识字练习,小学识字,免费识字卡,汉字学习,识字卡打印",
     alternates: { canonical: canonicalUrl },
-    openGraph: { url: canonicalUrl, title: "识字卡片生成器 - 教材工具箱", description: "免费生成汉字识字卡片，支持拼音组词，双面卡片PDF打印" },
+    openGraph: { url: canonicalUrl, title: "识字卡片生成器 - 教材工具箱", description: "免费生成汉字识字卡片，支持拼音组词，双面卡片PDF打印", images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }] },
   };
 }
 

@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: "免费生成小学作文格纸模板，看图写话、日记、作文格子纸",
     keywords: "作文模板,看图写话,日记模板,作文格纸,小学作文,写作练习,作文纸打印,作文格子",
     alternates: { canonical: canonicalUrl },
-    openGraph: { url: canonicalUrl, title: "作文模板生成器 - 教材工具箱", description: "免费生成小学作文格纸模板，看图写话、日记、作文格子纸" },
+    openGraph: { url: canonicalUrl, title: "作文模板生成器 - 教材工具箱", description: "免费生成小学作文格纸模板，看图写话、日记、作文格子纸", images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }] },
   };
 }
 
