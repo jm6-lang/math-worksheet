@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const canonicalUrl = `${protocol}://${host}${pathname}`;
   return {
     title: "数独游戏在线玩 - 入门/进阶/挑战三档难度 | 教材工具箱",
-    description: "免费在线数独游戏，3档难度，锻炼逻辑思维，适合小学生课余训练",
+    description: "免费在线数独游戏，3档难度（入门/进阶/挑战），锻炼逻辑思维和专注力，适合小学生课余训练，无需下载即开即玩",
     keywords: "数独游戏,在线数独,数独挑战,逻辑训练,益智游戏,免费数独,数独解题",
     alternates: { canonical: canonicalUrl },
     openGraph: {
