@@ -177,20 +177,6 @@ export const TOOLS: ToolConfig[] = [
     changefreq: 'weekly',
     active: true,
   },
-  {
-    path: '/tools/content-generator',
-    name: '文案生成器',
-    navName: '文案生成器',
-    icon: '✏️',
-    desc: '多平台种草文案',
-    color: 'rose',
-    schemaName: '种草文案生成器',
-    schemaDescription: '免费AI种草文案生成器，一键生成知乎/小红书/百家号/微信公众号等平台的推广文案，SEO关键词自动嵌入。',
-    schemaCategory: 'EducationApplication',
-    priority: 0.8,
-    changefreq: 'weekly',
-    active: true,
-  },
 ];
 
 /** 已上线的工具数量 */
