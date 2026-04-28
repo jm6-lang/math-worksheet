@@ -2,290 +2,350 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.skillxm.cn/</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/blog/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources</loc>
+    <loc>https://www.skillxm.cn/resources/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/calligraphy</loc>
+    <loc>https://www.skillxm.cn/resources/calligraphy/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/textbook</loc>
+    <loc>https://www.skillxm.cn/resources/textbook/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/math</loc>
+    <loc>https://www.skillxm.cn/resources/math/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/chinese</loc>
+    <loc>https://www.skillxm.cn/resources/chinese/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/english</loc>
+    <loc>https://www.skillxm.cn/resources/english/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/history</loc>
+    <loc>https://www.skillxm.cn/resources/history/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/language</loc>
+    <loc>https://www.skillxm.cn/resources/language/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/junior</loc>
+    <loc>https://www.skillxm.cn/resources/junior/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/senior</loc>
+    <loc>https://www.skillxm.cn/resources/senior/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/method</loc>
+    <loc>https://www.skillxm.cn/resources/method/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/resources/comprehensive</loc>
+    <loc>https://www.skillxm.cn/resources/comprehensive/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/math-worksheet</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/math-worksheet/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/calligraphy</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/calligraphy/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/english-calligraphy</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/english-calligraphy/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/sudoku</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/sudoku/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/pinyin</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/pinyin/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/mental-math</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/mental-math/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/flashcards</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/flashcards/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/writing-template</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/writing-template/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/poem-memo</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/poem-memo/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/tools/unit-test</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://www.skillxm.cn/tools/unit-test/</loc>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/auto-20260425-1</loc>
+    <loc>https://www.skillxm.cn/blog/我给孩子买了10套逻辑思维训练书-说说真实感受/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/auto-20260425-2</loc>
+    <loc>https://www.skillxm.cn/blog/auto-20260425-1/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/auto-20260425-3</loc>
+    <loc>https://www.skillxm.cn/blog/auto-20260425-2/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/yinianji-shuxue-ruxue</loc>
+    <loc>https://www.skillxm.cn/blog/auto-20260425-3/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/chengfa-koujue-jiyi</loc>
+    <loc>https://www.skillxm.cn/blog/yinianji-shuxue-ruxue/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/sannianji-fenshu-rumen</loc>
+    <loc>https://www.skillxm.cn/blog/chengfa-koujue-jiyi/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/kousuan-xunlian-fangfa</loc>
+    <loc>https://www.skillxm.cn/blog/sannianji-fenshu-rumen/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/shushi-jisuan-jiaoxue</loc>
+    <loc>https://www.skillxm.cn/blog/kousuan-xunlian-fangfa/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/ertong-lianzi-nianling</loc>
+    <loc>https://www.skillxm.cn/blog/shushi-jisuan-jiaoxue/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/pinyin-xuexi-luxiantu</loc>
+    <loc>https://www.skillxm.cn/blog/ertong-lianzi-nianling/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/kantu-xiehua-xunlian</loc>
+    <loc>https://www.skillxm.cn/blog/pinyin-xuexi-luxiantu/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/shizi-fangfa-tisheng</loc>
+    <loc>https://www.skillxm.cn/blog/kantu-xiehua-xunlian/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/sannianji-zuowen-rumen</loc>
+    <loc>https://www.skillxm.cn/blog/shizi-fangfa-tisheng/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/ziran-pindu-rumen</loc>
+    <loc>https://www.skillxm.cn/blog/sannianji-zuowen-rumen/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/xiaoxue-yingyu-shuxie</loc>
+    <loc>https://www.skillxm.cn/blog/ziran-pindu-rumen/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/shudu-shuxue-bangzhu</loc>
+    <loc>https://www.skillxm.cn/blog/xiaoxue-yingyu-shuxie/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/xiaoxuesheng-jiyili</loc>
+    <loc>https://www.skillxm.cn/blog/shudu-shuxue-bangzhu/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/xueba-xuexi-xiguan</loc>
+    <loc>https://www.skillxm.cn/blog/xiaoxuesheng-jiyili/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/xiaoshengchu-beikao</loc>
+    <loc>https://www.skillxm.cn/blog/xueba-xuexi-xiguan/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/lianxijuan-xuanze</loc>
+    <loc>https://www.skillxm.cn/blog/xiaoshengchu-beikao/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/fanggezhi-tianzige</loc>
+    <loc>https://www.skillxm.cn/blog/lianxijuan-xuanze/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/mianfei-jiaoyu-ziyuan</loc>
+    <loc>https://www.skillxm.cn/blog/fanggezhi-tianzige/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/wei-shenme-mianfei-gongju</loc>
+    <loc>https://www.skillxm.cn/blog/mianfei-jiaoyu-ziyuan/</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.skillxm.cn/blog/我给孩子买了10套逻辑思维训练书-说说真实感受</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.skillxm.cn/blog/wei-shenme-mianfei-gongju/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-1/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-2/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-3/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-4/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-5/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-6/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-7/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-8/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-9/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skillxm.cn/blog/seo-20260427-10/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 </urlset>

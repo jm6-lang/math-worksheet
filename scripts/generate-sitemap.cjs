@@ -48,22 +48,22 @@ const lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://
 
 // 静态页面
 lines.push(url('/', today, 'daily', '1.0'));
-lines.push(url('/blog', today, 'weekly', '0.9'));
-lines.push(url('/resources', '2026-04-23', 'weekly', '0.9'));
+lines.push(url('/blog/', today, 'weekly', '0.9'));
+lines.push(url('/resources/', '2026-04-23', 'weekly', '0.9'));
 
 // 资源子页面
 RESOURCES.forEach(slug => {
-  lines.push(url(`/resources/${slug}`, '2026-04-23', 'weekly', '0.8'));
+  lines.push(url(`/resources/${slug}/`, '2026-04-23', 'weekly', '0.8'));
 });
 
 // 工具页面
 TOOLS.forEach(tool => {
-  lines.push(url(tool.path, today, 'weekly', tool.priority));
+  lines.push(url(`${tool.path}/`, today, 'weekly', tool.priority));
 });
 
 // 博客文章
 blogIds.forEach(id => {
-  lines.push(url(`/blog/${id}`, '2026-04-23', 'monthly', '0.7'));
+  lines.push(url(`/blog/${id}/`, '2026-04-23', 'monthly', '0.7'));
 });
 
 lines.push('</urlset>');
