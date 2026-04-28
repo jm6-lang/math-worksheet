@@ -18,6 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "免费在线生成小学1-6年级数学练习卷，支持加减乘除、竖式计算、填空题、应用题等11种题型，随机出题PDF打印",
       type: "website",
       images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
+    },
   };
 }
 

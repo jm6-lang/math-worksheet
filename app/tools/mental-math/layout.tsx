@@ -18,6 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "免费在线口算速练，4个难度级别，计时挑战即时反馈，一二年级到五六年级全覆盖",
       type: "website",
       images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
+    },
   };
 }
 

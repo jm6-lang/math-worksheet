@@ -18,6 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "免费生成小学必背古诗词默写练习卷，240首经典古诗词，三种默写模式PDF打印",
       type: "website",
       images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
+    },
   };
 }
 

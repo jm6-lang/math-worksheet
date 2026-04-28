@@ -41,14 +41,22 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     "datePublished": article.date,
     "dateModified": article.date,
     "author": {
-      "@id": "https://www.skillxm.cn/#organization"
+      "@type": "Organization",
+      "name": "教材工具箱",
+      "url": "https://www.skillxm.cn"
     },
     "publisher": {
-      "@id": "https://www.skillxm.cn/#organization"
+      "@type": "Organization",
+      "name": "教材工具箱",
+      "url": "https://www.skillxm.cn",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.skillxm.cn/og-image.jpg"
+      }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.skillxm.cn/blog/${slug}`
+      "@id": `https://www.skillxm.cn/blog/${article.id}`
     }
   };
 

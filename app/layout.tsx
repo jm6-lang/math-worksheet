@@ -123,6 +123,33 @@ export default function RootLayout({
       ...generateSchemaApps(),
       ...generateSchemaBreadcrumbs(),
       {
+        "@type": "WebPage",
+        "@id": "https://www.skillxm.cn/#webpage",
+        "url": "https://www.skillxm.cn",
+        "name": "教材工具箱 - 免费小学教学工具",
+        "description": "教材工具箱提供10+款免费小学教学工具，包括数学练习卷生成器、字帖生成器、口算速练、拼音学习、识字卡片、古诗词默写、单元测试卷等，支持PDF导出打印，无需注册即开即用。",
+        "isPartOf": { "@id": "https://www.skillxm.cn/#website" },
+        "about": { "@id": "https://www.skillxm.cn/#organization" }
+      },
+      {
+        "@type": "ItemList",
+        "name": "教材工具箱 - 全部工具",
+        "description": "教材工具箱提供的所有免费小学教学工具",
+        "numberOfItems": 10,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "古诗词默写", "url": "https://www.skillxm.cn/tools/poem-memo" },
+          { "@type": "ListItem", "position": 2, "name": "单元测试卷", "url": "https://www.skillxm.cn/tools/unit-test" },
+          { "@type": "ListItem", "position": 3, "name": "数学练习卷", "url": "https://www.skillxm.cn/tools/math-worksheet" },
+          { "@type": "ListItem", "position": 4, "name": "字帖生成器", "url": "https://www.skillxm.cn/tools/calligraphy" },
+          { "@type": "ListItem", "position": 5, "name": "英语字帖", "url": "https://www.skillxm.cn/tools/english-calligraphy" },
+          { "@type": "ListItem", "position": 6, "name": "数独游戏", "url": "https://www.skillxm.cn/tools/sudoku" },
+          { "@type": "ListItem", "position": 7, "name": "拼音注音", "url": "https://www.skillxm.cn/tools/pinyin" },
+          { "@type": "ListItem", "position": 8, "name": "口算速练", "url": "https://www.skillxm.cn/tools/mental-math" },
+          { "@type": "ListItem", "position": 9, "name": "识字卡片", "url": "https://www.skillxm.cn/tools/flashcards" },
+          { "@type": "ListItem", "position": 10, "name": "作文模板", "url": "https://www.skillxm.cn/tools/writing-template" }
+        ]
+      },
+      {
         "@type": "HowTo",
         "name": "如何使用数学练习卷生成器",
         "description": "使用教材工具箱的数学练习卷生成器，只需5步即可生成可打印的数学练习卷",
@@ -204,6 +231,30 @@ export default function RootLayout({
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "可以。网站采用响应式设计，手机、平板、电脑都能正常使用。不过在手机上生成PDF后，建议发送到电脑或连接打印机进行打印。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "如何打印生成的练习卷？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "生成练习卷后，点击「下载PDF」按钮将文件保存到本地，然后用A4纸打印即可。也可以直接点击「直接打印」按钮，调用浏览器打印功能进行打印。建议打印时选择「无边距」和「实际大小」以获得最佳效果。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "生成的试卷可以商用吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "教材工具箱生成的练习卷和字帖仅供个人学习、家庭教育和课堂教学使用，不可用于商业用途。如需商用授权，请联系我们的客服团队获取许可。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "数据安全吗？孩子信息会泄露吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "完全安全。教材工具箱所有功能在浏览器本地运行，不会收集、存储或上传任何用户数据。不需要输入姓名、电话等个人信息，也不会使用Cookie追踪用户行为，充分保护隐私安全。"
             }
           }
         ]
