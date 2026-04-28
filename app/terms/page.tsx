@@ -170,10 +170,10 @@ export default function TermsPage() {
               如果您对本服务条款有任何疑问，请通过邮件联系我们：
             </p>
             <a
-              href="mailto:644428571@qq.com"
+              href="mailto:lang@skillxm.cn"
               className="text-lg font-bold text-blue-400 hover:text-blue-300 transition-colors"
             >
-              644428571@qq.com
+              lang@skillxm.cn
             </a>
           </div>
         </section>

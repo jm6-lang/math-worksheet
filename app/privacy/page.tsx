@@ -231,10 +231,10 @@ export default function PrivacyPage() {
               如果您对本隐私政策有任何疑问、意见或建议，请通过邮件联系我们：
             </p>
             <a
-              href="mailto:644428571@qq.com"
+              href="mailto:lang@skillxm.cn"
               className="text-lg font-bold text-blue-400 hover:text-blue-300 transition-colors"
             >
-              644428571@qq.com
+              lang@skillxm.cn
             </a>
             <p className="text-gray-500 text-sm mt-4">
               我们会在收到您的邮件后尽快回复，通常不超过3个工作日。

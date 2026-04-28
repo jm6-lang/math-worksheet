@@ -115,7 +115,7 @@ export default function RootLayout({
         },
         contactPoint: {
           "@type": "ContactPoint",
-          email: "644428571@qq.com",
+          email: "lang@skillxm.cn",
           contactType: "customer support",
           availableLanguage: "Chinese",
         },

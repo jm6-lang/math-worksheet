@@ -25,10 +25,10 @@ export default function ContactPage() {
             <div className="text-4xl mb-4">📧</div>
             <h2 className="text-xl font-bold text-white mb-3">邮箱联系</h2>
             <a
-              href="mailto:644428571@qq.com"
+              href="mailto:lang@skillxm.cn"
               className="text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors"
             >
-              644428571@qq.com
+              lang@skillxm.cn
             </a>
             <p className="text-gray-300 mt-4 leading-relaxed">
               如果您有任何问题、建议或合作意向，欢迎通过邮件联系我们。我们会在1-3个工作日内回复您的邮件。
