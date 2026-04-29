@@ -2718,7 +2718,6 @@ function main() {
 
   // 读取 data.ts 文件
   const dataPath = path.resolve(__dirname, '..', 'app', 'blog', 'data.ts');
-  const sitemapPath = path.resolve(__dirname, '..', 'public', 'sitemap.xml');
 
   console.log(`=== 自动博客文章生成器 ===`);
   console.log(`生成数量: ${count}`);
@@ -2754,15 +2753,10 @@ function main() {
 
   // 生成文章对象
   const newArticles = selected.map((template, index) => {
-    // 从标题生成 slug：取前20个字符，去除特殊字符，用连字符连接
-    function titleToSlug(title) {
-      return title
-        .replace(/[？?!！，。、：；""''（）【】《》\s]+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '')
-        .substring(0, 30);
-    }
-    const id = titleToSlug(template.title);
+    // 生成纯英文 slug：日期前缀 + 序号，避免中文路径导致 Cloudflare Pages 404
+    const dateStr = today.replace(/-/g, '');
+    const seq = String(index + 1).padStart(2, '0');
+    const id = `auto-${dateStr}-${seq}`;
 
     // 检查 id 是否已存在
     if (existingIds.includes(id)) {
@@ -2811,35 +2805,7 @@ function main() {
   fs.writeFileSync(dataPath, dataContent, 'utf-8');
   console.log('已更新 app/blog/data.ts');
 
-  // 更新 sitemap.xml
-  let sitemapContent = fs.readFileSync(sitemapPath, 'utf-8');
-  const todayDate = today;
-
-  // 检查 sitemap 中是否已有博客文章的 URL
-  const newUrls = newArticles.map((article) => {
-    const slug = article.id;
-    return `  <url>
-    <loc>https://www.skillxm.cn/blog/${slug}</loc>
-    <lastmod>${todayDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>`;
-  });
-
-  // 在 </urlset> 之前插入新的 URL
-  const sitemapInsertPoint = sitemapContent.lastIndexOf('</urlset>');
-  if (sitemapInsertPoint !== -1) {
-    sitemapContent =
-      sitemapContent.substring(0, sitemapInsertPoint) +
-      newUrls.join('\n') +
-      '\n' +
-      sitemapContent.substring(sitemapInsertPoint);
-
-    fs.writeFileSync(sitemapPath, sitemapContent, 'utf-8');
-    console.log('已更新 public/sitemap.xml');
-  } else {
-    console.warn('警告: 无法找到 sitemap.xml 的 </urlset> 标签，跳过更新。');
-  }
+  // sitemap 由 app/sitemap.ts 自动生成，无需手动更新
 
   // 输出结果
   console.log('');
