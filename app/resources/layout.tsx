@@ -1,3 +1,21 @@
+import type { Metadata } from "next";
+
+const canonicalUrl = "https://www.skillxm.cn/resources";
+
+export const metadata: Metadata = {
+  title: "免费教育资源中心 - 小学学习资料下载 | 教材工具箱",
+  description: "教材工具箱免费教育资源中心，提供小学数学、语文、英语、科学等各科学习资料和教学资源下载，覆盖一年级到六年级全套教材配套资料。",
+  keywords: "免费教育资源,小学学习资料,数学资源,语文资源,英语资源,教学资料下载,小学试题",
+  alternates: { canonical: canonicalUrl },
+  openGraph: {
+    url: canonicalUrl,
+    title: "免费教育资源中心 - 小学学习资料下载 | 教材工具箱",
+    description: "教材工具箱免费教育资源中心，提供小学各科学习资料和教学资源下载。",
+    type: "website",
+    images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
+  },
+};
+
 export default function ResourcesLayout({ children }: { children: React.ReactNode }) {
   return (
     <>

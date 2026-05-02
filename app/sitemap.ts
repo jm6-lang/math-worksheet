@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // 资源子页面
-  const resourceSlugs = ['math', 'chinese', 'english', 'science', 'history', 'method', 'senior', 'textbook', 'tool', 'exam', 'parenting'];
+  const resourceSlugs = ['calligraphy', 'chinese', 'comprehensive', 'english', 'history', 'junior', 'language', 'math', 'method', 'senior', 'textbook'];
   const resourcePages: MetadataRoute.Sitemap = resourceSlugs.map(slug => ({
     url: `${BASE_URL}/resources/${slug}/`,
     lastModified: '2026-04-23',

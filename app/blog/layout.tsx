@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.skillxm.cn/blog',
   },
+  openGraph: {
+    url: 'https://www.skillxm.cn/blog',
+    title: "教育博客 - 小学数学语文英语学习方法 | 教材工具箱",
+    description: "小学数学语文英语学习方法文章集锦，覆盖一年级到六年级学习指南。",
+    type: "website",
+    images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
+  },
 };
 
 export default function BlogLayout({
@@ -34,7 +41,6 @@ export default function BlogLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
       <div className="sr-only">
-        <h1>教育博客 - 小学学习方法与教育资讯</h1>
         <p>小学数学语文英语学习方法文章集锦，覆盖一年级到六年级学习指南，包含口算训练、字帖练习、阅读理解、作文写作等实用教程。教材工具箱博客致力于为小学生家长和老师提供专业的教育资讯和学习方法指导。</p>
         <p>访问 <a href="https://www.skillxm.cn">教材工具箱</a> 获取更多免费教学工具。</p>
       </div>
