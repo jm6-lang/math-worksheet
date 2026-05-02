@@ -1,2 +1,3 @@
-# Cloudflare Pages - no custom redirects needed
-# Next.js static export handles all routing automatically via /tools/*/index.html
+# Cloudflare Pages redirects
+# 旧路径重定向到工具页
+/mental-math /tools/mental-math/ 308

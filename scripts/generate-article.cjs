@@ -2753,10 +2753,56 @@ function main() {
 
   // 生成文章对象
   const newArticles = selected.map((template, index) => {
-    // 生成纯英文 slug：日期前缀 + 序号，避免中文路径导致 Cloudflare Pages 404
-    const dateStr = today.replace(/-/g, '');
-    const seq = String(index + 1).padStart(2, '0');
-    const id = `auto-${dateStr}-${seq}`;
+    // 从标题生成语义化英文 slug
+    function titleToSlug(title) {
+      // 中文标题映射表（常用教育关键词）
+      const pinyinMap = {
+        '数学': 'shuxue', '语文': 'yuwen', '英语': 'yingyu', '科学': 'kexue',
+        '练习': 'lianxi', '学习': 'xuexi', '训练': 'xunlian', '复习': 'fuxi',
+        '口算': 'kousuan', '字帖': 'zitie', '作文': 'zuowen', '古诗词': 'gushi',
+        '默写': 'moxie', '拼音': 'pinyin', '识字': 'shizi', '阅读': 'yuedu',
+        '数独': 'shudu', '思维': 'siwei', '单元': 'danyuan', '测试': 'ceshi',
+        '试卷': 'shijuan', '一年级': 'yinianji', '二年级': 'ernianji', '三年级': 'sannianji',
+        '四年级': 'sinianji', '五年级': 'wunianji', '六年级': 'liunianji',
+        '小学': 'xiaoxue', '免费': 'mianfei', '在线': 'zaixian', '工具': 'gongju',
+        '生成': 'shengcheng', '打印': 'dayin', '方法': 'fangfa', '技巧': 'jiqiao',
+        '指南': 'zhinan', '攻略': 'gonglue', '推荐': 'tuijian', '资源': 'ziyuan',
+        '家长': 'jiazhang', '孩子': 'haizi', '辅导': 'fudao', '教育': 'jiaoyu',
+        '升学': 'shengxue', '小升初': 'xiaoshengchu', '期末': 'qimo', '考试': 'kaoshi',
+        '单词': 'danci', '语法': 'yufa', '听力': 'tingli', '口语': 'kouyu',
+        '书写': 'shuxie', '字母': 'zimu', '汉字': 'hanzi', '练字': 'lianzi',
+        '看图写话': 'kantu-xiehua', '日记': 'riji', '读书': 'dushu', '笔记': 'biji',
+        '几何': 'jihe', '分数': 'fenshu', '乘法': 'chengfa', '除法': 'chufa',
+        '加减法': 'jiajianfa', '竖式': 'shushi', '应用题': 'yingyongti',
+        '逻辑': 'luoji', '记忆': 'jiyi', '注意力': 'zhuyili', '习惯': 'xiguan',
+        '心理': 'xinli', '压力': 'yali', '焦虑': 'jiaolv', '简历': 'jianli',
+        '模板': 'moban', '卡片': 'kapian', '自然拼读': 'ziran-pindu',
+        '四线三格': 'sixian-sange', '田字格': 'tianzige', '米字格': 'mizige',
+      };
+
+      let slug = title;
+      // 先替换多字词（长的先替换）
+      const sortedKeys = Object.keys(pinyinMap).sort((a, b) => b.length - a.length);
+      for (const cn of sortedKeys) {
+        slug = slug.replaceAll(cn, pinyinMap[cn]);
+      }
+      // 移除剩余中文字符
+      slug = slug.replace(/[\u4e00-\u9fff]/g, '');
+      // 只保留字母、数字和连字符
+      slug = slug.replace(/[^a-zA-Z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+      // 截断到合理长度
+      slug = slug.substring(0, 50);
+
+      // 如果 slug 太短或为空，用日期作为后备
+      if (slug.length < 5) {
+        const dateStr = today.replace(/-/g, '');
+        slug = `article-${dateStr}`;
+      }
+
+      return slug;
+    }
+
+    const id = titleToSlug(template.title);
 
     // 检查 id 是否已存在
     if (existingIds.includes(id)) {
