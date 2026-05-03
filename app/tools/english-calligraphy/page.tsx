@@ -457,10 +457,10 @@ export default function EnglishCalligraphyPage() {
               <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">识字卡片生成器</div>
               <div className="text-xs text-gray-400 mt-1">自定义汉字卡片</div>
             </a>
-            <a href="/resources/english" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+            <a href="/tools/flashcards" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
               <div className="text-2xl mb-2">📖</div>
-              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">英语学习资源</div>
-              <div className="text-xs text-gray-400 mt-1">英语学习资料</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">识字卡片生成器</div>
+              <div className="text-xs text-gray-400 mt-1">汉字拼音识字卡</div>
             </a>
           </div>
         </section>

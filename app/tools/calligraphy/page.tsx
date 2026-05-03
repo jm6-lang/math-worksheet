@@ -547,10 +547,10 @@ export default function CalligraphyPage() {
               <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">识字卡片生成器</div>
               <div className="text-xs text-gray-400 mt-1">自定义汉字卡片</div>
             </a>
-            <a href="/resources/calligraphy" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+            <a href="/tools/poem-memo" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
               <div className="text-2xl mb-2">✍️</div>
-              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">小学生硬笔书法课程</div>
-              <div className="text-xs text-gray-400 mt-1">系统书法教学</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">古诗词默写</div>
+              <div className="text-xs text-gray-400 mt-1">古诗文默写练习</div>
             </a>
           </div>
         </section>

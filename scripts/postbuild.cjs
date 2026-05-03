@@ -17,7 +17,7 @@ for (const file of files) {
 }
 
 // 2. Fix nested route HTML files
-// Next.js static export creates both /resources/calligraphy.html and /resources/calligraphy/ dir
+// Next.js static export creates both /tools/calligraphy.html and /tools/calligraphy/ dir
 // Cloudflare Pages matches the directory first (no index.html inside = 404)
 // Solution: copy .html content into the directory as index.html
 function fixNestedRoutes(dir) {
@@ -36,6 +36,5 @@ function fixNestedRoutes(dir) {
   }
 }
 
-fixNestedRoutes(path.join(outDir, 'resources'));
 fixNestedRoutes(path.join(outDir, 'tools'));
 fixNestedRoutes(path.join(outDir, 'blog'));

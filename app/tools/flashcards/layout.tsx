@@ -9,10 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const canonicalUrl = `${protocol}://${host}${pathname}`;
   return {
     title: "识字卡片生成器 - 汉字拼音识字卡 | 教材工具箱",
-    description: "免费生成汉字识字卡片，支持拼音组词，双面卡片PDF打印",
+    description: "免费生成汉字识字卡片，自动标注拼音并提供常用组词，支持双面卡片PDF打印。适合小学语文教师和家长快速生成专业识字卡，用于课堂教学和家庭辅导。",
     keywords: "识字卡片,汉字卡片,拼音识字,识字练习,小学识字,免费识字卡,汉字学习,识字卡打印",
     alternates: { canonical: canonicalUrl },
-    openGraph: { url: canonicalUrl, title: "识字卡片生成器 - 教材工具箱", description: "免费生成汉字识字卡片，支持拼音组词，双面卡片PDF打印", images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }] },
+    openGraph: { url: canonicalUrl, title: "识字卡片生成器 - 教材工具箱", description: "免费生成汉字识字卡片，自动标注拼音并提供常用组词，支持双面卡片PDF打印。适合小学语文教师和家长快速生成专业识字卡，用于课堂教学和家庭辅导。", images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }] },
   };
 }
 

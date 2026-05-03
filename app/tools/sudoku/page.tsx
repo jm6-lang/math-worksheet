@@ -437,10 +437,10 @@ export default function SudokuPage() {
               <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">数学练习卷生成器</div>
               <div className="text-xs text-gray-400 mt-1">PDF打印练习卷</div>
             </a>
-            <a href="/resources/method" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
+            <a href="/tools/mental-math" className="block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-xl p-4 transition-all group">
               <div className="text-2xl mb-2">🧠</div>
-              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">思维训练资源</div>
-              <div className="text-xs text-gray-400 mt-1">逻辑思维方法</div>
+              <div className="font-bold text-gray-700 text-sm group-hover:text-blue-600 transition-colors">口算速练</div>
+              <div className="text-xs text-gray-400 mt-1">计时挑战训练</div>
             </a>
           </div>
         </section>

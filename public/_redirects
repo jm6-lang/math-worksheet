@@ -1,3 +1,6 @@
 # Cloudflare Pages redirects
 # 旧路径重定向到工具页
 /mental-math /tools/mental-math/ 308
+
+# 旧资源页面重定向到首页
+/resources/* / 301

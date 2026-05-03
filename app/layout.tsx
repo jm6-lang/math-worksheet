@@ -17,11 +17,11 @@ export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "教材工具箱 - 免费小学教学工具/数学练习卷/字帖/口算生成器等",
-  description: "教材工具箱提供10+款免费小学教学工具，包括数学练习卷生成器、字帖生成器、口算速练、拼音学习、识字卡片、古诗词默写、单元测试卷等，支持PDF导出打印，无需注册即开即用。",
+  description: "教材工具箱提供10+款免费小学教学工具，包括数学练习卷生成器、字帖生成器、口算速练、拼音学习、识字卡片、古诗词默写、单元测试卷等，支持PDF导出打印，无需注册即开即用。适合小学1-6年级学生日常练习与教师课堂教学使用。",
   keywords: "教学工具箱,教材工具箱,小学教学工具,数学练习卷生成器,字帖生成器,口算速练,拼音学习,识字卡片,古诗词默写,单元测试卷,免费试卷,小学教育资源,PDF打印",
   openGraph: {
     title: "教材工具箱 - 免费小学教学工具/数学练习卷/字帖/口算生成器等",
-    description: "教材工具箱提供10+款免费小学教学工具，包括数学练习卷生成器、字帖生成器、口算速练、拼音学习、识字卡片、古诗词默写、单元测试卷等，支持PDF导出打印，无需注册即开即用。",
+    description: "教材工具箱提供10+款免费小学教学工具，包括数学练习卷生成器、字帖生成器、口算速练、拼音学习、识字卡片、古诗词默写、单元测试卷等，支持PDF导出打印，无需注册即开即用。适合小学1-6年级学生日常练习与教师课堂教学使用。",
     type: "website",
     url: "https://www.skillxm.cn",
     siteName: "教材工具箱",
@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://www.skillxm.cn",
+    languages: {
+      'x-default': 'https://www.skillxm.cn',
+    },
   },
   icons: {
     icon: [
@@ -79,6 +82,7 @@ export default function RootLayout({
         url: "https://www.skillxm.cn",
         description: "免费在线教育工具集合，包括数学练习卷生成器、字帖生成器、英语字帖、数独游戏、口算速练、识字卡片、作文模板、拼音注音，支持PDF导出打印",
         inLanguage: "zh-CN",
+        dateModified: "2026-05-03",
         potentialAction: {
           "@type": "SearchAction",
           target: "https://www.skillxm.cn/search?q={search_term_string}",
@@ -93,6 +97,7 @@ export default function RootLayout({
         "@id": "https://www.skillxm.cn/#organization",
         name: "教材工具箱",
         url: "https://www.skillxm.cn",
+        dateModified: "2026-05-03",
         logo: {
           "@type": "ImageObject",
           url: "https://www.skillxm.cn/og-image.jpg",
@@ -135,6 +140,7 @@ export default function RootLayout({
         "@type": "ItemList",
         "name": "教材工具箱 - 全部工具",
         "description": "教材工具箱提供的所有免费小学教学工具",
+        "dateModified": "2026-05-03",
         "numberOfItems": 10,
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "古诗词默写", "url": "https://www.skillxm.cn/tools/poem-memo" },

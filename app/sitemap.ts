@@ -14,21 +14,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: today, changeFrequency: 'daily', priority: 1.0 },
     { url: `${BASE_URL}/blog/`, lastModified: today, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/resources/`, lastModified: '2026-04-23', changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE_URL}/about/`, lastModified: '2026-04-23', changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE_URL}/contact/`, lastModified: '2026-04-23', changeFrequency: 'monthly', priority: 0.5 },
     { url: `${BASE_URL}/terms/`, lastModified: '2026-04-23', changeFrequency: 'monthly', priority: 0.3 },
     { url: `${BASE_URL}/privacy/`, lastModified: '2026-04-23', changeFrequency: 'monthly', priority: 0.3 },
   ];
-
-  // 资源子页面
-  const resourceSlugs = ['calligraphy', 'chinese', 'comprehensive', 'english', 'history', 'junior', 'language', 'math', 'method', 'senior', 'textbook'];
-  const resourcePages: MetadataRoute.Sitemap = resourceSlugs.map(slug => ({
-    url: `${BASE_URL}/resources/${slug}/`,
-    lastModified: '2026-04-23',
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
 
   // 工具页面
   const toolPages: MetadataRoute.Sitemap = TOOLS.filter(t => t.active).map(tool => ({
@@ -46,5 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...resourcePages, ...toolPages, ...blogPages];
+  return [...staticPages, ...toolPages, ...blogPages];
 }

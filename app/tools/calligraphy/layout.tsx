@@ -9,13 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const canonicalUrl = `${protocol}://${host}${pathname}`;
   return {
     title: "免费字帖生成器 - 田字格/米字格/楷体字帖 | 教材工具箱",
-    description: "免费在线生成田字格米字格汉字字帖，支持楷体宋体黑体，自定义内容输入，PDF导出A4打印",
+    description: "免费在线生成田字格米字格汉字字帖，支持楷体宋体黑体，自定义内容输入，PDF导出A4打印。适合小学生日常练字和书法初学者描红练习，输入任意汉字即可生成标准字帖模板。",
     keywords: "字帖生成器,田字格字帖,米字格字帖,练字模板,书法练习,汉字字帖,免费字帖,在线练字",
     alternates: { canonical: canonicalUrl },
     openGraph: {
       url: canonicalUrl,
       title: "字帖生成器 - 免费在线田字格米字格练字 | 教材工具箱",
-      description: "免费在线生成田字格米字格汉字字帖，支持楷体宋体黑体，自定义内容输入，PDF导出A4打印",
+      description: "免费在线生成田字格米字格汉字字帖，支持楷体宋体黑体，自定义内容输入，PDF导出A4打印。适合小学生日常练字和书法初学者描红练习，输入任意汉字即可生成标准字帖模板。",
       type: "website",
       images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
     },

@@ -9,13 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const canonicalUrl = `${protocol}://${host}${pathname}`;
   return {
     title: "英文字帖生成器 - 四线三格英文书写练习 | 教材工具箱",
-    description: "免费生成四线三格英文字帖，多种字体，PDF导出A4打印",
+    description: "免费生成四线三格英文字帖，支持手写体印刷体等多种字体，可自定义单词句子内容，PDF导出A4打印。适合小学生英语书写练习，帮助规范英文字母书写格式。",
     keywords: "英语字帖,四线三格,英语练习,英文字帖,英语书写,英语打印,免费英语字帖",
     alternates: { canonical: canonicalUrl },
     openGraph: {
       url: canonicalUrl,
       title: "英语字帖生成器 - 免费四线三格英语练习 | 教材工具箱",
-      description: "免费生成四线三格英文字帖，多种字体，PDF导出A4打印",
+      description: "免费生成四线三格英文字帖，支持手写体印刷体等多种字体，可自定义单词句子内容，PDF导出A4打印。适合小学生英语书写练习，帮助规范英文字母书写格式。",
       type: "website",
       images: [{ url: "https://www.skillxm.cn/og-image.jpg", width: 1200, height: 630, alt: "教材工具箱" }],
     },

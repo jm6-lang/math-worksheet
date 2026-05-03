@@ -602,44 +602,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== 站内链接增强 - 热门资源 ===== */}
+      {/* ===== 站内链接增强 - 推荐工具 ===== */}
       <section className="py-12 px-4 bg-slate-800/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-8">
-            热门资源
+            推荐工具
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="/resources/calligraphy" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+            <a href="/tools/calligraphy" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">✍️</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">字帖书法资源</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">字帖生成器</span>
             </a>
-            <a href="/resources/math" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+            <a href="/tools/math-worksheet" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">🧮</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">数学学习资料</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">数学练习卷</span>
             </a>
-            <a href="/resources/chinese" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+            <a href="/tools/pinyin" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">📚</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">语文学习资料</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">拼音学习工具</span>
             </a>
-            <a href="/resources/english" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+            <a href="/tools/english-calligraphy" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">🔤</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">英语学习资料</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">英语字帖生成器</span>
             </a>
-            <a href="/resources/comprehensive" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+            <a href="/tools/flashcards" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">📖</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">综合教辅资源</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">识字卡片生成器</span>
             </a>
-            <a href="/resources/method" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+            <a href="/tools/mental-math" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">💡</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">学习方法资源</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">口算速练</span>
             </a>
             <a href="/blog" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">📰</span>
               <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">教育博客</span>
             </a>
-            <a href="/tools/math-worksheet" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
-              <span className="text-2xl block mb-2">📐</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">数学练习卷生成器</span>
+            <a href="/tools/sudoku" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+              <span className="text-2xl block mb-2">🧩</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">数独游戏</span>
             </a>
           </div>
         </div>
