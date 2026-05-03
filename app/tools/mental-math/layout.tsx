@@ -27,7 +27,7 @@ export default function MentalMathLayout({ children }: { children: React.ReactNo
     <>
       {/* 服务端渲染的 SEO 内容 -- 搜索引擎可直接抓取 */}
       <div className="sr-only">
-        <h1>口算速练 - 在线计时口算练习</h1>
+        <h2>口算速练 - 在线计时口算练习</h2>
         <p>免费在线口算速练，4个难度级别，计时挑战即时反馈，一二年级到五六年级全覆盖。通过限时口算训练快速提升计算能力，支持加减乘除全运算类型，答题即时判定对错，训练结束自动统计正确率和用时，适合日常口算打卡练习。</p>
         <h2>核心功能</h2>
         <ul>

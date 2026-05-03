@@ -26,7 +26,7 @@ export default function PoemMemoLayout({ children }: { children: React.ReactNode
   return (
     <>
       <div className="sr-only">
-        <h1>古诗词默写生成器 - 240首小学必背古诗词在线打印</h1>
+        <h2>古诗词默写生成器 - 240首小学必背古诗词在线打印</h2>
         <p>免费生成小学必背古诗词默写练习卷，240首经典古诗词，三种默写模式PDF打印。教材工具箱收录小学1-6年级全部必背古诗词，支持填空默写、全诗默写、上下句默写等多种练习方式，是语文教师和学生家长必备的古诗词复习工具。</p>
         <h2>核心功能</h2>
         <ul>

@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.skillxm.cn/contact',
   },
+  openGraph: {
+    url: 'https://www.skillxm.cn/contact/',
+    title: '联系我们 - 教材工具箱',
+    description: '如果您有任何问题、建议或合作意向，欢迎通过邮件联系教材工具箱团队。',
+    type: 'website',
+    images: [{ url: 'https://www.skillxm.cn/og-image.jpg', width: 1200, height: 630, alt: '教材工具箱' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '联系我们 - 教材工具箱',
+    description: '如果您有任何问题、建议或合作意向，欢迎通过邮件联系教材工具箱团队。',
+    images: ['https://www.skillxm.cn/og-image.jpg'],
+  },
 };
 
 export default function ContactPage() {

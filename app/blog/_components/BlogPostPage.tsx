@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { articles } from '../data';
 import SiteLayout from '@/app/_components/SiteLayout';
+import AdUnit from '@/app/_components/AdUnit';
 
 interface BlogPostPageProps {
   slug: string;
@@ -146,6 +147,9 @@ export default function BlogPostPage({ slug }: BlogPostPageProps) {
           className="prose prose-invert max-w-none"
           dangerouslySetInnerHTML={{ __html: parseMarkdown(article.content) }}
         />
+
+        {/* 广告位 */}
+        <AdUnit />
 
         {/* 相关文章推荐 */}
         {relatedArticles.length > 0 && (

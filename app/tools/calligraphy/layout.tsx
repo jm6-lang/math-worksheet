@@ -27,7 +27,7 @@ export default function CalligraphyLayout({ children }: { children: React.ReactN
     <>
       {/* 服务端渲染的 SEO 内容 -- 搜索引擎可直接抓取 */}
       <div className="sr-only">
-        <h1>字帖生成器 - 田字格米字格汉字字帖免费打印</h1>
+        <h2>字帖生成器 - 田字格米字格汉字字帖免费打印</h2>
         <p>免费在线生成田字格米字格汉字字帖，支持楷体宋体黑体，自定义内容输入，PDF导出A4打印。适合小学生练字、书法初学者描红练习，输入任意汉字即可生成标准字帖模板，支持笔画顺序展示，一键打印高清字帖。</p>
         <h2>核心功能</h2>
         <ul>

@@ -27,7 +27,7 @@ export default function EnglishCalligraphyLayout({ children }: { children: React
     <>
       {/* 服务端渲染的 SEO 内容 -- 搜索引擎可直接抓取 */}
       <div className="sr-only">
-        <h1>英语字帖生成器 - 四线三格英文字帖免费打印</h1>
+        <h2>英语字帖生成器 - 四线三格英文字帖免费打印</h2>
         <p>免费生成四线三格英文字帖，多种字体，PDF导出A4打印。适合小学生英语书写练习，支持输入单词、句子、课文内容生成标准四线三格英文字帖，帮助规范英文字母书写格式，提升英语书写水平。</p>
         <h2>核心功能</h2>
         <ul>

@@ -26,7 +26,7 @@ export default function PinyinLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <div className="sr-only">
-        <h1>拼音学习工具 - 声母韵母四线三格练习免费打印</h1>
+        <h2>拼音学习工具 - 声母韵母四线三格练习免费打印</h2>
         <p>免费拼音学习工具，声母韵母练习，四线三格标准格式PDF打印。教材工具箱提供专业的拼音书写练习工具，涵盖声母、韵母、整体认读音节全部内容，采用标准四线三格格式，帮助小学生规范拼音书写。</p>
         <h2>核心功能</h2>
         <ul>

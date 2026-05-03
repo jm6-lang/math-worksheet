@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.skillxm.cn/about',
   },
+  openGraph: {
+    url: 'https://www.skillxm.cn/about/',
+    title: '关于我们 - 教材工具箱',
+    description: '教材工具箱由一群热爱教育的家长开发者创建，致力于为小学生提供免费优质的教学工具。',
+    type: 'website',
+    images: [{ url: 'https://www.skillxm.cn/og-image.jpg', width: 1200, height: 630, alt: '教材工具箱' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '关于我们 - 教材工具箱',
+    description: '教材工具箱由一群热爱教育的家长开发者创建，致力于为小学生提供免费优质的教学工具。',
+    images: ['https://www.skillxm.cn/og-image.jpg'],
+  },
 };
 
 export default function AboutPage() {

@@ -27,7 +27,7 @@ export default function SudokuLayout({ children }: { children: React.ReactNode }
     <>
       {/* 服务端渲染的 SEO 内容 -- 搜索引擎可直接抓取 */}
       <div className="sr-only">
-        <h1>数独游戏 - 在线益智逻辑训练</h1>
+        <h2>数独游戏 - 在线益智逻辑训练</h2>
         <p>免费在线数独游戏，3档难度，锻炼逻辑思维，适合小学生课余训练。无需下载安装，打开浏览器即可玩数独，支持入门、进阶、挑战三个难度等级，内置数字键盘方便手机操作，即时验证答案正误，帮助提升逻辑推理和专注力。</p>
         <h2>核心功能</h2>
         <ul>

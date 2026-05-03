@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: article.date,
       authors: ['教材工具箱'],
+      images: [{ url: 'https://www.skillxm.cn/og-image.jpg', width: 1200, height: 630, alt: '教材工具箱' }],
     },
   };
 }

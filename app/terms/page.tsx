@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.skillxm.cn/terms',
   },
+  openGraph: {
+    url: 'https://www.skillxm.cn/terms/',
+    title: '服务条款 - 教材工具箱',
+    description: '教材工具箱服务条款，包括使用规则、知识产权、免责声明和隐私保护等内容。',
+    type: 'website',
+    images: [{ url: 'https://www.skillxm.cn/og-image.jpg', width: 1200, height: 630, alt: '教材工具箱' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '服务条款 - 教材工具箱',
+    description: '教材工具箱服务条款，包括使用规则、知识产权、免责声明和隐私保护等内容。',
+    images: ['https://www.skillxm.cn/og-image.jpg'],
+  },
 };
 
 export default function TermsPage() {

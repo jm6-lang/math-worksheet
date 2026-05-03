@@ -20,7 +20,7 @@ export default function WritingTemplateLayout({ children }: { children: React.Re
   return (
     <>
       <div className="sr-only">
-        <h1>作文模板生成器 - 小学作文格纸免费打印</h1>
+        <h2>作文模板生成器 - 小学作文格纸免费打印</h2>
         <p>免费生成小学作文格纸模板，看图写话、日记、作文格子纸。教材工具箱提供多种作文书写模板，涵盖小学低年级到高年级的写作练习需求，支持PDF格式免费打印。</p>
         <h2>核心功能</h2>
         <ul>

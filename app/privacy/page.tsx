@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.skillxm.cn/privacy',
   },
+  openGraph: {
+    url: 'https://www.skillxm.cn/privacy/',
+    title: '隐私政策 - 教材工具箱',
+    description: '教材工具箱隐私政策，说明我们如何收集、使用和保护您的信息。',
+    type: 'website',
+    images: [{ url: 'https://www.skillxm.cn/og-image.jpg', width: 1200, height: 630, alt: '教材工具箱' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '隐私政策 - 教材工具箱',
+    description: '教材工具箱隐私政策，说明我们如何收集、使用和保护您的信息。',
+    images: ['https://www.skillxm.cn/og-image.jpg'],
+  },
 };
 
 export default function PrivacyPage() {

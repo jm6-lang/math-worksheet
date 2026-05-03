@@ -20,7 +20,7 @@ export default function FlashcardsLayout({ children }: { children: React.ReactNo
   return (
     <>
       <div className="sr-only">
-        <h1>识字卡片生成器 - 汉字卡片免费打印</h1>
+        <h2>识字卡片生成器 - 汉字卡片免费打印</h2>
         <p>免费生成汉字识字卡片，支持拼音组词，双面卡片PDF打印。教材工具箱提供在线识字卡片制作工具，帮助小学语文教师和家长快速生成专业的汉字识字卡，适合课堂教学和家庭辅导使用。</p>
         <h2>核心功能</h2>
         <ul>

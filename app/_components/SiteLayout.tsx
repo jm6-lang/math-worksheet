@@ -93,10 +93,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 )}
               </div>
 
-              <a href="/resources" className="px-3 py-1.5 text-sm bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium hover:from-amber-600 hover:to-orange-600 transition-colors">
-                免费资源
-              </a>
-
               <button onClick={() => setShowTutorial(true)} className="px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
                 使用教程
               </button>
@@ -162,10 +158,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               <div className="pt-3 pb-1 px-3">
                 <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">更多</span>
               </div>
-              <a href="/resources" onClick={() => setMobileMenu(false)} className="flex items-center gap-3 px-3 py-2.5 text-sm text-amber-400 bg-amber-500/10 rounded-xl">
-                <span className="w-8 h-8 bg-amber-500/15 rounded-lg flex items-center justify-center text-sm">🎁</span>
-                <div className="font-medium">免费资源</div>
-              </a>
               <button onClick={() => { setShowTutorial(true); setMobileMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 <span className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-sm">📖</span>
                 使用教程

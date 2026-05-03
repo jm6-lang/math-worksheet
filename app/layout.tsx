@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import { TOOLS, generateSchemaApps, generateSchemaBreadcrumbs, ACTIVE_TOOL_COUNT } from "@/lib/toolRegistry";
+import CookieConsent from './_components/CookieConsent';
 
 
 const notoSansSC = Noto_Sans_SC({
@@ -319,6 +320,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen antialiased">
+        <CookieConsent />
         {children}
         <script
           dangerouslySetInnerHTML={{
