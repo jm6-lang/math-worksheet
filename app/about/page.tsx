@@ -193,8 +193,14 @@ export default function AboutPage() {
               </div>
               <div>
                 <h3 className="text-white font-medium mb-2">联系我们</h3>
+                <p className="mb-2">
+                  公司名称：脏兮兮科技<br />
+                  地址：浙江绍兴<br />
+                  电话：0575-88886666<br />
+                  邮箱：<a href="mailto:lang@skillxm.cn" className="text-blue-400 hover:underline">lang@skillxm.cn</a>
+                </p>
                 <p>
-                  如果您有任何建议、反馈或合作意向，欢迎通过邮件与我们联系：<a href="mailto:lang@skillxm.cn" className="text-blue-400 hover:underline">lang@skillxm.cn</a>。我们也欢迎教育工作者和开发者加入我们，一起为孩子们打造更多好用的工具。
+                  如果您有任何建议、反馈或合作意向，欢迎通过邮件或电话与我们联系。我们也欢迎教育工作者和开发者加入我们，一起为孩子们打造更多好用的工具。
                 </p>
               </div>
             </div>
