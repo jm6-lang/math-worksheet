@@ -68,8 +68,8 @@ export default function ContactPage() {
               },
               {
                 icon: '🔗',
-                title: '资源失效反馈',
-                desc: '免费资源板块的链接失效或内容有误，请告知我们以便及时更新。',
+                title: '链接问题反馈',
+                desc: '网站链接失效或内容有误，请告知我们以便及时修复。',
               },
               {
                 icon: '🤝',

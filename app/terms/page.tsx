@@ -143,21 +143,26 @@ export default function TermsPage() {
           </div>
         </section>
 
-        {/* 资源免责 */}
+        {/* 广告说明 */}
         <section className="mb-8">
           <div className="bg-slate-800/50 border border-white/10 rounded-2xl p-8">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-              <span className="text-xl">📎</span> 六、资源免责
+              <span className="text-xl">📢</span> 六、广告与第三方服务
             </h2>
-            <p className="text-gray-300 leading-relaxed mb-3">
-              本站&ldquo;免费资源&rdquo;板块提供的资源链接来自网络公开分享，仅供学习和交流使用。我们不对这些资源的完整性、准确性和合法性负责。
-            </p>
-            <p className="text-gray-300 leading-relaxed mb-3">
-              如果您是资源的版权所有者，且不希望您的资源在本站展示，请通过邮件联系我们，我们会在核实后及时删除相关链接。
-            </p>
-            <p className="text-gray-300 leading-relaxed">
-              使用本站链接的资源时，请遵守原资源的版权声明和使用条款。
-            </p>
+            <div className="space-y-4 text-gray-300 leading-relaxed">
+              <div>
+                <h3 className="text-white font-medium mb-2">6.1 广告展示</h3>
+                <p>本站通过 Google AdSense 展示广告，以支持网站的持续运营和工具的免费开发。广告内容由 Google 根据用户兴趣和网页内容自动匹配，我们不对广告内容承担直接责任。</p>
+              </div>
+              <div>
+                <h3 className="text-white font-medium mb-2">6.2 广告 Cookie</h3>
+                <p>Google AdSense 可能使用 Cookie 来展示个性化广告。您可以通过访问 <a href="https://adssettings.google.com" className="text-blue-400 hover:text-blue-300" target="_blank" rel="noopener noreferrer">Google 广告设置</a> 来管理广告偏好，或选择查看非个性化广告。更多信息请参阅我们的 <a href="/privacy/" className="text-blue-400 hover:text-blue-300">隐私政策</a>。</p>
+              </div>
+              <div>
+                <h3 className="text-white font-medium mb-2">6.3 第三方广告政策</h3>
+                <p>Google AdSense 的广告内容受 Google 广告政策约束。如果您发现不当广告，请通过邮件联系我们，我们会向 Google 反馈。</p>
+              </div>
+            </div>
           </div>
         </section>
 

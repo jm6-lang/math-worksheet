@@ -928,9 +928,9 @@ export default function PinyinPage() {
                 <div className="text-xs text-gray-500 mt-1">田字格米字格练字</div>
               </a>
               <a href="/tools/writing-template" className="block bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/30 rounded-xl p-4 transition-all group">
-                <div className="text-2xl mb-2">📚</div>
+                <div className="text-2xl mb-2">📝</div>
                 <div className="font-bold text-gray-200 text-sm group-hover:text-white transition-colors">作文模板生成器</div>
-                <div className="text-xs text-gray-500 mt-1">看图写话日记模板</div>
+                <div className="text-xs text-gray-500 mt-1">多种写作模板</div>
               </a>
             </div>
           </section>

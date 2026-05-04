@@ -591,44 +591,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== 站内链接增强 - 推荐工具 ===== */}
+      {/* ===== 站内链接增强 - 热门工具与资源 ===== */}
       <section className="py-12 px-4 bg-slate-800/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-8">
-            推荐工具
+            热门工具与资源
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="/tools/calligraphy" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
-              <span className="text-2xl block mb-2">✍️</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">字帖生成器</span>
-            </a>
             <a href="/tools/math-worksheet" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">🧮</span>
               <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">数学练习卷</span>
             </a>
-            <a href="/tools/pinyin" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
-              <span className="text-2xl block mb-2">📚</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">拼音学习工具</span>
+            <a href="/tools/calligraphy" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+              <span className="text-2xl block mb-2">✍️</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">字帖生成器</span>
+            </a>
+            <a href="/tools/mental-math" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+              <span className="text-2xl block mb-2">⚡</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">口算速练</span>
+            </a>
+            <a href="/tools/sudoku" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+              <span className="text-2xl block mb-2">🧩</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">数独游戏</span>
             </a>
             <a href="/tools/english-calligraphy" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">🔤</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">英语字帖生成器</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">英语字帖</span>
             </a>
             <a href="/tools/flashcards" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
-              <span className="text-2xl block mb-2">📖</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">识字卡片生成器</span>
-            </a>
-            <a href="/tools/mental-math" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
-              <span className="text-2xl block mb-2">💡</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">口算速练</span>
+              <span className="text-2xl block mb-2">🃏</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">识字卡片</span>
             </a>
             <a href="/blog" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
               <span className="text-2xl block mb-2">📰</span>
               <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">教育博客</span>
             </a>
-            <a href="/tools/sudoku" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
-              <span className="text-2xl block mb-2">🧩</span>
-              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">数独游戏</span>
+            <a href="/tools/writing-template" className="bg-slate-700/50 hover:bg-slate-600/50 border border-white/10 hover:border-white/20 rounded-xl p-4 text-center transition-all group">
+              <span className="text-2xl block mb-2">📝</span>
+              <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors">作文模板</span>
             </a>
           </div>
         </div>

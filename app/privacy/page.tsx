@@ -74,7 +74,7 @@ export default function PrivacyPage() {
                   <li><strong>分析型 Cookie</strong>：由百度统计设置，用于识别回头访客和统计网站流量。典型 Cookie 名称包括 Hm_lvt_*、Hm_lpvt_* 等，有效期通常为1年。</li>
                   <li><strong>Cloudflare Cookie</strong>：包括 __cf_bm（安全防护）和 cf_clearance（人机验证），用于防范恶意访问和保障网站安全。</li>
                   <li><strong>本地存储（LocalStorage）</strong>：本站工具可能使用浏览器的 LocalStorage 保存您的偏好设置（如选择的年级、题型等），这些数据仅存储在您的设备上，不会同步到服务器。</li>
-                  <li><strong>广告 Cookie</strong>：我们使用 Google AdSense 展示广告。AdSense 可能会使用 Cookie 来根据用户之前对本网站或其他网站的访问情况展示广告。您可以通过访问 <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Google 广告设置</a> 来个性化您的广告偏好。</li>
+                  <li><strong>广告 Cookie</strong>：我们使用 Google AdSense 展示广告。AdSense 可能会使用 Cookie 来根据用户之前对本网站或其他网站的访问情况展示广告。您可以通过访问 <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Google 广告设置</a> 来个性化您的广告偏好，也可以选择查看非个性化广告。非个性化广告不受 Cookie 追踪影响，仅根据当前页面内容展示。如需了解更多信息，请访问 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Google 广告工作原理</a>。</li>
                 </ul>
               </div>
             </div>
